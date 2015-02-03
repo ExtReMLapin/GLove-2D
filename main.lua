@@ -1,7 +1,6 @@
 local loaded = {}
 local i = 1
-
-
+local http;
 Msg = io.write;
 
 function isfunction(a)
@@ -18,33 +17,24 @@ function isnumber(a)
 	return type(a) == "number"
 end
 
-
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
 end
 
-
 function load_modules()
-    local files =  love.filesystem.getDirectoryItems("modules")
-    for i,v in ipairs(files) do
+	local files =  love.filesystem.getDirectoryItems("modules")
+	for i,v in ipairs(files) do
 		include("modules/" .. v)
 		loaded[i] = v
 		i = i + 1;
-    end
-
-end
-
-
-function fuckoff()
-	print(42);
-
+	end
+	include("json.lua")
+	http = require("socket.http")
 end
 
 function love.load()
-	
 	loveframes = require("gui")
 	load_modules()
-	hook.Add("Think", "telst", fuckoff)
 end
 
 
@@ -60,43 +50,28 @@ function love.draw()
 	for k, v in pairs(loaded) do
 		love.graphics.print(v, 42, 42+(30*k))
 	end
-
-local button = loveframes.Create("button")
-button:SetPos(10, 10)
 	
 end
 
 
- 
-function love.mousepressed(x, y, button)
- 
 
- 
-    loveframes.mousepressed(x, y, button)
- 
+function love.mousepressed(x, y, button)
+	loveframes.mousepressed(x, y, button)
+
 end
- 
+
 function love.mousereleased(x, y, button)
- 
-    loveframes.mousereleased(x, y, button)
- 
+	loveframes.mousereleased(x, y, button)
 end
- 
+
 function love.keypressed(key, unicode)
- 
- 
-    loveframes.keypressed(key, unicode)
- 
+	loveframes.keypressed(key, unicode)
 end
- 
+
 function love.keyreleased(key)
- 
- 
-    loveframes.keyreleased(key)
- 
+	loveframes.keyreleased(key)
 end
 
 function love.textinput(text) 
-    loveframes.textinput(text)
- 
+	loveframes.textinput(text)
 end

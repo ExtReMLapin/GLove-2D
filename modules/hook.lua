@@ -1,20 +1,21 @@
 local pairs                        = pairs
 local IsValid                = IsValid
 
-module( "hook" )
+module( "hook", package.seeall )
 
 local Hooks = {}
 
 
 function isfunction(a)
-	--return type(a) == "function"
-	return true
+	return type(a) == "function"
+	--return true
 end
 
 function isstring(a)
-	--return type(a) == "string"
-	return true
+	return type(a) == "string"
+	--return true
 end
+
 
 
 --[[---------------------------------------------------------

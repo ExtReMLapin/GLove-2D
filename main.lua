@@ -42,29 +42,61 @@ end
 
 function love.load()
 	
-	--debug.debug() -- open the lua console
+	loveframes = require("gui")
 	load_modules()
 	hook.Add("Think", "telst", fuckoff)
 end
 
 
+function love.update()
+	loveframes.update(dt)
+	hook.Call("Think")
+end
+
 function love.draw()
+	loveframes.draw()
+
 	hook.Call("Draw")
 	for k, v in pairs(loaded) do
 		love.graphics.print(v, 42, 42+(30*k))
 	end
+
+local button = loveframes.Create("button")
+button:SetPos(10, 10)
+	
 end
 
 
-function love.update()
-	hook.Call("Think")
+ 
+function love.mousepressed(x, y, button)
+ 
+
+ 
+    loveframes.mousepressed(x, y, button)
+ 
+end
+ 
+function love.mousereleased(x, y, button)
+ 
+    loveframes.mousereleased(x, y, button)
+ 
+end
+ 
+function love.keypressed(key, unicode)
+ 
+ 
+    loveframes.keypressed(key, unicode)
+ 
+end
+ 
+function love.keyreleased(key)
+ 
+ 
+    loveframes.keyreleased(key)
+ 
 end
 
-
-
-
-
-function love.keypressed(k) end
-function love.keyreleased(k) end
-function love.mousepressed(x, y, b) end
-function love.mousereleased(x, y, b) end
+function love.textinput(text) 
+    loveframes.textinput(text)
+ 
+end

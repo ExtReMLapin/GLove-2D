@@ -310,9 +310,9 @@ function decode_scanString(s,startPos)
     i,j = string.find(s, "\\.", j+1)
     local x,y = string.find(s, startChar, oldj+1)
     if not i or x < i then
-      base.print(s, startPos, string.sub(s,startPos,oldj))
+     -- base.print(s, startPos, string.sub(s,startPos,oldj))
       i,j = x,y-1
-      if not x then base.print(s, startPos, string.sub(s,startPos,oldj)) end
+     -- if not x then base.print(s, startPos, string.sub(s,startPos,oldj)) end
     end
     table.insert(t, string.sub(s, oldj+1, i-1))
     if string.sub(s, i, j) == "\\u" then

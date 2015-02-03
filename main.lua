@@ -1,16 +1,15 @@
 local loaded = {}
 local i = 1
 local http;
+local json;
 Msg = io.write;
 
 function isfunction(a)
 	return type(a) == "function"
-	--return true
 end
 
 function isstring(a)
 	return type(a) == "string"
-	--return true
 end
 
 function isnumber(a)
@@ -28,8 +27,12 @@ function load_modules()
 		loaded[i] = v
 		i = i + 1;
 	end
-	include("json.lua")
+	json = require("json")
 	http = require("socket.http")
+	require("bank")
+	PrintTable(bank.corpo_get("NVIDIA"))
+	print()
+	PrintTable(bank.corpo_get_infos("NVIDIA"))
 end
 
 function love.load()
@@ -53,11 +56,8 @@ function love.draw()
 	
 end
 
-
-
 function love.mousepressed(x, y, button)
 	loveframes.mousepressed(x, y, button)
-
 end
 
 function love.mousereleased(x, y, button)

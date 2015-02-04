@@ -33,7 +33,7 @@ end
 
 function love.load()
 	load_modules()
-	love.window.setMode( 1920,1080)
+	love.window.setMode( 2220,1400)
 end
 
 
@@ -43,10 +43,10 @@ function love.update()
 end
 
 function love.draw()
-	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
+	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS( )), 10, 10)
 	loveframes.draw()
 	hook.Call("Draw")
-	love.graphics.draw_graph(0,0,1920,800,bank.corpo_get_value_date("NVIDIA").Elements[1].DataSeries.close.values)
+	love.graphics.draw_graph(42,600,900,400,bank.corpo_get_value_date("NVIDIA").Elements[1].DataSeries.close.values)
 
 end
 

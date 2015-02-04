@@ -721,6 +721,25 @@ function table.KeyFromValue( tbl, val )
 	end
 end
 
+function table.CloseValue( tbl, val )
+	local found;
+	local dist = 4654676876;
+	for key, value in pairs( tbl ) do
+		if ( value == val ) then return key end
+	end
+
+	for key, value in pairs( tbl ) do
+		if math.abs(val - value) < dist then
+			found = key
+			dist = math.abs(val - value)
+		end 
+	end
+
+	return found or 42
+
+end
+
+
 function table.RemoveByValue( tbl, val )
 
 	local key = table.KeyFromValue( tbl, val )

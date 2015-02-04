@@ -36,7 +36,6 @@ function love.load()
 	love.window.setMode( 2220,1400)
 end
 
-
 function love.update()
 	loveframes.update(dt)
 	hook.Call("Think")
@@ -46,7 +45,7 @@ function love.draw()
 	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS( )), 10, 10)
 	loveframes.draw()
 	hook.Call("Draw")
-	love.graphics.draw_graph(42,600,900,400,bank.corpo_get_value_date("NVIDIA").Elements[1].DataSeries.close.values)
+	love.graphics.draw_nicegraph(42,600,900,400,bank.corpo_get_value_date("NVIDIA"))
 
 end
 

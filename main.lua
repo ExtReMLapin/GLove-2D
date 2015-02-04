@@ -27,16 +27,12 @@ function load_modules()
 		loaded[i] = v
 		i = i + 1;
 	end
-	json = require("json")
 	http = require("socket.http")
-	require("bank")
-	PrintTable(bank.corpo_get("NVIDIA"))
-	print()
-	PrintTable(bank.corpo_get_infos("NVIDIA"))
+	loveframes = require("gui")
 end
 
 function love.load()
-	loveframes = require("gui")
+
 	load_modules()
 end
 
@@ -48,12 +44,7 @@ end
 
 function love.draw()
 	loveframes.draw()
-
 	hook.Call("Draw")
-	for k, v in pairs(loaded) do
-		love.graphics.print(v, 42, 42+(30*k))
-	end
-	
 end
 
 function love.mousepressed(x, y, button)

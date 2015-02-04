@@ -683,7 +683,7 @@ end
 
 function table.GetWinningKey( tab )
 	
-	local highest = -10000
+	local highest = -10000000
 	local winner = nil
 	
 	for k, v in pairs( tab ) do
@@ -696,6 +696,24 @@ function table.GetWinningKey( tab )
 	return winner
 	
 end
+
+function table.GetLoosingKey( tab )
+	
+	local highest = 1000000000000
+	local winner = nil
+	
+	for k, v in pairs( tab ) do
+		if ( v < highest ) then 
+			winner = k
+			highest = v
+		end
+	end
+	
+	return winner
+	
+end
+
+
 
 function table.KeyFromValue( tbl, val )
 	for key, value in pairs( tbl ) do

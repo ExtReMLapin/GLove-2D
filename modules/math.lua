@@ -250,3 +250,8 @@ end
 function math.Remap( value, inMin, inMax, outMin, outMax )
 	return outMin + ( ( ( value - inMin ) / ( inMax - inMin ) ) * ( outMax - outMin ) )
 end
+
+function math.Map(value, low1, high1, low2, high2)
+	return (low2 + (value - low1 ) * ( high2 - low2 ) / (high1 - low1))
+end
+

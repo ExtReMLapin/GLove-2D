@@ -36,7 +36,7 @@ function investMenu(corp)
 		image:SetImage("ressources/image.png")
 		image:SetPos(30, 90)
 		investList()
-		investSearch()
+
 	end
 	love.graphics.setColor(255,255,255)
 	love.graphics.print("Investir", 30, 50)
@@ -47,7 +47,6 @@ function investMenu(corp)
 	love.graphics.setColor(255,255,255)
 	love.graphics.draw_nicegraph(640, 390, 540, 235, bank.corpo_get_value_date(corp,90))
 	investDetails(corp)
-	love.graphics.print(Globalcorpname or "")
 
 end
 
@@ -70,16 +69,9 @@ function investDetails(corp)
 	love.graphics.print("Détails :", 645, 92)
 end
 
-function investSearch(x, y)
-	search = loveframes.Create("textinput")
-	search:SetPos(400, 95)
-	search:SetWidth(170)
-	search:SetHeight(20)
-end
-
 function investList()
 	multichoice_invest = loveframes.Create("multichoice", frame)
-	multichoice_invest:SetPos(300, 150)
+	multichoice_invest:SetPos(33, 93)
 	for k, v in pairs(Brand) do
 		multichoice_invest:AddChoice(v.Name)
 	end

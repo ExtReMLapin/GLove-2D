@@ -14,7 +14,7 @@ function love.graphics.draw_graph(x, y, w, h, tbl)
 	for k, v in pairs(tbl) do
 		i = (k-1)*2 + 1
 		dx = math.Remap(k, 1, numkeys , x, w+x)
-		dy = height - (height-(h+y)) - (math.Remap(v, min, max, y, h+y)) + y
+		dy = height - (height-(h+y)) - (math.Remap(v, min, max, y+8, h+y-8)) + y
 		tmptbl[i] = dx
 		tmptbl[i+1] = dy
 	end

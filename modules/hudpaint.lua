@@ -29,6 +29,7 @@ function gesposongraph(x, y, w, h)
 end
 
 function love.graphics.draw_nicegraph(x, y, w, h, tbl)
+	love.graphics.setFont(graphfont)
 	local codename = tbl.Elements[1].Symbol
 	local realname = bank.corpo_get(codename).Name
 	local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
@@ -47,6 +48,4 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	local l = love.graphics.newFont(  ):getWidth("Brand Name : " .. realname) +11
 	love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
 	love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
-	love.graphics.print("Brand Name : " .. realname,x+w-l+4, y+h+15 )
-
 end

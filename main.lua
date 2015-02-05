@@ -22,7 +22,6 @@ function load_modules()
 		loaded[i] = v
 		i = i + 1;
 	end
-	include("json.lua")
 	http = require("socket.http")
 end
 

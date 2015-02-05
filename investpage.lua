@@ -19,10 +19,13 @@ function investDetails()
     local realname = bank.corpo_get(codename).Name
     local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
     local min = tbl.Elements[1].DataSeries.close.values[table.GetLoosingKey(tbl.Elements[1].DataSeries.close.values)]
-    local currency = tbl.Elements[1].DataSeries.close.values[table.CloseValue(tbl.Positions, gesposongraph(x, y, w, h))]
-    love.graphics.setFont(15)
-    love.graphics.printf("Symbole : " .. codename, 615, 98)
-    love.graphics.printf("Nom réel : " .. realname, 615, 104)
+    local currency = tbl.Elements[1].Currency
+    love.graphics.setColor(255,255,255)
+    love.graphics.setFont(graphfont)
+    love.graphics.print("Symbole : " .. codename, 615, 130)
+    love.graphics.print("Nom réel : " .. realname, 615, 145)
+    love.graphics.print("Valeur max. d'achat : $" .. max, 615, 160)
+    love.graphics.print("Valeur min. d'achat : $" .. min, 615, 175)
 
 	love.graphics.setColor(48,187,229)
 	love.graphics.setFont(subtitle)

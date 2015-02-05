@@ -1,16 +1,19 @@
 function investMenu(corp)
-	love.graphics.setColor(255,255,255)
-	love.graphics.print("Investir", 30, 50)
+	if not multichoice then
+		
+		love.graphics.setColor(255,255,255)
+		love.graphics.print("Investir", 30, 50)
+	
+		love.graphics.setColor(104,102,102)
+		love.graphics.rectangle("fill", 30, 90, 550, 540)
+		love.graphics.rectangle("fill", 610, 90, 540, 270)
 
-	love.graphics.setColor(104,102,102)
-	love.graphics.rectangle("fill", 30, 90, 550, 540)
-	love.graphics.rectangle("fill", 610, 90, 540, 270)
-
-	investDetails(corp)
-	investSearch()
-
-	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
+		investList()
+		investSearch()
+				investDetails(corp)
+	end
 end
 
 function investDetails(corp)
@@ -32,9 +35,21 @@ function investDetails(corp)
 	love.graphics.print("Détails :", 615, 92)
 end
 
-function investSearch()
+function investSearch(x, y)
 	love.graphics.setColor(255,255,255)
-	love.graphics.rectangle("fill", 400, 95, 170, 20)
-	love.graphics.setColor(219,219,219)
-	love.graphics.print("Rechercher", 403, 92)
+	search = loveframes.Create("textinput")
+	search:SetPos(400, 95)
+	search:SetWidth(170)
+	search:SetHeight(20)
+end
+
+function investList()
+	local multichoice = loveframes.Create("multichoice")
+	multichoice:SetPos(30, 150)
+	multichoice:SetWidth(540)
+	multichoice:SetHeight(390)
+	multichoice:AddChoice("AMD")
+	multichoice:AddChoice("NVIDIA")
+	multichoice:AddChoice("APPLE")
+	multichoice:AddChoice("MICROSOFT")
 end

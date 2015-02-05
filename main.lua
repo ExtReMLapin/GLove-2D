@@ -9,7 +9,6 @@ local http;
 
 Msg = io.write;
 gamestate = "logging"
-username = ""
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -31,7 +30,7 @@ function gamestate_loggin(key)
 		username = username .. key
 		if key == "kpenter" then
 			gamestate = "playing"
-			button:Remove()
+			textinput:Remove()
 			usrbox:Remove()
 		end
 	end
@@ -55,7 +54,6 @@ function love.load()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
-
 end
 
 
@@ -75,6 +73,11 @@ function love.draw()
 	end
 	if gamestate == "playing.invest" then
 		investMenu("apple")
+	end
+	if gamestate ~= "playing.invest" then
+		if search then
+			search:Remove()
+		end
 	end
 	if gamestate == "playing.account" then
 		love.graphics.print("my account")

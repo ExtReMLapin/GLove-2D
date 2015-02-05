@@ -42,10 +42,10 @@ function investMenu(corp)
 	love.graphics.print("Investir", 30, 50)
 	
 	love.graphics.setColor(104,102,102)
-	love.graphics.rectangle("fill", 610, 90, 540, 270)
+	love.graphics.rectangle("fill", 640, 90, 540, 270)
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp,90))
+	love.graphics.draw_nicegraph(640, 390, 540, 235, bank.corpo_get_value_date(corp,90))
 	investDetails(corp)
 	love.graphics.print(Globalcorpname or "")
 
@@ -60,14 +60,14 @@ function investDetails(corp)
     local currency = tbl.Elements[1].Currency
     love.graphics.setColor(255,255,255)
     love.graphics.setFont(graphfont)
-    love.graphics.print("Symbole : " .. codename, 615, 130)
-    love.graphics.print("Nom réel : " .. realname, 615, 145)
-    love.graphics.print("Valeur max. d'achat : $" .. max, 615, 160)
-    love.graphics.print("Valeur min. d'achat : $" .. min, 615, 175)
+    love.graphics.print("Symbole : " .. codename, 645, 130)
+    love.graphics.print("Nom réel : " .. realname, 645, 145)
+    love.graphics.print("Valeur max. d'achat : $" .. max, 645, 160)
+    love.graphics.print("Valeur min. d'achat : $" .. min, 645, 175)
 
 	love.graphics.setColor(48,187,229)
 	love.graphics.setFont(subtitle)
-	love.graphics.print("Détails :", 615, 92)
+	love.graphics.print("Détails :", 645, 92)
 end
 
 function investSearch(x, y)

@@ -40,11 +40,14 @@ function bank.corpo_get_infos(corp_name) -- return all the infos (instant infos,
 	return tbl
 end
 
+function getvalue_fromnum(num)
+	if num >600 then return "Month" else return "Day" end
+end
 
-function bank.corpo_get_value_date(corp_name, timea, timeb)
+function bank.corpo_get_value_date(corp_name, days)
 	local corp_name = bank.corpo_get(corp_name).Symbol
 	if DataCache_values[corp_name] then return DataCache_values[corp_name] end
-	local str = "http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A365%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22".. corp_name .. "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D"
+	local str = string.format("http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters={\"Normalized\":false,\"NumberOfDays\":%i,\"DataPeriod\":\"%s\",\"Elements\":[{\"Symbol\":\"%s\",\"Type\":\"price\",\"Params\":[\"c\"]}]}", days, "Day", corp_name)
 	str = http.request(str)
 	local tbl = json.decode(str)
 	if tbl.message then

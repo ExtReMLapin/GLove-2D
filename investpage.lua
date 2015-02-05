@@ -20,7 +20,7 @@ function investMenu(corp)
 end
 
 function investDetails(corp)
-    local tbl = bank.corpo_get_value_date(corp)
+    local tbl = bank.corpo_get_value_date(corp, 90)
     local codename = tbl.Elements[1].Symbol
     local realname = bank.corpo_get(codename).Name
     local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
@@ -46,8 +46,13 @@ function investSearch(x, y)
 end
 
 function investList()
+<<<<<<< Updated upstream
 	multichoice = loveframes.Create("list")
 	multichoice:SetPos(33, 150)
+=======
+	multichoice = loveframes.Create("multichoice")
+	multichoice:SetPos(30, 150)
+>>>>>>> Stashed changes
 	multichoice:SetWidth(540)
 	multichoice:SetHeight(390)
 	button1 = loveframes.Create("button")

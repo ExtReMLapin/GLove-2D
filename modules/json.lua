@@ -1,43 +1,10 @@
------------------------------------------------------------------------------
--- JSON4Lua: JSON encoding / decoding support for the Lua language.
--- json Module.
--- Author: Craig Mason-Jones
--- Homepage: http://json.luaforge.net/
--- Version: 0.9.40
--- This module is released under the MIT License (MIT).
--- Please see LICENCE.txt for details.
---
--- USAGE:
--- This module exposes two functions:
---   encode(o)
---     Returns the table / string / boolean / number / nil / json.null value as a JSON-encoded string.
---   decode(json_string)
---     Returns a Lua object populated with the data encoded in the JSON string json_string.
---
--- REQUIREMENTS:
---   compat-5.1 if using Lua 5.0
---
--- CHANGELOG
---   0.9.20 Introduction of local Lua functions for private functions (removed _ function prefix). 
---          Fixed Lua 5.1 compatibility issues.
---   		Introduced json.null to have null values in associative arrays.
---          encode() performance improvement (more than 50%) through table.concat rather than ..
---          Introduced decode ability to ignore /**/ comments in the JSON string.
---   0.9.10 Fix to array encoding / decoding to correctly manage nil/null values in arrays.
------------------------------------------------------------------------------
 
------------------------------------------------------------------------------
--- Imports and dependencies
------------------------------------------------------------------------------
 local math = require('math')
 local string = require("string")
 local table = require("table")
 
 local base = _G
 
------------------------------------------------------------------------------
--- Module declaration
------------------------------------------------------------------------------
 module("modules/json")
 
 -- Public functions
@@ -54,12 +21,6 @@ local encodeString
 local isArray
 local isEncodable
 
------------------------------------------------------------------------------
--- PUBLIC FUNCTIONS
------------------------------------------------------------------------------
---- Encodes an arbitrary Lua object / variable.
--- @param v The Lua object / variable to be JSON encoded.
--- @return String containing the JSON encoding in internal Lua string format (i.e. not unicode)
 function encode (v)
   -- Handle nil values
   if v==nil then
@@ -143,24 +104,10 @@ function decode(s, startPos)
   -- Otherwise, it must be a constant
   return decode_scanConstant(s,startPos)
 end
-
---- The null function allows one to specify a null value in an associative array (which is otherwise
--- discarded if you set the value with 'nil' in Lua. Simply set t = { first=json.null }
 function null()
   return null -- so json.null() will also return null ;-)
 end
------------------------------------------------------------------------------
--- Internal, PRIVATE functions.
--- Following a Python-like convention, I have prefixed all these 'PRIVATE'
--- functions with an underscore.
------------------------------------------------------------------------------
 
---- Scans an array from JSON into a Lua object
--- startPos begins at the start of the array.
--- Returns the array and the next starting position
--- @param s The string being scanned.
--- @param startPos The starting position for the scan.
--- @return table, int The scanned array as a table, and the position of the next character to scan.
 function decode_scanArray(s,startPos)
   local array = {}	-- The return value
   local stringLen = string.len(s)
@@ -183,10 +130,6 @@ function decode_scanArray(s,startPos)
   until false
 end
 
---- Scans a comment and discards the comment.
--- Returns the position of the next character following the comment.
--- @param string s The JSON string to scan.
--- @param int startPos The starting position of the comment
 function decode_scanComment(s, startPos)
   base.assert( string.sub(s,startPos,startPos+1)=='/*', "decode_scanComment called but comment does not start at position " .. startPos)
   local endPos = string.find(s,'*/',startPos+2)
@@ -194,12 +137,6 @@ function decode_scanComment(s, startPos)
   return endPos+2  
 end
 
---- Scans for given constants: true, false or null
--- Returns the appropriate Lua type, and the position of the next character to read.
--- @param s The string being scanned.
--- @param startPos The position in the string at which to start scanning.
--- @return object, int The object (true, false or nil) and the position at which the next character should be 
--- scanned.
 function decode_scanConstant(s, startPos)
   local consts = { ["true"] = true, ["false"] = false, ["null"] = nil }
   local constNames = {"true","false","null"}
@@ -213,14 +150,6 @@ function decode_scanConstant(s, startPos)
   base.assert(nil, 'Failed to scan constant from string ' .. s .. ' at starting position ' .. startPos)
 end
 
---- Scans a number from the JSON encoded string.
--- (in fact, also is able to scan numeric +- eqns, which is not
--- in the JSON spec.)
--- Returns the number, and the position of the next character
--- after the number.
--- @param s The string being scanned.
--- @param startPos The position at which to start scanning.
--- @return number, int The extracted number and the position of the next character to scan.
 function decode_scanNumber(s,startPos)
   local endPos = startPos+1
   local stringLen = string.len(s)
@@ -236,12 +165,6 @@ function decode_scanNumber(s,startPos)
   return stringEval(), endPos
 end
 
---- Scans a JSON object into a Lua object.
--- startPos begins at the start of the object.
--- Returns the object and the next starting position.
--- @param s The string being scanned.
--- @param startPos The starting position of the scan.
--- @return table, int The scanned object as a table and the position of the next character to scan.
 function decode_scanObject(s,startPos)
   local object = {}
   local stringLen = string.len(s)
@@ -272,9 +195,6 @@ function decode_scanObject(s,startPos)
   until false	-- infinite loop while key-value pairs are found
 end
 
--- START SoniEx2
--- Initialize some things used by decode_scanString
--- You know, for efficiency
 local escapeSequences = {
   ["\\t"] = "\t",
   ["\\f"] = "\f",
@@ -287,15 +207,6 @@ base.setmetatable(escapeSequences, {__index = function(t,k)
   return string.sub(k,2)
 end})
 -- END SoniEx2
-
---- Scans a JSON string from the opening inverted comma or single quote to the
--- end of the string.
--- Returns the string extracted as a Lua string,
--- and the position of the next non-string character
--- (after the closing inverted comma or single quote).
--- @param s The string being scanned.
--- @param startPos The starting position of the scan.
--- @return string, int The extracted string as a Lua string, and the next character to parse.
 function decode_scanString(s,startPos)
   base.assert(startPos, 'decode_scanString(..) called without start position')
   local startChar = string.sub(s,startPos,startPos)
@@ -320,10 +231,7 @@ function decode_scanString(s,startPos)
       j = j + 4
       local n = base.tonumber(a, 16)
       base.assert(n, "String decoding failed: bad Unicode escape " .. a .. " at position " .. i .. " : " .. j)
-      -- math.floor(x/2^y) == lazy right shift
-      -- a % 2^b == bitwise_and(a, (2^b)-1)
-      -- 64 = 2^6
-      -- 4096 = 2^12 (or 2^6 * 2^6)
+
       local x
       if n < 0x80 then
         x = string.char(n % 0x80)
@@ -345,12 +253,6 @@ function decode_scanString(s,startPos)
   -- END SoniEx2
 end
 
---- Scans a JSON string skipping all whitespace from the current start position.
--- Returns the position of the first non-whitespace character, or nil if the whole end of string is reached.
--- @param s The string being scanned
--- @param startPos The starting position where we should begin removing whitespace.
--- @return int The first position where non-whitespace was encountered, or string.len(s)+1 if the end of string
--- was reached.
 function decode_scanWhitespace(s,startPos)
   local whitespace=" \n\r\t"
   local stringLen = string.len(s)
@@ -360,10 +262,6 @@ function decode_scanWhitespace(s,startPos)
   return startPos
 end
 
---- Encodes a string to be JSON-compatible.
--- This just involves back-quoting inverted commas, back-quotes and newlines, I think ;-)
--- @param s The string to return as a JSON encoded (i.e. backquoted string)
--- @return The string appropriately escaped.
 
 local escapeList = {
     ['"']  = '\\"',
@@ -380,14 +278,6 @@ function encodeString(s)
  return s:gsub(".", function(c) return escapeList[c] end) -- SoniEx2: 5.0 compat
 end
 
--- Determines whether the given Lua type is an array or a table / dictionary.
--- We consider any table an array if it has indexes 1..n for its n items, and no
--- other data in the table.
--- I think this method is currently a little 'flaky', but can't think of a good way around it yet...
--- @param t The table to evaluate as an array
--- @return boolean, number True if the table can be represented as an array, false otherwise. If true,
--- the second returned value is the maximum
--- number of indexed elements in the array. 
 function isArray(t)
   -- Next we count all the elements, ensuring that any non-indexed elements are not-encodable 
   -- (with the possible exception of 'n')
@@ -407,11 +297,6 @@ function isArray(t)
   return true, maxIndex
 end
 
---- Determines whether the given Lua object / table / variable can be JSON encoded. The only
--- types that are JSON encodable are: string, boolean, number, nil, table and json.null.
--- In this implementation, all other types are ignored.
--- @param o The object to examine.
--- @return boolean True if the object should be JSON encoded, false if it should be ignored.
 function isEncodable(o)
   local t = base.type(o)
   return (t=='string' or t=='boolean' or t=='number' or t=='nil' or t=='table') or (t=='function' and o==null) 

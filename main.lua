@@ -1,6 +1,5 @@
 require "menu"
 require "input"
-require "issomething"
 require "investpage"
 
 local loaded = {}

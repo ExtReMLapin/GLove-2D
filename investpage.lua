@@ -13,7 +13,7 @@ function investMenu(corp)
 	love.graphics.rectangle("fill", 610, 90, 540, 270)
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
+	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp,90))
 	investDetails(corp)
 	love.graphics.print(corpname)
 
@@ -46,13 +46,9 @@ function investSearch(x, y)
 end
 
 function investList()
-<<<<<<< Updated upstream
 	multichoice = loveframes.Create("list")
 	multichoice:SetPos(33, 150)
-=======
-	multichoice = loveframes.Create("multichoice")
-	multichoice:SetPos(30, 150)
->>>>>>> Stashed changes
+
 	multichoice:SetWidth(540)
 	multichoice:SetHeight(390)
 	button1 = loveframes.Create("button")

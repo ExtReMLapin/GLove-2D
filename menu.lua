@@ -1,0 +1,51 @@
+button2 = {}
+
+function loggingDraw(username)
+	if not usrbox then 
+		usrbox = loveframes.Create("frame")
+		usrbox:SetName("Please write your username")
+		usrbox:Center()
+		button = loveframes.Create("button")
+		button:SetWidth(200)
+		button:Center()
+	end
+	button:SetText(username)
+end
+
+function menuDraw()
+	if not menubox then
+		menubox = loveframes.Create("frame")
+		menubox:SetName("Menu")
+		menubox:Center()
+	end
+end
+
+function mainGUI()
+	love.graphics.setColor(199,194,194)
+	love.graphics.rectangle("fill", 0, 670, 1280, 50)
+	for i,v in ipairs(button2) do
+		love.graphics.setColor(88,87,87)
+		love.graphics.setFont(title)
+		love.graphics.print(v.text, v.x, v.y)
+	end
+end
+
+function menuButton(x,y, text, id)
+	table.insert(button2, {x = x, y = y, text = text, id = id})
+end
+
+function menuClick(x,y)
+	for i,v in ipairs(button2) do
+		if x > v.x and x < v.x + title:getWidth(v.text) and y > v.y and y < v.y + title:getHeight() then
+			if v.id == "invest" then
+				gamestate = "playing.invest"
+			end
+			if v.id == "account" then
+				gamestate = "playing.account"
+			end
+			if v.id == "help" then
+				gamestate = "playing.help"
+			end
+		end
+	end
+end

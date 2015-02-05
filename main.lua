@@ -1,20 +1,15 @@
+require "menu"
+require "input"
+require "issomething"
+require "investpage"
+
 local loaded = {}
 local i = 1
 local http;
-local json;
+
 Msg = io.write;
-
-function isfunction(a)
-	return type(a) == "function"
-end
-
-function isstring(a)
-	return type(a) == "string"
-end
-
-function isnumber(a)
-	return type(a) == "number"
-end
+gamestate = "logging"
+username = ""
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -27,15 +22,39 @@ function load_modules()
 		loaded[i] = v
 		i = i + 1;
 	end
+	include("json.lua")
 	http = require("socket.http")
-	loveframes = require("gui")
 end
 
-function love.load()
-	load_modules()
-	flags = {fullscreen = false, fsaa = 0, borderless = true}
-	love.window.setMode( 1280,720, flags)
+
+function gamestate_loggin(key)
+	if gamestate == "logging" then
+		username = username .. key
+		if key == "kpenter" then
+			gamestate = "playing"
+			button:Remove()
+			usrbox:Remove()
+		end
+	end
+
+	if key == "escape" then
+		gamestate = "menu"
+	end
 end
+
+
+function love.load()
+	loveframes = require("gui")
+	load_modules()
+	love.graphics.setBackgroundColor(55,55,55)
+	title = love.graphics.newFont("ressources/Existence-Light.ttf", 27)
+	subtitle = love.graphics.newFont("ressources/Existence-Light.ttf",23)
+	menuButton(150, 680, "Investir", "invest")
+	menuButton(550, 680, "Mon Compte", "account")
+	menuButton(1000, 680, "Aide", "help")
+	hook.Add("KeyPressed", "loggin", gamestate_loggin)
+end
+
 
 function love.update()
 	loveframes.update(dt)
@@ -43,27 +62,21 @@ function love.update()
 end
 
 function love.draw()
-	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS( )), 10, 10)
 	loveframes.draw()
-	hook.Call("Draw")
+	if gamestate == "logging" then
+		loggingDraw(username)
+	end
+
+	if gamestate == "menu" then
+		menuDraw()
+	end
+	if gamestate == "playing.invest" then
+		investMenu()
+	end
+	if gamestate == "playing.account" then
+		love.graphics.print("my account")
+	end
+	mainGUI()
 end
 
-function love.mousepressed(x, y, button)
-	loveframes.mousepressed(x, y, button)
-end
 
-function love.mousereleased(x, y, button)
-	loveframes.mousereleased(x, y, button)
-end
-
-function love.keypressed(key, unicode)
-	loveframes.keypressed(key, unicode)
-end
-
-function love.keyreleased(key)
-	loveframes.keyreleased(key)
-end
-
-function love.textinput(text) 
-	loveframes.textinput(text)
-end

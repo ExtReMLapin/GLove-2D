@@ -33,7 +33,8 @@ end
 
 function love.load()
 	load_modules()
-	love.window.setMode( 2220,1400)
+	flags = {fullscreen = false, fsaa = 0, borderless = true}
+	love.window.setMode( 1280,720, flags)
 end
 
 function love.update()
@@ -45,7 +46,7 @@ function love.draw()
 	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS( )), 10, 10)
 	loveframes.draw()
 	hook.Call("Draw")
-	love.graphics.draw_nicegraph(42,600,900,400,bank.corpo_get_value_date("NVIDIA"))
+	love.graphics.draw_nicegraph(42, 42,540,270,bank.corpo_get_value_date("AMD"))
 
 end
 

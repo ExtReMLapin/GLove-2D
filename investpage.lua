@@ -1,19 +1,22 @@
 function investMenu(corp)
 	if not multichoice then
-		
-		love.graphics.setColor(255,255,255)
-		love.graphics.print("Investir", 30, 50)
-	
-		love.graphics.setColor(104,102,102)
-		love.graphics.rectangle("fill", 30, 90, 550, 540)
-		love.graphics.rectangle("fill", 610, 90, 540, 270)
-
-		love.graphics.setColor(255,255,255)
-		love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
+		local image = loveframes.Create("image", frame)
+		image:SetImage("ressources/image.png")
+		image:SetPos(30, 90)
 		investList()
 		investSearch()
-				investDetails(corp)
 	end
+	love.graphics.setColor(255,255,255)
+	love.graphics.print("Investir", 30, 50)
+	
+	love.graphics.setColor(104,102,102)
+	love.graphics.rectangle("fill", 610, 90, 540, 270)
+
+	love.graphics.setColor(255,255,255)
+	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
+	investDetails(corp)
+	love.graphics.print(corpname)
+
 end
 
 function investDetails(corp)
@@ -36,7 +39,6 @@ function investDetails(corp)
 end
 
 function investSearch(x, y)
-	love.graphics.setColor(255,255,255)
 	search = loveframes.Create("textinput")
 	search:SetPos(400, 95)
 	search:SetWidth(170)
@@ -44,12 +46,29 @@ function investSearch(x, y)
 end
 
 function investList()
-	local multichoice = loveframes.Create("multichoice")
-	multichoice:SetPos(30, 150)
+	multichoice = loveframes.Create("list")
+	multichoice:SetPos(33, 150)
 	multichoice:SetWidth(540)
 	multichoice:SetHeight(390)
-	multichoice:AddChoice("AMD")
-	multichoice:AddChoice("NVIDIA")
-	multichoice:AddChoice("APPLE")
-	multichoice:AddChoice("MICROSOFT")
+	button1 = loveframes.Create("button")
+	button1:SetText("AMD")
+	multichoice:AddItem(button1)
+	button1.OnClick = investCorpname("AMD")
+	button2 = loveframes.Create("button")
+	button2:SetText("NVIDIA")
+	multichoice:AddItem(button2)
+	button2.OnClick = investCorpname("NVIDIA")
+	button3 = loveframes.Create("button")
+	button3:SetText("APPLE")
+	multichoice:AddItem(button3)
+	button3.OnClick = investCorpname("APPLE")
+	button4 = loveframes.Create("button")
+	button4:SetText("MICROSOFT")
+	multichoice:AddItem(button4)
+	button4.OnClick = investCorpname("MICROSOFT")
+
+end
+
+function investCorpname(name)
+	corpname = name
 end

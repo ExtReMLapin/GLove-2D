@@ -7,11 +7,10 @@ function loggingDraw(username)
 		usrbox:SetName("Please write your username")
 		usrbox:Center()
 		textinput = loveframes.Create("textinput")
+		textinput:SetParent(usrbox)
 		textinput:SetPlaceholderText(username)
 		textinput:SetWidth(200)
 		textinput:Center()
-		love.graphics.setColor(255,255,255)
-		love.graphics.print(username)
 	end
 end
 

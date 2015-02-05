@@ -9,6 +9,7 @@ local http;
 
 Msg = io.write;
 gamestate = "logging"
+corpname = "Apple"
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -43,7 +44,7 @@ end
 function love.load()
 	loveframes = require("gui")
 	load_modules()
-	love.graphics.setBackgroundColor(55,55,55)
+	love.graphics.setBackgroundColor(60,60,60)
 	title = love.graphics.newFont("ressources/Existence-Light.ttf", 27)
 	subtitle = love.graphics.newFont("ressources/Existence-Light.ttf",23)
 	graphfont = love.graphics.newFont(12)

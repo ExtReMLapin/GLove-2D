@@ -4,6 +4,7 @@ width, height = love.graphics.getDimensions( )
 
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
+	love.graphics.setColor(98,203,235)
 	local tmptbl = {}
 	local max = tbl[table.GetWinningKey(tbl)]
 	local min = tbl[table.GetLoosingKey(tbl)]
@@ -46,6 +47,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 		love.graphics.print(date, xpos +20, ypos +25)
 	end
 	local l = love.graphics.newFont(  ):getWidth("Brand Name : " .. realname) +11
+
 	love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
 	love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
 end

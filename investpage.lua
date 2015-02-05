@@ -1,4 +1,4 @@
-function investMenu()
+function investMenu(corp)
 	love.graphics.setColor(255,255,255)
 	love.graphics.print("Investir", 30, 50)
 
@@ -6,15 +6,15 @@ function investMenu()
 	love.graphics.rectangle("fill", 30, 90, 550, 540)
 	love.graphics.rectangle("fill", 610, 90, 540, 270)
 
-	investDetails()
+	investDetails(corp)
+	investSearch()
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date("NVDA"))
+	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp))
 end
 
-function investDetails()
-	local corp_name = "NVDA"
-    local tbl = bank.corpo_get_value_date(corp_name)
+function investDetails(corp)
+    local tbl = bank.corpo_get_value_date(corp)
     local codename = tbl.Elements[1].Symbol
     local realname = bank.corpo_get(codename).Name
     local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
@@ -30,4 +30,11 @@ function investDetails()
 	love.graphics.setColor(48,187,229)
 	love.graphics.setFont(subtitle)
 	love.graphics.print("Détails :", 615, 92)
+end
+
+function investSearch()
+	love.graphics.setColor(255,255,255)
+	love.graphics.rectangle("fill", 400, 95, 170, 20)
+	love.graphics.setColor(219,219,219)
+	love.graphics.print("Rechercher", 403, 92)
 end

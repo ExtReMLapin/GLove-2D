@@ -74,7 +74,7 @@ function love.draw()
 		menuDraw()
 	end
 	if gamestate == "playing.invest" then
-		investMenu()
+		investMenu("apple")
 	end
 	if gamestate == "playing.account" then
 		love.graphics.print("my account")

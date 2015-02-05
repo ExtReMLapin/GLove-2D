@@ -46,8 +46,6 @@ function love.draw()
 	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS( )), 10, 10)
 	loveframes.draw()
 	hook.Call("Draw")
-	love.graphics.draw_nicegraph(42, 42,540,270,bank.corpo_get_value_date("AMD"))
-
 end
 
 function love.mousepressed(x, y, button)

@@ -8,7 +8,7 @@ local http;
 
 Msg = io.write;
 gamestate = "logging"
-corpname = "Apple"
+Globalcorpname = "Apple"
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -72,7 +72,7 @@ function love.draw()
 		menuDraw()
 	end
 	if gamestate == "playing.invest" then
-		investMenu("apple")
+		investMenu(Globalcorpname)
 	end
 	if gamestate ~= "playing.invest" then
 		if search then

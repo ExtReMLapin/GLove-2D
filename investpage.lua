@@ -1,5 +1,37 @@
+local multichoice_invest;
+Brand = {}
+	Brand[1] = {}
+	Brand[2] = {}
+	Brand[3] = {}
+	Brand[4] = {}
+	Brand[5] = {}
+	Brand[6] = {}
+	Brand[7] = {}
+	Brand[8] = {}
+
+	Brand[1].Name = "AMD"
+	Brand[1].rn = "AMD"
+	Brand[2].Name = "NVIDIA"
+	Brand[2].rn = "NVDA"
+	Brand[3].Name = "INTEL"
+	Brand[3].rn = "INTC"
+	Brand[4].Name = "Wall-Mart"
+	Brand[4].rn = "WMT"
+	Brand[5].Name = "Apple"
+	Brand[5].rn = "AAPL"
+	Brand[6].Name = "Facebook"
+	Brand[6].rn = "Facebook"
+	Brand[7].Name = "Microsoft"
+	Brand[7].rn = "MSFT"
+	Brand[8].Name = "Google"
+	Brand[8].rn = "GOOGL"
+
+
+
+
+
 function investMenu(corp)
-	if not multichoice then
+	if not multichoice_invest then
 		local image = loveframes.Create("image", frame)
 		image:SetImage("ressources/image.png")
 		image:SetPos(30, 90)
@@ -15,7 +47,7 @@ function investMenu(corp)
 	love.graphics.setColor(255,255,255)
 	love.graphics.draw_nicegraph(610, 390, 540, 235, bank.corpo_get_value_date(corp,90))
 	investDetails(corp)
-	love.graphics.print(corpname)
+	love.graphics.print(Globalcorpname or "")
 
 end
 
@@ -46,30 +78,19 @@ function investSearch(x, y)
 end
 
 function investList()
-	multichoice = loveframes.Create("list")
-	multichoice:SetPos(33, 150)
+	multichoice_invest = loveframes.Create("multichoice", frame)
+	multichoice_invest:SetPos(300, 150)
+	for k, v in pairs(Brand) do
+		multichoice_invest:AddChoice(v.Name)
+	end
 
-	multichoice:SetWidth(540)
-	multichoice:SetHeight(390)
-	button1 = loveframes.Create("button")
-	button1:SetText("AMD")
-	multichoice:AddItem(button1)
-	button1.OnClick = investCorpname("AMD")
-	button2 = loveframes.Create("button")
-	button2:SetText("NVIDIA")
-	multichoice:AddItem(button2)
-	button2.OnClick = investCorpname("NVIDIA")
-	button3 = loveframes.Create("button")
-	button3:SetText("APPLE")
-	multichoice:AddItem(button3)
-	button3.OnClick = investCorpname("APPLE")
-	button4 = loveframes.Create("button")
-	button4:SetText("MICROSOFT")
-	multichoice:AddItem(button4)
-	button4.OnClick = investCorpname("MICROSOFT")
+	multichoice_invest.OnChoiceSelected = function(object, choice)
+  		investCorpname(choice)
+	end
+
 
 end
 
 function investCorpname(name)
-	corpname = name
+	Globalcorpname = name
 end

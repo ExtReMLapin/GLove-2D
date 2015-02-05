@@ -23,7 +23,7 @@ function love.graphics.draw_graph(x, y, w, h, tbl)
 	love.graphics.line(tmptbl)
 end
 
-local function gesposongraph(x, y, w, h)
+function gesposongraph(x, y, w, h)
 	xpos, ypos = love.mouse.getPosition( )
 	return math.Remap(xpos,x, x+w, 0, 1)
 end

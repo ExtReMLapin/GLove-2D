@@ -35,7 +35,6 @@ function gamestate_loggin(key)
 			usrbox:Remove()
 		end
 	end
-
 	if key == "escape" then
 		gamestate = "menu"
 	end
@@ -80,6 +79,8 @@ function love.draw()
 		love.graphics.print("my account")
 	end
 	mainGUI()
+
+	love.graphics.draw_nicegraph(42, 42, 500, 200, bank.corpo_get_value_date("ACA"))
 end
 
 

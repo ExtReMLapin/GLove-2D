@@ -52,6 +52,10 @@ function love.load()
 	menuButton(550, 680, "Mon Compte", "account")
 	menuButton(1000, 680, "Aide", "help")
 	hook.Add("KeyPressed", "loggin", gamestate_loggin)
+	love.graphics.setPointStyle('smooth')
+	love.graphics.setLineStyle('smooth')
+	love.graphics.setLineWidth(2)
+
 end
 
 

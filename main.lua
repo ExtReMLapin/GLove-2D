@@ -1,6 +1,7 @@
 require "menu"
 require "input"
 require "investpage"
+require "accountpage"
 
 local loaded = {}
 local i = 1
@@ -28,8 +29,8 @@ end
 function gamestate_loggin(key)
 	if gamestate == "logging" then
 		username = username .. key
-		if key == "kpenter" then
-			gamestate = "playing"
+		if key == "kpenter" or key == "return" then
+			gamestate = "playing.account"
 			textinput:Remove()
 			usrbox:Remove()
 		end
@@ -43,9 +44,10 @@ end
 function love.load()
 	loveframes = require("gui")
 	load_modules()
-	love.graphics.setBackgroundColor(60,60,60)
-	title = love.graphics.newFont("ressources/Existence-Light.ttf", 27)
-	subtitle = love.graphics.newFont("ressources/Existence-Light.ttf",23)
+	love.graphics.setBackgroundColor(232,235,239)
+	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
+	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
+	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
 	graphfont = love.graphics.newFont(12)
 	menuButton(150, 680, "Investir", "invest")
 	menuButton(550, 680, "Mon Compte", "account")
@@ -75,12 +77,14 @@ function love.draw()
 		investMenu(Globalcorpname)
 	end
 	if gamestate ~= "playing.invest" then
-		if search then
-			search:Remove()
+		if search then 
+			search:Remove() 
+			multichoice_invest:Remove() 
+			image:Remove() 
 		end
 	end
 	if gamestate == "playing.account" then
-		love.graphics.print("my account")
+		accountInfos()
 	end
 	mainGUI()
 end

@@ -23,10 +23,19 @@ function menuDraw()
 end
 
 function mainGUI()
-	love.graphics.setColor(199,194,194)
+	love.graphics.setColor(38,38,44)
 	love.graphics.rectangle("fill", 0, 670, 1280, 50)
 	for i,v in ipairs(button2) do
-		love.graphics.setColor(88,87,87)
+		love.graphics.setColor(222,31,85)
+		if gamestate == "playing.invest" and i == 1 then
+			love.graphics.setColor(33,224,170)
+		end
+		if gamestate == "playing.account" and i == 2 then
+			love.graphics.setColor(33,224,170)
+		end
+		if gamestate == "playing.help" and i == 3 then
+			love.graphics.setColor(33,224,170)
+		end
 		love.graphics.setFont(title)
 		love.graphics.print(v.text, v.x, v.y)
 	end
@@ -41,12 +50,18 @@ function menuClick(x,y,mouse,key)
 		if x > v.x and x < v.x + title:getWidth(v.text) and y > v.y and y < v.y + title:getHeight() then
 			if v.id == "invest" then
 				gamestate = "playing.invest"
+				local image = loveframes.Create("image", frame)
+				image:SetImage("ressources/image.jpg")
+				image:SetPos(30, 90)
+				investList()
 			end
 			if v.id == "account" then
 				gamestate = "playing.account"
+				loveframes.util.RemoveAll()
 			end
 			if v.id == "help" then
 				gamestate = "playing.help"
+				loveframes.util.RemoveAll()
 			end
 		end
 	end

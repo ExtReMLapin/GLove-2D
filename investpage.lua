@@ -27,21 +27,17 @@ Brand = {}
 	Brand[8].rn = "GOOGL"
 
 
-
-
-
 function investMenu(corp)
-	if not multichoice_invest then
+	--[[if not multichoice_invest then
 		local image = loveframes.Create("image", frame)
-		image:SetImage("ressources/image.png")
+		image:SetImage("ressources/image.jpg")
 		image:SetPos(30, 90)
 		investList()
-
-	end
-	love.graphics.setColor(255,255,255)
+	end]]
+	love.graphics.setColor(47,46,54)
 	love.graphics.print("Investir", 30, 50)
 	
-	love.graphics.setColor(104,102,102)
+	love.graphics.setColor(248,249,251)
 	love.graphics.rectangle("fill", 640, 90, 540, 270)
 
 	love.graphics.setColor(255,255,255)
@@ -57,14 +53,14 @@ function investDetails(corp)
     local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
     local min = tbl.Elements[1].DataSeries.close.values[table.GetLoosingKey(tbl.Elements[1].DataSeries.close.values)]
     local currency = tbl.Elements[1].Currency
-    love.graphics.setColor(255,255,255)
-    love.graphics.setFont(graphfont)
-    love.graphics.print("Symbole : " .. codename, 645, 130)
-    love.graphics.print("Nom réel : " .. realname, 645, 145)
-    love.graphics.print("Valeur max. d'achat : $" .. max, 645, 160)
-    love.graphics.print("Valeur min. d'achat : $" .. min, 645, 175)
+    love.graphics.setColor(47,46,54)
+    love.graphics.setFont(other_text)
+    love.graphics.print("Symbole : " .. codename, 675, 160)
+    love.graphics.print("Nom réel : " .. realname, 675, 195)
+    love.graphics.print("Valeur max. d'achat : $" .. max, 675, 230)
+    love.graphics.print("Valeur min. d'achat : $" .. min, 675, 265)
 
-	love.graphics.setColor(48,187,229)
+	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
 	love.graphics.print("Détails :", 645, 92)
 end
@@ -79,8 +75,6 @@ function investList()
 	multichoice_invest.OnChoiceSelected = function(object, choice)
   		investCorpname(choice)
 	end
-
-
 end
 
 function investCorpname(name)

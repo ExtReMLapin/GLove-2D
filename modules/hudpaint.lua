@@ -4,7 +4,7 @@ width, height = love.graphics.getDimensions( )
 
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
-	love.graphics.setColor(98,203,235)
+	love.graphics.setColor(28,154,211)
 	local tmptbl = {}
 	local max = tbl[table.GetWinningKey(tbl)]
 	local min = tbl[table.GetLoosingKey(tbl)]

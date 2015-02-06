@@ -46,7 +46,9 @@ end
 
 function bank.corpo_get_value_date(corp_name, days)
 	local corp_name = bank.corpo_get(corp_name).Symbol
-	if DataCache_values[corp_name] then return DataCache_values[corp_name] end
+	print(corp_name)
+	if not DataCache_values[corp_name] then DataCache_values[corp_name] = {} end
+	if DataCache_values[corp_name].days then return DataCache_values[corp_name].days end
 	local str = string.format("http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters={\"Normalized\":false,\"NumberOfDays\":%i,\"DataPeriod\":\"%s\",\"Elements\":[{\"Symbol\":\"%s\",\"Type\":\"price\",\"Params\":[\"c\"]}]}", days, "Day", corp_name)
 	str = http.request(str)
 	local tbl = json.decode(str)
@@ -54,6 +56,6 @@ function bank.corpo_get_value_date(corp_name, days)
 		print(tbl.message)
 		return {}
 	end
-	DataCache_values[corp_name] = json.decode(str)
+	DataCache_values[corp_name].days = json.decode(str)
 	return tbl
 end

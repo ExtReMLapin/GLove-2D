@@ -2,7 +2,7 @@ local slider1;
 local slider2;
 local posg = 0.5
 local zoomg = 0.1
-local number_actions = 0
+number_actions = 0
 bought_objects = {}
 
 
@@ -63,7 +63,7 @@ function investMenu(corp)
 	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
-
+	PrintTable(bought_objects)
 
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
@@ -71,17 +71,11 @@ function investMenu(corp)
 		if clic_gauche == true and os.time() > time then
 			time = os.time()+0.99
 			if account_virtual_money > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
-				if not bought_objects[1] then
-					table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+			
+				if not bought_objects[Globalcorpname] then
+					bought_objects[Globalcorpname] = number_actions
 				else
-		 			for i,j in pairs(bought_objects) do
-						if j.Name == Globalcorpname then
-							j.Number = j.Number + number_actions
-							break
-						else
-							table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
-						end
-					end
+		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
 				end
 				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions * 0.8839)
 			end
@@ -95,16 +89,14 @@ function investMenu(corp)
 		love.graphics.print("Vendre ", 53, 580)
 		if clic_gauche == true and os.time() > time then
 			time = os.time()+0.99
- 			for i,j in pairs(bought_objects) do
-				if j.Name == Globalcorpname then
-					if j.Number > number_actions then
-						j.Number = j.Number - number_actions
-					else
-						j.Number = 0
-					end
-					break
+	 		if bought_objects[Globalcorpname] then 
+				if bought_objects[Globalcorpname] > number_actions then
+					bought_objects[Globalcorpname] = bought_objects[Globalcorpname] - number_actions
+				else
+					bought_objects[Globalcorpname] = 0
 				end
 			end
+			
 		end
 	else
 		love.graphics.print("Vendre ", 53, 580)
@@ -160,6 +152,7 @@ function investList()
 
 	multichoice_invest.OnChoiceSelected = function(object, choice)
 		Globalcorpname = choice
+		number_actions = 0
   		investCorpname(choice)
 	end
 end

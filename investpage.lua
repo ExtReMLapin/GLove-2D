@@ -65,9 +65,9 @@ function investMenu(corp)
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
 
-	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
+	if x > 53 and x < 53 + subtitle:getWidth("Acheter pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice*number_actions .. "$") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
-		love.graphics.print("Acheter ", 53, 500)
+		love.graphics.print("Acheter pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice*number_actions .. "$", 53, 500)
 		if clic_gauche == true and os.time() > time and number_actions > 0 then
 
 			time = os.time()+1.5
@@ -89,12 +89,12 @@ function investMenu(corp)
 			do_save_data()
 		end
 	else
-		love.graphics.print("Acheter ", 53, 500)
+		love.graphics.print("Acheter pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice*number_actions .. "$", 53, 500)
 	end
 	love.graphics.setColor(47,46,54)
-	if x > 53 and x < 53 + subtitle:getWidth("Vendre ") and y > 580 and y < 580 + subtitle:getHeight() then
+	if x > 53 and x < 53 + subtitle:getWidth("Vendre pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice*number_actions .. "$") and y > 580 and y < 580 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
-		love.graphics.print("Vendre ", 53, 580)
+		love.graphics.print("Vendre pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice *number_actions .. "$", 53, 580)
 		if clic_gauche == true and os.time() > time and number_actions > 0 then
 			if buyFeedback then	buyFeedback:Remove() end
 			sellFeedback = loveframes.Create("text")
@@ -116,7 +116,7 @@ function investMenu(corp)
 			do_save_data()
 		end
 	else
-		love.graphics.print("Vendre ", 53, 580)
+		love.graphics.print("Vendre pour " .. bank.corpo_get_infos(Globalcorpname).LastPrice*number_actions .. "$", 53, 580)
 	end
 	
 	love.graphics.setFont(title)

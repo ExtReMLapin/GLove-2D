@@ -39,7 +39,18 @@ function gamestate_loggin(key)
 		gamestate = "menu"
 	end
 end
+local timeee = 3
 
+function precachedata()
+	local pe = coroutine.create(function()
+	for k, v in pairs(Brand) do
+			coroutine.wait(3)
+			bank.corpo_get_value_date(v.rn)
+	end
+end)
+
+coroutine.resume(pe)
+end
 
 function love.load()
 	loveframes = require("gui")
@@ -57,12 +68,14 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	accountBought()
+	--precachedata()
 end
 
 
 function love.update()
 	loveframes.update(dt)
 	hook.Call("Think")
+	timer.check()
 end
 
 function love.draw()

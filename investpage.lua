@@ -148,11 +148,7 @@ function investDetails(corp)
     love.graphics.setFont(other_text)
     love.graphics.print("Symbole : " .. codename, 675, 120) ; love.graphics.print("Investisement Actuel : $" .. staticbought, 675, 270) 
     love.graphics.print("Nom réel : " .. realname, 675, 150)
-<<<<<<< HEAD
-	love.graphics.print("Bénéfices : " .. (staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100 .. "%", 675, 240)
-=======
 	love.graphics.print("Bénéfices : " .. math.Max(0,-1*math.Round((staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100*100)/100) .. "%", 675, 240)
->>>>>>> c48d6b04ab557e0efe19b41fe1f4bf39e864c6c1
     love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 180)
     love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 210)
     love.graphics.print("Variance : ", 675, 300)

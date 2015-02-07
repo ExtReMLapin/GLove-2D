@@ -13,7 +13,7 @@ function accountInfos()
 	love.graphics.setFont(title)
 	love.graphics.print("Mon Compte ", 30, 50)
 	love.graphics.setFont(subtitle)
-	love.graphics.print("Argent dans le compte : " .. account_virtual_money .. "€ / $" .. account_virtual_money * 1.1468, 42, 130)
+	love.graphics.print("Argent dans le compte : " .. math.Round(account_virtual_money*100)/100 .. "€ / $" .. math.Round(account_virtual_money * 1.1468 *100)/100, 42, 130)
 	love.graphics.print("Croissance : ", 42, 160)
 	if account_growth > 0 then
 		love.graphics.setColor(40,232,27)

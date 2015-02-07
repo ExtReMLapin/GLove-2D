@@ -87,5 +87,3 @@ function love.draw()
 	end
 	mainGUI()
 end
-
-

@@ -69,18 +69,21 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Acheter ", 53, 500)
 		if clic_gauche == true and os.time() > time then
-			time = os.time()+0.42
-			if not bought_objects[1] then
-				table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
-			else
-	 			for i,j in pairs(bought_objects) do
-					if j.Name == Globalcorpname then
-						j.Number = j.Number + number_actions
-						break
-					else
-						table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+			time = os.time()+0.99
+			if account_virtual_money > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
+				if not bought_objects[1] then
+					table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+				else
+		 			for i,j in pairs(bought_objects) do
+						if j.Name == Globalcorpname then
+							j.Number = j.Number + number_actions
+							break
+						else
+							table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+						end
 					end
 				end
+				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions * 0.8839)
 			end
 		end
 	else
@@ -91,22 +94,15 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Vendre ", 53, 580)
 		if clic_gauche == true and os.time() > time then
-			time = os.time()+0.42
+			time = os.time()+0.99
  			for i,j in pairs(bought_objects) do
 				if j.Name == Globalcorpname then
-					if j.Number + (number_actions * -1) > 0 then
-						j.Number = j.Number + (number_actions * -1)
+					if j.Number > number_actions then
+						j.Number = j.Number - number_actions
 					else
 						j.Number = 0
 					end
 					break
-				else
-					local erreur = loveframes.Create("frame")
-					erreur:SetName("Erreur !")
-					erreur:SetCenter()
-					         
-					local texterreur = loveframes.Create("text", frame)
-					texterreur:SetText("Vous n'avez aucunes actions pour cette firme")
 				end
 			end
 		end
@@ -175,4 +171,7 @@ function investBuyOrSell()
 	sellnumberbox = loveframes.Create("numberbox")
 	sellnumberbox:SetPos(450, 580)
 	sellnumberbox:SetSize(70,25)
+	sellnumberbox.OnValueChanged = function(object, value)
+		number_actions = value
+	end
 end

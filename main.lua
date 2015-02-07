@@ -56,6 +56,7 @@ function love.load()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
+	accountBought()
 end
 
 
@@ -78,9 +79,7 @@ function love.draw()
 	end
 	if gamestate ~= "playing.invest" then
 		if search then 
-			search:Remove() 
-			multichoice_invest:Remove() 
-			image:Remove() 
+			loveframes.util.RemoveAll()
 		end
 	end
 	if gamestate == "playing.account" then

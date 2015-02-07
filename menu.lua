@@ -56,6 +56,7 @@ function menuClick(x,y,mouse,key)
 				image:SetPos(30, 90)
 				investList()
 				investBuyOrSell()
+				investSliders()
 			end
 			if v.id == "account" then
 				gamestate = "playing.account"

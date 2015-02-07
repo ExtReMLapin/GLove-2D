@@ -40,24 +40,7 @@ function investMenu(corp)
 	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
-	if not slider1 then
-		slider1 = loveframes.Create("slider", frame)
-		slider1:SetPos(640, 600)
-		slider1:SetWidth(290)
-		slider1:SetMinMax(0, 1)
-		         
-		slider2 = loveframes.Create("slider", frame)
-		slider2:SetPos(640, 620)
-		slider2:SetWidth(290)
-		slider2:SetMinMax(0, 2)
-		slider1.OnValueChanged = function(object)
-			posg = object:GetValue()
-		end
-
-		slider2.OnValueChanged = function(object)
-			zoomg = object:GetValue()
-		end
-	end
+	
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Acheter ", 53, 500)
@@ -160,4 +143,23 @@ function investBuyOrSell()
 	sellnumberbox = loveframes.Create("numberbox")
 	sellnumberbox:SetPos(450, 580)
 	sellnumberbox:SetSize(70,25)
+end
+
+function investSliders()
+	slider1 = loveframes.Create("slider", frame)
+	slider1:SetPos(640, 600)
+	slider1:SetWidth(290)
+	slider1:SetMinMax(0, 1)
+	         
+	slider2 = loveframes.Create("slider", frame)
+	slider2:SetPos(640, 620)
+	slider2:SetWidth(290)
+	slider2:SetMinMax(0, 2)
+	slider1.OnValueChanged = function(object)
+		posg = object:GetValue()
+	end
+
+	slider2.OnValueChanged = function(object)
+		zoomg = object:GetValue()
+	end
 end

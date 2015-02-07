@@ -1,6 +1,3 @@
-account_virtual_money = 2532
-account_virtual_money = account_virtual_money * 1.1315
-
 function accountInfos()
 	local account_earnings = 234
 

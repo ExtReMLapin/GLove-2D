@@ -10,7 +10,7 @@ function coroutine.wait( seconds )
 
 	local endtime = os.time() + seconds
 	while ( true ) do
-		if ( endtime < os.time() ) then return end
+		if not ( endtime < os.time() ) then return end
 		coroutine.yield()
 	end
 	  

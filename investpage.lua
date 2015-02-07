@@ -79,6 +79,7 @@ function investMenu(corp)
 				end
 				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 			end
+			do_save_data()
 		end
 	else
 		love.graphics.print("Acheter ", 53, 500)

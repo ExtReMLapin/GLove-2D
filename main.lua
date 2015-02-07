@@ -43,7 +43,6 @@ function gamestate_loggin(key)
 		gamestate = "menu"
 	end
 end
-local timeee = 3
 
 function precachedata()
 	local pe = coroutine.create(function()

@@ -77,12 +77,7 @@ function investMenu(corp)
 				else
 		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
 				end
-<<<<<<< HEAD
 				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
-=======
-				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions * 0.8839)
-				do_save_data()
->>>>>>> c6cdf3182e5071a053b97943b640b3492a63de36
 			end
 		end
 	else
@@ -103,11 +98,7 @@ function investMenu(corp)
 					bought_objects[Globalcorpname] = 0
 				end
 			end
-<<<<<<< HEAD
-=======
-			
 			do_save_data()
->>>>>>> c6cdf3182e5071a053b97943b640b3492a63de36
 		end
 	else
 		love.graphics.print("Vendre ", 53, 580)

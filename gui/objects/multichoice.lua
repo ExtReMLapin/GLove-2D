@@ -18,7 +18,7 @@ function newobject:initialize()
 
 	self.type = "multichoice"
 	self.choice = ""
-	self.text = "Select an option"
+	self.text = "Selectionnez une action"
 	self.width = 200
 	self.height = 25
 	self.listpadding = 0

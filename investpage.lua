@@ -94,11 +94,11 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Vendre ", 53, 580)
 		if clic_gauche == true and os.time() > time then
-			if buyFeeback then	buyFeedback:Remove() end
+			if buyFeedback then	buyFeedback:Remove() end
 			sellFeedback = loveframes.Create("text")
-				sellFeedback:SetText(subtitle)
-				sellFeedback:SetPos(120,350)
-				sellFeedback:SetText("Vente des actions effectuée !")
+			sellFeedback:SetText(subtitle)
+			sellFeedback:SetPos(120,350)
+			sellFeedback:SetText("Vente des actions effectuée !")
 			time = os.time()+0.99
 	 		if bought_objects[Globalcorpname] then 
 				if bought_objects[Globalcorpname] > number_actions then

@@ -16,7 +16,6 @@ function helpPrincipal()
 	contactButton.OnClick = function(object, x, y)
 		contactButton:SetText("pfichepo@student.42.fr\nfsacrepe@student.42.fr")
 	end
-
 end
 
 function helpPlay()
@@ -39,3 +38,5 @@ function helpDraw()
 	love.graphics.setColor(47,46,54)
 	love.graphics.print("Aide", 30,50)
 end
+
+

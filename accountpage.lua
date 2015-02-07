@@ -10,8 +10,7 @@ function accountInfos()
 	love.graphics.setFont(title)
 	love.graphics.print("Mon Compte Virtuel", 30, 50)
 	love.graphics.setFont(subtitle)
-	love.graphics.print("Nom d'utilisateur : " .. username, 42,130)
-	love.graphics.print("Argent dans le compte : $" .. math.Round(account_virtual_money* (1/1.1315)*100)/100 .. " / " .. math.Round(account_virtual_money *100)/100 .. "€", 42, 180)
+	love.graphics.print("Argent du portefeuille : $" .. math.Round(account_virtual_money* (1/1.1315)*100)/100 .. " / " .. math.Round(account_virtual_money *100)/100 .. "€", 42, 180)
 	love.graphics.print("Croissance : ", 42, 210)
 	if account_growth > 0 then
 		love.graphics.setColor(0,255,127)
@@ -21,6 +20,7 @@ function accountInfos()
 		love.graphics.print("-" .. math.Round(account_growth*100)/100 .. "%", 42 + subtitle:getWidth("Croissance : "), 210)
 	end
 	love.graphics.setColor(47,46,54)
+	love.graphics.print("Mode du jeu : Découverte", 42, 555)
 	love.graphics.print("Liste des actions : ", 742, 130)
 end
 

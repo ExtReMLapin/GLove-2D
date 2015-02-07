@@ -70,7 +70,7 @@ function investMenu(corp)
 		love.graphics.print("Acheter ", 53, 500)
 		if clic_gauche == true and os.time() > time then
 
-			time = os.time()+0.99
+			time = os.time()+1.5
 			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
 				if sellFeedback then sellFeedback:Remove() end
 				buyFeedback = loveframes.Create("text")
@@ -101,7 +101,7 @@ function investMenu(corp)
 			sellFeedback:SetText(subtitle)
 			sellFeedback:SetPos(120,350)
 			sellFeedback:SetText("Vente des actions effectuée !")
-			time = os.time()+0.99
+			time = os.time()+1.5
 	 		if bought_objects[Globalcorpname] then 
 				if bought_objects[Globalcorpname] > number_actions then
 					bought_objects[Globalcorpname] = bought_objects[Globalcorpname] - number_actions
@@ -144,10 +144,15 @@ function investDetails(corp)
     lastcur = lastcur or 1
     love.graphics.setColor(47,46,54)
     love.graphics.setFont(other_text)
-    love.graphics.print("Symbole : " .. codename, 675, 160) ; love.graphics.print("Investisement Actuel : " .. staticbought .. " $", 1000, 160) 
-    love.graphics.print("Nom réel : " .. realname, 675, 195) ; love.graphics.print("Bénéfices : " .. (staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100 .. "%", 1000, 195) 
-    love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 230)
-    love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 265)
+    love.graphics.print("Symbole : " .. codename, 675, 120) ; love.graphics.print("Investisement Actuel : " .. staticbought .. " $", 675, 270) 
+    love.graphics.print("Nom réel : " .. realname, 675, 150)
+    if ((staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100) >= 0 then
+		love.graphics.print("Bénéfices : " .. (staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100 .. "%", 675, 240)
+	else
+		love.graphics.print("Bénéfices : 0%", 675, 240)
+	end
+    love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 180)
+    love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 210)
     love.graphics.print("Variance : ", 675, 300)
     if ((lastcur-firstcur)/firstcur*100) > 0 then
     	love.graphics.setColor(0,255,127)
@@ -181,7 +186,7 @@ end
 
 function investBuyOrSell()
 	buynumberbox = loveframes.Create("numberbox")
-	buynumberbox:SetPos(450, 500)
+	buynumberbox:SetPos(350, 500)
 	buynumberbox:SetSize(70,25)
 	buynumberbox:SetMin(0)
 	buynumberbox:SetMax(account_virtual_money / bank.corpo_get_infos(Globalcorpname).LastPrice)
@@ -189,7 +194,7 @@ function investBuyOrSell()
 		number_actions = value
 	end
 	sellnumberbox = loveframes.Create("numberbox")
-	sellnumberbox:SetPos(450, 580)
+	sellnumberbox:SetPos(350, 580)
 	sellnumberbox:SetSize(70,25)
 	sellnumberbox:SetMin(0)
 	if bought_objects[Globalcorpname] then

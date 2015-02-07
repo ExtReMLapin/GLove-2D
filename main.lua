@@ -8,6 +8,8 @@ local loaded = {}
 local i = 1
 local http;
 
+
+
 Msg = io.write;
 gamestate = "playing.account"
 Globalcorpname = "Apple"
@@ -24,6 +26,7 @@ function load_modules()
 		i = i + 1;
 	end
 	http = require("socket.http")
+	require("save")
 end
 
 
@@ -48,15 +51,15 @@ function precachedata()
 			coroutine.wait(3)
 			bank.corpo_get_value_date(v.rn)
 	end
-end)
-
-coroutine.resume(pe)
+	end)
+	coroutine.resume(pe)
 end
 
 function love.load()
 	loveframes = require("gui")
 	load_modules()
 	love.graphics.setBackgroundColor(232,235,239)
+	love.filesystem.setIdentity( "GLove-2D" )
 	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
 	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
 	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
@@ -68,8 +71,13 @@ function love.load()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
+		success = love.filesystem.write("INFO.txt", "Hello")
+	print(success)
+	init_restore()
 	accountBought()
+
 	--precachedata()
+
 end
 
 

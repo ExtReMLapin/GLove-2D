@@ -1,9 +1,8 @@
 local slider1;
 local slider2;
-local posg = 0.5
-local zoomg = 0.1
+local posg = 0.99
+local zoomg = 0.01
 number_actions = 0
-bought_objects = {}
 
 
 local time = os.time()
@@ -42,11 +41,12 @@ function investSliders()
 		slider1:SetPos(640, 600)
 		slider1:SetWidth(290)
 		slider1:SetMinMax(0, 1)
-		         
+		slider1:SetValue(posg)
 		slider2 = loveframes.Create("slider", frame)
 		slider2:SetPos(640, 620)
 		slider2:SetWidth(290)
 		slider2:SetMinMax(0, 2)
+		slider2:SetValue(zoomg)
 		slider1.OnValueChanged = function(object)
 			posg = object:GetValue()
 		end
@@ -68,6 +68,7 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Acheter ", 53, 500)
 		if clic_gauche == true and os.time() > time then
+
 			time = os.time()+0.99
 			if account_virtual_money > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
 			
@@ -77,6 +78,7 @@ function investMenu(corp)
 		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
 				end
 				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions * 0.8839)
+				do_save_data()
 			end
 		end
 	else
@@ -96,6 +98,7 @@ function investMenu(corp)
 				end
 			end
 			
+			do_save_data()
 		end
 	else
 		love.graphics.print("Vendre ", 53, 580)

@@ -1,6 +1,5 @@
 function accountInfos()
-	local account_earnings = 234
-	local account_growth  = account_earnings / account_virtual_money * 100
+	local account_growth = 0
 
 	love.graphics.setColor(75,75,75)
 	love.graphics.rectangle("fill",29, 89, 602, 502)

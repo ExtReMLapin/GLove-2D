@@ -106,7 +106,7 @@ function investMenu(corp)
 	love.graphics.print("Investir", 30, 50)
 	
 	love.graphics.setColor(248,249,251)
-	love.graphics.rectangle("fill", 640, 90, 540, 270)
+	love.graphics.rectangle("fill", 640, 90, 540, 240)
 
 	love.graphics.setColor(255,255,255)
 	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp),posg, zoomg )

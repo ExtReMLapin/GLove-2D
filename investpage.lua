@@ -71,7 +71,10 @@ function investMenu(corp)
 
 			time = os.time()+0.99
 			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
-			
+				local buyFeedback = loveframes.Create("text")
+				buyFeedback:SetText(subtitle)
+				buyFeedback:SetPos(120,350)
+				buyFeedback:SetText("Placement effectué avec succès !")
 				if not bought_objects[Globalcorpname] then
 					bought_objects[Globalcorpname] = number_actions
 				else
@@ -89,6 +92,13 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Vendre ", 53, 580)
 		if clic_gauche == true and os.time() > time then
+			if buyfeeback then
+				buyFeedback:Remove()
+			end
+			local sellFeedback = loveframes.Create("text")
+				sellFeedback:SetText(subtitle)
+				sellFeedback:SetPos(120,350)
+				sellFeedback:SetText("Vente des actions effectuée !")
 			time = os.time()+0.99
 	 		if bought_objects[Globalcorpname] then 
 				if bought_objects[Globalcorpname] > number_actions then

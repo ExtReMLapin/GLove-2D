@@ -1,7 +1,9 @@
 account_virtual_money = 2532
+account_virtual_money = account_virtual_money * 1.1315
 
 function accountInfos()
 	local account_earnings = 234
+
 	local account_growth  = account_earnings / account_virtual_money * 100
 
 	love.graphics.setColor(75,75,75)
@@ -13,7 +15,7 @@ function accountInfos()
 	love.graphics.print("Mon Compte ", 30, 50)
 	love.graphics.setFont(subtitle)
 	love.graphics.print("Nom d'utilisateur : " .. username, 42,130)
-	love.graphics.print("Argent dans le compte : " .. math.Round(account_virtual_money*100)/100 .. "€ / $" .. math.Round(account_virtual_money * 1.1468 *100)/100, 42, 180)
+	love.graphics.print("Argent dans le compte : $" .. math.Round(account_virtual_money*100)/100 .. " / " .. math.Round(account_virtual_money * (1/1.1315) *100)/100 .. "€", 42, 180)
 	love.graphics.print("Croissance : ", 42, 210)
 	if account_growth > 0 then
 		love.graphics.setColor(0,255,127)

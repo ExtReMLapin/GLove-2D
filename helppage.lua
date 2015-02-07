@@ -38,5 +38,4 @@ function helpDraw()
 	love.graphics.setFont(title)
 	love.graphics.setColor(47,46,54)
 	love.graphics.print("Aide", 30,50)
-	
 end

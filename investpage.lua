@@ -69,14 +69,14 @@ function investMenu(corp)
 		love.graphics.print("Acheter ", 53, 500)
 		if clic_gauche == true and os.time() > time then
 			time = os.time()+0.99
-			if account_virtual_money > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
+			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
 			
 				if not bought_objects[Globalcorpname] then
 					bought_objects[Globalcorpname] = number_actions
 				else
 		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
 				end
-				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions * 0.8839)
+				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 			end
 		end
 	else
@@ -91,11 +91,12 @@ function investMenu(corp)
 	 		if bought_objects[Globalcorpname] then 
 				if bought_objects[Globalcorpname] > number_actions then
 					bought_objects[Globalcorpname] = bought_objects[Globalcorpname] - number_actions
+					account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).LastPrice * bought_objects[Globalcorpname])
 				else
+					account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).LastPrice * bought_objects[Globalcorpname])
 					bought_objects[Globalcorpname] = 0
 				end
 			end
-			
 		end
 	else
 		love.graphics.print("Vendre ", 53, 580)
@@ -164,12 +165,18 @@ function investBuyOrSell()
 	buynumberbox = loveframes.Create("numberbox")
 	buynumberbox:SetPos(450, 500)
 	buynumberbox:SetSize(70,25)
+	buynumberbox:SetMin(0)
+	buynumberbox:SetMax(account_virtual_money / bank.corpo_get_infos(Globalcorpname).LastPrice)
 	buynumberbox.OnValueChanged = function(object, value)
 		number_actions = value
 	end
 	sellnumberbox = loveframes.Create("numberbox")
 	sellnumberbox:SetPos(450, 580)
 	sellnumberbox:SetSize(70,25)
+	sellnumberbox:SetMin(0)
+	if bought_objects[Globalcorpname] then
+		sellnumberbox:SetMax(bought_objects[Globalcorpname])
+	end
 	sellnumberbox.OnValueChanged = function(object, value)
 		number_actions = value
 	end

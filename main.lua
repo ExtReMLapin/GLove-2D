@@ -101,6 +101,7 @@ function love.draw()
 		accountInfos()
 	end
 	if gamestate == "playing.help" then
+		helpDraw()
 	end
 	mainGUI()
 end

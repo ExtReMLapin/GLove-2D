@@ -57,12 +57,13 @@ function investSliders()
 end
 
 
+
 function investMenu(corp)
 	local x,y;
 	x,y = love.mouse.getPosition()
 	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
-	love.graphics.setFont(subtitle)
+	love.graphics.setFont(title)
 
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
@@ -71,7 +72,8 @@ function investMenu(corp)
 
 			time = os.time()+0.99
 			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
-				local buyFeedback = loveframes.Create("text")
+				if sellFeedback then sellFeedback:Remove() end
+				buyFeedback = loveframes.Create("text")
 				buyFeedback:SetText(subtitle)
 				buyFeedback:SetPos(120,350)
 				buyFeedback:SetText("Placement effectué avec succès !")
@@ -92,10 +94,8 @@ function investMenu(corp)
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Vendre ", 53, 580)
 		if clic_gauche == true and os.time() > time then
-			if buyfeeback then
-				buyFeedback:Remove()
-			end
-			local sellFeedback = loveframes.Create("text")
+			if buyFeeback then	buyFeedback:Remove() end
+			sellFeedback = loveframes.Create("text")
 				sellFeedback:SetText(subtitle)
 				sellFeedback:SetPos(120,350)
 				sellFeedback:SetText("Vente des actions effectuée !")

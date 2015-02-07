@@ -8,9 +8,9 @@ if ( not coroutine ) then return end
 --
 function coroutine.wait( seconds )
 
-	local endtime = CurTime() + seconds
+	local endtime = os.time() + seconds
 	while ( true ) do
-		if ( endtime < CurTime() ) then return end
+		if ( endtime < os.time() ) then return end
 		coroutine.yield()
 	end
 	  

@@ -22,7 +22,7 @@ function menuDraw()
 	end
 end
 
-function mainGUI()
+function mainGUI()	
 	love.graphics.setColor(38,38,44)
 	love.graphics.rectangle("fill", 0, 670, 1280, 50)
 	for i,v in ipairs(button2) do

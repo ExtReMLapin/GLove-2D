@@ -55,16 +55,13 @@ function investMenu(corp)
 		slider2:SetPos(640, 620)
 		slider2:SetWidth(290)
 		slider2:SetMinMax(0, 2)
+		slider1.OnValueChanged = function(object)
+			posg = object:GetValue()
+		end
 
-	slider1.OnValueChanged = function(object)
-		posg = object:GetValue()
-	end
-
-	slider2.OnValueChanged = function(object)
-		zoomg = object:GetValue()
-	end
-
-
+		slider2.OnValueChanged = function(object)
+			zoomg = object:GetValue()
+		end
 	end
 end
 
@@ -84,7 +81,6 @@ function investDetails(corp)
     love.graphics.print("Nom réel : " .. realname, 675, 195)
     love.graphics.print("Valeur max. d'achat : $" .. max, 675, 230)
     love.graphics.print("Valeur min. d'achat : $" .. min, 675, 265)
-
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
 	love.graphics.print("Détails :", 645, 92)

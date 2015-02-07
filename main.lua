@@ -6,7 +6,7 @@ require "accountpage"
 local loaded = {}
 local i = 1
 local http;
-
+local progressbar
 Msg = io.write;
 gamestate = "logging"
 Globalcorpname = "Apple"
@@ -40,6 +40,23 @@ function gamestate_loggin(key)
 	end
 end
 
+co1 = coroutine.create(function()
+	loadingbar = loveframes.Create("progressbar", frame)
+	loadingbar:SetPos(400, 300)
+	loadingbar:SetWidth(480)
+	loadingbar:SetLerpRate(#Brand)
+	loadingbar:SetMax(#Brand)
+	loadingbar.OnComplete = function(object)
+		loadingbar:Remove()
+	end
+	for k, v in pairs(Brand) do
+		coroutine.wait(1)
+		bank.corpo_get_value_date(v.rn)
+		loadingbar:SetValue(loadingbar:GetValue() + 1)
+	end
+end)
+
+
 
 function love.load()
 	loveframes = require("gui")
@@ -56,6 +73,7 @@ function love.load()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
+	--coroutine.resume(co1)
 end
 
 
@@ -69,7 +87,6 @@ function love.draw()
 	if gamestate == "logging" then
 		loggingDraw(username)
 	end
-
 	if gamestate == "menu" then
 		menuDraw()
 	end

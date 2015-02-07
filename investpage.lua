@@ -68,7 +68,7 @@ function investMenu(corp)
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Acheter ", 53, 500)
-		if clic_gauche == true and os.time() > time then
+		if clic_gauche == true and os.time() > time and number_actions > 0 then
 
 			time = os.time()+1.5
 			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions) then
@@ -95,7 +95,7 @@ function investMenu(corp)
 	if x > 53 and x < 53 + subtitle:getWidth("Vendre ") and y > 580 and y < 580 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
 		love.graphics.print("Vendre ", 53, 580)
-		if clic_gauche == true and os.time() > time then
+		if clic_gauche == true and os.time() > time and number_actions > 0 then
 			if buyFeedback then	buyFeedback:Remove() end
 			sellFeedback = loveframes.Create("text")
 			sellFeedback:SetText(subtitle)

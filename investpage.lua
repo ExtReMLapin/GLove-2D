@@ -54,7 +54,7 @@ function investMenu(corp)
 		slider2 = loveframes.Create("slider", frame)
 		slider2:SetPos(640, 620)
 		slider2:SetWidth(290)
-		slider2:SetMinMax(0, 1)
+		slider2:SetMinMax(0, 2)
 
 	slider1.OnValueChanged = function(object)
 		posg = object:GetValue()

@@ -26,6 +26,11 @@ function gesposongraph(x, y, w, h)
 	return math.Remap(xpos,x, x+w, 0, 1)
 end
 
+function gesposongraph2(x, w,y)
+	return math.Remap(y,x, x+w, 0, 1)
+end
+
+
 local fnt1 = love.graphics.newFont(  )
 local fnt2 = love.graphics.newFont(10)
 
@@ -41,7 +46,7 @@ end
 
 function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 
-	zoom = math.Min(math.Max( 0.1, zoom),1) or 0.5
+	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5
 	pos = math.Min(math.Max( 0.1, pos),1)  or 0.5
 	love.graphics.setFont(graphfont)
 	love.graphics.setColor(255,255,255)
@@ -50,12 +55,11 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	local tbl1 = table.Cut( tbl.Elements[1].DataSeries.close.values, pos-zoom/2, pos+zoom/2 )
 	local tbl2 = table.Cut( tbl.Positions , pos-zoom/2, pos+zoom/2 )
 	local tbl3 = table.Cut( tbl.Dates , pos-zoom/2, pos+zoom/2 )
-
 	tbl2 = table.Rearange(tbl2)
 	local max = tbl1[table.GetWinningKey(tbl1)]
 	local min = tbl1[table.GetLoosingKey(tbl1)]
 	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
-	local date = tbl2[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
+	local date = tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
 	xpos, ypos = love.mouse.getPosition( )
 	love.graphics.draw_graph(x, y, w, h, tbl1)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then
@@ -63,24 +67,40 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 		--love.graphics.line(x,ypos, x+w, ypos)
 		love.graphics.print("Value : ".. dolla .. " " .. tbl.Elements[1].Currency, xpos +20, ypos +10)
 		love.graphics.print(date, xpos +20, ypos +25)
-		love.graphics.print(date, xpos +20, ypos +25)
 	end
 
-	local l = fnt1:getWidth("Brand Name : " .. realname) +11
-	love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
-	love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
+	--local l = fnt1:getWidth("Brand Name : " .. realname) +11
+	--love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
+	--love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
 	
-	if h < 100 then return end
-	local i = 0;
-	love.graphics.setFont( fnt2 )
-	while (i < height) do
-		if (i > y and i < y+h) and i%50 == 1 then
-			local val = math.Remap(i,y+h,y,min,max)
-			val = math.Round(val*10)
-			val = val/10
-			local len = fnt2:getWidth(val)
-			love.graphics.print(val,x-len-5, i )
-		end
-		i = i+1
-	end 
+	
+	if h > 100 then
+		local i = 0;
+		love.graphics.setFont( fnt2 )
+		while (i < height) do
+			if (i > y and i < y+h) and i%50 == 1 then
+				local val = math.Remap(i,y+h,y,min,max)
+				val = math.Round(val*10)
+				val = val/10
+				local len = fnt2:getWidth(val)
+				love.graphics.print(val,x-len-5, i )
+			end
+			i = i+1
+		end 
+	end
+
+	if w > 300 then
+		local i = 0;
+		love.graphics.setFont( fnt2 )
+		while (i < width) do
+			if (i > x and i < x+w) and i%170 == 1 then
+				--tbl3[table.CloseValue(tbl2, gesposongraph(i, y, w, h))]
+				local val = tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))]
+				local len = fnt2:getHeight(val)
+				love.graphics.print(val,i, y+h+len-5 )
+			end
+			i = i+1
+		end 
+	end
+
 end

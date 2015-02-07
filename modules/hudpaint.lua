@@ -58,6 +58,10 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	tbl2 = table.Rearange(tbl2)
 	local max = tbl1[table.GetWinningKey(tbl1)]
 	local min = tbl1[table.GetLoosingKey(tbl1)]
+	maxcur = max
+	mincur = min
+	firstcur = tbl1[table.CloseValue(tbl2, 0)]
+	lastcur = tbl1[table.CloseValue(tbl2, 1)]
 	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
 	local date = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))], "T00:00:00", "")
 	xpos, ypos = love.mouse.getPosition( )

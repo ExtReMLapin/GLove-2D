@@ -126,18 +126,25 @@ function investMenu(corp)
 end
 
 function investDetails(corp)
-    local tbl = bank.corpo_get_value_date(corp, 90)
+    local tbl = bank.corpo_get_value_date(corp)
     local codename = tbl.Elements[1].Symbol
     local realname = bank.corpo_get(codename).Name
-    local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
-    local min = tbl.Elements[1].DataSeries.close.values[table.GetLoosingKey(tbl.Elements[1].DataSeries.close.values)]
     local currency = tbl.Elements[1].Currency
+    firstcur = firstcur or 0.1
+    lastcur = lastcur or 1
     love.graphics.setColor(47,46,54)
     love.graphics.setFont(other_text)
     love.graphics.print("Symbole : " .. codename, 675, 160)
     love.graphics.print("Nom réel : " .. realname, 675, 195)
-    love.graphics.print("Valeur max. d'achat : $" .. max, 675, 230)
-    love.graphics.print("Valeur min. d'achat : $" .. min, 675, 265)
+    love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 230)
+    love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 265)
+    
+    if ((lastcur-firstcur)/firstcur*100) > 0 then
+    	love.graphics.setColor(0,255,127)
+    else 
+    	love.graphics.setColor(220,20,60) 
+    end
+    love.graphics.print("Variance : " .. math.Round(((lastcur-firstcur)/firstcur*2000))/20 .. "%", 675, 300)
 
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)

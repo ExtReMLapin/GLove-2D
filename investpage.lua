@@ -63,7 +63,6 @@ function investMenu(corp)
 	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
-	PrintTable(bought_objects)
 
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
@@ -130,13 +129,13 @@ function investDetails(corp)
     love.graphics.print("Nom réel : " .. realname, 675, 195)
     love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 230)
     love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 265)
-    
+    love.graphics.print("Variance : ", 675, 300)
     if ((lastcur-firstcur)/firstcur*100) > 0 then
     	love.graphics.setColor(0,255,127)
     else 
     	love.graphics.setColor(220,20,60) 
     end
-    love.graphics.print("Variance : " .. math.Round(((lastcur-firstcur)/firstcur*2000))/20 .. "%", 675, 300)
+    love.graphics.print(math.Round(((lastcur-firstcur)/firstcur*2000))/20 .. "%", 650 + subtitle:getWidth("Variance : "), 300)
 
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)

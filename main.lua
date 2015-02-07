@@ -2,6 +2,7 @@ require "menu"
 require "input"
 require "investpage"
 require "accountpage"
+require "helppage"
 
 local loaded = {}
 local i = 1
@@ -68,6 +69,7 @@ end
 function love.draw()
 	loveframes.draw()
 	--[[if gamestate == "logging" then
+		accountInfos()
 		loggingDraw(username)
 	end]]
 
@@ -84,6 +86,8 @@ function love.draw()
 	end
 	if gamestate == "playing.account" then
 		accountInfos()
+	end
+	if gamestate == "playing.help" then
 	end
 	mainGUI()
 end

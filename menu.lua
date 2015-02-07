@@ -6,6 +6,7 @@ function loggingDraw(username)
 		usrbox = loveframes.Create("frame")
 		usrbox:SetName("Please write your username")
 		usrbox:Center()
+		usrbox:SetAlwaysOnTop()
 		textinput = loveframes.Create("textinput")
 		textinput:SetParent(usrbox)
 		textinput:SetPlaceholderText(username)
@@ -82,6 +83,7 @@ function menuClick(x,y,mouse,key)
 			if v.id == "help" then
 				gamestate = "playing.help"
 				loveframes.util.RemoveAll()
+				helpPrincipal()
 			end
 		end
 	end

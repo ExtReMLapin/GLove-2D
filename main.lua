@@ -8,8 +8,6 @@ local loaded = {}
 local i = 1
 local http;
 
-
-
 Msg = io.write;
 gamestate = "playing.account"
 Globalcorpname = "Apple"

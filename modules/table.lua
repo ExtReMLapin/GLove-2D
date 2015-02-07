@@ -19,6 +19,23 @@ function istable(tbl)
 end
 
 
+function table.Cut(tbl, start, _end)
+	local len = #tbl
+	local min = math.Remap(start, 0, 1, 0, len)
+	local max = math.Remap(_end, 0, 1, 0, len)
+	local tbln = {}
+
+	for k, v in pairs(tbl) do 
+		if k > min  and k < max then
+			table.insert(tbln, v)
+		end
+	end
+	return tbln
+end
+
+
+
+
 
 --[[---------------------------------------------------------
 	Name: Copy(t, lookup_table)

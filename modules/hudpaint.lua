@@ -1,7 +1,4 @@
-
-
 width, height = love.graphics.getDimensions( )
-
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
 	love.graphics.setColor(28,154,211)
@@ -25,25 +22,42 @@ function love.graphics.draw_graph(x, y, w, h, tbl)
 end
 
 function gesposongraph(x, y, w, h)
-	xpos, ypos = love.mouse.getPosition( )
+	xpos, ypos = love.mouse.getPosition()
 	return math.Remap(xpos,x, x+w, 0, 1)
 end
 
 local fnt1 = love.graphics.newFont(  )
 local fnt2 = love.graphics.newFont(10)
 
-function love.graphics.draw_nicegraph(x, y, w, h, tbl)
+function table.Rearange(tbl)
+	local tbl2 = {}
+	i = 0
+	for k, v in pairs(tbl) do
+		tbl2[k] = math.Remap(i, 0, #tbl, 0, 1)
+		i = i+1
+	end
+	return tbl2
+end
 
+function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
+
+	zoom = math.Min(math.Max( 0.1, zoom),1) or 0.5
+	pos = math.Min(math.Max( 0.1, pos),1)  or 0.5
 	love.graphics.setFont(graphfont)
 	love.graphics.setColor(255,255,255)
 	local codename = tbl.Elements[1].Symbol
 	local realname = bank.corpo_get(codename).Name
-	local max = tbl.Elements[1].DataSeries.close.values[table.GetWinningKey(tbl.Elements[1].DataSeries.close.values)]
-	local min = tbl.Elements[1].DataSeries.close.values[table.GetLoosingKey(tbl.Elements[1].DataSeries.close.values)]
-	local dolla = tbl.Elements[1].DataSeries.close.values[table.CloseValue(tbl.Positions, gesposongraph(x, y, w, h))]
-	local date = tbl.Dates[table.CloseValue(tbl.Positions, gesposongraph(x, y, w, h))]
+	local tbl1 = table.Cut( tbl.Elements[1].DataSeries.close.values, pos-zoom/2, pos+zoom/2 )
+	local tbl2 = table.Cut( tbl.Positions , pos-zoom/2, pos+zoom/2 )
+	local tbl3 = table.Cut( tbl.Dates , pos-zoom/2, pos+zoom/2 )
+
+	tbl2 = table.Rearange(tbl2)
+	local max = tbl1[table.GetWinningKey(tbl1)]
+	local min = tbl1[table.GetLoosingKey(tbl1)]
+	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
+	local date = tbl2[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
 	xpos, ypos = love.mouse.getPosition( )
-	love.graphics.draw_graph(x, y, w, h, tbl.Elements[1].DataSeries.close.values)
+	love.graphics.draw_graph(x, y, w, h, tbl1)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then
 		love.graphics.line(xpos, y, xpos, y+h)
 		--love.graphics.line(x,ypos, x+w, ypos)
@@ -55,7 +69,6 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	local l = fnt1:getWidth("Brand Name : " .. realname) +11
 	love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
 	love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
-	
 	
 	if h < 100 then return end
 	local i = 0;

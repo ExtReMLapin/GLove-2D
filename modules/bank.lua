@@ -7,6 +7,10 @@ DataCache_values = {}
 bank = {}
 
 
+
+
+
+
 local function clear_render(str, mod) -- remove the string borders to make it readable by the json parser
 	mod = mod or 0
 	str = string.Right(str, string.len(str) - (7 + mod))
@@ -44,18 +48,16 @@ function getvalue_fromnum(num)
 	if num >600 then return "Month" else return "Day" end
 end
 
-function bank.corpo_get_value_date(corp_name, days)
+function bank.corpo_get_value_date(corp_name)
 	local corp_name = bank.corpo_get(corp_name).Symbol
-	print(corp_name)
-	if not DataCache_values[corp_name] then DataCache_values[corp_name] = {} end
-	if DataCache_values[corp_name].days then return DataCache_values[corp_name].days end
-	local str = string.format("http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters={\"Normalized\":false,\"NumberOfDays\":%i,\"DataPeriod\":\"%s\",\"Elements\":[{\"Symbol\":\"%s\",\"Type\":\"price\",\"Params\":[\"c\"]}]}", days, "Day", corp_name)
+	if DataCache_values[corp_name] then return DataCache_values[corp_name] end
+	local str = string.format("http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters={\"Normalized\":false,\"NumberOfDays\":%i,\"DataPeriod\":\"%s\",\"Elements\":[{\"Symbol\":\"%s\",\"Type\":\"price\",\"Params\":[\"c\"]}]}", 1095, "Day", corp_name)
 	str = http.request(str)
 	local tbl = json.decode(str)
 	if tbl.message then
 		print(tbl.message)
 		return {}
 	end
-	DataCache_values[corp_name].days = json.decode(str)
+	DataCache_values[corp_name] = json.decode(str)
 	return tbl
 end

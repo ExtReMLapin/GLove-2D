@@ -1,4 +1,8 @@
 local multichoice_invest;
+local slider1;
+local slider2;
+local posg = 0.5
+local zoomg = 0.1
 Brand = {}
 	Brand[1] = {}
 	Brand[2] = {}
@@ -27,13 +31,10 @@ Brand = {}
 	Brand[8].rn = "GOOGL"
 
 
+
+
 function investMenu(corp)
-	--[[if not multichoice_invest then
-		local image = loveframes.Create("image", frame)
-		image:SetImage("ressources/image.jpg")
-		image:SetPos(30, 90)
-		investList()
-	end]]
+
 	love.graphics.setColor(47,46,54)
 	love.graphics.print("Investir", 30, 50)
 	
@@ -41,10 +42,34 @@ function investMenu(corp)
 	love.graphics.rectangle("fill", 640, 90, 540, 270)
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(640, 390, 540, 235, bank.corpo_get_value_date(corp,90))
+	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp),posg, zoomg )
 	investDetails(corp)
 
+	if not slider1 then
+		slider1 = loveframes.Create("slider", frame)
+		slider1:SetPos(640, 600)
+		slider1:SetWidth(290)
+		slider1:SetMinMax(0, 1)
+		         
+		slider2 = loveframes.Create("slider", frame)
+		slider2:SetPos(640, 620)
+		slider2:SetWidth(290)
+		slider2:SetMinMax(0, 1)
+
+	slider1.OnValueChanged = function(object)
+		posg = object:GetValue()
+	end
+
+	slider2.OnValueChanged = function(object)
+		zoomg = object:GetValue()
+	end
+
+
+	end
 end
+
+
+
 
 function investDetails(corp)
     local tbl = bank.corpo_get_value_date(corp, 90)

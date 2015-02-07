@@ -68,7 +68,11 @@ function investMenu(corp)
 		if clic_gauche == true then
  			for i,j in pairs(bought_objects) do
 				if j.Name == Globalcorpname then
-					j.Number = j.Number + number_actions
+					if j.Number + (number_actions * -1) > 0 then
+						j.Number = j.Number + (number_actions * -1)
+					else
+						j.Number = 0
+					end
 					break
 				else
 					local erreur = loveframes.Create("frame")

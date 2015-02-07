@@ -36,6 +36,8 @@ function accountBought()
 	action_list:AddColumn("Valeur unit.")
 	action_list:AddColumn("Valeur tot.")
 	for k, v in pairs(bought_objects) do
-		action_list:AddRow(v.Name, v.Number)
+		if v.Number > 0 then 
+			action_list:AddRow(v.Name, v.Number, bank.corpo_get_infos(v.Name).LastPrice, v.Number * bank.corpo_get_infos(v.Name).LastPrice)
+		end
 	end
 end

@@ -139,7 +139,7 @@ function investDetails(corp)
     local codename = tbl.Elements[1].Symbol
     local realname = bank.corpo_get(codename).Name
     local currency = tbl.Elements[1].Currency
-    local staticbought = bought_objects[corp .. "_value"]
+    local staticbought = bought_objects[Globalcorpname .. "_value"] or bought_objects[corp .. "_value"] or 0
     firstcur = firstcur or 0.1
     lastcur = lastcur or 1
     love.graphics.setColor(47,46,54)

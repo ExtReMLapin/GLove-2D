@@ -1,8 +1,11 @@
-local multichoice_invest;
 local slider1;
 local slider2;
 local posg = 0.5
 local zoomg = 0.1
+local number_actions = 0
+bought_objects = {}
+
+local multichoice_invest;
 Brand = {}
 	Brand[1] = {}
 	Brand[2] = {}
@@ -31,20 +34,12 @@ Brand = {}
 	Brand[8].rn = "GOOGL"
 
 
-
-
 function investMenu(corp)
-
+	local x,y;
+	x,y = love.mouse.getPosition()
+	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
-	love.graphics.print("Investir", 30, 50)
-	
-	love.graphics.setColor(248,249,251)
-	love.graphics.rectangle("fill", 640, 90, 540, 270)
-
-	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp),posg, zoomg )
-	investDetails(corp)
-
+	love.graphics.setFont(subtitle)
 	if not slider1 then
 		slider1 = loveframes.Create("slider", frame)
 		slider1:SetPos(640, 600)
@@ -63,10 +58,61 @@ function investMenu(corp)
 			zoomg = object:GetValue()
 		end
 	end
+	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
+		love.graphics.setColor(222,31,85)
+		love.graphics.print("Acheter ", 53, 500)
+		if clic_gauche == true then
+			if not bought_objects[1] then
+				table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+			else
+	 			for i,j in pairs(bought_objects) do
+					if j.Name == Globalcorpname then
+						j.Number = j.Number + number_actions
+						break
+					else
+						table.insert(bought_objects, {Name = Globalcorpname, Number = number_actions})
+					end
+				end
+			end
+		end
+	else
+		love.graphics.print("Acheter ", 53, 500)
+	end
+	love.graphics.setColor(47,46,54)
+	if x > 53 and x < 53 + subtitle:getWidth("Vendre ") and y > 580 and y < 580 + subtitle:getHeight() then
+		love.graphics.setColor(222,31,85)
+		love.graphics.print("Vendre ", 53, 580)
+		if clic_gauche == true then
+ 			for i,j in pairs(bought_objects) do
+				if j.Name == Globalcorpname then
+					j.Number = j.Number + number_actions
+					break
+				else
+					local erreur = loveframes.Create("frame")
+					erreur:SetName("Erreur !")
+					erreur:SetCenter()
+					         
+					local texterreur = loveframes.Create("text", frame)
+					texterreur:SetText("Vous n'avez aucunes actions pour cette firme")
+				end
+			end
+		end
+	else
+		love.graphics.print("Vendre ", 53, 580)
+	end
+	
+	love.graphics.setFont(title)
+	love.graphics.setColor(47,46,54)
+	love.graphics.print("Investir", 30, 50)
+	
+	love.graphics.setColor(248,249,251)
+	love.graphics.rectangle("fill", 640, 90, 540, 270)
+
+	love.graphics.setColor(255,255,255)
+	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp),posg, zoomg )
+	investDetails(corp)
+
 end
-
-
-
 
 function investDetails(corp)
     local tbl = bank.corpo_get_value_date(corp, 90)
@@ -81,6 +127,7 @@ function investDetails(corp)
     love.graphics.print("Nom réel : " .. realname, 675, 195)
     love.graphics.print("Valeur max. d'achat : $" .. max, 675, 230)
     love.graphics.print("Valeur min. d'achat : $" .. min, 675, 265)
+
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
 	love.graphics.print("Détails :", 645, 92)
@@ -94,10 +141,23 @@ function investList()
 	end
 
 	multichoice_invest.OnChoiceSelected = function(object, choice)
+		Globalcorpname = choice
   		investCorpname(choice)
 	end
 end
 
 function investCorpname(name)
 	Globalcorpname = name
+end
+
+function investBuyOrSell()
+	buynumberbox = loveframes.Create("numberbox")
+	buynumberbox:SetPos(450, 500)
+	buynumberbox:SetSize(70,25)
+	buynumberbox.OnValueChanged = function(object, value)
+		number_actions = value
+	end
+	sellnumberbox = loveframes.Create("numberbox")
+	sellnumberbox:SetPos(450, 580)
+	sellnumberbox:SetSize(70,25)
 end

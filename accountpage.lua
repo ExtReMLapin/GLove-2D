@@ -1,20 +1,37 @@
-account_money = 2532
+account_virtual_money = 2532
 
 function accountInfos()
-	local account_earnings = 324
-	local account_growth = (account_earnings / account_money) * 100
-	love.graphics.setColor(255,255,255)
+	local account_earnings = 234
+	local account_growth  = 1
+	love.graphics.setColor(248,249,251)
+	love.graphics.rectangle("fill",30, 90, 600, 500)
+	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(title)
-	love.graphics.print("Mon Compte ( " .. username .. " )", 30, 50)
+	love.graphics.print("Mon Compte ", 30, 50)
 	love.graphics.setFont(subtitle)
-	love.graphics.print("Argent dans le compte : " .. account_money .. "€ / $" .. account_money * 1.1468, 30, 80)
+	love.graphics.print("Argent dans le compte : " .. account_virtual_money .. "€ / $" .. account_virtual_money * 1.1468, 42, 130)
+	love.graphics.print("Croissance : ", 42, 160)
 	if account_growth > 0 then
 		love.graphics.setColor(40,232,27)
-		love.graphics.print("Croissance : +" .. account_growth .. "%", 30, 110)
+		love.graphics.print("+" .. account_growth .. "%", 42 + subtitle:getWidth("Croissance : "), 160)
 	else
 		love.graphics.setColor(235,12,12)
-		love.graphics.print("Croissance : -" .. account_growth .. "%", 30, 110)
+		love.graphics.print("-" .. account_growth .. "%", 42 + subtitle:getWidth("Croissance : "), 160)
 	end
-	love.graphics.setColor(255,255,255)
+	love.graphics.setColor(47,46,54)
+	love.graphics.print("Liste des actions : ", 742, 130)
 end
 
+function accountBought()
+	local i = 1
+	action_list = loveframes.Create("columnlist")
+	action_list:SetPos(742, 160)
+	action_list:SetSize(400, 400)
+	action_list:AddColumn("Entreprise")
+	action_list:AddColumn("Nombre")
+	action_list:AddColumn("Valeur unit.")
+	action_list:AddColumn("Valeur tot.")
+	for k, v in pairs(bought_objects) do
+		action_list:AddRow(v.Name, v.Number)
+	end
+end

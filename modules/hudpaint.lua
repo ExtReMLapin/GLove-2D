@@ -59,7 +59,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	local max = tbl1[table.GetWinningKey(tbl1)]
 	local min = tbl1[table.GetLoosingKey(tbl1)]
 	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
-	local date = tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
+	local date = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))], "T00:00:00", "")
 	xpos, ypos = love.mouse.getPosition( )
 	love.graphics.draw_graph(x, y, w, h, tbl1)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then

@@ -3,6 +3,10 @@ account_virtual_money = 2532
 function accountInfos()
 	local account_earnings = 234
 	local account_growth  = 1
+
+
+	love.graphics.setColor(75,75,75)
+	love.graphics.rectangle("fill",29, 89, 602, 502)
 	love.graphics.setColor(248,249,251)
 	love.graphics.rectangle("fill",30, 90, 600, 500)
 	love.graphics.setColor(47,46,54)

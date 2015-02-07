@@ -88,6 +88,8 @@ function investMenu(corp)
 	love.graphics.setColor(47,46,54)
 	love.graphics.print("Investir", 30, 50)
 	
+	love.graphics.setColor(75,75,75)
+	love.graphics.rectangle("fill", 639, 89, 542, 242)
 	love.graphics.setColor(248,249,251)
 	love.graphics.rectangle("fill", 640, 90, 540, 240)
 

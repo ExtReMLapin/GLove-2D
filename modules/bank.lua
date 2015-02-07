@@ -18,7 +18,6 @@ function bank.corpo_get(corp_name) -- return table : Exchange ; Name ; Symbol   
 	local str = string.format("http://dev.markitondemand.com/Api/v2/Lookup/jsonp?input=%s&callback=start", corp_name)
 	str = http.request(str)
 	if str == nil then return bank.corpo_get(corp_name) end
-	print( corp_name .. " :  " .. str)
 	if str == "start([])" then return {} end
 	str = clear_render(str)
 	DataCache[corp_name] = json.decode(str)
@@ -31,7 +30,6 @@ function bank.corpo_get_infos(corp_name) -- return all the infos (instant infos,
 	if DataCache_infos[corp_name] then return DataCache_infos[corp_name] end
 	local str = string.format("http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol=%s&callback=start", corp_name)
 	str = http.request(str)
-	print( corp_name .. " :  " .. str)
 	str = clear_render(str , -1 )
 	local tbl = json.decode(str)
 	if tbl.message then
@@ -57,6 +55,5 @@ function bank.corpo_get_value_date(corp_name)
 		return {}
 	end
 	DataCache_values[corp_name] = json.decode(str)
-	print("caching  .... " .. corp_name)
 	return tbl
 end

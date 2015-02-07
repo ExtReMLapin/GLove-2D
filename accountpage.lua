@@ -34,7 +34,7 @@ function accountBought()
 	action_list:AddColumn("Valeur unit.")
 	action_list:AddColumn("Valeur tot.")
 	for k, v in pairs(bought_objects) do
-		if v > 0 then 
+		if v > 0 and not string.EndsWith(k, "_value") then 
 			action_list:AddRow(k, v, "$" .. bank.corpo_get_infos(k).LastPrice , "$" .. v * bank.corpo_get_infos(k).LastPrice)
 		end
 	end

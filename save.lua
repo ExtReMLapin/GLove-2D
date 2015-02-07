@@ -13,7 +13,6 @@ end
 
 
 function do_save_data()
-	print("save " .. account_virtual_money .. "  " ..  #bought_objects)
 	local tbl = {}
 	local str;
 	tbl.cash = account_virtual_money

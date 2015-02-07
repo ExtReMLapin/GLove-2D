@@ -63,7 +63,7 @@ function investMenu(corp)
 	x,y = love.mouse.getPosition()
 	local clic_gauche = love.mouse.isDown("l")
 	love.graphics.setColor(47,46,54)
-	love.graphics.setFont(title)
+	love.graphics.setFont(subtitle)
 
 	if x > 53 and x < 53 + subtitle:getWidth("Acheter ") and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
@@ -79,8 +79,10 @@ function investMenu(corp)
 				buyFeedback:SetText("Placement effectué avec succès !")
 				if not bought_objects[Globalcorpname] then
 					bought_objects[Globalcorpname] = number_actions
+					bought_objects[Globalcorpname .. "_value"] = (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 				else
 		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
+		 			bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] + (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 				end
 				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 			end
@@ -103,10 +105,12 @@ function investMenu(corp)
 	 		if bought_objects[Globalcorpname] then 
 				if bought_objects[Globalcorpname] > number_actions then
 					bought_objects[Globalcorpname] = bought_objects[Globalcorpname] - number_actions
+					bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] - (bank.corpo_get_infos(Globalcorpname).LastPrice * number_actions)
 					account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).LastPrice * bought_objects[Globalcorpname])
 				else
 					account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).LastPrice * bought_objects[Globalcorpname])
 					bought_objects[Globalcorpname] = 0
+					bought_objects[Globalcorpname .. "_value"] = 0
 				end
 			end
 			do_save_data()
@@ -135,12 +139,13 @@ function investDetails(corp)
     local codename = tbl.Elements[1].Symbol
     local realname = bank.corpo_get(codename).Name
     local currency = tbl.Elements[1].Currency
+    local staticbought = bought_objects[corp .. "_value"]
     firstcur = firstcur or 0.1
     lastcur = lastcur or 1
     love.graphics.setColor(47,46,54)
     love.graphics.setFont(other_text)
-    love.graphics.print("Symbole : " .. codename, 675, 160)
-    love.graphics.print("Nom réel : " .. realname, 675, 195)
+    love.graphics.print("Symbole : " .. codename, 675, 160) ; love.graphics.print("Investisement Actuel : " .. staticbought .. " $", 1000, 160) 
+    love.graphics.print("Nom réel : " .. realname, 675, 195) ; love.graphics.print("Bénéfices : " .. (staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100 .. "%", 1000, 195) 
     love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 230)
     love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 265)
     love.graphics.print("Variance : ", 675, 300)

@@ -144,10 +144,10 @@ function investDetails(corp)
     lastcur = lastcur or 1
     love.graphics.setColor(47,46,54)
     love.graphics.setFont(other_text)
-    love.graphics.print("Symbole : " .. codename, 675, 120) ; love.graphics.print("Investisement Actuel : " .. staticbought .. " $", 675, 270) 
+    love.graphics.print("Symbole : " .. codename, 675, 120) ; love.graphics.print("Investisement Actuel : $" .. staticbought, 675, 270) 
     love.graphics.print("Nom réel : " .. realname, 675, 150)
     if ((staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100) >= 0 then
-		love.graphics.print("Bénéfices : " .. (staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100 .. "%", 675, 240)
+		love.graphics.print("Bénéfices : " .. math.Round((staticbought-bank.corpo_get_infos(corp).LastPrice)/bank.corpo_get_infos(corp).LastPrice*100*100)/100 .. "%", 675, 240)
 	else
 		love.graphics.print("Bénéfices : 0%", 675, 240)
 	end

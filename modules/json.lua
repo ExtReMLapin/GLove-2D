@@ -2,7 +2,6 @@
 local math = require('math')
 local string = require("string")
 local table = require("table")
-
 local base = _G
 
 module("modules/json")
@@ -255,6 +254,7 @@ end
 
 function decode_scanWhitespace(s,startPos)
   local whitespace=" \n\r\t"
+  if s == nil then base.error("API ANTI-FLOOD PROTECTION PLEASE REFRESH") end
   local stringLen = string.len(s)
   while ( string.find(whitespace, string.sub(s,startPos,startPos), 1, true)  and startPos <= stringLen) do
     startPos = startPos + 1

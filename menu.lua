@@ -24,7 +24,7 @@ end
 
 function mainGUI()
 	love.graphics.setColor(38,38,44)
-	love.graphics.rectangle("fill", 0, 670, 1280, 50)
+	love.graphics.rectangle("fill", 0, 670, 1280, 50) -- 
 	for i,v in ipairs(button2) do
 		love.graphics.setColor(222,31,85)
 		if gamestate == "playing.invest" and i == 1 then
@@ -51,6 +51,22 @@ function menuClick(x,y,mouse,key)
 			if v.id == "invest" then
 				gamestate = "playing.invest"
 				loveframes.util.RemoveAll()
+				local image = loveframes.Create("image", frame)
+				image:SetImage("ressources/image.jpg")
+				image:SetPos(29, 89)
+				image:SetColor(75,75,75)
+				local image = loveframes.Create("image", frame)
+				image:SetImage("ressources/image.jpg")
+				image:SetPos(31, 91)
+				image:SetColor(75,75,75)
+				local image = loveframes.Create("image", frame)
+				image:SetImage("ressources/image.jpg")
+				image:SetPos(31, 89)
+				image:SetColor(75,75,75)
+				local image = loveframes.Create("image", frame)
+				image:SetImage("ressources/image.jpg")
+				image:SetPos(29, 91)
+				image:SetColor(75,75,75)
 				local image = loveframes.Create("image", frame)
 				image:SetImage("ressources/image.jpg")
 				image:SetPos(30, 90)

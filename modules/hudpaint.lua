@@ -95,7 +95,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 		while (i < width) do
 			if (i > x and i < x+w) and i%170 == 1 then
 				--tbl3[table.CloseValue(tbl2, gesposongraph(i, y, w, h))]
-				local val = tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))]
+				local val = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))], "T00:00:00", "")
 				local len = fnt2:getHeight(val)
 				love.graphics.print(val,i, y+h+len-7 )
 			end

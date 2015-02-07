@@ -68,8 +68,6 @@ function love.load()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
-		success = love.filesystem.write("INFO.txt", "Hello")
-	print(success)
 	init_restore()
 	accountBought()
 

@@ -6,6 +6,10 @@ DataCache_infos = {}
 DataCache_values = {}
 bank = {}
 
+
+-- decode url http://meyerweb.com/eric/tools/dencoder/
+-- son viewer http://jsonviewer.stack.hu/
+
 local function clear_render(str, mod) -- remove the string borders to make it readable by the json parser
 	mod = mod or 0
 	str = string.Right(str, string.len(str) - (7 + mod))

@@ -1,6 +1,6 @@
 function love.mousepressed(x, y, button)
 	loveframes.mousepressed(x, y, button)
-	menuClick(x,y)
+	menuOnClick(x,y, button)
 end
 
 function love.mousereleased(x, y, button)

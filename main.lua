@@ -1,15 +1,14 @@
 require "menu"
 require "input"
-require "investpage"
-require "accountpage"
 require "helppage"
+require "maingui"
 
 local loaded = {}
 local i = 1
 local http;
 
 Msg = io.write;
-gamestate = "playing.account"
+gamestate = "playing"
 Globalcorpname = "Apple"
 
 function include(file)
@@ -29,17 +28,7 @@ end
 
 
 function gamestate_loggin(key)
-	if gamestate == "logging" then
-		username = username .. key
-		if key == "kpenter" or key == "return" then
-			gamestate = "playing.account"
-			textinput:Remove()
-			usrbox:Remove()
-		end
-	end
-	if key == "escape" then
-		gamestate = "menu"
-	end
+
 end
 
 function precachedata()
@@ -55,22 +44,20 @@ end
 function love.load()
 	loveframes = require("gui")
 	load_modules()
-	love.graphics.setBackgroundColor(232,235,239)
+	love.graphics.setBackgroundColor(252,237,157)
 	love.filesystem.setIdentity( "GLove-2D" )
 	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
 	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
 	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
 	graphfont = love.graphics.newFont(12)
-	menuButton(150, 680, "Investir", "invest")
-	menuButton(510, 680, "Mon Compte Virtuel", "account")
-	menuButton(1000, 680, "Aide", "help")
 	hook.Add("KeyPressed", "loggin", gamestate_loggin)
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-	accountBought()
-
+	room = loveframes.Create("image")
+	room:SetImage("ressources/roomiso.jpg")
+	room:Center()
 	--precachedata()
 
 end
@@ -84,27 +71,6 @@ end
 
 function love.draw()
 	loveframes.draw()
-	--[[if gamestate == "logging" then
-		accountInfos()
-		loggingDraw(username)
-	end]]
 
-	if gamestate == "menu" then
-		menuDraw()
-	end
-	if gamestate == "playing.invest" then
-		investMenu(Globalcorpname)
-	end
-	if gamestate ~= "playing.invest" then
-		if search then 
-			loveframes.util.RemoveAll()
-		end
-	end
-	if gamestate == "playing.account" then
-		accountInfos()
-	end
-	if gamestate == "playing.help" then
-		helpDraw()
-	end
-	mainGUI()
+	mainGui()
 end

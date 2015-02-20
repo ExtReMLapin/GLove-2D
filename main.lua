@@ -10,7 +10,7 @@ local http;
 
 Msg = io.write;
 gamestate = "playing.account"
-Globalcorpname = "Apple"
+Globalcorpname = "AAPL"
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -55,6 +55,7 @@ end
 function love.load()
 	loveframes = require("gui")
 	load_modules()
+	--debug.debug()
 	love.graphics.setBackgroundColor(232,235,239)
 	love.filesystem.setIdentity( "GLove-2D" )
 	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
@@ -70,7 +71,6 @@ function love.load()
 	love.graphics.setLineWidth(2)
 	init_restore()
 	accountBought()
-
 	--precachedata()
 
 end

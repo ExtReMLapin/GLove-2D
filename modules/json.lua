@@ -146,7 +146,8 @@ function decode_scanConstant(s, startPos)
       return consts[k], startPos + string.len(k)
     end
   end
-  base.assert(nil, 'Failed to scan constant from string ' .. s .. ' at starting position ' .. startPos)
+  base.print(startPos)
+  base.assert(nil, 'Failed to scan constant from string ' .. s .. ' at starting position ' .. startPos .. ' -> string part is : ' .. string.Right(s, string.len(s) - (startPos)))
 end
 
 function decode_scanNumber(s,startPos)

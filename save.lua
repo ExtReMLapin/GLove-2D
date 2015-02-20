@@ -3,6 +3,7 @@ local json = require("modules/json")
 function init_restore()
 	if not love.filesystem.read("data.txt") then -- 1st use ?
 		bought_objects = {}
+		bought_actions = {}
 		account_virtual_money = 2500
 		do_save_data()
 		do_restore()

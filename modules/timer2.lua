@@ -16,9 +16,7 @@ local function createTimer( name )
 		timerList[name].Status = STOPPED
 		return true
 	end
-
 	return false
-
 end
 
 function timer.exists( name )

@@ -51,7 +51,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	love.graphics.setFont(graphfont)
 	love.graphics.setColor(255,255,255)
 	local codename = tbl.Elements[1].Symbol
-	local realname = bank.corpo_get(codename).Name
+	local realname = bank.corpo_get_infos(codename).Name
 	local tbl1 = table.Cut( tbl.Elements[1].DataSeries.close.values, pos-zoom/2, pos+zoom/2 )
 	local tbl2 = table.Cut( tbl.Positions , pos-zoom/2, pos+zoom/2 )
 	local tbl3 = table.Cut( tbl.Dates , pos-zoom/2, pos+zoom/2 )

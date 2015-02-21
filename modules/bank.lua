@@ -19,6 +19,7 @@ function bank.corpo_get_infos(corp_name) -- return all the infos (instant infos,
 	local tbl = json.decode(str)
 	if tbl.query.count ~= 1 then error("Results for " .. corp_name .. " == ".. tbl.query.count .. " but should be only 1") return end
 	tbl = tbl.query.results.quote
+	tbl.Bid = tbl.Bid or tbl.Ask
 	DataCache_infos[corp_name] = tbl
 	PrintTable(tbl)
 	return tbl

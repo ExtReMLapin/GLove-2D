@@ -36,8 +36,6 @@ hook.Add("UniquePress", "menupoop", function(x, y, button)
 
 	if gamestate == "playing" then
 		menuOnClick(x,y, button)
-	elseif gamestate == "formation" then
-		seFormer(x,y,button)
 	end
 
 end)

@@ -36,7 +36,7 @@ function menuSelection(x,y,button)
 	if x < menuX + 210 and x > menuX and y < menuY + 43 and y > menuY + 11 then
 		investMenu()
 	elseif x < menuX + 210 and x > menuX and y < menuY + 92 and y > menuY + 49 then
-		gamestate = "formation"
+		seFormer(x,y,button)
 	elseif x < menuX + 210 and x > menuX and y < menuY + 146 and y > menuY + 98 then
 		--actionsMenu()
 	end

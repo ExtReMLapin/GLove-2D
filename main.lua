@@ -2,13 +2,14 @@ require "menu"
 require "input"
 require "helppage"
 require "maingui"
+require "tutorial"
 
 local loaded = {}
 local i = 1
 local http;
 
 Msg = io.write;
-gamestate = "playing"
+gamestate = "tutorial"
 Globalcorpname = "Apple"
 
 function include(file)
@@ -42,10 +43,12 @@ function precachedata()
 end
 
 function love.load()
+	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")
 	load_modules()
-	love.graphics.setBackgroundColor(252,237,157)
-	love.filesystem.setIdentity( "GLove-2D" )
+
+	background = loveframes.Create("image")
+	background:SetImage("ressources/background.png")
 	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
 	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
 	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
@@ -55,9 +58,6 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-	room = loveframes.Create("image")
-	room:SetImage("ressources/roomiso.jpg")
-	room:Center()
 	--precachedata()
 
 end
@@ -71,6 +71,22 @@ end
 
 function love.draw()
 	loveframes.draw()
-
-	mainGui()
+	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
+	love.graphics.setFont(subtitle)
+	love.graphics.setColor(235,62,9)
+	love.graphics.print(username .. " - Niveau : " .. usrlevel, 10, 10)
+	love.graphics.setColor(0,0,0)
+	love.graphics.print("Infos joueur :", 1000, 20)
+	love.graphics.setFont(graphfont)
+	love.graphics.print("Argent en compte : $" .. virtual_account_money, 1000, 70)
+	love.graphics.print("Croissance : ", 1000, 100)
+	if account_growth >= 0 then
+		love.graphics.setColor(102,204,0)
+	else
+		love.graphics.setColor(204,0,0)
+	end
+	love.graphics.print(account_growth .. "%", 998 + graphfont:getWidth("Croissance : "), 100)
+	if gamestate == "tutorial" then
+		tutorialText()
+	end
 end

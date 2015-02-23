@@ -1,10 +1,15 @@
 function love.mousepressed(x, y, button)
 	loveframes.mousepressed(x, y, button)
-	menuOnClick(x,y, button)
+	if gamestate == "playing" then
+		menuOnClick(x,y, button)
+	elseif gamestate == "formation" then
+		seFormer(x,y,button)
+	end
 end
 
 function love.mousereleased(x, y, button)
 	loveframes.mousereleased(x, y, button)
+
 end
 
 function love.keypressed(key, unicode)

@@ -86,8 +86,6 @@ end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
-	print(41)
-
 	if gamestate(x, y) == "playing" then
 		if menuFormer then
 			menuFormer:Remove()
@@ -96,5 +94,4 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 	elseif gamestate(x, y) == "se former" then
 		seformerMenu(x,y)
 	end
-print(42)
 end)

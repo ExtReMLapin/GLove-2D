@@ -1,4 +1,3 @@
-require "menu"
 require "input"
 require "helppage"
 require "maingui"
@@ -10,7 +9,6 @@ local http;
 local time = os.time()
 
 Msg = io.write;
-gamestate = "tutorial"
 Globalcorpname = "Apple"
 
 function include(file)
@@ -69,32 +67,31 @@ function love.update()
 	hook.Call("Think")
 	timer.check()
 	leftClick = love.mouse.isDown("l")
-	realX = love.mouse.getX()
-	realY = love.mouse.getY()
 end
 
 function love.draw()
+	local x, y = love.mouse.getPosition()
 	hook.Call("Draw")
 	loveframes.draw()
 	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 	love.graphics.print("menuFormer : " .. tostring(menuFormer), 600, 700)
-	love.graphics.print("gamestate : " .. gamestate, 400, 700)
+	love.graphics.print("gamestate : " .. gamestate(x,y), 400, 700)
 	playerInfos()
 	
 end
 
 
-hook.Add("MousePress", "MenuPress", function()
+hook.Add("MousePress", "MenuPress", function(x,y)
 	print(41)
 
-	if gamestate == "playing" then
+	if gamestate(x, y) == "playing" then
 		if menuFormer then
 			menuFormer:Remove()
 		end
-		principalMenu(realX,realY)
-	elseif gamestate == "se former" then
-		seformerMenu()
+		principalMenu(x,y)
+	elseif gamestate(x, y) == "se former" then
+		seformerMenu(x,y)
 	end
 print(42)
 end)

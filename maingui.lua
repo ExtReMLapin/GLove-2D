@@ -22,22 +22,54 @@ function playerInfos()
 	love.graphics.print(account_growth .. "%", 998 + graphfont:getWidth("Croissance : "), 100)
 end
 
+
+function gamestate(realX, realY)
+	local gamestate1;
+	if introBox then return "tutorial" end
+
+	if realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY and realY < principalMenuY + 44 then
+		gamestate1 = "seformer.lexique"
+	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+		gamestate1 = "seformer.type"
+	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
+		gamestate1 = "seformer.actu"
+	elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+	else
+		gamestate1 = "playing"
+	end
+
+	if realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY and realY < principalMenuY + 44 then
+			--investirMenu()
+			gamestate1 = "investir"
+		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+			gamestate1 = "se former"
+		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
+			--listeactionsMenu()
+			gamestate1 = "liste actions"
+	end
+
+	return gamestate1 or "tutorial"
+
+end
+
+
 function principalMenu(realX,realY)
-	if principalMenuX == 0 and principalMenuY == 0 and leftClick == true then
+	local gamestate1;
+	if principalMenuX == 0 and principalMenuY == 0 then
 		principalMenuX = realX
 		principalMenuY = realY
 		menuPrincip = loveframes.Create("image")
 		menuPrincip:SetImage("ressources/menubar.png")
 		menuPrincip:SetPos(realX,realY)
-	elseif principalMenuX ~= 0 and principalMenuY ~= 0 and leftClick == true then
+	elseif principalMenuX ~= 0 and principalMenuY ~= 0 then
 		if realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY and realY < principalMenuY + 44 then
 			--investirMenu()
-			gamestate = "investir"
+			gamestate1 = "investir"
 		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-			gamestate = "se former"
+			gamestate1 = "se former"
 		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
 			--listeactionsMenu()
-			gamestate = "liste actions"
+			gamestate1 = "liste actions"
 		else
 			principalMenuY = 0
 			principalMenuX = 0
@@ -46,18 +78,8 @@ function principalMenu(realX,realY)
 	end
 end
 
-function seformerMenu()
+function seformerMenu(realX,realY)
 	menuFormer = loveframes.Create("image")
 	menuFormer:SetImage("ressources/formerbar.png")
 	menuFormer:SetPos(principalMenuX + 212,principalMenuY)
-	if realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY and realY < principalMenuY + 44 then
-		gamestate = "seformer.lexique"
-	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-		gamestate = "seformer.type"
-	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
-		gamestate = "seformer.actu"
-	elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-	else
-		gamestate = "playing"
-	end
 end

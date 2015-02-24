@@ -9,7 +9,7 @@ function tutorialText()
 		introButton.OnClick = function(object)
 			introBox:Remove()
 			introButton:Remove()
-			gamestate = "playing"
+			introBox = nil
 		end
 	end
 end

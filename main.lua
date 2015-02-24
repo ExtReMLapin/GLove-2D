@@ -69,6 +69,9 @@ function love.update()
 	leftClick = love.mouse.isDown("l")
 end
 
+
+_gamestate = "onch"
+
 function love.draw()
 	local x, y = love.mouse.getPosition()
 	hook.Call("Draw")
@@ -76,7 +79,7 @@ function love.draw()
 	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 	love.graphics.print("menuFormer : " .. tostring(menuFormer), 600, 700)
-	love.graphics.print("gamestate : " .. gamestate(x,y), 400, 700)
+	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
 	playerInfos()
 	
 end

@@ -47,7 +47,7 @@ function gamestate(realX, realY)
 			--listeactionsMenu()
 			gamestate1 = "liste actions"
 	end
-
+	_gamestate = gamestate1;
 	return gamestate1 or "tutorial"
 
 end

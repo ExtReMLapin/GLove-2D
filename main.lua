@@ -60,7 +60,7 @@ function love.load()
 	love.graphics.setLineWidth(2)
 	init_restore()
 	--precachedata()
-
+	tutorialText()
 end
 
 
@@ -74,25 +74,27 @@ function love.update()
 end
 
 function love.draw()
+	hook.Call("Draw")
 	loveframes.draw()
 	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 	love.graphics.print("menuFormer : " .. tostring(menuFormer), 600, 700)
 	love.graphics.print("gamestate : " .. gamestate, 400, 700)
 	playerInfos()
-	if gamestate == "tutorial" then
-		tutorialText()
-	elseif gamestate == "playing" then
+	
+end
+
+
+hook.Add("MousePress", "MenuPress", function()
+	print(41)
+
+	if gamestate == "playing" then
 		if menuFormer then
 			menuFormer:Remove()
 		end
-		if leftClick == true  and os.time() > time then
-			principalMenu(realX,realY)
-			time = os.time()+0.1
-		end
+		principalMenu(realX,realY)
 	elseif gamestate == "se former" then
-		if leftClick == true then
-			seformerMenu()
-		end
+		seformerMenu()
 	end
-end
+print(42)
+end)

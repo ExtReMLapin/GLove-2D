@@ -7,6 +7,7 @@ require "tutorial"
 local loaded = {}
 local i = 1
 local http;
+local time = os.time()
 
 Msg = io.write;
 gamestate = "tutorial"
@@ -67,26 +68,31 @@ function love.update()
 	loveframes.update(dt)
 	hook.Call("Think")
 	timer.check()
+	leftClick = love.mouse.isDown("l")
+	realX = love.mouse.getX()
+	realY = love.mouse.getY()
 end
 
 function love.draw()
 	loveframes.draw()
-	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
-	love.graphics.setFont(subtitle)
-	love.graphics.setColor(235,62,9)
-	love.graphics.print(username .. " - Niveau : " .. usrlevel, 10, 10)
-	love.graphics.setColor(0,0,0)
-	love.graphics.print("Infos joueur :", 1000, 20)
-	love.graphics.setFont(graphfont)
-	love.graphics.print("Argent en compte : $" .. virtual_account_money, 1000, 70)
-	love.graphics.print("Croissance : ", 1000, 100)
-	if account_growth >= 0 then
-		love.graphics.setColor(102,204,0)
-	else
-		love.graphics.setColor(204,0,0)
-	end
-	love.graphics.print(account_growth .. "%", 998 + graphfont:getWidth("Croissance : "), 100)
+	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
+	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+	love.graphics.print("menuFormer : " .. tostring(menuFormer), 600, 700)
+	love.graphics.print("gamestate : " .. gamestate, 400, 700)
+	playerInfos()
 	if gamestate == "tutorial" then
 		tutorialText()
+	elseif gamestate == "playing" then
+		if menuFormer then
+			menuFormer:Remove()
+		end
+		if leftClick == true  and os.time() > time then
+			principalMenu(realX,realY)
+			time = os.time()+0.1
+		end
+	elseif gamestate == "se former" then
+		if leftClick == true then
+			seformerMenu()
+		end
 	end
 end

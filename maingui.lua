@@ -2,57 +2,62 @@ username = "Testguy"
 usrlevel = 3
 account_growth = 34
 virtual_account_money = 2500
+local principalMenuX = 0
+local principalMenuY = 0
 
-menuX = 0
-menuY = 0
+function playerInfos()
+	love.graphics.setFont(subtitle)
+	love.graphics.setColor(235,62,9)
+	love.graphics.print(username .. " - Niveau : " .. usrlevel, 10, 10)
+	love.graphics.setColor(0,0,0)
+	love.graphics.print("Infos joueur :", 1000, 20)
+	love.graphics.setFont(graphfont)
+	love.graphics.print("Argent en compte : $" .. virtual_account_money, 1000, 70)
+	love.graphics.print("Croissance : ", 1000, 100)
+	if account_growth >= 0 then
+		love.graphics.setColor(102,204,0)
+	else
+		love.graphics.setColor(204,0,0)
+	end
+	love.graphics.print(account_growth .. "%", 998 + graphfont:getWidth("Croissance : "), 100)
+end
 
-
-function menuOnClick(x,y, button)
-	if menuX ~= 0 and menuY ~= 0 then
-		if menuX ~= 0 and menuY ~= 0 and x > menuX and x < menuX + 200 and y > menuY and y < menuY + 135 then
-			menuSelection(x,y,button)
-			menuX = x
-			menuY = y
+function principalMenu(realX,realY)
+	if principalMenuX == 0 and principalMenuY == 0 and leftClick == true then
+		principalMenuX = realX
+		principalMenuY = realY
+		menuPrincip = loveframes.Create("image")
+		menuPrincip:SetImage("ressources/menubar.png")
+		menuPrincip:SetPos(realX,realY)
+	elseif principalMenuX ~= 0 and principalMenuY ~= 0 and leftClick == true then
+		if realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY and realY < principalMenuY + 44 then
+			--investirMenu()
+			gamestate = "investir"
+		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+			gamestate = "se former"
+		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
+			--listeactionsMenu()
+			gamestate = "liste actions"
 		else
-			menuBar:Remove()
-			menuX = 0
-			menuY = 0
+			principalMenuY = 0
+			principalMenuX = 0
+			menuPrincip:Remove()
 		end
-	elseif menuX == 0 and menuY == 0 then
-		drawMenu(x,y, button)
 	end
 end
 
-function drawMenu(x,y,button)
-	menuX = x
-	menuY = y
-
-	menuBar = loveframes.Create("image")
-	menuBar:SetImage("ressources/menubar.png")
-	menuBar:SetPos(x,y)
-end
-
-function menuSelection(x,y,button)
-	if x < menuX + 210 and x > menuX and y < menuY + 43 and y > menuY + 11 then
-		investMenu()
-	elseif x < menuX + 210 and x > menuX and y < menuY + 92 and y > menuY + 49 then
-		seFormer(x,y,button)
-	elseif x < menuX + 210 and x > menuX and y < menuY + 146 and y > menuY + 98 then
-		--actionsMenu()
-	end
-end
-
-function investMenu()
-	investPage = loveframes.Create("image")
-	investPage:SetImage("ressources/investpage.png")
-	investPage:Center()
-	quitButton = loveframes.Create("button", investPage)
-	quitButton:SetText("X")
-	quitButton:SetWidth(20)
-	quitButton:SetHeight(20)
-	quitButton:SetPos(1050, 100)
-	quitButton.OnClick = function(object)
-		investPage:Remove()
-		quitButton:Remove()
+function seformerMenu()
+	menuFormer = loveframes.Create("image")
+	menuFormer:SetImage("ressources/formerbar.png")
+	menuFormer:SetPos(principalMenuX + 212,principalMenuY)
+	if realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY and realY < principalMenuY + 44 then
+		gamestate = "seformer.lexique"
+	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+		gamestate = "seformer.type"
+	elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
+		gamestate = "seformer.actu"
+	elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+	else
+		gamestate = "playing"
 	end
 end

@@ -12,12 +12,11 @@ bank = {}
 -- yahoo example https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20%28%22AMD%22%29&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
 
 
-function bank.corpo_get_infos(corp_name) -- return all the infos (instant infos, no timeline)
-	if DataCache_infos[corp_name] then return DataCache_infos[corp_name] end
+function bank.corpo_get_infos(corp_name, refresh) -- return all the infos (instant infos, no timeline)
+	if DataCache_infos[corp_name] and not refresh then return DataCache_infos[corp_name] end
 	local str = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20%28%22" .. corp_name .."%22%29&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 	str = http.request(str)
 	local tbl = json.decode(str)
-	if tbl.query.count ~= 1 then error("Results for " .. corp_name .. " == ".. tbl.query.count .. " but should be only 1") return end
 	tbl = tbl.query.results.quote
 	tbl.Bid = tbl.Bid or tbl.Ask
 	DataCache_infos[corp_name] = tbl

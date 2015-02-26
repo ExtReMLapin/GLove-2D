@@ -37,23 +37,7 @@ Brand = {}
 
 
 function investSliders()
-		slider1 = loveframes.Create("slider", frame)
-		slider1:SetPos(640, 600)
-		slider1:SetWidth(290)
-		slider1:SetMinMax(0, 1)
-		slider1:SetValue(posg)
-		slider2 = loveframes.Create("slider", frame)
-		slider2:SetPos(640, 620)
-		slider2:SetWidth(290)
-		slider2:SetMinMax(0, 2)
-		slider2:SetValue(zoomg)
-		slider1.OnValueChanged = function(object)
-			posg = object:GetValue()
-		end
 
-		slider2.OnValueChanged = function(object)
-			zoomg = object:GetValue()
-		end
 end
 
 
@@ -131,7 +115,7 @@ function investMenu(corp)
 	love.graphics.rectangle("fill", 640, 90, 540, 240)
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp),posg, zoomg )
+	love.graphics.draw_nicegraph(640, 350, 540, 235, bank.corpo_get_value_date(corp))
 	investDetails(corp)
 
 end

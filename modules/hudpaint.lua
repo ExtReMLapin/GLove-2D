@@ -44,7 +44,26 @@ function table.Rearange(tbl)
 	return tbl2
 end
 
-function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
+
+	local zoom = 0.1
+	local pos = 0.99
+
+function love.graphics.draw_nicegraph(x, y, w, h, tbl)
+
+	local xpos, ypos = love.mouse.getPosition( )
+	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
+		
+		if MOUSE_STATE then -- clicking ?
+			pos = (pos - (((MOUSE_S_X - xpos)*zoom)/x)/2)
+			zoom = (zoom - ((MOUSE_S_Y - ypos)/y/2))
+			love.mouse.setCursor(c_size)
+
+		else
+			love.mouse.setCursor(c_hand)
+		end
+	else
+		love.mouse.setCursor(c_default)
+	end
 
 	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5
 	pos = math.Min(math.Max( 0.1, pos),1)  or 0.5
@@ -64,13 +83,15 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	lastcur = tbl1[table.CloseValue(tbl2, 1)]
 	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
 	local date = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))], "T00:00:00", "")
-	xpos, ypos = love.mouse.getPosition( )
+	
 	love.graphics.draw_graph(x, y, w, h, tbl1)
-	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then
+	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) and not MOUSE_STATE then
 		love.graphics.line(xpos, y, xpos, y+h)
 		--love.graphics.line(x,ypos, x+w, ypos)
 		love.graphics.print("Value : ".. dolla .. " " .. tbl.Elements[1].Currency, xpos +20, ypos +10)
 		love.graphics.print(date, xpos +20, ypos +25)
+
+
 	end
 
 	--local l = fnt1:getWidth("Brand Name : " .. realname) +11

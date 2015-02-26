@@ -10,6 +10,12 @@ local http;
 
 LOAD_STATUS = 0
 
+-- cursors
+c_appstarting = love.mouse.getSystemCursor('wait')
+c_default = love.mouse.getSystemCursor('arrow')
+c_ibeam = love.mouse.getSystemCursor('ibeam')
+c_hand = love.mouse.getSystemCursor('hand')
+c_size = love.mouse.getSystemCursor("sizeall")
 
 Msg = io.write;
 gamestate = "playing.account"
@@ -75,7 +81,7 @@ function love.load()
 	init_restore()
 	accountBought()
 	--precachedata()
-
+	do return end
 	for k, v in pairs(Brand) do
 		bank.corpo_get_value_date(v.Name)
 		bank.corpo_get_infos(v.Name)

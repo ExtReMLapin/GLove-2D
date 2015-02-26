@@ -65,13 +65,13 @@ function investMenu(corp)
 	love.graphics.setColor(47,46,54)
 	love.graphics.setFont(subtitle)
 
-	if x > 53 and x < 53 + subtitle:getWidth("Acheter pour $" .. bank.corpo_get_infos(Globalcorpname).Bid*number_actions) and y > 500 and y < 500 + subtitle:getHeight() then
+	if x > 53 and x < 53 + subtitle:getWidth("Acheter pour $" .. bank.GetPrice(Globalcorpname)*number_actions) and y > 500 and y < 500 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
-		love.graphics.print("Acheter pour $" .. bank.corpo_get_infos(Globalcorpname).Bid*number_actions, 53, 500)
+		love.graphics.print("Acheter pour $" .. bank.GetPrice(Globalcorpname)*number_actions, 53, 500)
 		if clic_gauche == true and os.time() > time and number_actions > 0 then
 
 			time = os.time()+1.5
-			if (account_virtual_money) > (bank.corpo_get_infos(Globalcorpname).Bid * number_actions) then
+			if (account_virtual_money) > (bank.GetPrice(Globalcorpname) * number_actions) then
 				if sellFeedback then sellFeedback:Remove() end
 				buyFeedback = loveframes.Create("text")
 				buyFeedback:SetText(subtitle)
@@ -79,23 +79,23 @@ function investMenu(corp)
 				buyFeedback:SetText("Placement effectué avec succès !")
 				if not bought_objects[Globalcorpname] then
 					bought_objects[Globalcorpname] = number_actions
-					bought_objects[Globalcorpname .. "_value"] = (bank.corpo_get_infos(Globalcorpname).Bid * number_actions)
+					bought_objects[Globalcorpname .. "_value"] = (bank.GetPrice(Globalcorpname) * number_actions)
 				else
 		 			bought_objects[Globalcorpname] = bought_objects[Globalcorpname] + number_actions
-		 			bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] + (bank.corpo_get_infos(Globalcorpname).Bid * number_actions)
+		 			bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] + (bank.GetPrice(Globalcorpname) * number_actions)
 				end
-				account_virtual_money = account_virtual_money - (bank.corpo_get_infos(Globalcorpname).Bid * number_actions)
+				account_virtual_money = account_virtual_money - (bank.GetPrice(Globalcorpname) * number_actions)
 			end
 			do_save_data()
 		end
 	else
-		love.graphics.print("Acheter pour $" .. bank.corpo_get_infos(Globalcorpname).Bid*number_actions, 53, 500)
+		love.graphics.print("Acheter pour $" .. bank.GetPrice(Globalcorpname)*number_actions, 53, 500)
 	end
 	love.graphics.setColor(47,46,54)
-	if x > 53 and x < 53 + subtitle:getWidth("Vendre pour " .. bank.corpo_get_infos(Globalcorpname).Bid*number_actions .. "$") and y > 580 and y < 580 + subtitle:getHeight() then
+	if x > 53 and x < 53 + subtitle:getWidth("Vendre pour " .. bank.GetPrice(Globalcorpname)*number_actions .. "$") and y > 580 and y < 580 + subtitle:getHeight() then
 		love.graphics.setColor(222,31,85)
 		if x then
-			love.graphics.print("Vendre pour $" .. bank.corpo_get_infos(Globalcorpname).Bid *number_actions, 53, 580)
+			love.graphics.print("Vendre pour $" .. bank.GetPrice(Globalcorpname) *number_actions, 53, 580)
 			if clic_gauche == true and os.time() > time and number_actions > 0 then
 				if buyFeedback then	buyFeedback:Remove() end
 				sellFeedback = loveframes.Create("text")
@@ -106,10 +106,10 @@ function investMenu(corp)
 		 		if bought_objects[Globalcorpname] then 
 					if bought_objects[Globalcorpname] > number_actions then
 						bought_objects[Globalcorpname] = bought_objects[Globalcorpname] - number_actions
-						bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] - (bank.corpo_get_infos(Globalcorpname).Bid * number_actions)
-						account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).Bid * bought_objects[Globalcorpname])
+						bought_objects[Globalcorpname .. "_value"] = bought_objects[Globalcorpname .. "_value"] - (bank.GetPrice(Globalcorpname) * number_actions)
+						account_virtual_money = account_virtual_money + (bank.GetPrice(Globalcorpname) * bought_objects[Globalcorpname])
 					else
-						account_virtual_money = account_virtual_money + (bank.corpo_get_infos(Globalcorpname).Bid * bought_objects[Globalcorpname])
+						account_virtual_money = account_virtual_money + (bank.GetPrice(Globalcorpname) * bought_objects[Globalcorpname])
 						bought_objects[Globalcorpname] = 0
 						bought_objects[Globalcorpname .. "_value"] = 0
 					end
@@ -118,7 +118,7 @@ function investMenu(corp)
 			end
 		end
 	else
-		love.graphics.print("Vendre pour $" .. bank.corpo_get_infos(Globalcorpname).Bid*number_actions, 53, 580)
+		love.graphics.print("Vendre pour $" .. bank.GetPrice(Globalcorpname)*number_actions, 53, 580)
 	end
 	
 	love.graphics.setFont(title)
@@ -148,7 +148,7 @@ function investDetails(corp)
     love.graphics.setFont(other_text)
     love.graphics.print("Symbole : " .. codename, 675, 120) ; love.graphics.print("Investisement Actuel : $" .. staticbought, 675, 270) 
     love.graphics.print("Nom réel : " .. realname, 675, 150)
-	love.graphics.print("Bénéfices : " .. -1*math.Round((staticbought-bank.corpo_get_infos(corp).Bid)/bank.corpo_get_infos(corp).Bid*100*100)/100 .. "%", 675, 240)
+	love.graphics.print("Bénéfices : " .. -1*math.Round((staticbought-bank.GetPrice(Globalcorpname))/bank.GetPrice(Globalcorpname)*100*100)/100 .. "%", 675, 240)
     love.graphics.print("Valeur max. d'achat : $" .. (maxcur or "???"), 675, 180)
     love.graphics.print("Valeur min. d'achat : $" .. (mincur or "???"), 675, 210)
     love.graphics.print("Variance : ", 675, 300)
@@ -193,7 +193,7 @@ function investBuyOrSell()
 	buynumberbox:SetPos(350, 500)
 	buynumberbox:SetSize(70,25)
 	buynumberbox:SetMin(0)
-	buynumberbox:SetMax(account_virtual_money / bank.corpo_get_infos(Globalcorpname).Bid)
+	buynumberbox:SetMax(account_virtual_money / bank.GetPrice(Globalcorpname))
 	buynumberbox.OnValueChanged = function(object, value)
 		number_actions = value
 	end

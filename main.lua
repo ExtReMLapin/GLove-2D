@@ -8,6 +8,9 @@ local loaded = {}
 local i = 1
 local http;
 
+LOAD_STATUS = 0
+
+
 Msg = io.write;
 gamestate = "playing.account"
 Globalcorpname = "AAPL"
@@ -72,6 +75,15 @@ function love.load()
 	init_restore()
 	accountBought()
 	--precachedata()
+
+	for k, v in pairs(Brand) do
+		bank.corpo_get_value_date(v.Name)
+		bank.corpo_get_infos(v.Name)
+		bank.GetPrice(v.Name)
+		LOAD_STATUS = k
+	end
+
+
 
 end
 

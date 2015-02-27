@@ -1,7 +1,7 @@
 require "input"
-require "helppage"
 require "maingui"
 require "tutorial"
+require "ressources/fonts"
 
 local loaded = {}
 local i = 1
@@ -47,10 +47,6 @@ function love.load()
 	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")
 	load_modules()
-	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
-	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
-	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
-	graphfont = love.graphics.newFont(12)
 	hook.Add("KeyPressed", "loggin", gamestate_loggin)
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
@@ -72,7 +68,7 @@ function love.draw()
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
-	playerInfos()
+	--playerInfos()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 
 	surface.HUDStaticBox(60,60,100,100)
@@ -93,8 +89,9 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 
 end)
 
-hook.Add("WallpaperDraw", "Infos background", function()
+hook.Add("BackGroundDraw", "Infos background", function()
 
+	DrawDateBox()
 	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)

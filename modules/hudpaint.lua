@@ -1,4 +1,4 @@
-width, height = love.graphics.getDimensions( )
+width, height = love.graphics.getDimensions()
 surface = {}
 draw = {}
 
@@ -9,6 +9,10 @@ ScrW, ScrH = love.window.getDimensions( )
 function Color(ra,ga,ba,aa)
 	return {r = ra, g=ga, b=ba, a=aa or 255}
 end
+
+color_white = Color(255,255,255)
+color_black = Color(0,0,0)
+
 
 function surface.DrawRect(x, y, width, height)
 	return love.graphics.rectangle( "fill", x, y, width, height )
@@ -234,4 +238,23 @@ function surface.HUDStaticBox(x, y, w, h)
 	surface.RoundedBox(x-2, y-2, w+4, h+4, ang+1)
 	love.graphics.setColor(255,255,255)
 	surface.RoundedBox(x, y, w, h, ang)
+end
+
+
+local Clients = 42
+
+
+
+
+
+function DrawDateBox()
+	Clients = math.tan(love.timer.getTime())*500000
+	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
+	love.graphics.setFont( date_box_text1 )
+	love.graphics.setColor(0,0,0)
+	love.graphics.print("Clients :" .. Clients, ScrW-223, 15)
+	love.graphics.print(" :" .. string.nicemath(Clients), ScrW-223, 30)
+
+
+
 end

@@ -12,6 +12,17 @@ function string.ToTable ( str )
 end
 
 
+function string.nicemath(num)
+	size = tonumber( num )
+	size = math.Round(size)
+
+	if ( size <= 0 ) then return "0" end
+	if ( size < 1000 ) then return size end
+	if ( size < 1000 * 1000 ) then return math.Round( size / 1000, 2 ) .. " K" end
+	return math.Round( size / (1000*1000), 2 ) .. " M"
+
+end
+
 function string.JavascriptSafe( str )
 
 	str = str:Replace( "\\", "\\\\" )

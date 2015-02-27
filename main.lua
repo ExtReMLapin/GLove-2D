@@ -118,10 +118,5 @@ function love.draw()
 	end
 	mainGUI()
 
-		love.graphics.printf(love.timer.getTime( ), 420, 210, 440)
-		WindowsLoadingBarUndefined(435, 210, 300, 15, 1.2, Color(230, 230, 230), Color(6,176,37,255)) -- wow
-
-		WindowsLoadingBarDefined(435, 240, 300, 15, 1.2, Color(230, 230, 230), Color(6,176,37,255),math.Min(1,math.Max(0,math.tan(love.timer.getTime()))) )
-		--draw.GradientBox(435,230,200,200,1, Color(6, 176, 37),Color(77,199,99))
 
 end

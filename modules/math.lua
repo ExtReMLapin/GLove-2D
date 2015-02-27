@@ -12,6 +12,10 @@ end
 math.Distance = math.Dist -- alias
 
 
+function Lerp(a,b,t) return (1-t)*a + t*b end
+function Lerp2(a,b,t) return a+(b-a)*t end
+
+
 --[[---------------------------------------------------------
    Name: BinToInt( bin )
    Desc: Convert a binary string to an integer number

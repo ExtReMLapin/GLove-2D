@@ -52,13 +52,11 @@ function gamestate_loggin(key)
 end
 
 function precachedata()
-	local pe = coroutine.create(function()
 	for k, v in pairs(Brand) do
-			coroutine.wait(3)
-			bank.corpo_get_value_date(v.rn)
+		bank.corpo_get_value_date(v.Name)
+		bank.GetPrice(v.Name)
+		LOAD_STATUS = k
 	end
-	end)
-	coroutine.resume(pe)
 end
 
 function love.load()
@@ -81,13 +79,7 @@ function love.load()
 	init_restore()
 	accountBought()
 	--precachedata()
-	do return end
-	for k, v in pairs(Brand) do
-		bank.corpo_get_value_date(v.Name)
-		bank.corpo_get_infos(v.Name)
-		bank.GetPrice(v.Name)
-		LOAD_STATUS = k
-	end
+
 
 
 
@@ -125,4 +117,11 @@ function love.draw()
 		helpDraw()
 	end
 	mainGUI()
+
+		love.graphics.printf(love.timer.getTime( ), 420, 210, 440)
+		WindowsLoadingBarUndefined(435, 210, 300, 15, 1.2, Color(230, 230, 230), Color(6,176,37,255)) -- wow
+
+		WindowsLoadingBarDefined(435, 240, 300, 15, 1.2, Color(230, 230, 230), Color(6,176,37,255),math.Min(1,math.Max(0,math.tan(love.timer.getTime()))) )
+		--draw.GradientBox(435,230,200,200,1, Color(6, 176, 37),Color(77,199,99))
+
 end

@@ -1,4 +1,24 @@
 width, height = love.graphics.getDimensions( )
+surface = {}
+draw = {}
+
+
+
+
+function Color(ra,ga,ba,aa)
+	return {r = ra, g=ga, b=ba, a=aa or 255}
+end
+
+function surface.DrawRect(x, y, width, height)
+	return love.graphics.rectangle( "fill", x, y, width, height )
+end
+
+
+function surface.SetDrawColor(tbl)
+	love.graphics.setColor(tbl.r,tbl.g,tbl.b,tbl.a)
+end
+
+
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
 	love.graphics.setColor(28,154,211)
@@ -127,5 +147,61 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 			i = i+1
 		end 
 	end
+
+end
+
+local g_grds, g_wgrd, g_sz
+function draw.GradientBox(x, y, w, h, al, ...) -- DO NOT USE, GLITCHY WTF BRO
+	g_grds = {...}
+	al = math.Clamp(math.floor(al), 0, 1)
+	if(al == 1) then
+		local t = w
+		w, h = h, t
+	end
+	g_wgrd = w / (#g_grds - 1)
+	local n
+	for i = 1, w do
+		for c = 1, #g_grds do
+			n = c
+			if(i <= g_wgrd * c) then break end
+		end
+		g_sz = i - (g_wgrd * (n - 1))
+		surface.SetDrawColor(Color(
+			Lerp2(g_sz/g_wgrd, g_grds[n].r, g_grds[n + 1].r),
+			Lerp2(g_sz/g_wgrd, g_grds[n].g, g_grds[n + 1].g),
+			Lerp2(g_sz/g_wgrd, g_grds[n].b, g_grds[n + 1].b),
+			Lerp2(g_sz/g_wgrd, g_grds[n].a, g_grds[n + 1].a)))
+		if(al == 1) then surface.DrawRect(x, y + i, h, 1)
+		else surface.DrawRect(x + i, y, 1, h) end
+	end
+end
+
+
+
+function WindowsLoadingBarUndefined(xpos, ypos, x, y, speed, colorbg, color)-- yess
+	local pos1 = xpos+x*math.tan(love.timer.getTime()*speed)
+	local bordermax =  math.Max(0, (pos1+x/5)-(xpos+x))
+	local bordermin =  math.Max(0, (xpos+x/5)-(pos1))
+		
+	surface.SetDrawColor(colorbg) -- Background
+	surface.DrawRect(xpos, ypos, x, y)
+
+	
+
+	if (pos1+x/5 > xpos) and (pos1 < xpos+x) and pos1 > xpos then -- Last is a quick fix for 3d rendering
+		--draw.GradientBox(pos1, ypos, ( (x/5)- bordermax - bordermin ), y,1, color1, color2)
+		surface.SetDrawColor(color) -- Background
+		surface.DrawRect(pos1, ypos, ( (x/5)- bordermax - bordermin ), y)
+	end
+end
+
+
+
+
+function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state )-- 0-1 for the state
+	surface.SetDrawColor(colorbg)
+	surface.DrawRect(xpos, ypos, x, y)
+	surface.SetDrawColor(color) -- Background
+	surface.DrawRect(xpos, ypos,x*state, y)
 
 end

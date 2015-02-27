@@ -71,8 +71,6 @@ function love.draw()
 	--playerInfos()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 
-	surface.HUDStaticBox(60,60,100,100)
-
 end
 
 

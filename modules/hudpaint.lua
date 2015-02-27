@@ -1,4 +1,24 @@
 width, height = love.graphics.getDimensions( )
+surface = {}
+draw = {}
+
+
+
+
+function Color(ra,ga,ba,aa)
+	return {r = ra, g=ga, b=ba, a=aa or 255}
+end
+
+function surface.DrawRect(x, y, width, height)
+	return love.graphics.rectangle( "fill", x, y, width, height )
+end
+
+
+function surface.SetDrawColor(tbl)
+	love.graphics.setColor(tbl.r,tbl.g,tbl.b,tbl.a)
+end
+
+
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
 	love.graphics.setColor(28,154,211)
@@ -44,14 +64,33 @@ function table.Rearange(tbl)
 	return tbl2
 end
 
-function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
+
+	local zoom = 0.1
+	local pos = 0.99
+
+function love.graphics.draw_nicegraph(x, y, w, h, tbl)
+
+	local xpos, ypos = love.mouse.getPosition( )
+	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
+		
+		if MOUSE_STATE then -- clicking ?
+			pos = (pos - (((MOUSE_S_X - xpos)*zoom)/x)/2)
+			zoom = (zoom - ((MOUSE_S_Y - ypos)/y/2))
+			love.mouse.setCursor(c_size)
+
+		else
+			love.mouse.setCursor(c_hand)
+		end
+	else
+		love.mouse.setCursor(c_default)
+	end
 
 	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5
 	pos = math.Min(math.Max( 0.1, pos),1)  or 0.5
 	love.graphics.setFont(graphfont)
 	love.graphics.setColor(255,255,255)
 	local codename = tbl.Elements[1].Symbol
-	local realname = bank.corpo_get(codename).Name
+	local realname = bank.corpo_get_infos(codename).Name
 	local tbl1 = table.Cut( tbl.Elements[1].DataSeries.close.values, pos-zoom/2, pos+zoom/2 )
 	local tbl2 = table.Cut( tbl.Positions , pos-zoom/2, pos+zoom/2 )
 	local tbl3 = table.Cut( tbl.Dates , pos-zoom/2, pos+zoom/2 )
@@ -64,13 +103,15 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 	lastcur = tbl1[table.CloseValue(tbl2, 1)]
 	local dolla = tbl1[table.CloseValue(tbl2, gesposongraph(x, y, w, h))]
 	local date = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph(x, y, w, h))], "T00:00:00", "")
-	xpos, ypos = love.mouse.getPosition( )
+	
 	love.graphics.draw_graph(x, y, w, h, tbl1)
-	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then
+	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) and not MOUSE_STATE then
 		love.graphics.line(xpos, y, xpos, y+h)
 		--love.graphics.line(x,ypos, x+w, ypos)
 		love.graphics.print("Value : ".. dolla .. " " .. tbl.Elements[1].Currency, xpos +20, ypos +10)
 		love.graphics.print(date, xpos +20, ypos +25)
+
+
 	end
 
 	--local l = fnt1:getWidth("Brand Name : " .. realname) +11
@@ -106,5 +147,61 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl, pos, zoom)
 			i = i+1
 		end 
 	end
+
+end
+
+local g_grds, g_wgrd, g_sz
+function draw.GradientBox(x, y, w, h, al, ...) -- DO NOT USE, GLITCHY WTF BRO
+	g_grds = {...}
+	al = math.Clamp(math.floor(al), 0, 1)
+	if(al == 1) then
+		local t = w
+		w, h = h, t
+	end
+	g_wgrd = w / (#g_grds - 1)
+	local n
+	for i = 1, w do
+		for c = 1, #g_grds do
+			n = c
+			if(i <= g_wgrd * c) then break end
+		end
+		g_sz = i - (g_wgrd * (n - 1))
+		surface.SetDrawColor(Color(
+			Lerp2(g_sz/g_wgrd, g_grds[n].r, g_grds[n + 1].r),
+			Lerp2(g_sz/g_wgrd, g_grds[n].g, g_grds[n + 1].g),
+			Lerp2(g_sz/g_wgrd, g_grds[n].b, g_grds[n + 1].b),
+			Lerp2(g_sz/g_wgrd, g_grds[n].a, g_grds[n + 1].a)))
+		if(al == 1) then surface.DrawRect(x, y + i, h, 1)
+		else surface.DrawRect(x + i, y, 1, h) end
+	end
+end
+
+
+
+function WindowsLoadingBarUndefined(xpos, ypos, x, y, speed, colorbg, color)-- yess
+	local pos1 = xpos+x*math.tan(love.timer.getTime()*speed)
+	local bordermax =  math.Max(0, (pos1+x/5)-(xpos+x))
+	local bordermin =  math.Max(0, (xpos+x/5)-(pos1))
+		
+	surface.SetDrawColor(colorbg) -- Background
+	surface.DrawRect(xpos, ypos, x, y)
+
+	
+
+	if (pos1+x/5 > xpos) and (pos1 < xpos+x) and pos1 > xpos then -- Last is a quick fix for 3d rendering
+		--draw.GradientBox(pos1, ypos, ( (x/5)- bordermax - bordermin ), y,1, color1, color2)
+		surface.SetDrawColor(color) -- Background
+		surface.DrawRect(pos1, ypos, ( (x/5)- bordermax - bordermin ), y)
+	end
+end
+
+
+
+
+function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state )-- 0-1 for the state
+	surface.SetDrawColor(colorbg)
+	surface.DrawRect(xpos, ypos, x, y)
+	surface.SetDrawColor(color) -- Background
+	surface.DrawRect(xpos, ypos,x*state, y)
 
 end

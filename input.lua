@@ -1,7 +1,15 @@
 local ONEPRESSED = false
-require("modules/hook")
+MOUSE_STATE = false
+MOUSE_S_X = nil
+MOUSE_S_Y = nil
+require("modules/hook");
 
 function love.mousepressed(x, y, button)
+
+	if not MOUSE_STATE then
+		MOUSE_S_X, MOUSE_S_Y = love.mouse.getPosition( )
+	end
+	MOUSE_STATE = true
 	if not ONEPRESSED then
 		hook.Call("MousePress", nil, x, y, button)
 		ONEPRESSED = true
@@ -11,6 +19,9 @@ function love.mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
+	MOUSE_STATE = false
+	MOUSE_S_X = nil
+	MOUSE_S_Y = nil
 	ONEPRESSED = false
 	loveframes.mousereleased(x, y, button)
 end

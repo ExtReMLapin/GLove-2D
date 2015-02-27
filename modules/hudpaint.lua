@@ -3,6 +3,7 @@ surface = {}
 draw = {}
 
 
+ScrW, ScrH = love.window.getDimensions( )
 
 
 function Color(ra,ga,ba,aa)
@@ -204,4 +205,33 @@ function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state
 	surface.SetDrawColor(color) -- Background
 	surface.DrawRect(xpos, ypos,x*state, y)
 
+end
+
+
+
+    local right = 0
+    local left = math.pi
+    local bottom = math.pi * 0.5
+    local top = math.pi * 1.5
+
+function surface.RoundedBox(x, y, w, h, r)
+       r = r or 15
+       love.graphics.rectangle("fill", x, y+r, w, h-r*2)
+       love.graphics.rectangle("fill", x+r, y, w-r*2, r)
+       love.graphics.rectangle("fill", x+r, y+h-r, w-r*2, r)
+       love.graphics.arc("fill", x+r, y+r, r, left, top)
+       love.graphics.arc("fill", x + w-r, y+r, r, -bottom, right)
+       love.graphics.arc("fill", x + w-r, y + h-r, r, right, bottom)
+       love.graphics.arc("fill", x+r, y + h-r, r, bottom, left)
+end
+
+
+
+
+function surface.HUDStaticBox(x, y, w, h)
+	local ang = 3
+	love.graphics.setColor(164,164,164)
+	surface.RoundedBox(x-2, y-2, w+4, h+4, ang+1)
+	love.graphics.setColor(255,255,255)
+	surface.RoundedBox(x, y, w, h, ang)
 end

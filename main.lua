@@ -43,12 +43,10 @@ function precachedata()
 end
 
 function love.load()
+	love.graphics.setBackgroundColor( 255,245,217 )
 	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")
 	load_modules()
-
-	background = loveframes.Create("image")
-	background:SetImage("ressources/background.png")
 	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
 	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
 	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
@@ -71,15 +69,14 @@ function love.update()
 end
 
 function love.draw()
-	local x, y = love.mouse.getPosition()
+	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
-	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
-	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
-	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
 	playerInfos()
-	
+	hook.Call("OverLayDraw") -- Menu echap, par exemple
+
+	surface.HUDStaticBox(60,60,100,100)
+
 end
 
 
@@ -95,3 +92,11 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 	end
 
 end)
+
+hook.Add("WallpaperDraw", "Infos background", function()
+
+	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
+	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
+	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
+	end)

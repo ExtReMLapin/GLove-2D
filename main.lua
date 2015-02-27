@@ -10,6 +10,7 @@ local time = os.time()
 
 Msg = io.write;
 Globalcorpname = "Apple"
+_gamestate = "nul"
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -69,16 +70,13 @@ function love.update()
 	leftClick = love.mouse.isDown("l")
 end
 
-
-_gamestate = "onch"
-
 function love.draw()
 	local x, y = love.mouse.getPosition()
 	hook.Call("Draw")
 	loveframes.draw()
 	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-	love.graphics.print("menuFormer : " .. tostring(menuFormer), 600, 700)
+	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
 	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
 	playerInfos()
 	
@@ -86,7 +84,6 @@ end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
-	print(41)
 
 	if gamestate(x, y) == "playing" then
 		if menuFormer then
@@ -96,5 +93,5 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 	elseif gamestate(x, y) == "se former" then
 		seformerMenu(x,y)
 	end
-print(42)
+
 end)

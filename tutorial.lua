@@ -10,6 +10,7 @@ function tutorialText()
 			introBox:Remove()
 			introButton:Remove()
 			introBox = nil
+			_gamestate = "playing"
 		end
 	end
 end

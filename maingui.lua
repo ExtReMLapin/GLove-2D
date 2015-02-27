@@ -60,6 +60,9 @@ function gamestate(realX, realY)
 		elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
 			_gamestate = "seformer.actu"
 		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
+		else
+			menuFormer:Remove()
+			_gamestate = "playing"
 		end
 
 	elseif _gamestate == "playing" then

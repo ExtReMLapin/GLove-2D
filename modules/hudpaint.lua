@@ -248,7 +248,15 @@ function DrawDateBox()
 	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
+	love.graphics.print(string.format("A%i M%i S%i",T_YEAR, T_MONTH, T_SEM ), ScrW-110, 15)
+	local i = 0
+	while i < T_DAY do
+		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)
+		i = i+1
+	end
+
+
 	love.graphics.print("Clients : " ..string.nicemath(Clients), ScrW-223, 15)
-	love.graphics.print("Date :" , ScrW-223, 30)
+
 
 end

@@ -3,8 +3,7 @@ require "maingui"
 require "tutorial"
 require "ressources/fonts"
 
-local loaded = {}
-local i = 1
+
 local http;
 local time = os.time()
 
@@ -18,10 +17,8 @@ end
 
 function load_modules()
 	local files =  love.filesystem.getDirectoryItems("modules")
-	for i,v in ipairs(files) do
+	for k,v in ipairs(files) do
 		include("modules/" .. v)
-		loaded[i] = v
-		i = i + 1;
 	end
 	http = require("socket.http")
 	require("save")
@@ -54,6 +51,7 @@ function love.load()
 	init_restore()
 	--precachedata()
 	tutorialText()
+	require("timersloop")
 end
 
 

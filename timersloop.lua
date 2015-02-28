@@ -1,0 +1,36 @@
+-- 1sec    = 1/4 sem
+-- 4 secs  = 1 sem
+-- 16 secs = 1 mois
+-- 3m12s   = 1 ans
+-- 16 min  = 5 ans
+-- 8 h     = 150 ans
+
+
+require("modules/timer2")
+require("modules/hook")
+
+T_DAY = data.T_DAY or 0 -- lets say 4 days = 1sem
+T_SEM = data.T_SEM or 0
+T_MONTH = data.T_MONTH or 0
+T_YEAR = data.T_YEAR or 0
+
+timer.create("MainTimerDate",1 , 0,
+	function()
+		T_DAY = T_DAY + 1
+		if T_DAY > 4 then
+			T_SEM = T_SEM + 1
+			T_DAY = 1
+		end
+		if T_SEM > 4 then
+			T_MONTH = T_MONTH + 1
+			T_SEM = 1
+		end
+		if T_MONTH > 12 then
+			T_YEAR = T_YEAR + 1
+			T_MONTH = 0
+		end
+
+		hook.Call("DateChange")
+
+	end 
+)

@@ -1,5 +1,9 @@
 local json = require("modules/json")
 
+data = {}
+
+
+
 function init_restore()
 	if not love.filesystem.read("data.txt") then -- 1st use ?
 		bought_objects = {}

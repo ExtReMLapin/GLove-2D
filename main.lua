@@ -52,6 +52,7 @@ function love.load()
 	--precachedata()
 	tutorialText()
 	require("timersloop")
+	CreatePopUp()
 end
 
 

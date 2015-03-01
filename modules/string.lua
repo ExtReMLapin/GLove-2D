@@ -23,6 +23,13 @@ function string.nicemath(num)
 
 end
 
+
+function string.writeSpaces( num )
+	local str =  string.rep( " ", num )
+	return str
+end
+
+
 function string.JavascriptSafe( str )
 
 	str = str:Replace( "\\", "\\\\" )

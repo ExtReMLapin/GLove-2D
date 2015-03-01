@@ -2,8 +2,8 @@ require "input"
 require "maingui"
 require "tutorial"
 require "ressources/fonts"
-
-
+require "timersloop"
+require "save"
 local http;
 local time = os.time()
 
@@ -51,8 +51,9 @@ function love.load()
 	init_restore()
 	--precachedata()
 	tutorialText()
-	require("timersloop")
+	init_restore()
 	CreatePopUp()
+
 end
 
 
@@ -86,11 +87,13 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 
 end)
 
-hook.Add("BackGroundDraw", "Infos background", function()
 
-	DrawDateBox()
-	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
-	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
-	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
+hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
+	hook.Add("BackGroundDraw", "Infos background", function()
+		DrawDateBox()
+		love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+		love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
+		love.graphics.print("gamestate : " .. _gamestate, 400, 700)
 	end)
+end)

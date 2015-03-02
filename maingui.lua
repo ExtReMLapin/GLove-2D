@@ -55,7 +55,7 @@ function principalMenu(realX, realY)
 				text1.OnMouseExit = function(object)
 					IsInRightClickMenu = true
 				end
----------------------------------------------------------------------------
+
 		RightClickMENU2 = loveframes.Create("panel")
 		RightClickMENU2:SetPos(realX-50,realY-140)
 		RightClickMENU2.OnMouseEnter = function(object)
@@ -77,7 +77,6 @@ function principalMenu(realX, realY)
 					IsInRightClickMenu = true
 				end
 
----------------------------------------------------------------------------
 		RightClickMENU3 = loveframes.Create("panel")
 		RightClickMENU3:SetPos(realX-50,realY-80)
 		RightClickMENU3.OnMouseEnter = function(object)
@@ -117,15 +116,4 @@ function seformerMenu(realX,realY)
 	menuFormer = loveframes.Create("image")
 	menuFormer:SetImage("ressources/formerbar.png")
 	menuFormer:SetPos(principalMenuX + 212,principalMenuY)
-end
-
-function investirMenu()
-	menuInvestir = loveframes.Create("image")
-	menuInvestir:SetImage("ressources/investirmenu.png")
-	menuInvestir:Center()
-	investirChoice = loveframes.Create("multichoice", menuInvestir)
-	investirChoice:SetPos(220,130)
-	for k, v in pairs(Brand) do
-		investirChoice:AddChoice(v.Name)
-	end
 end

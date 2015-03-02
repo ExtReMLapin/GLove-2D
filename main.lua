@@ -45,7 +45,7 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-
+CreatePopUp()
 
 end
 

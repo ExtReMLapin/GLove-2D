@@ -21,7 +21,12 @@ function newobject:initialize()
 	self.height = 50
 	self.internal = false
 	self.children = {}
-	
+	self.down = false
+	self.clickable = true
+	self.enabled = true
+	self.toggleable = false
+	self.toggle = false
+	self.OnClick = nil
 end
 
 --[[---------------------------------------------------------
@@ -146,6 +151,19 @@ function newobject:mousepressed(x, y, button)
 	for k, v in ipairs(children) do
 		v:mousepressed(x, y, button)
 	end
+
+
+	local hover = self.hover
+	
+	if hover and button == "l" then
+		local baseparent = self:GetBaseParent()
+		if baseparent and baseparent.type == "frame" then
+			baseparent:MakeTop()
+		end
+		self.down = true
+		loveframes.downobject = self
+	end
+
 	
 end
 
@@ -173,4 +191,30 @@ function newobject:mousereleased(x, y, button)
 		v:mousereleased(x, y, button)
 	end
 	
+	
+	local hover = self.hover
+	local down = self.down
+	local clickable = self.clickable
+	local enabled = self.enabled
+	local onclick = self.OnClick
+	
+	if hover and down and clickable and button == "l" then
+		if enabled then
+			if onclick then
+				onclick(self, x, y)
+			end
+			if self.toggleable then
+				local ontoggle = self.OnToggle
+				self.toggle = not self.toggle
+				if ontoggle then
+					ontoggle(self, self.toggle)
+				end
+			end
+		end
+	end
+	
+	self.down = false
+
+
+
 end

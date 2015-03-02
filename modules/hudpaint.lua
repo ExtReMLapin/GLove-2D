@@ -274,7 +274,7 @@ end
 
 
 
-function CreatePopUp(text, ...)
+function CreatePopUp(text, choice, fun1, fun2)
 
 	if not framepopup then
 		framepopup = loveframes.Create("frame")
@@ -293,20 +293,12 @@ function CreatePopUp(text, ...)
 			button:SetText("Modal")
 			button:SetWidth(100)
 			button:Center()
-			button.Update = function(object, dt)
-			    local modal = object:GetParent():GetModal()
-			    if modal then
-			        object:SetText("Remove Modal")
-			        object.OnClick = function()
-			            object:GetParent():SetModal(false)
-			        end
-			    else
-			        object:SetText("Set Modal")
-			        object.OnClick = function()
-			            framepopup:Remove()
-			        end
-			    end
+			button.OnClick = function()
+				framepopup:Remove()
+				framepopup = nil
 			end
+
+
 	end
 
 

@@ -24,7 +24,7 @@ hook.Add("SaveRestored", "DATETIMERESTAURED", function()
 			end
 			if T_MONTH > 12 then
 				T_YEAR = T_YEAR + 1
-				T_MONTH = 0
+				T_MONTH = 1
 			end
 
 			hook.Call("DateChange")

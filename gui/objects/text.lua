@@ -43,7 +43,14 @@ function newobject:initialize()
 	self.linksenabled = false
 	self.detectlinks = false
 	self.OnClickLink = nil
-	
+	self.children = {}
+	self.down = false
+	self.clickable = true
+	self.enabled = true
+	self.toggleable = false
+	self.toggle = false
+	self.OnClick = nil
+
 	local skin = loveframes.util.GetActiveSkin()
 	if not skin then
 		skin = loveframes.config["DEFAULTSKIN"]
@@ -226,6 +233,35 @@ function newobject:mousepressed(x, y, button)
 		end
 	end
 	
+	local children = self.children
+	local hover = self.hover
+	
+	if hover and button == "l" then
+		local baseparent = self:GetBaseParent()
+		if baseparent and baseparent.type == "frame" then
+			baseparent:MakeTop()
+		end
+	end
+	
+	for k, v in ipairs(children) do
+		v:mousepressed(x, y, button)
+	end
+
+
+	local hover = self.hover
+	
+	if hover and button == "l" then
+		local baseparent = self:GetBaseParent()
+		if baseparent and baseparent.type == "frame" then
+			baseparent:MakeTop()
+		end
+		self.down = true
+		loveframes.downobject = self
+	end
+
+
+
+
 end
 
 --[[---------------------------------------------------------
@@ -834,4 +870,53 @@ function newobject:GetDetectLinks()
 
 	return self.detectlinks
 	
+end
+
+
+function newobject:mousereleased(x, y, button)
+
+	local state = loveframes.state
+	local selfstate = self.state
+	
+	if state ~= selfstate then
+		return
+	end
+	
+	local visible  = self.visible
+	local children = self.children
+	
+	if not visible then
+		return
+	end
+	
+	for k, v in ipairs(children) do
+		v:mousereleased(x, y, button)
+	end
+	
+	
+	local hover = self.hover
+	local down = self.down
+	local clickable = self.clickable
+	local enabled = self.enabled
+	local onclick = self.OnClick
+	
+	if hover and down and clickable and button == "l" then
+		if enabled then
+			if onclick then
+				onclick(self, x, y)
+			end
+			if self.toggleable then
+				local ontoggle = self.OnToggle
+				self.toggle = not self.toggle
+				if ontoggle then
+					ontoggle(self, self.toggle)
+				end
+			end
+		end
+	end
+	
+	self.down = false
+
+
+
 end

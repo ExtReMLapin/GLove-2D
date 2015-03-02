@@ -1,10 +1,9 @@
 require "input"
-require "helppage"
 require "maingui"
 require "tutorial"
-
-local loaded = {}
-local i = 1
+require "ressources/fonts"
+require "timersloop"
+require "save"
 local http;
 local time = os.time()
 
@@ -18,18 +17,11 @@ end
 
 function load_modules()
 	local files =  love.filesystem.getDirectoryItems("modules")
-	for i,v in ipairs(files) do
+	for k,v in ipairs(files) do
 		include("modules/" .. v)
-		loaded[i] = v
-		i = i + 1;
 	end
 	http = require("socket.http")
 	require("save")
-end
-
-
-function gamestate_loggin(key)
-
 end
 
 function precachedata()
@@ -43,23 +35,17 @@ function precachedata()
 end
 
 function love.load()
+	love.graphics.setBackgroundColor( 255,245,217 )
 	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")
 	load_modules()
-
-	background = loveframes.Create("image")
-	background:SetImage("ressources/background.png")
-	title = love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
-	subtitle = love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
-	other_text = love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
-	graphfont = love.graphics.newFont(12)
 	hook.Add("KeyPressed", "loggin", gamestate_loggin)
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-	--precachedata()
-	tutorialText()
+
+
 end
 
 
@@ -71,27 +57,29 @@ function love.update()
 end
 
 function love.draw()
-	local x, y = love.mouse.getPosition()
+	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
-	love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
-	love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-	love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
-	love.graphics.print("gamestate : " .. _gamestate, 400, 700)
-	playerInfos()
-	
+	--playerInfos()
+	hook.Call("OverLayDraw") -- Menu echap, par exemple
+
 end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
+	 principalMenu(x,y)
+	 print("MousePress Call")
 
-	if gamestate(x, y) == "playing" then
-		if menuFormer then
-			menuFormer:Remove()
-		end
-		principalMenu(x,y)
-	elseif gamestate(x, y) == "se former" then
-		seformerMenu(x,y)
-	end
 
+end)
+
+
+hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
+	hook.Add("BackGroundDraw", "Infos background", function()
+		DrawDateBox()
+		love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+		love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
+		love.graphics.print("gamestate : " .. tostring(IsInRightClickMenu), 400, 700)
+	end)
 end)

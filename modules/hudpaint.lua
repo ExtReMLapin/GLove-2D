@@ -1,13 +1,18 @@
-width, height = love.graphics.getDimensions( )
+width, height = love.graphics.getDimensions()
 surface = {}
 draw = {}
 
 
+ScrW, ScrH = love.window.getDimensions( )
 
 
 function Color(ra,ga,ba,aa)
 	return {r = ra, g=ga, b=ba, a=aa or 255}
 end
+
+color_white = Color(255,255,255)
+color_black = Color(0,0,0)
+
 
 function surface.DrawRect(x, y, width, height)
 	return love.graphics.rectangle( "fill", x, y, width, height )
@@ -65,8 +70,8 @@ function table.Rearange(tbl)
 end
 
 
-	local zoom = 0.1
-	local pos = 0.99
+local zoom = 0.1
+local pos = 0.99
 
 function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
@@ -172,9 +177,9 @@ function draw.GradientBox(x, y, w, h, al, ...) -- DO NOT USE, GLITCHY WTF BRO
 			Lerp2(g_sz/g_wgrd, g_grds[n].b, g_grds[n + 1].b),
 			Lerp2(g_sz/g_wgrd, g_grds[n].a, g_grds[n + 1].a)))
 		if(al == 1) then surface.DrawRect(x, y + i, h, 1)
-		else surface.DrawRect(x + i, y, 1, h) end
+			else surface.DrawRect(x + i, y, 1, h) end
+		end
 	end
-end
 
 
 
@@ -182,7 +187,7 @@ function WindowsLoadingBarUndefined(xpos, ypos, x, y, speed, colorbg, color)-- y
 	local pos1 = xpos+x*math.tan(love.timer.getTime()*speed)
 	local bordermax =  math.Max(0, (pos1+x/5)-(xpos+x))
 	local bordermin =  math.Max(0, (xpos+x/5)-(pos1))
-		
+
 	surface.SetDrawColor(colorbg) -- Background
 	surface.DrawRect(xpos, ypos, x, y)
 
@@ -203,5 +208,106 @@ function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state
 	surface.DrawRect(xpos, ypos, x, y)
 	surface.SetDrawColor(color) -- Background
 	surface.DrawRect(xpos, ypos,x*state, y)
+
+end
+
+
+
+local right = 0
+local left = math.pi
+local bottom = math.pi * 0.5
+local top = math.pi * 1.5
+
+function surface.RoundedBox(x, y, w, h, r)
+	r = r or 15
+	love.graphics.rectangle("fill", x, y+r, w, h-r*2)
+	love.graphics.rectangle("fill", x+r, y, w-r*2, r)
+	love.graphics.rectangle("fill", x+r, y+h-r, w-r*2, r)
+	love.graphics.arc("fill", x+r, y+r, r, left, top)
+	love.graphics.arc("fill", x + w-r, y+r, r, -bottom, right)
+	love.graphics.arc("fill", x + w-r, y + h-r, r, right, bottom)
+	love.graphics.arc("fill", x+r, y + h-r, r, bottom, left)
+end
+
+
+
+
+function surface.HUDStaticBox(x, y, w, h)
+	local ang = 3
+	love.graphics.setColor(164,164,164)
+	surface.RoundedBox(x-2, y-2, w+4, h+4, ang+1)
+	love.graphics.setColor(255,255,255)
+	surface.RoundedBox(x, y, w, h, ang)
+end
+
+
+local mois = { "Janvier",
+				"Février",
+				"Mars",
+				"Avril",
+				"Mai",
+				"Juin",
+				"Juillet",
+				"Août",
+				"Septembre",
+				"Octobre",
+				"Novembre",
+				"Décembre"}
+
+
+
+function DrawDateBox()
+	Clients = math.tan(love.timer.getTime())*500000
+	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
+	love.graphics.setFont( date_box_text1 )
+	love.graphics.setColor(0,0,0)
+	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, T_SEM  ..STNDRD(T_SEM ) .. " semaine" ), ScrW-220, 20)
+	local i = 0
+	while i < T_DAY do
+		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)
+		i = i+1
+	end
+
+	--love.graphics.print("Clients : " ..string.nicemath(Clients), ScrW-223, 15)
+
+end
+
+
+
+function CreatePopUp(text, ...)
+
+	if not framepopup then
+		framepopup = loveframes.Create("frame")
+			framepopup:SetName("Frame")
+			framepopup:CenterWithinArea(ScrW/2-(150),ScrH/2-125,300,150)
+			framepopup:SetDockable(true)
+			         
+			local text = loveframes.Create("text", framepopup)
+			text:SetText("This is an example frame.")
+			text.Update = function(object, dt)
+			    object:CenterX()
+			    object:SetY(40)
+			end
+			         
+			button = loveframes.Create("button", framepopup)
+			button:SetText("Modal")
+			button:SetWidth(100)
+			button:Center()
+			button.Update = function(object, dt)
+			    local modal = object:GetParent():GetModal()
+			    if modal then
+			        object:SetText("Remove Modal")
+			        object.OnClick = function()
+			            object:GetParent():SetModal(false)
+			        end
+			    else
+			        object:SetText("Set Modal")
+			        object.OnClick = function()
+			            framepopup:Remove()
+			        end
+			    end
+			end
+	end
+
 
 end

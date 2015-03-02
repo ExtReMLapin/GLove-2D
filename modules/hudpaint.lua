@@ -276,36 +276,38 @@ end
 
 function CreatePopUp(text, ...)
 
-local frame = loveframes.Create("frame")
-frame:SetName("Frame")
-frame:CenterWithinArea(ScrW/2-(150),ScrH/2-125,300,150)
-frame:SetDockable(true)
-         
-local text = loveframes.Create("text", frame)
-text:SetText("This is an example frame.")
-text.Update = function(object, dt)
-    object:CenterX()
-    object:SetY(40)
-end
-         
-local button = loveframes.Create("button", frame)
-button:SetText("Modal")
-button:SetWidth(100)
-button:Center()
-button.Update = function(object, dt)
-    local modal = object:GetParent():GetModal()
-    if modal then
-        object:SetText("Remove Modal")
-        object.OnClick = function()
-            object:GetParent():SetModal(false)
-        end
-    else
-        object:SetText("Set Modal")
-        object.OnClick = function()
-            object:GetParent():SetModal(true)
-        end
-    end
-end
+	if not framepopup then
+		framepopup = loveframes.Create("frame")
+			framepopup:SetName("Frame")
+			framepopup:CenterWithinArea(ScrW/2-(150),ScrH/2-125,300,150)
+			framepopup:SetDockable(true)
+			         
+			local text = loveframes.Create("text", framepopup)
+			text:SetText("This is an example frame.")
+			text.Update = function(object, dt)
+			    object:CenterX()
+			    object:SetY(40)
+			end
+			         
+			button = loveframes.Create("button", framepopup)
+			button:SetText("Modal")
+			button:SetWidth(100)
+			button:Center()
+			button.Update = function(object, dt)
+			    local modal = object:GetParent():GetModal()
+			    if modal then
+			        object:SetText("Remove Modal")
+			        object.OnClick = function()
+			            object:GetParent():SetModal(false)
+			        end
+			    else
+			        object:SetText("Set Modal")
+			        object.OnClick = function()
+			            framepopup:Remove()
+			        end
+			    end
+			end
+	end
 
 
 end

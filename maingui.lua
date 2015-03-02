@@ -4,6 +4,9 @@ account_growth = 34
 virtual_account_money = 2500
 local principalMenuX = 0
 local principalMenuY = 0
+RightClickMENU = false
+IsOnDesktop = true
+IsInRightClickMenu = false
 Brand = {}
 	Brand[1] = {}
 	Brand[2] = {}
@@ -50,60 +53,95 @@ end
 
 
 function gamestate(realX, realY)
-	if introBox then return "tutorial" end
-
-	if _gamestate == "se former" then
-		if realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY and realY < principalMenuY + 44 then
-			_gamestate = "seformer.lexique"
-		elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-			_gamestate = "seformer.type"
-		elseif realX > principalMenuX + 212 and realX < principalMenuX + 412 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
-			_gamestate = "seformer.actu"
-		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-		else
-			menuFormer:Remove()
-			_gamestate = "playing"
-		end
-
-	elseif _gamestate == "playing" then
-		if realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY and realY < principalMenuY + 44 then
-			_gamestate = "investir"
-			investirMenu()
-		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 51 and realY < principalMenuY + 95 then
-			_gamestate = "se former"
-		elseif realX > principalMenuX and realX < principalMenuX + 210 and realY > principalMenuY + 102 and realY < principalMenuY + 146 then
-			--listeactionsMenu()
-			_gamestate = "liste actions"
-		else
-			_gamestate1 = "playing"
-		end
-
-	elseif _gamestate == "investir" then
-		if realX > 1060 and realX < 1080 and realY > 72 and realY < 91 then
-			menuInvestir:Remove()
-			investirChoice:Remove()
-			_gamestate = "playing"
-		end
-	end
-
-	return _gamestate
+	return _gamestate or "default"
 end
 
 
-function principalMenu(realX,realY)
-	local gamestate1;
-	if principalMenuX == 0 and principalMenuY == 0 then
-		principalMenuX = realX
-		principalMenuY = realY
-		menuPrincip = loveframes.Create("image")
-		menuPrincip:SetImage("ressources/menubar.png")
-		menuPrincip:SetPos(realX,realY)
-	elseif principalMenuX ~= 0 and principalMenuY ~= 0 then
-		if (realX < principalMenuX or realX > principalMenuX + 210) or (realY < principalMenuY or realY > principalMenuY + 146) then
-			principalMenuY = 0
-			principalMenuX = 0
-			menuPrincip:Remove()			
+function principalMenu(realX, realY)
+	if not IsOnDesktop then return end
+	if not RightClickMENU1 then
+		RightClickMENU1 = loveframes.Create("panel")
+		RightClickMENU1:SetPos(realX-50,realY-200)
+		RightClickMENU1.OnMouseEnter = function(object)
+			IsInRightClickMenu = true
+
 		end
+		RightClickMENU1.OnMouseExit = function(object)
+			IsInRightClickMenu = false
+		end
+
+		    local text1 = loveframes.Create("text", RightClickMENU1)
+			    text1:SetPos(14, 10)
+			    text1:SetFont(subtitle)
+			    text1:SetLinksEnabled(false)
+			    text1:SetText("Investir")
+				text1.OnMouseEnter = function(object)
+					IsInRightClickMenu = true
+
+				end
+				text1.OnMouseExit = function(object)
+					IsInRightClickMenu = false
+				end
+---------------------------------------------------------------------------
+		RightClickMENU2 = loveframes.Create("panel")
+		RightClickMENU2:SetPos(realX-50,realY-140)
+		RightClickMENU2.OnMouseEnter = function(object)
+			IsInRightClickMenu = true
+
+		end
+		RightClickMENU1.OnMouseExit = function(object)
+			IsInRightClickMenu = false
+		end
+
+		    local text1 = loveframes.Create("text", RightClickMENU2)
+			    text1:SetPos(14, 10)
+			    text1:SetFont(subtitle)
+			    text1:SetLinksEnabled(false)
+			    text1:SetText("Se former")
+				text1.OnMouseEnter = function(object)
+					
+					IsInRightClickMenu = true
+
+				end
+				text1.OnMouseExit = function(object)
+					IsInRightClickMenu = false
+				end
+
+---------------------------------------------------------------------------
+		RightClickMENU3 = loveframes.Create("panel")
+		RightClickMENU3:SetPos(realX-50,realY-80)
+		RightClickMENU3.OnMouseEnter = function(object)
+			IsInRightClickMenu = true
+
+		end
+		RightClickMENU1.OnMouseExit = function(object)
+			IsInRightClickMenu = false
+		end
+
+		    local text1 = loveframes.Create("text", RightClickMENU3)
+			    text1:SetPos(14, 10)
+			    text1:SetFont(subtitle)
+			    text1:SetLinksEnabled(false)
+			    text1:SetText("Se former")
+				text1.OnMouseEnter = function(object)
+					IsInRightClickMenu = true
+
+				end
+				text1.OnMouseExit = function(object)
+					IsInRightClickMenu = false
+				end
+
+
+
+
+	else
+		if IsInRightClickMenu then return end
+		RightClickMENU1:Remove()
+		RightClickMENU1= nil
+		RightClickMENU2:Remove()
+		RightClickMENU2= nil
+		RightClickMENU3:Remove()
+		RightClickMENU3= nil
 	end
 end
 

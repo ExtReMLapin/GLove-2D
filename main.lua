@@ -24,11 +24,6 @@ function load_modules()
 	require("save")
 end
 
-
-function gamestate_loggin(key)
-
-end
-
 function precachedata()
 	local pe = coroutine.create(function()
 	for k, v in pairs(Brand) do
@@ -49,10 +44,7 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-	--precachedata()
-	tutorialText()
-	init_restore()
-	CreatePopUp()
+
 
 end
 
@@ -75,15 +67,9 @@ end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
+	 principalMenu(x,y)
+	 print("MousePress Call")
 
-	if gamestate(x, y) == "playing" then
-		if menuFormer then
-			menuFormer:Remove()
-		end
-		principalMenu(x,y)
-	elseif gamestate(x, y) == "se former" then
-		seformerMenu(x,y)
-	end
 
 end)
 

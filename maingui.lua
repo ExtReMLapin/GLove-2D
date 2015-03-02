@@ -64,12 +64,11 @@ function principalMenu(realX, realY)
 		RightClickMENU1:SetPos(realX-50,realY-200)
 		RightClickMENU1.OnMouseEnter = function(object)
 			IsInRightClickMenu = true
-
 		end
 		RightClickMENU1.OnMouseExit = function(object)
 			IsInRightClickMenu = false
-		end
 
+		end
 		    local text1 = loveframes.Create("text", RightClickMENU1)
 			    text1:SetPos(14, 10)
 			    text1:SetFont(subtitle)
@@ -80,31 +79,28 @@ function principalMenu(realX, realY)
 
 				end
 				text1.OnMouseExit = function(object)
-					IsInRightClickMenu = false
+					IsInRightClickMenu = true
 				end
 ---------------------------------------------------------------------------
 		RightClickMENU2 = loveframes.Create("panel")
 		RightClickMENU2:SetPos(realX-50,realY-140)
 		RightClickMENU2.OnMouseEnter = function(object)
 			IsInRightClickMenu = true
-
 		end
-		RightClickMENU1.OnMouseExit = function(object)
+		RightClickMENU2.OnMouseExit = function(object)
 			IsInRightClickMenu = false
 		end
 
-		    local text1 = loveframes.Create("text", RightClickMENU2)
-			    text1:SetPos(14, 10)
-			    text1:SetFont(subtitle)
-			    text1:SetLinksEnabled(false)
-			    text1:SetText("Se former")
-				text1.OnMouseEnter = function(object)
-					
+		    local text2 = loveframes.Create("text", RightClickMENU2)
+			    text2:SetPos(14, 10)
+			    text2:SetFont(subtitle)
+			    text2:SetLinksEnabled(false)
+			    text2:SetText("Se former")
+				text2.OnMouseEnter = function(object)
 					IsInRightClickMenu = true
-
 				end
-				text1.OnMouseExit = function(object)
-					IsInRightClickMenu = false
+				text2.OnMouseExit = function(object)
+					IsInRightClickMenu = true
 				end
 
 ---------------------------------------------------------------------------
@@ -112,23 +108,21 @@ function principalMenu(realX, realY)
 		RightClickMENU3:SetPos(realX-50,realY-80)
 		RightClickMENU3.OnMouseEnter = function(object)
 			IsInRightClickMenu = true
-
 		end
-		RightClickMENU1.OnMouseExit = function(object)
+		RightClickMENU3.OnMouseExit = function(object)
 			IsInRightClickMenu = false
 		end
 
-		    local text1 = loveframes.Create("text", RightClickMENU3)
-			    text1:SetPos(14, 10)
-			    text1:SetFont(subtitle)
-			    text1:SetLinksEnabled(false)
-			    text1:SetText("Se former")
-				text1.OnMouseEnter = function(object)
+		    local text3 = loveframes.Create("text", RightClickMENU3)
+			    text3:SetPos(7, 10)
+			    text3:SetFont(subtitle)
+			    text3:SetLinksEnabled(false)
+			    text3:SetText("Liste des Actions")
+				text3.OnMouseEnter = function(object)
 					IsInRightClickMenu = true
-
 				end
-				text1.OnMouseExit = function(object)
-					IsInRightClickMenu = false
+				text3.OnMouseExit = function(object)
+					IsInRightClickMenu = true
 				end
 
 
@@ -137,11 +131,11 @@ function principalMenu(realX, realY)
 	else
 		if IsInRightClickMenu then return end
 		RightClickMENU1:Remove()
-		RightClickMENU1= nil
 		RightClickMENU2:Remove()
-		RightClickMENU2= nil
 		RightClickMENU3:Remove()
+		RightClickMENU1= nil
 		RightClickMENU3= nil
+		RightClickMENU2= nil
 	end
 end
 

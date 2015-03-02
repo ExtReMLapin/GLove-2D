@@ -99,7 +99,7 @@ function principalMenu(realX,realY)
 		menuPrincip:SetImage("ressources/menubar.png")
 		menuPrincip:SetPos(realX,realY)
 	elseif principalMenuX ~= 0 and principalMenuY ~= 0 then
-		if (realX < principalMenuX or realX > principalMenuX + 210) or (realY < principalMenuY or realY > principalMenuY + 146) then
+		if (realX < principalMenuX or realX > principalMenuX + 210) or (realY < principalMenuY or realY > principalMenuY + 146) and _gamestate == "playing" then
 			principalMenuY = 0
 			principalMenuX = 0
 			menuPrincip:Remove()			

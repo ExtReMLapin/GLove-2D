@@ -56,7 +56,7 @@ function principalMenu(realX, realY)
 				text1.OnMouseExit = function(object)
 					IsInRightClickMenu = true
 				end
-
+---------------------------------------------------------------------------------------
 		RightClickMENU2 = loveframes.Create("panel")
 		RightClickMENU2:SetPos(realX-50,realY-140)
 		RightClickMENU2.OnMouseEnter = function(object)
@@ -77,7 +77,7 @@ function principalMenu(realX, realY)
 				text2.OnMouseExit = function(object)
 					IsInRightClickMenu = true
 				end
-
+---------------------------------------------------------------------------------------
 		RightClickMENU3 = loveframes.Create("panel")
 		RightClickMENU3:SetPos(realX-50,realY-80)
 		RightClickMENU3.OnMouseEnter = function(object)

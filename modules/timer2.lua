@@ -43,7 +43,7 @@ function timer.start( name )
 	if ( not timer.exists( name ) ) then return false end
 	timerList[name].n = 0
 	timerList[name].Status = RUNNING
-	timerList[name].Last = os.time()
+	timerList[name].Last = love.timer.getTime()
 	return true
 	
 end
@@ -64,11 +64,12 @@ function timer.adjust( name, delay, reps, func, ... )
 	
 end
 
+
 function timer.pause( name )
 
 	if ( not timer.exists( name ) ) then return false; end
 	if ( timerList[name].Status == RUNNING ) then
-		timerList[name].Diff = os.time() - timerList[name].Last
+		timerList[name].Diff = love.timer.getTime() - timerList[name].Last
 		timerList[name].Status = PAUSED
 		return true
 	end
@@ -120,11 +121,11 @@ function timer.check()
 	
 		if ( value.Status == PAUSED ) then
 		
-			value.Last = os.time() - value.Diff
+			value.Last = love.timer.getTime() - value.Diff
 			
-		elseif ( value.Status == RUNNING and ( value.Last + value.Delay ) <= os.time() ) then
+		elseif ( value.Status == RUNNING and ( value.Last + value.Delay ) <= love.timer.getTime() ) then
 				
-			value.Last = os.time()
+			value.Last = love.timer.getTime()
 			value.n = value.n + 1 
 			
 			if ( value.n >= value.Repetitions and value.Repetitions ~= 0) then
@@ -140,7 +141,7 @@ function timer.check()
 	-- Run Simple timers
 	for key, value in pairs( timerListSimple ) do
 
-		if ( value.Finish <= os.time() ) then
+		if ( value.Finish <= love.timer.getTime() ) then
 			
 			table.remove( timerListSimple, key )
 			value.Func(unpack(value.Args))
@@ -160,7 +161,7 @@ function timer.simple( delay, func, ... )
 
 	local new_timer = {}
 	
-	new_timer.Finish = os.time() + delay
+	new_timer.Finish = love.timer.getTime() + delay
 	new_timer.Func = func
 	new_timer.Args = {...}
 	
@@ -169,3 +170,10 @@ function timer.simple( delay, func, ... )
 	return true
 	
 end
+
+
+
+timer.Simple = timer.simple
+timer.Remove = timer.remove
+timer.UnPause = timer.unPause
+timer.Pause = timer.pause

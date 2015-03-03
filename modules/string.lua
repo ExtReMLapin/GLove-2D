@@ -85,6 +85,11 @@ function string.Implode(seperator,Table) return
 	table.concat(Table,seperator) 
 end
 
+
+function string.Count(str,chr)
+	return select(2, str:gsub(str, chr))
+end
+
 --[[---------------------------------------------------------
    Name: GetExtensionFromFilename(path)
    Desc: Returns extension from path

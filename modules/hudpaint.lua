@@ -274,13 +274,16 @@ end
 
 
 
-function CreatePopUp(text, choice, fun1, fun2)
-
+function CreatePopUp(title,text, choice, fun1, fun2)
 	if not framepopup then
+		IsOnDesktop = false
+		timer.pause("MainTimerDate")
 		framepopup = loveframes.Create("frame")
-			framepopup:SetName("Frame")
 			framepopup:CenterWithinArea(ScrW/2-(150),ScrH/2-125,300,150)
-			framepopup:SetDockable(true)
+			framepopup:SetDockable(false)
+			framepopup:SetDraggable(false)
+			framepopup:ShowCloseButton(false)
+			framepopup:SetModal(false)
 			         
 			local text = loveframes.Create("text", framepopup)
 			text:SetText("This is an example frame.")
@@ -296,6 +299,8 @@ function CreatePopUp(text, choice, fun1, fun2)
 			button.OnClick = function()
 				framepopup:Remove()
 				framepopup = nil
+				IsOnDesktop = true
+				timer.UnPause("MainTimerDate")
 			end
 
 

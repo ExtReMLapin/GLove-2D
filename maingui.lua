@@ -42,8 +42,11 @@ function principalMenu(realX, realY)
 		end
 		RightClickMENU1.OnMouseExit = function(object)
 			IsInRightClickMenu = false
-
 		end
+		RightClickMENU1.OnClick = function(object)
+			investirMenu()
+		end
+
 		    local text1 = loveframes.Create("text", RightClickMENU1)
 			    text1:SetPos(7, 10)
 			    text1:SetFont(subtitle)

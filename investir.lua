@@ -7,9 +7,9 @@ function investirMenu()
 	menuInvestir:SetImage("ressources/investirmenu.png")
 	menuInvestir:Center()
 	if T_YEAR < 1870 then boxes = 8 elseif T_YEAR >= 1870 and T_YEAR < 1890 then boxes = 18 else boxes = 23 end
-	for i = 1, boxes do
+	for i = 1, 23 do
 		investirButton[i] = loveframes.Create("button", menuInvestir)
-		investirButton[i]:SetText(Sectors[i])
+		if i <= boxes then investirButton[i]:SetText(Sectors[i]) else investirButton[i]:SetText("?") end
 		investirButton[i]:SetWidth(150)
 		if i == 1 then
 			investirButton[i]:SetPos(300, 150)
@@ -23,8 +23,12 @@ function investirMenu()
 			posX = posX - 160
 			posY = posY + 30
 		end
-		investirButton[i].OnClick = function(object)
-			clickedButton = investirButton[i]:GetText()
+		if i <= boxes then
+			investirButton[i].OnClick = function(object)
+				clickedButton = investirButton[i]:GetText()
+			end
+		else
+			investirButton[i]:SetClickable(false)
 		end
 	end
 	quitCross = loveframes.Create("text", menuInvestir)
@@ -35,7 +39,7 @@ function investirMenu()
 		unpausetime()
 		IsOnDesktop = true
 		menuInvestir:Remove()
-		for j = 1, boxes do investirButton[j]:Remove() end
+		for j = 1, 23 do investirButton[j]:Remove() end
 		quitCross:Remove()
 
 	end

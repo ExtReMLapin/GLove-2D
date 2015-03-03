@@ -261,17 +261,20 @@ function DrawDateBox()
 	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
-	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, T_SEM  ..STNDRD(T_SEM ) .. " semaine" ), ScrW-220, 20)
+	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, T_SEM ), ScrW-220, 20)
 	local i = 0
 	while i < T_DAY do
 		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)
 		i = i+1
 	end
-
-	--love.graphics.print("Clients : " ..string.nicemath(Clients), ScrW-223, 15)
+	if Money > 0 then 
+		love.graphics.setColor(0,128,0)
+	else
+		love.graphics.setColor(128,0,0)
+	end
+	love.graphics.print(string.nicemath(Money), ScrW-220, 45)
 
 end
-
 
 
 function CreatePopUp(title,text, choices, fun1, fun2)
@@ -317,15 +320,6 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15)
 
 			end
-
-		
-
 		end
-
-
-
 	end)
-
-
-
 end

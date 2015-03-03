@@ -20,12 +20,11 @@ end
 function do_save_data()
 	local tbl = {}
 	local str;
-		tbl.cash = account_virtual_money
-		tbl.bought_objects = bought_objects
 		tbl.T_DAY = T_DAY
 		tbl.T_SEM = T_SEM
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
+		tbl.Money = Money
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -39,6 +38,7 @@ function do_restore()
 end
 
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
+	Money = 16000000
 	T_DAY = 1
 	T_SEM = 1
 	T_MONTH = 4

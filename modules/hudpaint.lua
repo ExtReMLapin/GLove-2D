@@ -241,18 +241,18 @@ function surface.HUDStaticBox(x, y, w, h)
 end
 
 
-local mois = { "Janvier",
-				"Février",
+local mois = { "Jan.",
+				"Fév.",
 				"Mars",
-				"Avril",
+				"Avr.",
 				"Mai",
 				"Juin",
-				"Juillet",
+				"Juil.",
 				"Août",
-				"Septembre",
-				"Octobre",
-				"Novembre",
-				"Décembre"}
+				"Sept.",
+				"Oct.",
+				"Nov.",
+				"Déc."}
 
 
 
@@ -261,7 +261,7 @@ function DrawDateBox()
 	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
-	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, T_SEM ), ScrW-220, 20)
+	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-220, 20)
 	local i = 0
 	while i < T_DAY do
 		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)

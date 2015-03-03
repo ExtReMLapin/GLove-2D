@@ -3,6 +3,8 @@ surface = {}
 draw = {}
 
 
+local love = love
+
 ScrW, ScrH = love.window.getDimensions( )
 
 
@@ -287,25 +289,25 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 		love.graphics.setColor(0,0,0,50)
 		love.graphics.rectangle("fill", 0, 0, ScrW, ScrH )
 		love.graphics.setColor(255,209,123)
-		love.graphics.rectangle("fill", ScrW/2-260, ScrH/2-155, 520, 200+6+hei )
+		love.graphics.rectangle("fill", ScrW/2-260, ScrH/2-155-hei/2, 520, 200+6+hei )
 		love.graphics.setColor(255,249,239)
-		love.graphics.rectangle("fill", ScrW/2-257, ScrH/2-152, 514, 200+hei )
+		love.graphics.rectangle("fill", ScrW/2-257, ScrH/2-152-hei/2, 514, 200+hei )
 
 		love.graphics.setColor(0,0,0)
-		love.graphics.rectangle("fill", ScrW/2-207, ScrH/2-90, 414, 1 )
+		love.graphics.rectangle("fill", ScrW/2-207, ScrH/2-90-hei/2, 414, 1 )
 		love.graphics.setFont(popuptitle)
-		love.graphics.print( title ,  ScrW/2 - popuptitle:getWidth(title)/2 , ScrH/2-133)
+		love.graphics.print( title ,  ScrW/2 - popuptitle:getWidth(title)/2 , ScrH/2-133-hei/2)
 		love.graphics.setFont(popuptext)
-		love.graphics.print( text ,  ScrW/2- 230 , ScrH/2-83)
+		love.graphics.print( text ,  ScrW/2- 230 , ScrH/2-83-hei/2)
 
 		if not choices then
 
 			love.graphics.setFont(popuptitle)
-			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei and MOUSE_Y < ScrH/2-30+hei+60 then
+			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
 				love.graphics.setColor(250,164,26)
-				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei, 300, 60 )
+				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)
-				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15)
+				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
 				if love.mouse.isDown("l") then
 					unpausetime()
 					hook.Remove("OverLayDraw", "popup")
@@ -315,9 +317,9 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 			else
 				
 				love.graphics.setColor(247,143,29)
-				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei, 300, 60 )
+				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)
-				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15)
+				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
 
 			end
 		end

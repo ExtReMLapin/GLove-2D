@@ -34,7 +34,7 @@ end
 function principalMenu(realX, realY)
 	if not IsOnDesktop then return end
 	if not RightClickMENU1 then
-		timer.Pause("MainTimerDate")
+		pausetime()
 		RightClickMENU1 = loveframes.Create("panel")
 		RightClickMENU1:SetPos(realX-50,realY-200)
 		RightClickMENU1.OnMouseEnter = function(object)
@@ -110,7 +110,7 @@ function principalMenu(realX, realY)
 		RightClickMENU1= nil
 		RightClickMENU3= nil
 		RightClickMENU2= nil
-		timer.UnPause("MainTimerDate")
+		unpausetime()
 	end
 end
 

@@ -274,37 +274,58 @@ end
 
 
 
-function CreatePopUp(title,text, choice, fun1, fun2)
-	if not framepopup then
+function CreatePopUp(title,text, choices, fun1, fun2)
+	
+	hook.Add("OverLayDraw", "popup", function()
+		pausetime()
 		IsOnDesktop = false
-		timer.pause("MainTimerDate")
-		framepopup = loveframes.Create("frame")
-			framepopup:CenterWithinArea(ScrW/2-(150),ScrH/2-125,300,150)
-			framepopup:SetDockable(false)
-			framepopup:SetDraggable(false)
-			framepopup:ShowCloseButton(false)
-			framepopup:SetModal(false)
-			         
-			local text = loveframes.Create("text", framepopup)
-			text:SetText("This is an example frame.")
-			text.Update = function(object, dt)
-			    object:CenterX()
-			    object:SetY(40)
-			end
-			         
-			button = loveframes.Create("button", framepopup)
-			button:SetText("Modal")
-			button:SetWidth(100)
-			button:Center()
-			button.OnClick = function()
-				framepopup:Remove()
-				framepopup = nil
-				IsOnDesktop = true
-				timer.UnPause("MainTimerDate")
+		local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
+		local hei = (string.Count(text, "\n")+1)*popuptext:getHeight()
+		love.graphics.setColor(0,0,0,50)
+		love.graphics.rectangle("fill", 0, 0, ScrW, ScrH )
+		love.graphics.setColor(255,209,123)
+		love.graphics.rectangle("fill", ScrW/2-260, ScrH/2-155, 520, 200+6+hei )
+		love.graphics.setColor(255,249,239)
+		love.graphics.rectangle("fill", ScrW/2-257, ScrH/2-152, 514, 200+hei )
+
+		love.graphics.setColor(0,0,0)
+		love.graphics.rectangle("fill", ScrW/2-207, ScrH/2-90, 414, 1 )
+		love.graphics.setFont(popuptitle)
+		love.graphics.print( title ,  ScrW/2 - popuptitle:getWidth(title)/2 , ScrH/2-133)
+		love.graphics.setFont(popuptext)
+		love.graphics.print( text ,  ScrW/2- 230 , ScrH/2-83)
+
+		if not choices then
+
+			love.graphics.setFont(popuptitle)
+			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei and MOUSE_Y < ScrH/2-30+hei+60 then
+				love.graphics.setColor(250,164,26)
+				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei, 300, 60 )
+				love.graphics.setColor(0,0,0,250)
+				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15)
+				if love.mouse.isDown("l") then
+					unpausetime()
+					hook.Remove("OverLayDraw", "popup")
+					IsOnDesktop = true
+				end
+
+			else
+				
+				love.graphics.setColor(247,143,29)
+				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei, 300, 60 )
+				love.graphics.setColor(0,0,0,250)
+				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15)
+
 			end
 
+		
 
-	end
+		end
+
+
+
+	end)
+
 
 
 end

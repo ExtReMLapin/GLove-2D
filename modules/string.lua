@@ -87,7 +87,14 @@ end
 
 
 function string.Count(str,chr)
-	return select(2, str:gsub(str, chr))
+	local i = 1
+	local count = 0
+	while i < string.len(str) do
+		if str[i] == chr then count = count+1 end
+		i = i +1
+	end
+	return count
+
 end
 
 --[[---------------------------------------------------------

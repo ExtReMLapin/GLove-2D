@@ -10,6 +10,18 @@ require("modules/timer2")
 require("modules/hook")
 
 
+function unpausetime()
+	timer.unPause("MainTimerDate")
+end
+
+
+
+function pausetime()
+
+	timer.pause("MainTimerDate")
+end
+
+
 hook.Add("SaveRestored", "DATETIMERESTAURED", function()
 	timer.create("MainTimerDate",1 , 0,
 		function()

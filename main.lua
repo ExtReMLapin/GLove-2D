@@ -47,7 +47,7 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-CreatePopUp()
+	CreatePopUp("yeye, that's not what ur mom said", "listen here you little shit\ni've been eatin' babies since i'm 4")
 
 end
 

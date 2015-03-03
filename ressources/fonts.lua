@@ -3,4 +3,6 @@
 	other_text = 	love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
 	date_box_text1= love.graphics.newFont("ressources/OpenSans-Regular.ttf", 18)
 	rightclickmenu= love.graphics.newFont("ressources/OpenSans-Regular.ttf", 25)
+	popuptext = 	love.graphics.newFont("ressources/OpenSans-Regular.ttf",20)
+	popuptitle = 	love.graphics.newFont("ressources/OpenSans-Semibold.ttf", 25)
 	graphfont = 	love.graphics.newFont(12)

@@ -31,7 +31,7 @@ Brand = {}
 	"Assurances",
 	"Chemins de Fer",
 	"Canaux",
-	"Foncier et Immo."
+	"Foncier et Immo.",
 	"Houillères",
 	"Mines",
 	"Forges",
@@ -42,7 +42,7 @@ Brand = {}
 	"Eaux",
 	"Navigation",
 	"Filatures",
-	"Transports"
+	"Transports",
 	"Electricité",
 	"Matériel",
 	"Alimentation",

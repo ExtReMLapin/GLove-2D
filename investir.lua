@@ -1,10 +1,12 @@
 function investirMenu()
 	local posX, poxY
 	local investirButton = {}
+	local boxes
 	menuInvestir = loveframes.Create("image")
 	menuInvestir:SetImage("ressources/investirmenu.png")
 	menuInvestir:Center()
-	for i = 1, 24 do
+	if T_YEAR < 1870 then boxes = 8 elseif T_YEAR >= 1870 and T_YEAR < 1890 then boxes = 18 else boxes = 23 end
+	for i = 1, boxes do
 		investirButton[i] = loveframes.Create("button", menuInvestir)
 		investirButton[i]:SetText(Sectors[i])
 		investirButton[i]:SetWidth(150)
@@ -29,8 +31,11 @@ function investirMenu()
 	quitCross:SetText("X")
 	quitCross:SetPos(1060, 70)
 	quitCross.OnClick = function(object)
+		unpausetime()
+		IsOnDesktop = true
 		menuInvestir:Remove()
-		for j = 1, 24 do investirButton[j]:Remove() end
+		for j = 1, boxes do investirButton[j]:Remove() end
 		quitCross:Remove()
 	end
 end
+

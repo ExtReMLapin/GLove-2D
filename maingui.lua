@@ -60,7 +60,7 @@ function principalMenu(realX, realY)
 					IsInRightClickMenu = true
 				end
 				text1.OnClick = function(object)
-					investirMenu()
+					investisseurMenu()
 							RightClickMENU1:Remove()
 							RightClickMENU2:Remove()
 							RightClickMENU3:Remove()

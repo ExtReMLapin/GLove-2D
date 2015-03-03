@@ -58,6 +58,12 @@ function principalMenu(realX, realY)
 				end
 				text1.OnClick = function(object)
 					investirMenu()
+							RightClickMENU1:Remove()
+							RightClickMENU2:Remove()
+							RightClickMENU3:Remove()
+							RightClickMENU1= nil
+							RightClickMENU3= nil
+							RightClickMENU2= nil
 				end
 ---------------------------------------------------------------------------------------
 		RightClickMENU2 = loveframes.Create("panel")

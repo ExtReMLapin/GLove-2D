@@ -1,5 +1,6 @@
 function investirMenu()
 	local posX, poxY
+	IsOnDesktop = false
 	local investirButton = {}
 	local boxes
 	menuInvestir = loveframes.Create("image")
@@ -36,6 +37,7 @@ function investirMenu()
 		menuInvestir:Remove()
 		for j = 1, boxes do investirButton[j]:Remove() end
 		quitCross:Remove()
+
 	end
 end
 

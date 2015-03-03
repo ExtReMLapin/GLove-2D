@@ -6,6 +6,7 @@ require "timersloop"
 require "save"
 require "events"
 require "data"
+require "investir"
 
 local http;
 local time = os.time()
@@ -13,6 +14,7 @@ local time = os.time()
 Msg = io.write;
 Globalcorpname = "Apple"
 _gamestate = "nul"
+clickedButton = "nul"
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -82,8 +84,8 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		DrawDateBox()
 		love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-		love.graphics.print("menuFormer : " .. tostring(menuInvestir), 600, 700)
-		love.graphics.print("gamestate : " .. tostring(IsInRightClickMenu), 400, 700)
-		love.graphics.print("gamestate : " .. tostring(os.time()) .."   " ..tostring(love.timer.getTime()), 400, 600)
+		--love.graphics.print("gamestate : " .. tostring(IsInRightClickMenu), 400, 700)
+		--love.graphics.print("gamestate : " .. tostring(os.time()) .."   " ..tostring(love.timer.getTime()), 400, 700)
+		love.graphics.print("get text : " .. clickedButton, 800, 700)
 	end)
 end)

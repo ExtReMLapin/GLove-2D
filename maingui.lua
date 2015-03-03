@@ -56,6 +56,9 @@ function principalMenu(realX, realY)
 				text1.OnMouseExit = function(object)
 					IsInRightClickMenu = true
 				end
+				text1.OnClick = function(object)
+					investirMenu()
+				end
 ---------------------------------------------------------------------------------------
 		RightClickMENU2 = loveframes.Create("panel")
 		RightClickMENU2:SetPos(realX-50,realY-140)

@@ -24,6 +24,12 @@ Brand = {}
 	Brand[7].rn = "MSFT"
 	Brand[8].Name = "Google"
 	Brand[8].rn = "GOOGL"
+	
+	c_appstarting = love.mouse.getSystemCursor('wait')
+	c_default = love.mouse.getSystemCursor('arrow') -- default
+	c_ibeam = love.mouse.getSystemCursor('ibeam')
+	c_hand = love.mouse.getSystemCursor('hand')
+	c_size = love.mouse.getSystemCursor("sizeall")
 
 
 	Sectors = {

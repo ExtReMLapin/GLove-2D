@@ -38,9 +38,11 @@ function principalMenu(realX, realY)
 		RightClickMENU1 = loveframes.Create("panel")
 		RightClickMENU1:SetPos(realX-50,realY-200)
 		RightClickMENU1.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
 			IsInRightClickMenu = true
 		end
 		RightClickMENU1.OnMouseExit = function(object)
+			love.mouse.setCursor( c_arrow )
 			IsInRightClickMenu = false
 		end
 		RightClickMENU1.OnClick = function(object)
@@ -53,14 +55,17 @@ function principalMenu(realX, realY)
 			    text1:SetLinksEnabled(false)
 			    text1:SetText("Investir")
 				text1.OnMouseEnter = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 
 				end
 				text1.OnMouseExit = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
 				text1.OnClick = function(object)
 					investisseurMenu()
+					love.mouse.setCursor( c_cursor )
 							RightClickMENU1:Remove()
 							RightClickMENU2:Remove()
 							RightClickMENU3:Remove()
@@ -72,9 +77,11 @@ function principalMenu(realX, realY)
 		RightClickMENU2 = loveframes.Create("panel")
 		RightClickMENU2:SetPos(realX-50,realY-140)
 		RightClickMENU2.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
 			IsInRightClickMenu = true
 		end
 		RightClickMENU2.OnMouseExit = function(object)
+			love.mouse.setCursor( c_arrow )
 			IsInRightClickMenu = false
 		end
 
@@ -84,18 +91,22 @@ function principalMenu(realX, realY)
 			    text2:SetLinksEnabled(false)
 			    text2:SetText("Se former")
 				text2.OnMouseEnter = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
 				text2.OnMouseExit = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
 ---------------------------------------------------------------------------------------
 		RightClickMENU3 = loveframes.Create("panel")
 		RightClickMENU3:SetPos(realX-50,realY-80)
 		RightClickMENU3.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
 			IsInRightClickMenu = true
 		end
 		RightClickMENU3.OnMouseExit = function(object)
+			love.mouse.setCursor( c_arrow )
 			IsInRightClickMenu = false
 		end
 
@@ -105,9 +116,11 @@ function principalMenu(realX, realY)
 			    text3:SetLinksEnabled(false)
 			    text3:SetText("Liste des Actions")
 				text3.OnMouseEnter = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
 				text3.OnMouseExit = function(object)
+					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
 
@@ -116,6 +129,7 @@ function principalMenu(realX, realY)
 
 	else
 		if IsInRightClickMenu then return end
+		love.mouse.setCursor( c_arrow )
 		RightClickMENU1:Remove()
 		RightClickMENU2:Remove()
 		RightClickMENU3:Remove()

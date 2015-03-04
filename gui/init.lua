@@ -22,7 +22,7 @@ loveframes.config["DEFAULTSKIN"] = "Blue"
 loveframes.config["ACTIVESKIN"] = "Blue"
 loveframes.config["INDEXSKINIMAGES"] = true
 loveframes.config["DEBUG"] = false
-loveframes.config["ENABLE_SYSTEM_CURSORS"] = true
+loveframes.config["ENABLE_SYSTEM_CURSORS"] = false
 loveframes.config["ENABLE_UTF8_SUPPORT"] = false
 
 -- misc library vars

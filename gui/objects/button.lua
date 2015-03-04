@@ -27,6 +27,12 @@ function newobject:initialize()
 	self.toggleable = false
 	self.toggle = false
 	self.OnClick = nil
+	self.OnMouseEnter = function()
+		love.mouse.setCursor( c_hand )
+	end
+	self.OnMouseExit = function()
+		love.mouse.setCursor( c_cursor )
+	end
 	
 end
 

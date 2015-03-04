@@ -33,6 +33,7 @@ end
 	- func: update(deltatime)
 	- desc: updates the object
 --]]---------------------------------------------------------
+
 function newobject:update(dt)
 	
 	local state = loveframes.state
@@ -674,6 +675,35 @@ function newobject:Remove()
 	return self
 	
 end
+
+
+function newobject:RemoveNil()
+	
+	local pinternals = self.parent.internals
+	local pchildren = self.parent.children
+	
+	if pinternals then
+		for k, v in ipairs(pinternals) do
+			if v == self then
+				table.remove(pinternals, k)
+			end
+		end
+	end
+	
+	if pchildren then
+		for k, v in ipairs(pchildren) do
+			if v == self then
+				table.remove(pchildren, k)
+			end
+		end
+	end
+	self = nil
+	return self
+	
+end
+
+
+
 
 --[[---------------------------------------------------------
 	- func: SetClickBounds(x, y, width, height)

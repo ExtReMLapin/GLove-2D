@@ -18,6 +18,8 @@ skin.version = "1.0"
 local smallfont = love.graphics.newFont(10)
 local imagebuttonfont = love.graphics.newFont(15)
 local bordercolor = {143, 143, 143, 255}
+local bordercolor2 = {255, 209, 123, 255}
+
 
 -- add skin directives to this table
 skin.directives = {}
@@ -63,7 +65,7 @@ skin.controls.scrollarea_body_color                 = {220, 220, 220, 255}
 skin.controls.scrollbody_body_color                 = {0, 0, 0, 0}
 
 -- panel
-skin.controls.panel_body_color                      = {232, 232, 232, 255}
+skin.controls.panel_body_color                      = {249, 241, 227, 255}
 
 -- tabpanel
 skin.controls.tabpanel_body_color                   = {232, 232, 232, 255}
@@ -278,22 +280,20 @@ function skin.DrawFrame(object)
 		icon:setFilter("nearest", "nearest")
 		love.graphics.setColor(255, 255, 255, 255)
 		love.graphics.draw(icon, x + 5, y + 5)
-		love.graphics.setColor(namecolor)
-		love.graphics.print(name, x + iconwidth + 10, y + 5)
-	else
-		love.graphics.setColor(namecolor)
-		love.graphics.print(name, x + 5, y + 5)
 	end
 	
 	-- frame border
-	love.graphics.setColor(bordercolor)
+	love.graphics.setColor(bordercolor2)
 	skin.OutlinedRectangle(x, y, width, height)
+	love.graphics.setColor(bordercolor2)
+	skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
+	love.graphics.setColor(bordercolor2)
+	skin.OutlinedRectangle(x + 2, y + 2, width - 4, height - 4)
+	--love.graphics.setColor(255, 255, 255, 70)
+	--skin.OutlinedRectangle(x + 1, y + 1, width - 2, 24)
 	
-	love.graphics.setColor(255, 255, 255, 70)
-	skin.OutlinedRectangle(x + 1, y + 1, width - 2, 24)
-	
-	love.graphics.setColor(220, 220, 220, 255)
-	skin.OutlinedRectangle(x + 1, y + 25, width - 2, height - 26)
+	--love.graphics.setColor(220, 220, 220, 255)
+	--skin.OutlinedRectangle(x + 1, y + 25, width - 2, height - 26)
 	
 end
 
@@ -331,9 +331,6 @@ function skin.DrawButton(object)
 		love.graphics.setFont(font)
 		love.graphics.setColor(textnonclickablecolor)
 		love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-		-- button border
-		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
 		return
 	end
 	
@@ -358,9 +355,6 @@ function skin.DrawButton(object)
 				love.graphics.setFont(font)
 				love.graphics.setColor(texthovercolor)
 				love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-				-- button border
-				love.graphics.setColor(bordercolor)
-				skin.OutlinedRectangle(x, y, width, height)
 			end
 		else
 			if object.toggle then
@@ -371,20 +365,14 @@ function skin.DrawButton(object)
 				love.graphics.setFont(font)
 				love.graphics.setColor(textdowncolor)
 				love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-				-- button border
-				love.graphics.setColor(bordercolor)
-				skin.OutlinedRectangle(x, y, width, height)
 			else
 				-- button body
 				love.graphics.setColor(255, 255, 255, 255)
-				love.graphics.draw(skin.images["button-nohover.png"], x, y, 0, width, scaley)
+				love.graphics.draw(skin.images["button-nohover2.png"], x, y, 0, width, scaley)
 				-- button text
 				love.graphics.setFont(font)
 				love.graphics.setColor(textnohovercolor)
 				love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-				-- button border
-				love.graphics.setColor(bordercolor)
-				skin.OutlinedRectangle(x, y, width, height)
 			end
 		end
 	else	
@@ -396,9 +384,6 @@ function skin.DrawButton(object)
 			love.graphics.setFont(font)
 			love.graphics.setColor(textdowncolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
 		elseif hover then
 			-- button body
 			love.graphics.setColor(255, 255, 255, 255)
@@ -407,20 +392,14 @@ function skin.DrawButton(object)
 			love.graphics.setFont(font)
 			love.graphics.setColor(texthovercolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
 		else
 			-- button body
 			love.graphics.setColor(255, 255, 255, 255)
-			love.graphics.draw(skin.images["button-nohover.png"], x, y, 0, width, scaley)
+			love.graphics.draw(skin.images["button-nohover2.png"], x, y, 0, width, scaley)
 			-- button text
 			love.graphics.setFont(font)
 			love.graphics.setColor(textnohovercolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
-			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
 		end
 	end
 	
@@ -702,7 +681,7 @@ function skin.DrawPanel(object)
 	love.graphics.setColor(255, 255, 255, 200)
 	skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
 	
-	love.graphics.setColor(bordercolor)
+	love.graphics.setColor(0,0,0,255)
 	skin.OutlinedRectangle(x, y, width, height)
 	
 end

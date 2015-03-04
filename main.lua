@@ -53,6 +53,7 @@ function love.load()
 	init_restore()
 	CreatePopUp("yeye, that's not what ur mom said", "lel\nyeyeyeyeyeyeyeyyeyey\nrhzieurhzif\nrhzieurhzif\nrhzieurhzif")
 
+
 end
 
 
@@ -80,11 +81,9 @@ hook.Add("MousePress", "MenuPress", function(x,y)
 
 end)
 
-
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		love.graphics.print("leftClick state : " .. tostring(leftClick), 200,700)
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 		love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 	end)

@@ -1,3 +1,9 @@
+
+	 dureeInvestisseurMin =nil 
+	 dureeInvestisseurMax =nil
+	 remunerationInvestisseurMin = nil
+	 remunerationInvestisseurMax =nil 
+
 function investirMenu()
 	local posX, poxY
 	IsOnDesktop = false
@@ -47,7 +53,7 @@ end
 
 function investisseurMenu()
 	IsOnDesktop = false
-	local dureeInvestisseurMin,dureeInvestisseurMax,remunerationInvestisseurMin,remunerationInvestisseurMax
+
 	principaleFrame = loveframes.Create("frame")
 	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():SetDraggable(false)
 	principaleFrame.OnClose = function(object)
@@ -61,12 +67,12 @@ function investisseurMenu()
 	sliderForm2:SetPos(390, 130):SetSize(315, 50):SetName("Durée maximale d'investissement")
 	sliderInvestisseur1 = loveframes.Create("slider", principaleFrame)
 	sliderInvestisseur1:SetSize(300,275):SetPos(40, 150):SetMinMax(1,240):SetScrollIncrease(3)
-	sliderInvestisseur1.OnValueChange = function(object)
+	sliderInvestisseur1.OnValueChanged = function(object)
 		dureeInvestisseurMin = sliderInvestisseur1:GetValue()
 	end
 	sliderInvestisseur2 = loveframes.Create("slider", principaleFrame)
 	sliderInvestisseur2:SetSize(300,275):SetPos(395, 150):SetMinMax(1,240)
-	sliderInvestisseur2.OnValueChange = function(object)
+	sliderInvestisseur2.OnValueChanged = function(object)
 		dureeInvestisseurMax = sliderInvestisseur2:GetValue()
 	end
 	sliderForm3 = loveframes.Create("form", principaleFrame)
@@ -75,12 +81,12 @@ function investisseurMenu()
 	sliderForm4:SetPos(390, 230):SetSize(315, 50):SetName("Rendement de la durée maximale")
 	sliderInvestisseur3 = loveframes.Create("slider", principaleFrame)
 	sliderInvestisseur3:SetSize(300,275):SetPos(40, 250):SetMinMax(1,240)
-	sliderInvestisseur3.OnValueChange = function(object)
+	sliderInvestisseur3.OnValueChanged = function(object)
 		remunerationInvestisseurMin = sliderInvestisseur3:GetValue()
 	end
 	sliderInvestisseur4 = loveframes.Create("slider", principaleFrame)
 	sliderInvestisseur4:SetSize(300,275):SetPos(395, 250):SetMinMax(1,240)
-	sliderInvestisseur4.OnValueChange = function(object)
+	sliderInvestisseur4.OnValueChanged = function(object)
 		remunerationInvestisseurMax = sliderInvestisseur4:GetValue()
 	end
 	formMoneyOrigin = loveframes.Create("form", principaleFrame)

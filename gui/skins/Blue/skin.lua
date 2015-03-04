@@ -63,7 +63,7 @@ skin.controls.scrollarea_body_color                 = {220, 220, 220, 255}
 skin.controls.scrollbody_body_color                 = {0, 0, 0, 0}
 
 -- panel
-skin.controls.panel_body_color                      = {249, 241, 227, 255}
+skin.controls.panel_body_color                      = {232, 232, 232, 255}
 
 -- tabpanel
 skin.controls.tabpanel_body_color                   = {232, 232, 232, 255}
@@ -702,7 +702,7 @@ function skin.DrawPanel(object)
 	love.graphics.setColor(255, 255, 255, 200)
 	skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
 	
-	love.graphics.setColor(0,0,0,255)
+	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y, width, height)
 	
 end

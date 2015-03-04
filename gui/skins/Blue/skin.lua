@@ -18,6 +18,7 @@ skin.version = "1.0"
 local smallfont = love.graphics.newFont(10)
 local imagebuttonfont = love.graphics.newFont(15)
 local bordercolor = {143, 143, 143, 255}
+local bordercolor2 = {255, 209, 123, 255}
 
 -- add skin directives to this table
 skin.directives = {}
@@ -286,14 +287,14 @@ function skin.DrawFrame(object)
 	end
 	
 	-- frame border
-	love.graphics.setColor(bordercolor)
+	love.graphics.setColor(bordercolor2)
 	skin.OutlinedRectangle(x, y, width, height)
 	
-	love.graphics.setColor(255, 255, 255, 70)
-	skin.OutlinedRectangle(x + 1, y + 1, width - 2, 24)
+	love.graphics.setColor(bordercolor2)
+	skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
 	
-	love.graphics.setColor(220, 220, 220, 255)
-	skin.OutlinedRectangle(x + 1, y + 25, width - 2, height - 26)
+	love.graphics.setColor(bordercolor2)
+	skin.OutlinedRectangle(x + 2, y + 2, width - 4, height - 4)
 	
 end
 
@@ -377,7 +378,7 @@ function skin.DrawButton(object)
 			else
 				-- button body
 				love.graphics.setColor(255, 255, 255, 255)
-				love.graphics.draw(skin.images["button-nohover.png"], x, y, 0, width, scaley)
+				love.graphics.draw(skin.images["button-nohover2.png"], x, y, 0, width, scaley)
 				-- button text
 				love.graphics.setFont(font)
 				love.graphics.setColor(textnohovercolor)
@@ -413,7 +414,7 @@ function skin.DrawButton(object)
 		else
 			-- button body
 			love.graphics.setColor(255, 255, 255, 255)
-			love.graphics.draw(skin.images["button-nohover.png"], x, y, 0, width, scaley)
+			love.graphics.draw(skin.images["button-nohover2.png"], x, y, 0, width, scaley)
 			-- button text
 			love.graphics.setFont(font)
 			love.graphics.setColor(textnohovercolor)

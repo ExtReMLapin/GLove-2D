@@ -157,28 +157,37 @@ function budgetMenu()
 	IsOnDesktop = false
 	local PubSave = Pub
 	budgetFrame = loveframes.Create("frame")
-	budgetFrame:SetSize(800,600):Center():SetName("Menu budget")
+	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
+
+	pubSliderForm = loveframes.Create("form", budgetFrame)
+	pubSliderForm:SetPos(20,130):SetSize(430, 50):SetName("Budget Hebdomadaire publicitaire")
 	pubSliderText = loveframes.Create("text", budgetFrame)
-	pubSliderText:SetText("0"):SetPos(360, 150)
+	pubSliderText:SetText(Pub.."F"):SetPos(360, 153)
 	pubSlider = loveframes.Create("slider", budgetFrame)
-	pubSlider:SetMinMax(0, math.Round(Money / 500)):SetPos(30, 150):SetWidth(300):SetValue(0):SetDecimals(0)
+	pubSlider:SetMinMax(0, math.Round(Money / 500)):SetPos(30, 150):SetWidth(300):SetValue(0):SetDecimals(0):SetValue(PubSave)
 	pubSlider.OnValueChanged = function(object)
 		Pub = pubSlider:GetValue()
 		pubSliderText:SetText(tostring(pubSlider:GetValue()).."F")
+		pubBudgetRecap2:SetText(tostring(string.nicemath(Pub)).."F\n"..tostring(string.nicemath(Pub * 4)).."F\n"..tostring(string.nicemath(Pub * 52)).."F")
+
 	end
+	budgetRecapForm = loveframes.Create("form", budgetFrame)
+	budgetRecapForm:SetPos(270, 385):SetSize(230,60):SetName("Récapitulatif")
+	pubBudgetRecap1 = loveframes.Create("text", budgetFrame)
+	pubBudgetRecap1:SetText("Budget hebdomadaire : \nBudget mensuel : \nBudget annuel :"):SetPos(280, 400)
+	pubBudgetRecap2 = loveframes.Create("text", budgetFrame)
+	pubBudgetRecap2:SetPos(433, 400):SetText(tostring(PubSave).."F\n"..tostring(string.nicemath(PubSave * 4)).."F\n"..tostring(string.nicemath(PubSave * 52)).."F")
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)
 	saveBudgetButton.OnClick = function(object)
 		budgetFrame:Remove()
 		IsOnDesktop = true
-		love.mouse.setCursor( c_arrow )
 		unpausetime()
 	end
 	cancelBudgetButton = loveframes.Create("button", budgetFrame)
 	cancelBudgetButton:SetText("Annuler"):SetPos(475, 560)
 	cancelBudgetButton.OnClick = function(object)
 		Pub = PubSave
-		Love.mouse.setCursor( c_arrow )
 		budgetFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()

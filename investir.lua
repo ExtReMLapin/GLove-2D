@@ -63,36 +63,65 @@ function investisseurMenu()
 		unpausetime()
 	end
 
-	local sliderForm1 = loveframes.Create("form", principaleFrame)
-	sliderForm1:SetPos(35, 130):SetSize(315, 200):SetName("Maturité (durée d'investissement)")
-		courtTerme = loveframes.Create("text", principaleFrame)
-		courtTerme:SetText("Court terme:					 Mois ou inferieur"):SetPos(45, 175)
-		courtTermeValue = loveframes.Create("textinput", principaleFrame)
-		courtTermeValue:SetPos(140, 170):SetSize(60,20)
-		moyenTerme = loveframes.Create("text", principaleFrame)
-		moyenTerme:SetText("Moyen terme:					Mois ou inferieur"):SetPos(45, 225)
-		moyenTermeValue = loveframes.Create("textinput", principaleFrame)
-		moyenTermeValue:SetPos(140, 220):SetSize(60,20)
-		longTerme = loveframes.Create("text", principaleFrame)
-		longTerme:SetText("Long terme:  				     Mois ou supérieur"):SetPos(45, 275)
-		longTermeValue = loveframes.Create("textinput", principaleFrame)
-		longTermeValue:SetPos(140, 270):SetSize(60,20)
+
+	local slider1 = 100
+	local slider2 = 100
+	local slider3 = 100
+	local slider4 = 100
+
+	local sliderp1 = loveframes.Create("slider", frame)
+	sliderp1:SetPos(300, 300)
+	sliderp1:SetWidth(290)
+	sliderp1:SetMinMax(0, 100)
+	sliderp1.OnValueChanged = function(object)
+		slider1 = object:GetValue()
+	end
+
+		local sliderp2 = loveframes.Create("slider", frame)
+	sliderp2:SetPos(300, 320)
+	sliderp2:SetWidth(290)
+	sliderp2:SetMinMax(0, 100)
+	sliderp2.OnValueChanged = function(object)
+		slider2 = object:GetValue()
+	end
+
+		local sliderp3 = loveframes.Create("slider", frame)
+	sliderp3:SetPos(300, 340)
+	sliderp3:SetWidth(290)
+	sliderp3:SetMinMax(0, 100)
+	sliderp3.OnValueChanged = function(object)
+		slider3 = object:GetValue()
+	end
 
 
-	local sliderForm2 = loveframes.Create("form", principaleFrame)
-	sliderForm2:SetPos(390, 130):SetSize(315, 200):SetName("Somme investie")
-		faibleInvest = loveframes.Create("text", principaleFrame)
-		faibleInvest:SetText("Faible invest. :					F ou inférieur"):SetPos(400,175)
-		faibleInvestValue = loveframes.Create("textinput", principaleFrame)
-		faibleInvestValue:SetPos(495,170):SetSize(60,20)
-		moyenInvest = loveframes.Create("text", principaleFrame)
-		moyenInvest:SetText("Moyen invest. :				   F ou inférieur"):SetPos(400,225)
-		moyenInvestValue = loveframes.Create("textinput", principaleFrame)
-		moyenInvestValue:SetPos(495,220):SetSize(60,20)
-		fortInvest = loveframes.Create("text", principaleFrame)
-		fortInvest:SetText("Fort invest. :					   F ou inférieur"):SetPos(400,275)
-		fortInvestValue = loveframes.Create("textinput", principaleFrame)
-		fortInvestValue:SetPos(495,270):SetSize(60,20)
+		local sliderp4 = loveframes.Create("slider", frame)
+	sliderp4:SetPos(300, 360)
+	sliderp4:SetWidth(290)
+	sliderp4:SetMinMax(0, 100)
+	sliderp4.OnValueChanged = function(object)
+		slider4 = object:GetValue()
+	end
+
+	hook.Add("OverLayDraw", "Slidertest", function()
+
+			love.graphics.setColor(0,0,0,255)
+			love.graphics.rectangle( "fill", 450,250 ,slider1,20 )
+			love.graphics.setColor(50,255,50,255)
+			love.graphics.rectangle( "fill", 450+slider1,250 ,slider2,20 )
+			love.graphics.setColor(255,100,50,255)
+			love.graphics.rectangle( "fill", 450+slider1+slider2,250 ,slider3,20 )
+			love.graphics.setColor(50,100,250,255)
+			love.graphics.rectangle( "fill", 450+slider1+slider2+slider3,250 ,slider4,20 )
+			love.graphics.setColor(0,0,150,255)
+			love.graphics.rectangle( "fill", (slider1+slider2+slider3+slider4+450),250 ,950-(slider1+slider2+slider3+slider4+450),20 )
+
+
+	end)
+
+
+
+
+
 
 
 -------------------------------------------------------------------------------

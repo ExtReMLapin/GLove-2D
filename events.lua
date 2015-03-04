@@ -22,10 +22,15 @@ end)
 
 hook.Add("DateChange", "Taxes", function()
 	if T_SEM == 1 and T_DAY == 1 then
-		addMoney(-6000, "Location locaux")
+		addMoney(-12000, "Location locaux")
 		--addMoney(-6000, "Location mensuelle")
 	end
+end)
 
 
+hook.Add("DateChange", "PuBClientCalc", function()
+	if T_DAY == 4 then
+		addMoney(4, "Publicité")
+	end
 
 end)

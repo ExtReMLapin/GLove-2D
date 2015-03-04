@@ -25,6 +25,9 @@ function do_save_data()
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
 		tbl.Money = Money
+		tbl.Clients = CLients
+		tbl.Pub = Pub
+		tbl.Investisements = Investisements
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -39,8 +42,11 @@ end
 
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	Money = 16000000
+	Pub = 0
+	Clients = 0
 	T_DAY = 1
 	T_SEM = 1
 	T_MONTH = 4
 	T_YEAR = 1852
+	Investisements = {Pub = 0}
 end)

@@ -47,6 +47,15 @@ function principalMenu(realX, realY)
 		end
 		RightClickMENU1.OnClick = function(object)
 			investisseurMenu()
+			love.mouse.setCursor( c_cursor )
+			RightClickMENU1:Remove()
+			RightClickMENU2:Remove()
+			RightClickMENU3:Remove()
+			RightClickMENU4:Remove()
+			RightClickMENU1= nil
+			RightClickMENU3= nil
+			RightClickMENU2= nil
+			RightClickMENU4= nil
 		end
 
 		    local text1 = loveframes.Create("text", RightClickMENU1)
@@ -69,9 +78,11 @@ function principalMenu(realX, realY)
 							RightClickMENU1:Remove()
 							RightClickMENU2:Remove()
 							RightClickMENU3:Remove()
+							RightClickMENU4:Remove()
 							RightClickMENU1= nil
 							RightClickMENU3= nil
 							RightClickMENU2= nil
+							RightClickMENU4= nil
 				end
 ---------------------------------------------------------------------------------------
 		RightClickMENU2 = loveframes.Create("panel")
@@ -123,20 +134,72 @@ function principalMenu(realX, realY)
 					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
+---------------------------------------------------------------------------------------
+		RightClickMENU4 = loveframes.Create("panel")
+		RightClickMENU4:SetPos(realX-50,realY-260)
+		RightClickMENU4.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			IsInRightClickMenu = true
+		end
+		RightClickMENU4.OnMouseExit = function(object)
+			love.mouse.setCursor( c_arrow )
+			IsInRightClickMenu = false
+		end
+
+		RightClickMENU4.OnClick = function(object)
+		budgetMenu()
+		love.mouse.setCursor( c_cursor )
+					RightClickMENU1:Remove()
+					RightClickMENU2:Remove()
+					RightClickMENU3:Remove()
+					RightClickMENU4:Remove()
+					RightClickMENU1= nil
+					RightClickMENU3= nil
+					RightClickMENU2= nil
+					RightClickMENU4= nil
+				end
 
 
+
+			local text4 = loveframes.Create("text", RightClickMENU4)
+				text4:SetPos(7, 10)
+				text4:SetFont(subtitle)
+				text4:SetLinksEnabled(false)
+				text4:SetText("Budget")
+				text4.OnMouseEnter = function(object)
+					love.mouse.setCursor( c_hand )
+					IsInRightClickMenu = true
+				end
+				text4.OnMouseExit = function(object)
+					love.mouse.setCursor( c_hand )
+					IsInRightClickMenu = true
+				end
+				text4.OnClick = function(object)
+					budgetMenu()
+					love.mouse.setCursor( c_cursor )
+							RightClickMENU1:Remove()
+							RightClickMENU2:Remove()
+							RightClickMENU3:Remove()
+							RightClickMENU4:Remove()
+							RightClickMENU1= nil
+							RightClickMENU3= nil
+							RightClickMENU2= nil
+							RightClickMENU4= nil
+				end
 
 
 	else
 		if IsInRightClickMenu then return end
-		love.mouse.setCursor( c_arrow )
-		RightClickMENU1:Remove()
-		RightClickMENU2:Remove()
-		RightClickMENU3:Remove()
-		RightClickMENU1= nil
-		RightClickMENU3= nil
-		RightClickMENU2= nil
-		unpausetime()
+			love.mouse.setCursor( c_cursor )
+			RightClickMENU1:Remove()
+			RightClickMENU2:Remove()
+			RightClickMENU3:Remove()
+			RightClickMENU4:Remove()
+			RightClickMENU1= nil
+			RightClickMENU3= nil
+			RightClickMENU2= nil
+			RightClickMENU4= nil
+			unpausetime()
 	end
 end
 

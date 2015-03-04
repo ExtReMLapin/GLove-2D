@@ -1,6 +1,7 @@
 require("modules/hook")
 
 function addMoney(num, reason)
+	if num == 0 then return end
 	Money = Money + num
 	hook.Call("MoneyAdd", nil, num, reason or "Dépenses")
 end

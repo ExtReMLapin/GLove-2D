@@ -54,7 +54,7 @@ end
 function investisseurMenu()
 	IsOnDesktop = false
 
-	principaleFrame = loveframes.Create("frame")
+	local principaleFrame = loveframes.Create("frame")
 	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():SetDraggable(false)
 	principaleFrame:ShowCloseButton(false)
 	principaleFrame.OnClose = function(object)
@@ -63,7 +63,7 @@ function investisseurMenu()
 		unpausetime()
 	end
 
-	sliderForm1 = loveframes.Create("form", principaleFrame)
+	local sliderForm1 = loveframes.Create("form", principaleFrame)
 	sliderForm1:SetPos(35, 130):SetSize(315, 200):SetName("Maturité (durée d'investissement)")
 		courtTerme = loveframes.Create("text", principaleFrame)
 		courtTerme:SetText("Court terme:					 Mois ou inferieur"):SetPos(45, 175)
@@ -79,7 +79,7 @@ function investisseurMenu()
 		longTermeValue:SetPos(140, 270):SetSize(60,20)
 
 
-	sliderForm2 = loveframes.Create("form", principaleFrame)
+	local sliderForm2 = loveframes.Create("form", principaleFrame)
 	sliderForm2:SetPos(390, 130):SetSize(315, 200):SetName("Somme investie")
 		faibleInvest = loveframes.Create("text", principaleFrame)
 		faibleInvest:SetText("Faible invest. :					F ou inférieur"):SetPos(400,175)
@@ -96,10 +96,10 @@ function investisseurMenu()
 
 
 -------------------------------------------------------------------------------
-	secondaryFrame = loveframes.Create("frame")
+	local secondaryFrame = loveframes.Create("frame")
 	secondaryFrame:ShowCloseButton(false)
 	secondaryFrame:SetName("Choix préconfig"):SetSize(200, 400):SetPos(40, 160):SetDraggable(false)
-	checkboxPreconfig1 = loveframes.Create("checkbox", secondaryFrame)
+	local checkboxPreconfig1 = loveframes.Create("checkbox", secondaryFrame)
 	checkboxPreconfig1:SetText("Sécurité")
 	checkboxPreconfig1:SetPos(15, 50)
 	checkboxPreconfig2 = loveframes.Create("checkbox", secondaryFrame)
@@ -112,7 +112,7 @@ function investisseurMenu()
 	checkboxPreconfig4:SetText("Personnalisé")
 	checkboxPreconfig4:SetPos(15, 140)
 
-	savePresetButton = loveframes.Create("button", principaleFrame)
+	local savePresetButton = loveframes.Create("button", principaleFrame)
 	savePresetButton:SetText("Enregistrer"):SetPos(270,560)
 	savePresetButton.OnClick = function()
 		--enregistrer les presets
@@ -122,7 +122,7 @@ function investisseurMenu()
 		unpausetime()
 		love.mouse.setCursor( c_arrow )
 	end
-	cancelPresetButton = loveframes.Create("button", principaleFrame)
+	local cancelPresetButton = loveframes.Create("button", principaleFrame)
 	cancelPresetButton:SetText("Annuler"):SetPos(395,560)
 	cancelPresetButton.OnClick = function()
 		principaleFrame:Remove()
@@ -132,3 +132,41 @@ function investisseurMenu()
 		love.mouse.setCursor( c_arrow )
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------PUTAING DE TABARNAK DE--------------
+----------------BUDGET DE MERDE KEK----------------
+---------------------------------------------------
+---------------------------------------------------
+
+
+
+function budgetMenu()
+
+
+
+
+
+
+
+
+
+
+end
+
+
+
+
+

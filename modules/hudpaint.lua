@@ -10,11 +10,6 @@ ScrW, ScrH = love.window.getDimensions( )
 
 
 
-c_appstarting = love.mouse.getSystemCursor('wait')
-c_default = love.mouse.getSystemCursor('arrow') -- default
-c_ibeam = love.mouse.getSystemCursor('ibeam')
-c_hand = love.mouse.getSystemCursor('hand')
-c_size = love.mouse.getSystemCursor("sizeall")
 
 
 function Color(ra,ga,ba,aa)
@@ -283,7 +278,9 @@ function DrawDateBox()
 	else
 		love.graphics.setColor(128,0,0)
 	end
-	love.graphics.print(string.nicemath(Money), ScrW-220, 45)
+	love.graphics.print(string.nicemath(Money), ScrW-153, 45)
+	love.graphics.setColor(0,0,0)
+	love.graphics.print("Coffre :", ScrW-220, 45)
 
 end
 
@@ -355,22 +352,22 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 		if time+0.5 > love.timer.getTime() then
 			local factor = 255
 			if time < love.timer.getTime() then 
-				factor = 255-(math.abs(time - love.timer.getTime())*255-2)
+				factor = 255-(math.abs(time - love.timer.getTime())*255*2)
 			end
 
 
 
 			love.graphics.setColor(255,253,246,factor)
-			love.graphics.rectangle( "fill", ScrW-200, 75+80*lPopUPMoneyStack,170,75 )
+			love.graphics.rectangle( "fill", ScrW-200, 45+80*lPopUPMoneyStack,170,75 )
 			if num > 0 then 
 				love.graphics.setColor(0,128,0,factor)
-				love.graphics.print(string.nicemath(num), ScrW-180, 83+80*lPopUPMoneyStack)
+				love.graphics.print(string.nicemath(num), ScrW-180, 53+80*lPopUPMoneyStack)
 			else
 				love.graphics.setColor(128,0,0,factor)
-				love.graphics.print("-" .. string.nicemath(math.abs(num)), ScrW-180, 83+80*lPopUPMoneyStack)
+				love.graphics.print("-" .. string.nicemath(math.abs(num)), ScrW-180, 53+80*lPopUPMoneyStack)
 			end
 				love.graphics.setColor(0,0,0,factor)
-				love.graphics.print(reason, ScrW-180, 110+80*lPopUPMoneyStack)
+				love.graphics.print(reason, ScrW-180, 80+80*lPopUPMoneyStack)
 
 			
 		else
@@ -383,8 +380,7 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 end
 
 hook.Add("MoneyAdd", "Show Money change", function(num,reason)
-	local seed = tostring(math.random(50000))
 	local time = love.timer.getTime() + 2
 	PopUPMoneyStack = PopUPMoneyStack +1
-	creatething(seed, time, PopUPMoneyStack, num,reason)
+	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)
 end)

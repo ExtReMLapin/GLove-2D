@@ -279,11 +279,6 @@ function skin.DrawFrame(object)
 		icon:setFilter("nearest", "nearest")
 		love.graphics.setColor(255, 255, 255, 255)
 		love.graphics.draw(icon, x + 5, y + 5)
-		love.graphics.setColor(namecolor)
-		love.graphics.print(name, x + iconwidth + 10, y + 5)
-	else
-		love.graphics.setColor(namecolor)
-		love.graphics.print(name, x + 5, y + 5)
 	end
 	
 	-- frame border

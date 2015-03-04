@@ -161,7 +161,7 @@ function budgetMenu()
 	pubSliderText = loveframes.Create("text", budgetFrame)
 	pubSliderText:SetText("0"):SetPos(360, 150)
 	pubSlider = loveframes.Create("slider", budgetFrame)
-	pubSlider:SetMinMax(0, Money / 500):SetPos(30, 150):SetWidth(300):SetValue(0):SetDecimals(0)
+	pubSlider:SetMinMax(0, math.Round(Money / 500)):SetPos(30, 150):SetWidth(300):SetValue(0):SetDecimals(0)
 	pubSlider.OnValueChanged = function(object)
 		Pub = pubSlider:GetValue()
 		pubSliderText:SetText(tostring(pubSlider:GetValue()).."F")
@@ -171,12 +171,14 @@ function budgetMenu()
 	saveBudgetButton.OnClick = function(object)
 		budgetFrame:Remove()
 		IsOnDesktop = true
+		love.mouse.setCursor( c_arrow )
 		unpausetime()
 	end
 	cancelBudgetButton = loveframes.Create("button", budgetFrame)
 	cancelBudgetButton:SetText("Annuler"):SetPos(475, 560)
 	cancelBudgetButton.OnClick = function(object)
 		Pub = PubSave
+		Love.mouse.setCursor( c_arrow )
 		budgetFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()

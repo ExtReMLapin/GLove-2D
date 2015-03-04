@@ -33,6 +33,7 @@ end
 	- func: update(deltatime)
 	- desc: updates the object
 --]]---------------------------------------------------------
+
 function newobject:update(dt)
 	
 	local state = loveframes.state

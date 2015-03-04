@@ -44,7 +44,7 @@ function principalMenu(realX, realY)
 			IsInRightClickMenu = false
 		end
 		RightClickMENU1.OnClick = function(object)
-			investirMenu()
+			investisseurMenu()
 		end
 
 		    local text1 = loveframes.Create("text", RightClickMENU1)

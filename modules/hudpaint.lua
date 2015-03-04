@@ -1,4 +1,5 @@
 width, height = love.graphics.getDimensions()
+require"data"
 surface = {}
 draw = {}
 
@@ -6,6 +7,14 @@ draw = {}
 local love = love
 
 ScrW, ScrH = love.window.getDimensions( )
+
+
+
+c_appstarting = love.mouse.getSystemCursor('wait')
+c_default = love.mouse.getSystemCursor('arrow') -- default
+c_ibeam = love.mouse.getSystemCursor('ibeam')
+c_hand = love.mouse.getSystemCursor('hand')
+c_size = love.mouse.getSystemCursor("sizeall")
 
 
 function Color(ra,ga,ba,aa)
@@ -280,7 +289,7 @@ end
 
 
 function CreatePopUp(title,text, choices, fun1, fun2)
-	
+	local isinto = false
 	hook.Add("OverLayDraw", "popup", function()
 		pausetime()
 		IsOnDesktop = false
@@ -304,6 +313,9 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 
 			love.graphics.setFont(popuptitle)
 			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
+				love.mouse.setCursor( c_hand )
+
+				
 				love.graphics.setColor(250,164,26)
 				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)
@@ -311,11 +323,12 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 				if love.mouse.isDown("l") then
 					unpausetime()
 					hook.Remove("OverLayDraw", "popup")
+					love.mouse.setCursor( c_arrow )
 					IsOnDesktop = true
 				end
 
 			else
-				
+				love.mouse.setCursor( c_arrow )
 				love.graphics.setColor(247,143,29)
 				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)

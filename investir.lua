@@ -56,6 +56,7 @@ function investisseurMenu()
 
 	principaleFrame = loveframes.Create("frame")
 	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():SetDraggable(false)
+	principaleFrame:ShowCloseButton(false)
 	principaleFrame.OnClose = function(object)
 		secondaryFrame:Remove()
 		IsOnDesktop = true
@@ -96,6 +97,7 @@ function investisseurMenu()
 
 -------------------------------------------------------------------------------
 	secondaryFrame = loveframes.Create("frame")
+	secondaryFrame:ShowCloseButton(false)
 	secondaryFrame:SetName("Choix préconfig"):SetSize(200, 400):SetPos(40, 160):SetDraggable(false)
 	checkboxPreconfig1 = loveframes.Create("checkbox", secondaryFrame)
 	checkboxPreconfig1:SetText("Sécurité")
@@ -118,6 +120,7 @@ function investisseurMenu()
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
+		love.mouse.setCursor( c_arrow )
 	end
 	cancelPresetButton = loveframes.Create("button", principaleFrame)
 	cancelPresetButton:SetText("Annuler"):SetPos(395,560)
@@ -126,5 +129,6 @@ function investisseurMenu()
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
+		love.mouse.setCursor( c_arrow )
 	end
 end

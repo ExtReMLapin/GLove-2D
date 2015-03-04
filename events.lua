@@ -30,7 +30,7 @@ end)
 
 hook.Add("DateChange", "PuBClientCalc", function()
 	if T_DAY == 4 then
-		addMoney(4, "Publicité")
+		addMoney(- Pub, "Publicité")
 	end
 
 end)

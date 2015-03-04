@@ -4,7 +4,6 @@ Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i%i", 5, 1852)
 Event[1].func = function() print("yo mate, may the 4th be with you") end
-
 PassedEvents = PassedEvents or {}
 
 
@@ -21,3 +20,12 @@ hook.Add("DateChange", "EventDateChange", function()
 end)
 
 
+hook.Add("DateChange", "Taxes", function()
+	if T_SEM == 1 and T_DAY == 1 then
+		addMoney(-6000, "Location locaux")
+		--addMoney(-6000, "Location mensuelle")
+	end
+
+
+
+end)

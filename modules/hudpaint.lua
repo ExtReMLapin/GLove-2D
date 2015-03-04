@@ -325,3 +325,53 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 		end
 	end)
 end
+
+PopUPMoneyStack = 0
+
+--[[
+****No choice about this little glitch, putting the hook "MoneyChangeDraw" .. seed into the hook Show Money change
+****will send the updates variables each time the hook Show Money change is ran to the old popups, so they will just move at the same place
+--]]
+
+
+
+local function creatething(seed, time, lPopUPMoneyStack, num,reason)
+
+	hook.Add("BackGroundDraw", "MoneyChangeDraw" .. seed, function()
+
+		if time+0.5 > love.timer.getTime() then
+			local factor = 255
+			if time < love.timer.getTime() then 
+				factor = 255-(math.abs(time - love.timer.getTime())*255-2)
+			end
+
+
+
+			love.graphics.setColor(255,253,246,factor)
+			love.graphics.rectangle( "fill", ScrW-200, 75+80*lPopUPMoneyStack,170,75 )
+			if num > 0 then 
+				love.graphics.setColor(0,128,0,factor)
+				love.graphics.print(string.nicemath(num), ScrW-180, 83+80*lPopUPMoneyStack)
+			else
+				love.graphics.setColor(128,0,0,factor)
+				love.graphics.print("-" .. string.nicemath(math.abs(num)), ScrW-180, 83+80*lPopUPMoneyStack)
+			end
+				love.graphics.setColor(0,0,0,factor)
+				love.graphics.print(reason, ScrW-180, 110+80*lPopUPMoneyStack)
+
+			
+		else
+			PopUPMoneyStack = PopUPMoneyStack -1
+			hook.Remove("BackGroundDraw", "MoneyChangeDraw" .. seed)
+		end
+	end)
+
+
+end
+
+hook.Add("MoneyAdd", "Show Money change", function(num,reason)
+	local seed = tostring(math.random(50000))
+	local time = love.timer.getTime() + 2
+	PopUPMoneyStack = PopUPMoneyStack +1
+	creatething(seed, time, PopUPMoneyStack, num,reason)
+end)

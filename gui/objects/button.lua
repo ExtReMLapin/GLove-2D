@@ -17,7 +17,7 @@ local newobject = loveframes.NewObject("button", "loveframes_object_button", tru
 function newobject:initialize()
 	
 	self.type = "button"
-	self.text = "Button"
+	self.text = ""
 	self.width = 80
 	self.height = 25
 	self.internal = false

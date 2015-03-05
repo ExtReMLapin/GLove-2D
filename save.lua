@@ -27,7 +27,8 @@ function do_save_data()
 		tbl.Money = Money
 		tbl.Clients = CLients
 		tbl.Pub = Pub
-		tbl.Investisements = Investisements
+		tbl.PassedEvents = PassedEvents
+		tbl.DynaEvent = DynaEvent
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -41,6 +42,8 @@ function do_restore()
 end
 
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
+	PassedEvents = {}
+	DynaEvent = {}
 	Money = 16000000
 	Pub = 0
 	Clients = 0

@@ -4,7 +4,18 @@ Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i%i", 5, 1852)
 Event[1].func = function() print("yo mate, may the 4th be with you") end
-PassedEvents = PassedEvents or {}
+
+
+
+function createEvent(date, func)
+	if not type(func) == "string" then error("Func in createEvent() must be a string, retard") end
+	local tbl = {}
+	tbl.date = date -- string.format("%i%i", 5, 1852)
+	tbl.func = func
+	table.insert(DynaEvent, tbl)
+end
+
+
 
 
 hook.Add("DateChange", "EventDateChange", function()
@@ -19,6 +30,19 @@ hook.Add("DateChange", "EventDateChange", function()
 	
 end)
 
+
+
+hook.Add("DateChange", "DynaEventDateChange", function()
+	local func = nil
+	for k, v in pairs(DynaEvent) do
+		if v.date == string.format("%i%i", T_MONTH, T_YEAR)	then
+			func = loadstring(v.func)
+			func()
+			table.remove(DynaEvent,k)
+		end
+	end
+	
+end)
 
 hook.Add("DateChange", "Taxes", function()
 	if T_SEM == 1 and T_DAY == 1 then

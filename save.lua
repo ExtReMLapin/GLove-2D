@@ -30,6 +30,7 @@ function do_save_data()
 		tbl.PassedEvents = PassedEvents
 		tbl.DynaEvent = DynaEvent
 		tbl.nbEmployees = nbEmployees
+		tbl.mainRate = mainRate
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -53,5 +54,6 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	T_SEM = 1
 	T_MONTH = 4
 	T_YEAR = 1852
+	mainRate = math.random(1750,2250)/1000
 	Investisements = {Pub = 0}
 end)

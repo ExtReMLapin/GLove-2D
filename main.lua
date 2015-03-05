@@ -53,7 +53,7 @@ code = [[
 	    CreatePopUp("yeye, that's not what ur mom said", "lel\nyeyeyeyeyeyeyeyyeyey\nrhzieurhzif\nrhzieurhzif\nrhzieurhzif")
 	    
 	]]	 
-	createEvent( string.format("%i%i", 5, 1852), code)
+	createEvent( string.format("%i%i%i",2, 5, 1852), code)
 		
 
 		local music = love.audio.newSource("ressources/theme.ogg", "static")

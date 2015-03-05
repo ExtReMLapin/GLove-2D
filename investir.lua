@@ -338,7 +338,6 @@ function budgetMenu()
 	pubAcheter.OnClick = function(object)
 		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
-		--createEvent(string.format("%i%i%i", ))
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
@@ -377,7 +376,6 @@ function budgetMenu()
 		elseif choice == "Licencier" then employeeManagementText2:SetText("\nEconomie : \nPopularité :")
 		end
 	end
-
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)
 	saveBudgetButton.OnClick = function(object)

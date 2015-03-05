@@ -25,13 +25,15 @@ function do_save_data()
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
 		tbl.Money = Money
-		tbl.Clients = CLients
 		tbl.Pub = Pub
 		tbl.PassedEvents = PassedEvents
 		tbl.DynaEvent = DynaEvent
 		tbl.nbEmployees = nbEmployees
 		tbl.Popularity = Popularity
 		tbl.Salary = Salary
+		tbl.mainRate = mainRate
+		tbl.Popularity = Popularity
+		tbl.nbClients = nbClients
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -47,6 +49,7 @@ end
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	PassedEvents = {}
 	DynaEvent = {}
+	nbClients = 3
 	nbEmployees = 6
 	Popularity = 0
 	Salary = 4000
@@ -57,5 +60,6 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	T_SEM = 1
 	T_MONTH = 4
 	T_YEAR = 1852
+	mainRate = math.random(1750,2250)/1000
 	Investisements = {Pub = 0}
 end)

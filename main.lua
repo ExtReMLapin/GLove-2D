@@ -9,6 +9,7 @@ require "data"
 require "investir"
 require "money"
 require "sounds"
+require "clientsystem"
 
 local http;
 local time = os.time()
@@ -50,13 +51,12 @@ function love.load()
 	init_restore()
 code = [[
 	    print("Hello World")
-	    CreatePopUp("yeye, that's not what ur mom said", "lel\nyeyeyeyeyeyeyeyyeyey\nrhzieurhzif\nrhzieurhzif\nrhzieurhzif")
-	    
+	    CreatePopUp("yeye, that's not what ur mom said", "lel\nyeyeyeyeyeyeyeyyeyey\nrhzieurhzif\nrhzieurhzif\nrhzieurhzif")   
 	]]	 
 	createEvent( string.format("%i%i%i",2, 5, 1852), code)
 		
 
-		local music = love.audio.newSource("ressources/theme.mp3", "static")
+	local music = love.audio.newSource("ressources/theme.mp3", "static")
 	music:setLooping( true )
 	music:play()
 		
@@ -90,6 +90,7 @@ end)
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
+		DrawClientBox()
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 		love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 		love.graphics.print("Prix pub:"..tostring(prixPublicite) or "nul", 600,700)

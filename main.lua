@@ -56,7 +56,7 @@ code = [[
 	createEvent( string.format("%i%i%i",2, 5, 1852), code)
 		
 
-		local music = love.audio.newSource("ressources/theme.ogg", "static")
+		local music = love.audio.newSource("ressources/theme.mp3", "static")
 	music:setLooping( true )
 	music:play()
 		

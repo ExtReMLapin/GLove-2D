@@ -263,7 +263,6 @@ local mois = { "Jan.",
 
 
 function DrawDateBox()
-	Clients = math.tan(love.timer.getTime())*500000
 	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
@@ -283,6 +282,19 @@ function DrawDateBox()
 	love.graphics.print("Capital :", ScrW-220, 45)
 
 end
+
+
+
+function DrawClientBox()
+	surface.HUDStaticBox(ScrW-533, 12, 225, 60)
+	love.graphics.setColor(0,0,0)
+	love.graphics.setFont( date_box_text1 )
+	love.graphics.print(string.nicemath(nbClients), ScrW-448, 45)
+	love.graphics.print("Clients : " , ScrW-520, 45)
+
+end
+
+
 
 
 function CreatePopUp(title,text, choices, fun1, fun2)

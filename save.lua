@@ -25,7 +25,6 @@ function do_save_data()
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
 		tbl.Money = Money
-		tbl.Clients = CLients
 		tbl.Pub = Pub
 		tbl.PassedEvents = PassedEvents
 		tbl.DynaEvent = DynaEvent
@@ -33,6 +32,7 @@ function do_save_data()
 		tbl.mainRate = mainRate
 		tbl.Popularity = Popularity
 		tbl.salary = salary
+		tbl.nbClients = nbClients
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -48,6 +48,7 @@ end
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	PassedEvents = {}
 	DynaEvent = {}
+	nbClients = 3
 	nbEmployees = 6
 	Popularity = 0
 	Salary = 4000

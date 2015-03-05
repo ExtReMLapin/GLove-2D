@@ -51,13 +51,7 @@ hook.Add("DateChange", "Taxes", function()
 end)
 
 hook.Add("DateChange", "Taux Directeur", function()
-	if T_SEM == 1 and T_DAY == 1 and T_MONTH = 1 then -- début de l'année
+	if T_SEM == 1 and T_DAY == 1 and T_MONTH == 1 then -- début de l'année
 		mainRate = math.random(1750,2250)/1000
 	end
-end)
-
-
-
-hook.Add("DateChange", "PuBClientCalc", function()
-
 end)

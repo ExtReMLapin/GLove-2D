@@ -338,7 +338,7 @@ function budgetMenu()
 	pubAcheter.OnClick = function(object)
 		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
-		createEvent(string.format("%i%i", ))
+		--createEvent(string.format("%i%i", ))
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
@@ -364,7 +364,7 @@ function budgetMenu()
 	employeeManagementMultichoice.OnChoiceSelected = function(object,choice)
 		employeeManagementButton:SetText(choice)
 		if choice == "Recruter" then employeeManagementText:SetText("Nombre d'employés : "..nbEmployees.."\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F")
-	end
+	end end
 
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)

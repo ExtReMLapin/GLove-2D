@@ -8,7 +8,7 @@ require "events"
 require "data"
 require "investir"
 require "money"
-
+require "sounds"
 
 local http;
 local time = os.time()
@@ -54,6 +54,11 @@ code = [[
 	    
 	]]	 
 	createEvent( string.format("%i%i", 5, 1852), code)
+		
+
+		local music = love.audio.newSource("ressources/theme.ogg", "static")
+	music:setLooping( true )
+	music:play()
 		
 end
 

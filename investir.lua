@@ -338,15 +338,24 @@ function budgetMenu()
 	pubAcheter.OnClick = function(object)
 		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
-		createEvent(string.format("%i%i", ))
+		--createEvent(string.format("%i%i%i", ))
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
 	employeeManagementForm:SetPos(20,280):SetSize(300,170):SetName("Gestion du personnel")
 	employeeManagementText = loveframes.Create("text", budgetFrame)
-	employeeManagementText:SetPos(30,320):SetText("Nombre d'employés : "..nbEmployees)
+	employeeManagementText:SetPos(30,350):SetText("Nombre d'employés : "..nbEmployees)
+	employeeManagementText2 = loveframes.Create("text", budgetFrame)
+	employeeManagementText2:SetPos(30,350)
 	employeeManagementNumberbox = loveframes.Create("numberbox",budgetFrame)
-	employeeManagementNumberbox:SetPos(170,420):SetMinMax(1,nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(1):SetHeight(25)
+	employeeManagementNumberbox:SetPos(170,420):SetMinMax(0,nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(0):SetHeight(25)
+	employeeManagementNumberbox.OnValueChanged = function(object,value)
+		if employeeManagementMultichoice:GetChoice() == "Recruter" then
+			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F\nPopularité : +"..employeeManagementNumberbox:GetValue())
+		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
+			employeeManagementText2:SetText("\nEconomie : "..(employeeManagementNumberbox:GetValue() * Salary).."F\nPopularité : -"..employeeManagementNumberbox:GetValue())
+		end
+	end
 	employeeManagementButton = loveframes.Create("button", budgetFrame)
 	employeeManagementButton:SetPos(230,420)
 	employeeManagementButton.OnClick = function(object)
@@ -357,13 +366,16 @@ function budgetMenu()
 			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
 			Popularity = Popularity - employeeManagementNumberbox:GetValue()
 		end
+		employeeManagementText:SetText("Nombre d'employés : "..nbEmployees)
 	end
 
 	employeeManagementMultichoice = loveframes.Create("multichoice", budgetFrame)
 	employeeManagementMultichoice:SetPos(25,295):AddChoice("Recruter"):AddChoice("Licencier")
 	employeeManagementMultichoice.OnChoiceSelected = function(object,choice)
 		employeeManagementButton:SetText(choice)
-		if choice == "Recruter" then employeeManagementText:SetText("Nombre d'employés : "..nbEmployees.."\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F")
+		if choice == "Recruter" then employeeManagementText2:SetText("\nCoût sup. : \nPopularité :")
+		elseif choice == "Licencier" then employeeManagementText2:SetText("\nEconomie : \nPopularité :")
+		end
 	end
 
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
@@ -382,8 +394,3 @@ function budgetMenu()
 		unpausetime()
 	end
 end
-
-
-
-
-

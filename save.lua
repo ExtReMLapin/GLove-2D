@@ -30,8 +30,8 @@ function do_save_data()
 		tbl.PassedEvents = PassedEvents
 		tbl.DynaEvent = DynaEvent
 		tbl.nbEmployees = nbEmployees
-		tbl.popularity = Popularity
-		tbl.salary = salary
+		tbl.Popularity = Popularity
+		tbl.Salary = Salary
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end

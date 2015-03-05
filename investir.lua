@@ -305,7 +305,8 @@ end
 
 function budgetMenu()
 	IsOnDesktop = false
-	local PubSave = Pub
+	local currentMonth = T_MONTH
+	local currentYear = T_YEAR
 	
 	budgetFrame = loveframes.Create("frame")
 	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
@@ -336,26 +337,28 @@ function budgetMenu()
 	pubAcheter:SetPos(230, 227):SetText("Créer")
 	pubAcheter.OnClick = function(object)
 		addMoney(-prixPublicite,"Campagne publicitaire")
-		--créer event
+		--createEvent(string.format("%i%i", ))
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
 	employeeManagementForm:SetPos(20,280):SetSize(300,170):SetName("Gestion du personnel")
 	employeeManagementNumberbox = loveframes.Create("numberbox",budgetFrame)
-	employeeManagementNumberbox:SetPos(200,400):SetMinMax(1,nbEmployees):SetIncreaseAmount(1):SetWidth(30)
+	employeeManagementNumberbox:SetPos(170,420):SetMinMax(1,nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(1):SetHeight(25)
 	employeeManagementButton = loveframes.Create("button", budgetFrame)
-	employeeManagementButton:SetPos(230,400):SetText("")
+	employeeManagementButton:SetPos(230,420)
+	employeeManagementButton.OnClick = function(object)
+		if employeeManagementMultichoice:GetChoice() == "Recruter" then
+			nbEmployees = nbEmployees + employeeManagementNumberbox:GetValue()
+			Popularity = Popularity + employeeManagementNumberbox:GetValue()
+		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
+			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
+			Popularity = Popularity - employeeManagementNumberbox:GetValue()
+		end
+	end
 	employeeManagementMultichoice = loveframes.Create("multichoice", budgetFrame)
 	employeeManagementMultichoice:SetPos(25,295):AddChoice("Recruter"):AddChoice("Licencier")
 	employeeManagementMultichoice.OnChoiceSelected = function(object,choice)
 		employeeManagementButton:SetText(choice)
-		if choice == "Recruter" then
-			nbEmployees = nbEmployees + employeeManagementNumberbox:GetValue()
-			popularity = popularity + employeeManagementNumberbox:GetValue()
-		else
-			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
-			popularity = popularity - employeeManagementNumberbox:GetValue()
-		end
 	end
 
 	saveBudgetButton = loveframes.Create("button", budgetFrame)

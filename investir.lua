@@ -313,7 +313,7 @@ function budgetMenu()
 	pubForm = loveframes.Create("form", budgetFrame)
 	pubForm:SetPos(20,90):SetSize(300, 170):SetName("Créer une campagne pubicitaire")
 	pubData = loveframes.Create("text", budgetFrame)
-	pubData:SetPos(30, 200):SetText("Coût de la campagne : \nTemps d'attente : \nGain de popularité :")
+	pubData:SetPos(30, 160):SetText("Coût de la campagne : \nTemps d'attente : \nGain de popularité :")
 	pubMultichoice = loveframes.Create("multichoice", budgetFrame)
 	pubMultichoice:SetPos(25,105):AddChoice("Prospectus"):AddChoice("Presse"):AddChoice("Don")
 	pubMultichoice.OnChoiceSelected = function(object,choice)
@@ -341,8 +341,22 @@ function budgetMenu()
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
 	employeeManagementForm:SetPos(20,280):SetSize(300,170):SetName("Gestion du personnel")
+	employeeManagementNumberbox = loveframes.Create("numberbox",budgetFrame)
+	employeeManagementNumberbox:SetPos(200,400):SetMinMax(1,nbEmployees):SetIncreaseAmount(1):SetWidth(30)
+	employeeManagementButton = loveframes.Create("button", budgetFrame)
+	employeeManagementButton:SetPos(230,400):SetText("")
 	employeeManagementMultichoice = loveframes.Create("multichoice", budgetFrame)
 	employeeManagementMultichoice:SetPos(25,295):AddChoice("Recruter"):AddChoice("Licencier")
+	employeeManagementMultichoice.OnChoiceSelected = function(object,choice)
+		employeeManagementButton:SetText(choice)
+		if choice == "Recruter" then
+			nbEmployees = nbEmployees + employeeManagementNumberbox:GetValue()
+			popularity = popularity + employeeManagementNumberbox:GetValue()
+		else
+			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
+			popularity = popularity - employeeManagementNumberbox:GetValue()
+		end
+	end
 
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)

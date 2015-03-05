@@ -17,6 +17,7 @@ Msg = io.write;
 Globalcorpname = "Apple"
 _gamestate = "nul"
 clickedButton = "nul"
+nbEmployees = 6
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
@@ -86,5 +87,6 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		DrawDateBox()
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 		love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
+		love.graphics.print("Prix pub:"..tostring(prixPublicite) or "nul", 600,700)
 	end)
 end)

@@ -57,3 +57,15 @@ Brand = {}
 	"Matériaux de constr.",
 	"Electricité",
 	"Grands Magasins"}
+
+function calculateMainRate()
+	if not mainRate then 
+		mainRate = 2.0
+	end
+	upOrDown = love.math.random(0,1)
+	if upOrDown < 0.5 then
+		mainRate = mainRate + love.math.random(0.1,0.5)
+	else
+		mainRate = mainRate - love.math.random(0.1,0.5)
+	end
+end

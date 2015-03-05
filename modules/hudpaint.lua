@@ -278,9 +278,9 @@ function DrawDateBox()
 	else
 		love.graphics.setColor(128,0,0)
 	end
-	love.graphics.print(string.nicemath(Money), ScrW-153, 45)
+	love.graphics.print(string.nicemath(Money), ScrW-148, 45)
 	love.graphics.setColor(0,0,0)
-	love.graphics.print("Coffre :", ScrW-220, 45)
+	love.graphics.print("Capital :", ScrW-220, 45)
 
 end
 

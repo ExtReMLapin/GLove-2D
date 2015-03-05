@@ -3,6 +3,7 @@
 	 dureeInvestisseurMax =nil
 	 remunerationInvestisseurMin = nil
 	 remunerationInvestisseurMax =nil 
+	 prixPublicite = 0
 
 function investirMenu()
 	local posX, poxY
@@ -185,27 +186,44 @@ end
 function budgetMenu()
 	IsOnDesktop = false
 	local PubSave = Pub
+	
 	budgetFrame = loveframes.Create("frame")
 	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
 
-	pubSliderForm = loveframes.Create("form", budgetFrame)
-	pubSliderForm:SetPos(20,130):SetSize(430, 50):SetName("Budget Hebdomadaire publicitaire")
-	pubSliderText = loveframes.Create("text", budgetFrame)
-	pubSliderText:SetText(Pub.."F"):SetPos(360, 153)
-	pubSlider = loveframes.Create("slider", budgetFrame)
-	pubSlider:SetMinMax(0, math.Round(Money / 500)):SetPos(30, 150):SetWidth(300):SetValue(0):SetDecimals(0):SetValue(PubSave)
-	pubSlider.OnValueChanged = function(object)
-		Pub = pubSlider:GetValue()
-		pubSliderText:SetText(tostring(pubSlider:GetValue()).."F")
-		pubBudgetRecap2:SetText(tostring(string.nicemath(Pub)).."F\n"..tostring(string.nicemath(Pub * 4)).."F\n"..tostring(string.nicemath(Pub * 52)).."F")
-
+	pubForm = loveframes.Create("form", budgetFrame)
+	pubForm:SetPos(20,90):SetSize(300, 170):SetName("Créer une campagne pubicitaire")
+	pubData = loveframes.Create("text", budgetFrame)
+	pubData:SetPos(30, 200):SetText("Coût de la campagne : \nTemps d'attente : \nGain de popularité :")
+	pubMultichoice = loveframes.Create("multichoice", budgetFrame)
+	pubMultichoice:SetPos(25,105):AddChoice("Prospectus"):AddChoice("Presse"):AddChoice("Don")
+	pubMultichoice.OnChoiceSelected = function(object,choice)
+		if choice == "Prospectus" then
+			prixPublicite = 8000
+			attentePublicite = 92
+			popularitePublicite = 3
+		elseif choice == "Presse" then
+			prixPublicite = 20000
+			attentePublicite = 31
+			popularitePublicite = 8
+		elseif choice == "Don" then
+			prixPublicite = 150000
+			attentePublicite = 14
+			popularitePublicite = 15
+		end
+		pubData:SetText("Coût de la campagne : ".. prixPublicite.."F\nTemps d'attente : "..attentePublicite.." Jours\nGain de popularité : +"..popularitePublicite)
 	end
-	budgetRecapForm = loveframes.Create("form", budgetFrame)
-	budgetRecapForm:SetPos(270, 385):SetSize(230,60):SetName("Récapitulatif")
-	pubBudgetRecap1 = loveframes.Create("text", budgetFrame)
-	pubBudgetRecap1:SetText("Budget hebdomadaire : \nBudget mensuel : \nBudget annuel :"):SetPos(280, 400)
-	pubBudgetRecap2 = loveframes.Create("text", budgetFrame)
-	pubBudgetRecap2:SetPos(433, 400):SetText(tostring(PubSave).."F\n"..tostring(string.nicemath(PubSave * 4)).."F\n"..tostring(string.nicemath(PubSave * 52)).."F")
+	pubAcheter = loveframes.Create("button", budgetFrame)
+	pubAcheter:SetPos(230, 227):SetText("Créer")
+	pubAcheter.OnClick = function(object)
+		addMoney(-prixPublicite,"Campagne publicitaire")
+		--créer event
+	end	
+---------------------------------------------------------------------------------------------------------
+	employeeManagementForm = loveframes.Create("form", budgetFrame)
+	employeeManagementForm:SetPos(20,280):SetSize(300,170):SetName("Gestion du personnel")
+	employeeManagementMultichoice = loveframes.Create("multichoice", budgetFrame)
+	employeeManagementMultichoice:SetPos(25,295):AddChoice("Recruter"):AddChoice("Licencier")
+
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)
 	saveBudgetButton.OnClick = function(object)

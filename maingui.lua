@@ -8,24 +8,6 @@ RightClickMENU = false
 IsOnDesktop = true
 IsInRightClickMenu = false
 
-function playerInfos()
-	love.graphics.setFont(subtitle)
-	love.graphics.setColor(235,62,9)
-	love.graphics.print(username .. " - Niveau : " .. usrlevel, 10, 10)
-	love.graphics.setColor(0,0,0)
-	love.graphics.print("Infos joueur :", 1000, 20)
-	love.graphics.setFont(graphfont)
-	love.graphics.print("Argent en compte : $" .. virtual_account_money, 1000, 70)
-	love.graphics.print("Croissance : ", 1000, 100)
-	if account_growth >= 0 then
-		love.graphics.setColor(102,204,0)
-	else
-		love.graphics.setColor(204,0,0)
-	end
-	love.graphics.print(account_growth .. "%", 998 + graphfont:getWidth("Croissance : "), 100)
-end
-
-
 function gamestate(realX, realY)
 	return _gamestate or "default"
 end

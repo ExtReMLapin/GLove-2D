@@ -32,6 +32,7 @@ function do_save_data()
 		tbl.nbEmployees = nbEmployees
 		tbl.mainRate = mainRate
 		tbl.Popularity = Popularity
+		tbl.salary = salary
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
@@ -49,6 +50,7 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	DynaEvent = {}
 	nbEmployees = 6
 	Popularity = 0
+	Salary = 4000
 	Money = 16000000
 	Pub = 0
 	Clients = 0

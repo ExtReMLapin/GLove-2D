@@ -14,10 +14,6 @@ local http;
 local time = os.time()
 
 Msg = io.write;
-Globalcorpname = "Apple"
-_gamestate = "nul"
-clickedButton = "nul"
-nbEmployees = 6
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))

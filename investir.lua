@@ -69,41 +69,128 @@ function investisseurMenu()
 	local slider3 = 100
 	local slider4 = 100
 
-	local sliderp1 = loveframes.Create("slider", frame)
+	--[[local sliderp1 = loveframes.Create("slider", principaleFrame)
 	sliderp1:SetPos(300, 300)
+	
 	sliderp1:SetWidth(290)
 	sliderp1:SetMinMax(0, 100)
+	sliderp1:SetValue(100)
 	sliderp1.OnValueChanged = function(object)
 		slider1 = object:GetValue()
 	end
 
-		local sliderp2 = loveframes.Create("slider", frame)
+		local sliderp2 = loveframes.Create("slider", principaleFrame)
 	sliderp2:SetPos(300, 320)
 	sliderp2:SetWidth(290)
 	sliderp2:SetMinMax(0, 100)
+	sliderp2:SetValue(100)
 	sliderp2.OnValueChanged = function(object)
 		slider2 = object:GetValue()
 	end
 
-		local sliderp3 = loveframes.Create("slider", frame)
+		local sliderp3 = loveframes.Create("slider", principaleFrame)
 	sliderp3:SetPos(300, 340)
 	sliderp3:SetWidth(290)
 	sliderp3:SetMinMax(0, 100)
+	sliderp3:SetValue(100)
 	sliderp3.OnValueChanged = function(object)
 		slider3 = object:GetValue()
 	end
 
 
-		local sliderp4 = loveframes.Create("slider", frame)
+		local sliderp4 = loveframes.Create("slider", principaleFrame)
 	sliderp4:SetPos(300, 360)
 	sliderp4:SetWidth(290)
 	sliderp4:SetMinMax(0, 100)
+	sliderp4:SetValue(100)
 	sliderp4.OnValueChanged = function(object)
 		slider4 = object:GetValue()
-	end
+	end--]]
+
+
+
+	local button1 = loveframes.Create("button", principaleFrame)
+		button1.shouldtrack = false
+		button1:SetWidth(10)
+		button1:SetPos(210+slider1-5,180)
+		button1.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			object.shouldtrack = true
+
+		end
+		button1.OnMouseExit = function(object)
+			object.shouldtrack = false
+			love.mouse.setCursor( c_arrow )
+		end
+
+
+			local button2 = loveframes.Create("button", principaleFrame)
+		button2.shouldtrack = false
+		button2:SetWidth(10)
+		button2:SetPos(210+slider1+slider2-5,180)
+		button2.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			object.shouldtrack = true
+
+		end
+		button2.OnMouseExit = function(object)
+			object.shouldtrack = false
+			love.mouse.setCursor( c_arrow )
+		end
+
+
+			local button3 = loveframes.Create("button", principaleFrame)
+		button3.shouldtrack = false
+		button3:SetWidth(10)
+		button3:SetPos(210+slider1+slider2+slider3-5,180)
+		button3.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			object.shouldtrack = true
+
+		end
+		button3.OnMouseExit = function(object)
+			object.shouldtrack = false
+			love.mouse.setCursor( c_arrow )
+		end
+
+
+
+
+			local button4 = loveframes.Create("button", principaleFrame)
+		button4.shouldtrack = false
+		button4:SetWidth(10)
+		button4:SetPos(210+slider1+slider2+slider3+slider4-5,180)
+		button4.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			object.shouldtrack = true
+
+		end
+		button4.OnMouseExit = function(object)
+			object.shouldtrack = false
+			love.mouse.setCursor( c_arrow )
+		end
+
+
+
+	--[[		local button5 = loveframes.Create("button", principaleFrame)
+		button5.shouldtrack = false
+		button5:SetWidth(200)
+		button5:SetPos(450+slider1)
+		button5.OnMouseEnter = function(object)
+			love.mouse.setCursor( c_hand )
+			object.shouldtrack = true
+
+		end
+		button5.OnMouseExit = function(object)
+			object.shouldtrack = false
+			love.mouse.setCursor( c_arrow )
+		end]]
+
+
+
 
 	hook.Add("OverLayDraw", "Slidertest", function()
-
+			local MOUSE_X = love.mouse.getPosition( )	
 			love.graphics.setColor(0,0,0,255)
 			love.graphics.rectangle( "fill", 450,250 ,slider1,20 )
 			love.graphics.setColor(50,255,50,255)
@@ -113,7 +200,40 @@ function investisseurMenu()
 			love.graphics.setColor(50,100,250,255)
 			love.graphics.rectangle( "fill", 450+slider1+slider2+slider3,250 ,slider4,20 )
 			love.graphics.setColor(0,0,150,255)
-			love.graphics.rectangle( "fill", (slider1+slider2+slider3+slider4+450),250 ,950-(slider1+slider2+slider3+slider4+450),20 )
+			love.graphics.rectangle( "fill", (slider1+slider2+slider3+slider4+450),250 ,math.Max(0,950-(slider1+slider2+slider3+slider4+450)),20 )
+
+
+			if leftClick then
+
+				if button1.shouldtrack == true then
+					button1:SetPos(MOUSE_X-245, 180)
+					slider1 = button1:GetX()-445
+					button2:SetPos(210+slider1+slider2-5,180)
+					button3:SetPos(210+slider1+slider2+slider3-5,180)
+					button4:SetPos(math.Min(945,210+slider1+slider2+slider3+slider4-5),180)
+				end
+				if button2.shouldtrack == true then
+					button2:SetPos(MOUSE_X-245, 180)
+					slider2 = button2:GetX()-445-slider1
+					button3:SetPos(210+slider1+slider2+slider3-5,180)
+					button4:SetPos(math.Min(945-210,210+slider1+slider2+slider3+slider4-5),180)
+				end
+
+				if button3.shouldtrack == true then
+					button3:SetPos(MOUSE_X-245, 180)
+					slider3 = button3:GetX()-445-slider1-slider2
+					button4:SetPos(math.Min(945,210+slider1+slider2+slider3+slider4-5),180)
+				end
+
+				if button4.shouldtrack == true then
+					button4:SetPos(math.Min(945,MOUSE_X)-245, 180)
+					slider4 = button4:GetX()-445-slider1-slider2-slider3
+				end
+
+
+
+
+			end
 
 
 	end)

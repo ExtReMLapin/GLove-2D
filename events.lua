@@ -35,7 +35,7 @@ end)
 hook.Add("DateChange", "DynaEventDateChange", function()
 	local func = nil
 	for k, v in pairs(DynaEvent) do
-		if v.date == string.format("%i%i%i",T_WEEK , T_MONTH, T_YEAR)	then
+		if v.date == string.format("%i%i%i",T_SEM , T_MONTH, T_YEAR)	then
 			func = loadstring(v.func)
 			func()
 			table.remove(DynaEvent,k)

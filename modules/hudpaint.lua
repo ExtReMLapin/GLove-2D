@@ -263,7 +263,7 @@ local mois = { "Jan.",
 
 
 function DrawDateBox()
-	surface.HUDStaticBox(ScrW-233, 12, 225, 60)
+	surface.HUDStaticBox(ScrW-233, 12, 225, 120)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
 	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-220, 20)
@@ -280,17 +280,8 @@ function DrawDateBox()
 	love.graphics.print(string.nicemath(Money), ScrW-148, 45)
 	love.graphics.setColor(0,0,0)
 	love.graphics.print("Capital :", ScrW-220, 45)
-
-end
-
-
-
-function DrawClientBox()
-	surface.HUDStaticBox(ScrW-533, 12, 225, 60)
-	love.graphics.setColor(0,0,0)
-	love.graphics.setFont( date_box_text1 )
-	love.graphics.print(string.nicemath(nbClients), ScrW-448, 45)
-	love.graphics.print("Clients : " , ScrW-520, 45)
+	love.graphics.print(string.nicemath(nbClients), ScrW-148, 70)
+	love.graphics.print("Clients : " , ScrW-220, 70)
 
 end
 

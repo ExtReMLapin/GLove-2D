@@ -359,8 +359,6 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 				factor = 255-(math.abs(time - love.timer.getTime())*255*2)
 			end
 
-
-
 			love.graphics.setColor(255,253,246,factor)
 			love.graphics.rectangle( "fill", ScrW-200, 60+80*lPopUPMoneyStack,170,75 )
 			if num > 0 then 

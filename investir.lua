@@ -350,9 +350,9 @@ function budgetMenu()
 	employeeManagementNumberbox:SetPos(170,420):SetMinMax(0,nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(0):SetHeight(25)
 	employeeManagementNumberbox.OnValueChanged = function(object,value)
 		if employeeManagementMultichoice:GetChoice() == "Recruter" then
-			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F\nPopularité : +"..employeeManagementNumberbox:GetValue())
+			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : +"..employeeManagementNumberbox:GetValue())
 		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
-			employeeManagementText2:SetText("\nEconomie : "..(employeeManagementNumberbox:GetValue() * Salary).."F\nPopularité : -"..employeeManagementNumberbox:GetValue())
+			employeeManagementText2:SetText("\nEconomie : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : -"..employeeManagementNumberbox:GetValue())
 		end
 	end
 	employeeManagementButton = loveframes.Create("button", budgetFrame)
@@ -376,6 +376,17 @@ function budgetMenu()
 		elseif choice == "Licencier" then employeeManagementText2:SetText("\nEconomie : \nPopularité :")
 		end
 	end
+-------------------------------------------------------------------------------------------------------------
+	salaryForm = loveframes.Create("form", budgetFrame)
+	salaryForm:SetPos(430, 280):SetSize(300,170):SetName("Gestion des salaires")
+	salaryMultichoice = loveframes.Create("multichoice", budgetFrame)
+	salaryMultichoice:SetPos(435,295):AddChoice("Augmenter les salaires"):AddChoice("Baisser les salaires")
+	salaryText1 = loveframes.Create("text", budgetFrame)
+	salaryText1:SetPos(440,370):SetText("Nombre d'employés : ".. nbEmployees)
+	salaryNumberbox = loveframes.Create("numberbox", budgetFrame)
+	salaryNumberbox:SetPos(500,420):SetSize(120,25):SetMinMax(0,Money/nbEmployees):SetIncreaseAmount(200):SetValue(200):SetDecreaseAmount(200)
+
+
 	saveBudgetButton = loveframes.Create("button", budgetFrame)
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)
 	saveBudgetButton.OnClick = function(object)

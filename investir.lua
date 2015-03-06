@@ -196,8 +196,10 @@ end
 
 function budgetMenu()
 	IsOnDesktop = false
+	local currentDay = T_DAY
 	local currentMonth = T_MONTH
 	local currentYear = T_YEAR
+	local x,y,z
 	
 	budgetFrame = loveframes.Create("frame")
 	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
@@ -211,7 +213,7 @@ function budgetMenu()
 	pubMultichoice.OnChoiceSelected = function(object,choice)
 		if choice == "Prospectus" then
 			prixPublicite = 8000
-			attentePublicite = 92
+			attentePublicite = 93
 			popularitePublicite = 3
 		elseif choice == "Presse" then
 			prixPublicite = 20000
@@ -229,6 +231,8 @@ function budgetMenu()
 	pubAcheter.OnClick = function(object)
 		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
+		x,y,z = calculateDate(currentDay,currentMonth,currentYear,attentePublicite)
+		createEvent(string.format("%i%i%i",x,y,z), Popularity = Popularity + popularitePublicite)
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)

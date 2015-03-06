@@ -383,10 +383,30 @@ function budgetMenu()
 	salaryForm:SetPos(430, 280):SetSize(300,170):SetName("Gestion des salaires")
 	salaryMultichoice = loveframes.Create("multichoice", budgetFrame)
 	salaryMultichoice:SetPos(435,295):AddChoice("Augmenter les salaires"):AddChoice("Baisser les salaires")
+	salaryMultichoice.OnChoiceSelected = function(object,choice)
+		if choice == "Augmenter les salaires" then salaryButton:SetText("Augmenter")
+		elseif choice == "Baisser les salaires" then salaryButton:SetText("Baisser") end end
 	salaryText1 = loveframes.Create("text", budgetFrame)
-	salaryText1:SetPos(440,370):SetText("Nombre d'employés : ".. nbEmployees)
+	salaryText1:SetPos(440,350):SetText("Nombre d'employés : ".. nbEmployees.."\nSalaire actuel : "..Salary.."F")
+	salaryText2 = loveframes.Create("text", budgetFrame)
+	salaryText2:SetPos(440,350):SetText("\n\nCoût sup. : ")
 	salaryNumberbox = loveframes.Create("numberbox", budgetFrame)
 	salaryNumberbox:SetPos(500,420):SetSize(120,25):SetMinMax(0,Money/nbEmployees):SetIncreaseAmount(200):SetValue(200):SetDecreaseAmount(200)
+	salaryNumberbox.OnValueChanged = function(object,value)
+		if salaryMultichoice:GetChoice() == "Augmenter les salaires" then salaryText2:SetText("\n\nCoût sup. mensuel : "..value * nbEmployees.."F")
+		elseif salaryMultichoice:GetChoice() == "Baisser les salaires" then salaryText2:SetText("\n\nEconomie mensuelle : "..value * nbEmployees.."F") end end
+	salaryButton = loveframes.Create("button", budgetFrame)
+	salaryButton:SetPos(620,420)
+	salaryButton.OnClick = function(object)
+		if salaryMultichoice:GetChoice() == "Augmenter les salaires" then
+			Salary = Salary + salaryNumberbox:GetValue()
+			Popularity = Popularity + 1
+		elseif salaryMultichoice:GetChoice() == "Baisser les salaires" then
+			Salary = Salary - salaryNumberbox:GetValue()
+			Popularity = Popularity - 1
+		end
+		salaryText1:SetText("Nombre d'employés : ".. nbEmployees.."\nSalaire actuel : "..Salary)
+	end
 
 
 	saveBudgetButton = loveframes.Create("button", budgetFrame)

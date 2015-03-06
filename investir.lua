@@ -270,6 +270,7 @@ function investisseurMenu()
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
+		hook.Remove("OverLayDraw", "Slidertest")
 		love.mouse.setCursor( c_arrow )
 	end
 	local cancelPresetButton = loveframes.Create("button", principaleFrame)
@@ -279,6 +280,7 @@ function investisseurMenu()
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
+		hook.Remove("OverLayDraw", "Slidertest")
 		love.mouse.setCursor( c_arrow )
 	end
 end
@@ -391,6 +393,7 @@ function budgetMenu()
 	saveBudgetButton:SetText("Enregistrer"):SetPos(325,560)
 	saveBudgetButton.OnClick = function(object)
 		budgetFrame:Remove()
+		love.mouse.setCursor( c_cursor )
 		IsOnDesktop = true
 		unpausetime()
 	end
@@ -399,6 +402,7 @@ function budgetMenu()
 	cancelBudgetButton.OnClick = function(object)
 		Pub = PubSave
 		budgetFrame:Remove()
+		love.mouse.setCursor( c_cursor )
 		IsOnDesktop = true
 		unpausetime()
 	end

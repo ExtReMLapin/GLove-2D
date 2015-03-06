@@ -65,19 +65,19 @@ function investisseurMenu()
 	end
 
 	slider1 = loveframes.Create("slider", principaleFrame)
-	slider1:SetPos(215,180):SetWidth(100):SetMinMax(0,100):SetValue(0)
+	slider1:SetPos(215,180):SetWidth(100):SetMinMax(0,100):SetValue(0):SetButtonSize(10,28)
 	slider2 = loveframes.Create("slider", principaleFrame)
-	slider2:SetPos(215,182):SetWidth(200):SetMinMax(0,200):SetValue(100)
+	slider2:SetPos(215,182):SetWidth(200):SetMinMax(0,200):SetValue(100):SetButtonSize(10,32)
 	slider2.OnValueChanged = function(object,value)
 		slider1:SetWidth(value-5):SetMax(value-5)
 	end
 	slider3 = loveframes.Create("slider", principaleFrame)
-	slider3:SetPos(215,184):SetWidth(300):SetMinMax(0,300):SetValue(200)
+	slider3:SetPos(215,184):SetWidth(300):SetMinMax(0,300):SetValue(200):SetButtonSize(10,36)
 	slider3.OnValueChanged = function(object,value)
 		slider2:SetWidth(value-5):SetMax(value-5)
 	end
 	slider4 = loveframes.Create("slider", principaleFrame)
-	slider4:SetPos(215,186):SetWidth(400):SetMinMax(0,400):SetValue(300)
+	slider4:SetPos(215,186):SetWidth(400):SetMinMax(0,400):SetValue(300):SetButtonSize(10,40)
 	slider4.OnValueChanged = function(object,value)
 		slider3:SetWidth(value-5):SetMax(value-5)
 	end
@@ -112,7 +112,7 @@ function investisseurMenu()
 	slider4:SetPos(515, 180)
 	slider4:SetWidth(200)
 	slider4:SetMinMax(1, 200)
-	slider4:SetValue(200)
+	slider4:SetValue(200)]]
 
 
 
@@ -122,33 +122,20 @@ function investisseurMenu()
 			local slider31 = slider3:GetValue()
 			local slider41 = slider4:GetValue()
 
-			local MOUSE_X = love.mouse.getPosition( )	
+			local MOUSE_X = love.mouse.getPosition( )
 			love.graphics.setColor(0,0,0,255)
-			love.graphics.rectangle( "fill", 450,250 ,slider11,20 )
+			love.graphics.rectangle("fill", 455, 250, 400,20)	
 			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle( "fill", 450+slider11,250 ,slider21,20 )
+			love.graphics.rectangle( "fill", 455 ,250 ,slider4:GetValue(),20 )
 			love.graphics.setColor(255,100,50,255)
-			love.graphics.rectangle( "fill", 450+slider11+slider21,250 ,slider31,20 )
+			love.graphics.rectangle( "fill", 455 ,250 ,slider3:GetValue(),20 )
 			love.graphics.setColor(50,100,250,255)
-			love.graphics.rectangle( "fill", 450+slider11+slider21+slider31,250 ,slider41,20 )
+			love.graphics.rectangle( "fill", 455 ,250 ,slider2:GetValue(),20 )
 			love.graphics.setColor(0,0,150,255)
-			love.graphics.rectangle( "fill", (slider11+slider21+slider31+slider41+450),250 ,math.Max(0,950-(slider11+slider21+slider31+slider41+450)),20 )
-
-
-			slider1:SetPos(450-235, 180)
-			slider1:SetMinMax(1,500-(slider21+slider31+slider41))
-
-			slider2:SetPos(450-235+slider11, 180)
-			slider2:SetMinMax(1,400-(slider31+slider41))
-
-			slider3:SetPos(450-235+slider11+slider21, 180)
-			slider2:SetMinMax(1,300-slider41)
-
-			slider4:SetPos(450-235+slider11+slider21+slider31, 180)
-			slider4:SetMinMax(1,200)
+			love.graphics.rectangle( "fill", 455 ,250 ,slider1:GetValue(),20 )
 
 			print(slider41)
-	end)]]
+	end)
 
 
 

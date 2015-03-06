@@ -83,46 +83,8 @@ function investisseurMenu()
 	end
 
 
-
-
-
-	--[[local slider1 = loveframes.Create("slider", principaleFrame)
-	slider1:SetPos(215, 180)
-	slider1:SetWidth(100)
-	slider1:SetMinMax(1, 100)
-	slider1:SetValue(100)
-	slider1.OnValueChanged = function(object)
-		object:SetWidth(object:GetMax())
-		object:GetValue()
-	end
-
-	local slider2 = loveframes.Create("slider", principaleFrame)
-	slider2:SetPos(315, 180)
-	slider2:SetWidth(100)
-	slider2:SetMinMax(1, 100)
-	slider2:SetValue(100)
-	
-	local slider3 = loveframes.Create("slider", principaleFrame)
-	slider3:SetPos(415, 180)
-	slider3:SetWidth(100)
-	slider3:SetMinMax(1, 100)
-	slider3:SetValue(100)
-
-	local slider4 = loveframes.Create("slider", principaleFrame)
-	slider4:SetPos(515, 180)
-	slider4:SetWidth(200)
-	slider4:SetMinMax(1, 200)
-	slider4:SetValue(200)]]
-
-
-
 	hook.Add("OverLayDraw", "Slidertest", function() -- 235
-			local slider11 = slider1:GetValue()
-			local slider21 = slider2:GetValue()
-			local slider31 = slider3:GetValue()
-			local slider41 = slider4:GetValue()
 
-			local MOUSE_X = love.mouse.getPosition( )
 			love.graphics.setColor(0,0,0,255)
 			love.graphics.rectangle("fill", 455, 250, 400,20)	
 			love.graphics.setColor(50,255,50,255)
@@ -133,10 +95,35 @@ function investisseurMenu()
 			love.graphics.rectangle( "fill", 455 ,250 ,slider2:GetValue(),20 )
 			love.graphics.setColor(0,0,150,255)
 			love.graphics.rectangle( "fill", 455 ,250 ,slider1:GetValue(),20 )
-
-			print(slider41)
+			love.graphics.setColor(0,0,0,255)
+			love.graphics.rectangle("fill", 455, 350, 400,20)	
+			love.graphics.setColor(50,255,50,255)
+			love.graphics.rectangle( "fill", 455 ,350 ,slider8:GetValue(),20 )
+			love.graphics.setColor(255,100,50,255)
+			love.graphics.rectangle( "fill", 455 ,350 ,slider7:GetValue(),20 )
+			love.graphics.setColor(50,100,250,255)
+			love.graphics.rectangle( "fill", 455 ,350 ,slider6:GetValue(),20 )
+			love.graphics.setColor(0,0,150,255)
+			love.graphics.rectangle( "fill", 455 ,350 ,slider5:GetValue(),20 )
 	end)
 
+	slider5 = loveframes.Create("slider", principaleFrame)
+	slider5:SetPos(215,280):SetWidth(100):SetMinMax(0,100):SetValue(0):SetButtonSize(10,28)
+	slider6 = loveframes.Create("slider", principaleFrame)
+	slider6:SetPos(215,282):SetWidth(200):SetMinMax(0,200):SetValue(100):SetButtonSize(10,32)
+	slider6.OnValueChanged = function(object,value)
+		slider5:SetWidth(value-5):SetMax(value-5)
+	end
+	slider7 = loveframes.Create("slider", principaleFrame)
+	slider7:SetPos(215,284):SetWidth(300):SetMinMax(0,300):SetValue(200):SetButtonSize(10,36)
+	slider7.OnValueChanged = function(object,value)
+		slider6:SetWidth(value-5):SetMax(value-5)
+	end
+	slider8 = loveframes.Create("slider", principaleFrame)
+	slider8:SetPos(215,286):SetWidth(400):SetMinMax(0,400):SetValue(300):SetButtonSize(10,40)
+	slider8.OnValueChanged = function(object,value)
+		slider7:SetWidth(value-5):SetMax(value-5)
+	end
 
 
 

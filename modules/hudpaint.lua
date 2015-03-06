@@ -363,11 +363,10 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 			love.graphics.rectangle( "fill", ScrW-200, 60+80*lPopUPMoneyStack,170,75 )
 			if num > 0 then 
 				love.graphics.setColor(0,128,0,factor)
-				love.graphics.print(string.nicemath(num), ScrW-180, 67+80*lPopUPMoneyStack)
 			else
-				love.graphics.setColor(128,0,0,factor)
-				love.graphics.print("-" .. string.nicemath(math.abs(num)), ScrW-180, 67+80*lPopUPMoneyStack)
+				love.graphics.setColor(128,0,0,factor)	
 			end
+				love.graphics.print(string.nicemath(num), ScrW-180, 67+80*lPopUPMoneyStack)
 				love.graphics.setColor(0,0,0,factor)
 				love.graphics.print(reason, ScrW-180, 95+80*lPopUPMoneyStack)
 

@@ -64,10 +64,29 @@ function investisseurMenu()
 		unpausetime()
 	end
 
+	slider1 = loveframes.Create("slider", principaleFrame)
+	slider1:SetPos(215,180):SetWidth(100):SetMinMax(0,100):SetValue(0)
+	slider2 = loveframes.Create("slider", principaleFrame)
+	slider2:SetPos(215,182):SetWidth(200):SetMinMax(0,200):SetValue(100)
+	slider2.OnValueChanged = function(object,value)
+		slider1:SetWidth(value-5):SetMax(value-5)
+	end
+	slider3 = loveframes.Create("slider", principaleFrame)
+	slider3:SetPos(215,184):SetWidth(300):SetMinMax(0,300):SetValue(200)
+	slider3.OnValueChanged = function(object,value)
+		slider2:SetWidth(value-5):SetMax(value-5)
+	end
+	slider4 = loveframes.Create("slider", principaleFrame)
+	slider4:SetPos(215,186):SetWidth(400):SetMinMax(0,400):SetValue(300)
+	slider4.OnValueChanged = function(object,value)
+		slider3:SetWidth(value-5):SetMax(value-5)
+	end
 
 
 
-	local slider1 = loveframes.Create("slider", principaleFrame)
+
+
+	--[[local slider1 = loveframes.Create("slider", principaleFrame)
 	slider1:SetPos(215, 180)
 	slider1:SetWidth(100)
 	slider1:SetMinMax(1, 100)
@@ -82,7 +101,7 @@ function investisseurMenu()
 	slider2:SetWidth(100)
 	slider2:SetMinMax(1, 100)
 	slider2:SetValue(100)
-
+	
 	local slider3 = loveframes.Create("slider", principaleFrame)
 	slider3:SetPos(415, 180)
 	slider3:SetWidth(100)
@@ -129,7 +148,7 @@ function investisseurMenu()
 			slider4:SetMinMax(1,200)
 
 			print(slider41)
-	end)
+	end)]]
 
 
 
@@ -232,8 +251,7 @@ function budgetMenu()
 		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
 		x,y,z = calculateDate(currentDay,currentMonth,currentYear,attentePublicite)
-
-		createEvent(string.format("%i%i%i",x,y,z),"Popularity = Popularity + popularitePublicite")
+		createEvent(string.format("%i%i%i",x,y,z), "Popularity = Popularity + popularitePublicite")
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)

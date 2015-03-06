@@ -8,7 +8,6 @@ require "events"
 require "data"
 require "investir"
 require "money"
-require "sounds"
 require "clientsystem"
 
 local http;

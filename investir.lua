@@ -54,78 +54,55 @@ end
 
 function investisseurMenu()
 	IsOnDesktop = false
-
-	local principaleFrame = loveframes.Create("frame")
-	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():SetDraggable(false)
-	principaleFrame:ShowCloseButton(false)
+	local dureeInvestisseurMin = 14
+	local dureeInvestisseurMax = 220
+	local remunerationInvestisseur
+	principaleFrame = loveframes.Create("frame")
+	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center()
 	principaleFrame.OnClose = function(object)
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
 	end
-
-	slider1 = loveframes.Create("slider", principaleFrame)
-	slider1:SetPos(215,180):SetWidth(100):SetMinMax(0,100):SetValue(0):SetButtonSize(10,28)
-	slider2 = loveframes.Create("slider", principaleFrame)
-	slider2:SetPos(215,182):SetWidth(200):SetMinMax(0,200):SetValue(100):SetButtonSize(10,32)
-	slider2.OnValueChanged = function(object,value)
-		slider1:SetWidth(value-5):SetMax(value-5)
+	sliderForm1 = loveframes.Create("form", principaleFrame)
+	sliderForm1:SetPos(35, 130):SetSize(315, 50):SetName("Durée minimale d'investissement")
+	sliderForm2 = loveframes.Create("form", principaleFrame)
+	sliderForm2:SetPos(390, 130):SetSize(315, 50):SetName("Durée maximale d'investissement")
+	sliderInvestisseur1 = loveframes.Create("slider", principaleFrame)
+	sliderInvestisseur1:SetSize(300,275):SetPos(40, 150):SetValue(1,240)
+	sliderInvestisseur1.OnValueChange = function(object)
+		dureeInvestisseurMin = sliderInvestisseur1:GetValue()
 	end
-	slider3 = loveframes.Create("slider", principaleFrame)
-	slider3:SetPos(215,184):SetWidth(300):SetMinMax(0,300):SetValue(200):SetButtonSize(10,36)
-	slider3.OnValueChanged = function(object,value)
-		slider2:SetWidth(value-5):SetMax(value-5)
+	sliderInvestisseur2 = loveframes.Create("slider", principaleFrame)
+	sliderInvestisseur2:SetSize(300,275):SetPos(395, 150):SetValue(1,240)
+	sliderInvestisseur2.OnValueChange = function(object)
+		dureeInvestisseurMax = sliderInvestisseur2:GetValue()
 	end
-	slider4 = loveframes.Create("slider", principaleFrame)
-	slider4:SetPos(215,186):SetWidth(400):SetMinMax(0,400):SetValue(300):SetButtonSize(10,40)
-	slider4.OnValueChanged = function(object,value)
-		slider3:SetWidth(value-5):SetMax(value-5)
+	sliderForm3 = loveframes.Create("form", principaleFrame)
+	sliderForm3:SetPos(35, 230):SetSize(315, 50):SetName("Rendement de la durée minimale")
+	sliderForm4 = loveframes.Create("form", principaleFrame)
+	sliderForm4:SetPos(390, 230):SetSize(315, 50):SetName("Rendement de la durée maximale")
+	sliderInvestisseur1 = loveframes.Create("slider", principaleFrame)
+	sliderInvestisseur1:SetSize(300,275):SetPos(40, 250):SetValue(1,240)
+	sliderInvestisseur1.OnValueChange = function(object)
+		dureeInvestisseurMin = sliderInvestisseur1:GetValue()
 	end
-
-
-	hook.Add("OverLayDraw", "Slidertest", function() -- 235
-
-			love.graphics.setColor(0,0,0,255)
-			love.graphics.rectangle("fill", 455, 250, 400,20)	
-			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle( "fill", 455 ,250 ,slider4:GetValue(),20 )
-			love.graphics.setColor(255,100,50,255)
-			love.graphics.rectangle( "fill", 455 ,250 ,slider3:GetValue(),20 )
-			love.graphics.setColor(50,100,250,255)
-			love.graphics.rectangle( "fill", 455 ,250 ,slider2:GetValue(),20 )
-			love.graphics.setColor(0,0,150,255)
-			love.graphics.rectangle( "fill", 455 ,250 ,slider1:GetValue(),20 )
-			love.graphics.setColor(0,0,0,255)
-			love.graphics.rectangle("fill", 455, 350, 400,20)	
-			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle( "fill", 455 ,350 ,slider8:GetValue(),20 )
-			love.graphics.setColor(255,100,50,255)
-			love.graphics.rectangle( "fill", 455 ,350 ,slider7:GetValue(),20 )
-			love.graphics.setColor(50,100,250,255)
-			love.graphics.rectangle( "fill", 455 ,350 ,slider6:GetValue(),20 )
-			love.graphics.setColor(0,0,150,255)
-			love.graphics.rectangle( "fill", 455 ,350 ,slider5:GetValue(),20 )
-	end)
-
-	slider5 = loveframes.Create("slider", principaleFrame)
-	slider5:SetPos(215,280):SetWidth(100):SetMinMax(0,100):SetValue(0):SetButtonSize(10,28)
-	slider6 = loveframes.Create("slider", principaleFrame)
-	slider6:SetPos(215,282):SetWidth(200):SetMinMax(0,200):SetValue(100):SetButtonSize(10,32)
-	slider6.OnValueChanged = function(object,value)
-		slider5:SetWidth(value-5):SetMax(value-5)
+	sliderInvestisseur2 = loveframes.Create("slider", principaleFrame)
+	sliderInvestisseur2:SetSize(300,275):SetPos(395, 250):SetValue(1,240)
+	sliderInvestisseur2.OnValueChange = function(object)
+		dureeInvestisseurMax = sliderInvestisseur2:GetValue()
 	end
-	slider7 = loveframes.Create("slider", principaleFrame)
-	slider7:SetPos(215,284):SetWidth(300):SetMinMax(0,300):SetValue(200):SetButtonSize(10,36)
-	slider7.OnValueChanged = function(object,value)
-		slider6:SetWidth(value-5):SetMax(value-5)
-	end
-	slider8 = loveframes.Create("slider", principaleFrame)
-	slider8:SetPos(215,286):SetWidth(400):SetMinMax(0,400):SetValue(300):SetButtonSize(10,40)
-	slider8.OnValueChanged = function(object,value)
-		slider7:SetWidth(value-5):SetMax(value-5)
-	end
-
-
+	formMoneyOrigin = loveframes.Create("form", principaleFrame)
+	formMoneyOrigin:SetSize(315,50):SetName("Origine de l'investissement"):SetPos(35,380)
+	checkboxMoneyOrigin1 = loveframes.Create("checkbox", principaleFrame)
+	checkboxMoneyOrigin1:SetText("Légale")
+	checkboxMoneyOrigin1:SetPos(40, 400)
+	checkboxMoneyOrigin2 = loveframes.Create("checkbox", principaleFrame)
+	checkboxMoneyOrigin2:SetText("Douteuse")
+	checkboxMoneyOrigin2:SetPos(140, 400)
+	checkboxMoneyOrigin3 = loveframes.Create("checkbox", principaleFrame)
+	checkboxMoneyOrigin3:SetText("Indifférent")
+	checkboxMoneyOrigin3:SetPos(240, 400)
 
 -------------------------------------------------------------------------------
 	local secondaryFrame = loveframes.Create("frame")
@@ -286,10 +263,10 @@ function budgetMenu()
 	salaryButton.OnClick = function(object)
 		if salaryMultichoice:GetChoice() == "Augmenter les salaires" then
 			Salary = Salary + salaryNumberbox:GetValue()
-			Popularity = Popularity + 1
+			Popularity = Popularity + (salaryNumberbox:GetValue()/200 * 2)
 		elseif salaryMultichoice:GetChoice() == "Baisser les salaires" then
 			Salary = Salary - salaryNumberbox:GetValue()
-			Popularity = Popularity - 1
+			Popularity = Popularity - (salaryNumberbox:GetValue()/200 * 2)
 		end
 		salaryText1:SetText("Nombre d'employés : ".. nbEmployees.."\nSalaire actuel : "..Salary)
 	end

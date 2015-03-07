@@ -1218,11 +1218,11 @@ function skin.DrawScrollButton(object)
 		skin.OutlinedRectangle(x, y, width, height)
 	else
 		-- button body
-		local image = skin.images["button-nohover.png"]
+		local image = skin.images["arrow-down.png"]
 		local imageheight = image:getHeight()
 		local scaley = height/imageheight
 		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, 0, width, scaley)
+		love.graphics.draw(image, x, y, 0, width, 0)
 		-- button border
 		love.graphics.setColor(bordercolor)
 		skin.OutlinedRectangle(x, y, width, height)

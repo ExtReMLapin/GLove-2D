@@ -48,12 +48,16 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-code = [[
-	    print("Hello World")
-	    CreatePopUp("yeye, that's not what ur mom said", "lel\nyeyeyeyeyeyeyeyyeyey\nrhzieurhzif\nrhzieurhzif\nrhzieurhzif")   
-	]]	 
-	createEvent( string.format("%i%i%i",2, 5, 1852), code)
-		
+
+
+		local button = loveframes.Create("button" )
+		button:SetWidth(200)
+		button:SetText("Button")
+		button:Center()
+		button.OnClick = function(object, x, y)
+			addMoney(4500)
+		end
+			
 
 	local music = love.audio.newSource("ressources/theme.mp3", "static")
 	music:setLooping( true )

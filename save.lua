@@ -34,9 +34,14 @@ function do_save_data()
 		tbl.mainRate = mainRate
 		tbl.Popularity = Popularity
 		tbl.nbClients = nbClients
+		tbl.PastMonthEvent = PastMonthEvent
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end
+
+
+
+
 
 
 function do_restore()
@@ -47,6 +52,8 @@ function do_restore()
 end
 
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
+	PastMonthEvent = {}
+	PastMonthEvent.Months = {}
 	PassedEvents = {}
 	DynaEvent = {}
 	nbClients = 3

@@ -364,8 +364,9 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 			if num > 0 then 
 				love.graphics.setColor(0,128,0,factor)
 			else
-				love.graphics.setColor(128,0,0,factor)	
+				love.graphics.setColor(128,0,0,factor)
 			end
+
 				love.graphics.print(string.nicemath(num), ScrW-180, 67+80*lPopUPMoneyStack)
 				love.graphics.setColor(0,0,0,factor)
 				love.graphics.print(reason, ScrW-180, 95+80*lPopUPMoneyStack)
@@ -373,7 +374,7 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 			
 		else
 			PopUPMoneyStack = PopUPMoneyStack -1
-			hook.Remove("BackGroundDraw", "MoneyChangeDraw" .. seed)
+			hook.Remove("BackGroundDraw", "MoneyChange(Draw" .. seed)
 		end
 	end)
 
@@ -385,3 +386,56 @@ hook.Add("MoneyAdd", "Show Money change", function(num,reason)
 	PopUPMoneyStack = PopUPMoneyStack +1
 	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)
 end)
+
+hook.Add("DateChange", "Show Month Money change", function(num,reason)
+
+	--if table.Count(PassedEvents.Months) > 29 then table.remove(PassedEvents.Months, 1) end
+
+
+	if PastMonthEvent.LastMonth and T_DAY == 1 and T_SEM == 1 then
+		table.insert(PastMonthEvent.Months, #PastMonthEvent.Months + 1, Money - PastMonthEvent.LastMonth)
+		PastMonthEvent.LastMonth = Money
+	end
+
+	if not PastMonthEvent.LastMonth and T_DAY == 1 and T_SEM == 1 then
+		PastMonthEvent.LastMonth = Money
+	end
+
+end)
+
+
+
+hook.Add("BackGroundDraw", "MoneyMonthDraw", function()
+
+	love.graphics.setColor(255,255,255)
+	surface.RoundedBox(30, 10, 210, 50, 5)
+	love.graphics.setColor(0,0,0)
+	love.graphics.setFont( date_box_text1 )
+	love.graphics.print("Gains/Pertes", 30+105-date_box_text1:getWidth("Gains/Pertes")/2,17)
+	surface.HUDStaticBox(10,45,250,120)
+	love.graphics.setColor(0,0,0,255)
+	love.graphics.rectangle("fill",10,45+60, 250,1)
+	if table.Count(PastMonthEvent.Months) < 1 then return end
+	local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
+	local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
+	if table.Count(PastMonthEvent.Months) < 2 then
+		min = 0
+		max = max + max/3
+	end
+
+
+	for k, v in pairs(PastMonthEvent.Months) do
+		local value = math.Remap(v, min, max, 0,59)
+		if v > 0 then
+			love.graphics.setColor(50,255,50,255)
+			love.graphics.rectangle("fill",10+3.5*k,105-value, 3,value)
+		else
+			love.graphics.setColor(255,50,50,255)
+			
+			love.graphics.rectangle("fill",10+5*k,105, 3,value)
+		end
+
+	end
+
+end)
+

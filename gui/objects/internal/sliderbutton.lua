@@ -34,12 +34,17 @@ function newobject:initialize(parent)
 	-- apply template properties to the object
 	loveframes.templates.ApplyToObject(self)
 	
+
+	
 end
 
 --[[---------------------------------------------------------
 	- func: update(deltatime)
 	- desc: updates the object
 --]]---------------------------------------------------------
+
+
+
 function newobject:update(dt)
 	
 	local visible = self.visible
@@ -50,7 +55,10 @@ function newobject:update(dt)
 			return
 		end
 	end
-	
+	local x = self:GetX()
+	local y = self:GetY()
+
+	self.clickbounds = {x = x, y = y-10, width = 00, height = 00}
 	self:CheckHover()
 	
 	local x, y = love.mouse.getPosition()

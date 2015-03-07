@@ -1322,51 +1322,8 @@ function skin.DrawSliderButton(object)
 	local bodydowncolor = skin.controls.button_body_down_color
 	local bodyhovercolor = skin.controls.button_body_hover_color
 	local bodynohvercolor = skin.controls.button_body_nohover_color
-	
-	if not enabled then
-		local image = skin.images["button-unclickable.png"]
-		local imageheight = image:getHeight()
-		local scaley = height/imageheight
-		-- button body
-		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, 0, width, scaley)
-		-- button border
-		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
-		return
-	end
-	
-	if down then
-		-- button body
-		local image = skin.images["button-down.png"]
-		local imageheight = image:getHeight()
-		local scaley = height/imageheight
-		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, 0, width, scaley)
-		-- button border
-		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
-	elseif hover then
-		-- button body
-		local image = skin.images["button-hover.png"]
-		local imageheight = image:getHeight()
-		local scaley = height/imageheight
-		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, 0, width, scaley)
-		-- button border
-		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
-	else
-		-- button body
-		local image = skin.images["button-nohover.png"]
-		local imageheight = image:getHeight()
-		local scaley = height/imageheight
-		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, 0, width, scaley)
-		-- button border
-		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
-	end
+	love.graphics.setColor(0,0,0,255)
+	love.graphics.polygon( "fill", x-8,y-8,x+8,y-8,x,y+8 )
 	
 end
 
@@ -1862,6 +1819,7 @@ function skin.DrawMenu(object)
 	skin.OutlinedRectangle(x, y, width, height)
 	
 end
+
 
 --[[---------------------------------------------------------
 	- func: skin.DrawMenuOption(object)

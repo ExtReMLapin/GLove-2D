@@ -17,7 +17,6 @@ end
 
 
 function pausetime()
-
 	timer.pause("MainTimerDate")
 end
 

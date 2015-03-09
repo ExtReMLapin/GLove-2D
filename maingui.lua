@@ -44,7 +44,7 @@ function principalMenu(realX, realY)
 			    text1:SetPos(7, 10)
 			    text1:SetFont(subtitle)
 			    text1:SetLinksEnabled(false)
-			    text1:SetText("Investir")
+			    text1:SetText("Investisseurs")
 				text1.OnMouseEnter = function(object)
 					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
@@ -78,11 +78,24 @@ function principalMenu(realX, realY)
 			IsInRightClickMenu = false
 		end
 
+		RightClickMENU2.OnClick = function(object)
+		crediteurMenu()
+		love.mouse.setCursor( c_cursor )
+					RightClickMENU1:Remove()
+					RightClickMENU2:Remove()
+					RightClickMENU3:Remove()
+					RightClickMENU4:Remove()
+					RightClickMENU1= nil
+					RightClickMENU3= nil
+					RightClickMENU2= nil
+					RightClickMENU4= nil
+				end
+
 		    local text2 = loveframes.Create("text", RightClickMENU2)
 			    text2:SetPos(7, 10)
 			    text2:SetFont(subtitle)
 			    text2:SetLinksEnabled(false)
-			    text2:SetText("Se former")
+			    text2:SetText("Créditeurs")
 				text2.OnMouseEnter = function(object)
 					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true

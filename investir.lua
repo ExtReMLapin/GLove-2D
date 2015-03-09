@@ -345,3 +345,133 @@ function budgetMenu()
 		unpausetime()
 	end
 end
+
+function crediteurMenu()
+	IsOnDesktop = false
+	local dureeInvestisseurMin = 14
+	local dureeInvestisseurMax = 220
+	local remunerationInvestisseur
+	principaleFrame = loveframes.Create("frame")
+	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():ShowCloseButton(false)
+	principaleFrame.OnClose = function(object)
+		secondaryFrame:Remove()
+		IsOnDesktop = true
+		unpausetime()
+	end
+
+	form1Investisseur = loveframes.Create("form",principaleFrame)
+	form1Investisseur:SetPos(50,90):SetSize(310,400):SetName("Règlage des investissements")
+
+		text1Investisseur = loveframes.Create("text",principaleFrame)
+		text1Investisseur:SetPos(60,150):SetText("Investissement minimum :\t\t\t\t\t\t    F\n\n\n\n\n\n\nInvestissement moyen :\t\t\t\t\t\t\t   F\n\n\n\n\n\n\nInvestissement élevé :\t\t\t\t\t\t\t\t F\n\n\n\n\n\n\nInvestissement maximum :\t\t\t\t\t\t   F")
+		text2Investisseur = loveframes.Create("text",principaleFrame)
+		text2Investisseur:SetPos(80,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
+
+		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput1Investisseur:SetPos(250, 145):SetWidth(80):SetText("100000")
+		textinput1Investisseur.OnEnter = function(object,text)
+			minimalInvestment = tonumber(text)
+		end
+		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput2Investisseur:SetPos(250, 240):SetWidth(80):SetText("800000")
+		textinput2Investisseur.OnEnter = function(object,text)
+			middle1Investment = tonumber(text)
+		end
+		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput3Investisseur:SetPos(250,340):SetWidth(80):SetText("8000000")
+		textinput3Investisseur.OnEnter = function(object,text)
+			middle2Investment = tonumber(text)
+		end
+		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput4Investisseur:SetPos(250,440):SetWidth(80):SetText("15000000")
+		textinput4Investisseur.OnEnter = function(object,text)
+			maximalInvestment = tonumber(text)
+		end
+
+		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox1Investisseur:SetPos(270,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox1Investisseur.OnValueChanged = function(object,value)
+			minimalRendement = value
+		end
+
+		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox2Investisseur:SetPos(270,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox2Investisseur.OnValueChanged = function(object,value)
+			middleRendement = value
+		end
+
+		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox3Investisseur:SetPos(270,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox3Investisseur.OnValueChanged = function(object,value)
+			maximalRendement = value
+		end
+
+	form2Investisseur = loveframes.Create("form",principaleFrame)
+	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la maturité des investissements")
+
+		text1Investisseur = loveframes.Create("text",principaleFrame)
+		text1Investisseur:SetPos(430,150):SetText("Maturité mini. :\t\t\t\t\t\t\t\t\t\t     F\n\n\n\n\n\n\nMaturité moyenne :\t\t\t\t\t\t\t\t      F\n\n\n\n\n\n\nMaturité élevée :\t\t\t\t\t\t\t\t\t\t  F\n\n\n\n\n\n\nMaturité max. :\t\t\t\t\t\t\t\t\t\t\t F")
+		text2Investisseur = loveframes.Create("text",principaleFrame)
+		text2Investisseur:SetPos(450,195):SetText("- Intérêts du palier(%) :\n\n\n\n\n\n\n- Intérêts du palier(%) :\n\n\n\n\n\n\n- Intérêts du palier(%) :")
+
+		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput1Investisseur:SetPos(620, 145):SetWidth(80):SetText("100000")
+		textinput1Investisseur.OnEnter = function(object,text)
+			minimalTimeInvestment = tonumber(text)
+		end
+		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput2Investisseur:SetPos(620, 240):SetWidth(80):SetText("800000")
+		textinput2Investisseur.OnEnter = function(object,text)
+			middle1TimeInvestment = tonumber(text)
+		end
+		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput3Investisseur:SetPos(620,340):SetWidth(80):SetText("8000000")
+		textinput3Investisseur.OnEnter = function(object,text)
+			middle2TimeInvestment = tonumber(text)
+		end
+		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput4Investisseur:SetPos(620,440):SetWidth(80):SetText("15000000")
+		textinput4Investisseur.OnEnter = function(object,text)
+			maximalTimeInvestment = tonumber(text)
+		end
+
+		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox1Investisseur:SetPos(640,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox1Investisseur.OnValueChanged = function(object,value)
+			minimal2Rendement = value
+		end
+
+		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox2Investisseur:SetPos(640,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox2Investisseur.OnValueChanged = function(object,value)
+			middle2Rendement = value
+		end
+
+		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox3Investisseur:SetPos(640,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox3Investisseur.OnValueChanged = function(object,value)
+			maximal2Rendement = value
+		end
+
+	local savePresetButton = loveframes.Create("button", principaleFrame)
+	savePresetButton:SetText("Enregistrer"):SetPos(270,560)
+	savePresetButton.OnClick = function()
+		--enregistrer les presets
+		principaleFrame:Remove()
+		secondaryFrame:Remove()
+		IsOnDesktop = true
+		unpausetime()
+		hook.Remove("OverLayDraw", "Slidertest")
+		love.mouse.setCursor( c_arrow )
+	end
+	local cancelPresetButton = loveframes.Create("button", principaleFrame)
+	cancelPresetButton:SetText("Annuler"):SetPos(395,560)
+	cancelPresetButton.OnClick = function()
+		principaleFrame:Remove()
+		secondaryFrame:Remove()
+		IsOnDesktop = true
+		unpausetime()
+		hook.Remove("OverLayDraw", "Slidertest")
+		love.mouse.setCursor( c_arrow )
+	end
+end

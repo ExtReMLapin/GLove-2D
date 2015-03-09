@@ -14,7 +14,7 @@ cash:setPitch(1) -- one octave lower
 function addMoney(num, reason)
 	if num == 0 then return end
 	Money = Money + num
-	hook.Call("MoneyAdd", num, reason or "Dépenses")
+	hook.Call("MoneyAdd", nil, num, reason or "Dépenses")
 	cash:play()
 end
 

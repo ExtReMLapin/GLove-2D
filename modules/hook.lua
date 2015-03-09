@@ -64,7 +64,7 @@ end
     Args: string hookName, table gamemodeTable, vararg args
     Desc: Calls hooks associated with the hook name.
 -----------------------------------------------------------]]
-function Call( name, ... )
+function Call( name, gm, ... )
 
 	--
 	-- Run hooks
@@ -111,4 +111,15 @@ function Call( name, ... )
 				
 		end
 	end
+	
+	--
+	-- Call the gamemode function
+	--
+	if (  not gm ) then return end
+	
+	local GamemodeFunction = gm[ name ]
+	if ( GamemodeFunction == nil ) then return end
+			
+	return GamemodeFunction( gm, ... )        
+	
 end

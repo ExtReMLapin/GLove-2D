@@ -11,7 +11,7 @@ function love.mousepressed(x, y, button)
 	end
 	MOUSE_STATE = true
 	if not ONEPRESSED then
-		hook.Call("MousePress", x, y, button)
+		hook.Call("MousePress", nil, x, y, button)
 		ONEPRESSED = true
 	end
 
@@ -28,13 +28,13 @@ end
 
 function love.keypressed(key, unicode)
 
-	hook.Call("KeyPressed", key, unicode)
+	hook.Call("KeyPressed", nil, key, unicode)
 	loveframes.keypressed(key, unicode)
 end
 
 function love.keyreleased(key)
 
-	hook.Call("KeyReleased", key )
+	hook.Call("KeyReleased", nil, key )
 	loveframes.keyreleased(key)
 end
 

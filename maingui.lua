@@ -78,6 +78,8 @@ function principalMenu(realX, realY)
 			IsInRightClickMenu = false
 		end
 
+
+
 		RightClickMENU2.OnClick = function(object)
 		crediteurMenu()
 		love.mouse.setCursor( c_cursor )
@@ -104,6 +106,21 @@ function principalMenu(realX, realY)
 					love.mouse.setCursor( c_hand )
 					IsInRightClickMenu = true
 				end
+
+					text2.OnClick = function(object)
+					crediteurMenu()
+					love.mouse.setCursor( c_cursor )
+							RightClickMENU1:Remove()
+							RightClickMENU2:Remove()
+							RightClickMENU3:Remove()
+							RightClickMENU4:Remove()
+							RightClickMENU1= nil
+							RightClickMENU3= nil
+							RightClickMENU2= nil
+							RightClickMENU4= nil
+				end
+
+
 ---------------------------------------------------------------------------------------
 		RightClickMENU3 = loveframes.Create("panel")
 		RightClickMENU3:SetPos(realX-50,realY-80)

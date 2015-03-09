@@ -58,51 +58,106 @@ function investisseurMenu()
 	local dureeInvestisseurMax = 220
 	local remunerationInvestisseur
 	principaleFrame = loveframes.Create("frame")
-	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center()
+	principaleFrame:SetName("Menu Investisseur"):SetSize(800, 600):Center():ShowCloseButton(false)
 	principaleFrame.OnClose = function(object)
 		secondaryFrame:Remove()
 		IsOnDesktop = true
 		unpausetime()
 	end
-	sliderForm1 = loveframes.Create("form", principaleFrame)
-	sliderForm1:SetPos(35, 130):SetSize(315, 50):SetName("Durée minimale d'investissement")
-	sliderForm2 = loveframes.Create("form", principaleFrame)
-	sliderForm2:SetPos(390, 130):SetSize(315, 50):SetName("Durée maximale d'investissement")
-	sliderInvestisseur1 = loveframes.Create("slider", principaleFrame)
-	sliderInvestisseur1:SetSize(300,275):SetPos(40, 150):SetValue(1,240)
-	sliderInvestisseur1.OnValueChange = function(object)
-		dureeInvestisseurMin = sliderInvestisseur1:GetValue()
-	end
-	sliderInvestisseur2 = loveframes.Create("slider", principaleFrame)
-	sliderInvestisseur2:SetSize(300,275):SetPos(395, 150):SetValue(1,240)
-	sliderInvestisseur2.OnValueChange = function(object)
-		dureeInvestisseurMax = sliderInvestisseur2:GetValue()
-	end
-	sliderForm3 = loveframes.Create("form", principaleFrame)
-	sliderForm3:SetPos(35, 230):SetSize(315, 50):SetName("Rendement de la durée minimale")
-	sliderForm4 = loveframes.Create("form", principaleFrame)
-	sliderForm4:SetPos(390, 230):SetSize(315, 50):SetName("Rendement de la durée maximale")
-	sliderInvestisseur1 = loveframes.Create("slider", principaleFrame)
-	sliderInvestisseur1:SetSize(300,275):SetPos(40, 250):SetValue(1,240)
-	sliderInvestisseur1.OnValueChange = function(object)
-		dureeInvestisseurMin = sliderInvestisseur1:GetValue()
-	end
-	sliderInvestisseur2 = loveframes.Create("slider", principaleFrame)
-	sliderInvestisseur2:SetSize(300,275):SetPos(395, 250):SetValue(1,240)
-	sliderInvestisseur2.OnValueChange = function(object)
-		dureeInvestisseurMax = sliderInvestisseur2:GetValue()
-	end
-	formMoneyOrigin = loveframes.Create("form", principaleFrame)
-	formMoneyOrigin:SetSize(315,50):SetName("Origine de l'investissement"):SetPos(35,380)
-	checkboxMoneyOrigin1 = loveframes.Create("checkbox", principaleFrame)
-	checkboxMoneyOrigin1:SetText("Légale")
-	checkboxMoneyOrigin1:SetPos(40, 400)
-	checkboxMoneyOrigin2 = loveframes.Create("checkbox", principaleFrame)
-	checkboxMoneyOrigin2:SetText("Douteuse")
-	checkboxMoneyOrigin2:SetPos(140, 400)
-	checkboxMoneyOrigin3 = loveframes.Create("checkbox", principaleFrame)
-	checkboxMoneyOrigin3:SetText("Indifférent")
-	checkboxMoneyOrigin3:SetPos(240, 400)
+
+	form1Investisseur = loveframes.Create("form",principaleFrame)
+	form1Investisseur:SetPos(50,90):SetSize(310,400):SetName("Règlage des investissements")
+
+		text1Investisseur = loveframes.Create("text",principaleFrame)
+		text1Investisseur:SetPos(60,150):SetText("Investissement minimum :\t\t\t\t\t\t    F\n\n\n\n\n\n\nInvestissement moyen :\t\t\t\t\t\t\t   F\n\n\n\n\n\n\nInvestissement élevé :\t\t\t\t\t\t\t\t F\n\n\n\n\n\n\nInvestissement maximum :\t\t\t\t\t\t   F")
+		text2Investisseur = loveframes.Create("text",principaleFrame)
+		text2Investisseur:SetPos(80,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
+
+		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput1Investisseur:SetPos(250, 145):SetWidth(80):SetText("100000")
+		textinput1Investisseur.OnEnter = function(object,text)
+			minimalInvestment = tonumber(text)
+		end
+		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput2Investisseur:SetPos(250, 240):SetWidth(80):SetText("800000")
+		textinput2Investisseur.OnEnter = function(object,text)
+			middle1Investment = tonumber(text)
+		end
+		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput3Investisseur:SetPos(250,340):SetWidth(80):SetText("8000000")
+		textinput3Investisseur.OnEnter = function(object,text)
+			middle2Investment = tonumber(text)
+		end
+		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput4Investisseur:SetPos(250,440):SetWidth(80):SetText("15000000")
+		textinput4Investisseur.OnEnter = function(object,text)
+			maximalInvestment = tonumber(text)
+		end
+
+		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox1Investisseur:SetPos(270,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox1Investisseur.OnValueChanged = function(object,value)
+			minimalRendement = value
+		end
+
+		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox2Investisseur:SetPos(270,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox2Investisseur.OnValueChanged = function(object,value)
+			middleRendement = value
+		end
+
+		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox3Investisseur:SetPos(270,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox3Investisseur.OnValueChanged = function(object,value)
+			maximalRendement = value
+		end
+
+	form2Investisseur = loveframes.Create("form",principaleFrame)
+	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la maturité des investissements")
+
+		text1Investisseur = loveframes.Create("text",principaleFrame)
+		text1Investisseur:SetPos(430,150):SetText("Maturité mini. :\t\t\t\t\t\t\t\t\t\t     F\n\n\n\n\n\n\nMaturité moyenne :\t\t\t\t\t\t\t\t      F\n\n\n\n\n\n\nMaturité élevée :\t\t\t\t\t\t\t\t\t\t  F\n\n\n\n\n\n\nMaturité max. :\t\t\t\t\t\t\t\t\t\t\t F")
+		text2Investisseur = loveframes.Create("text",principaleFrame)
+		text2Investisseur:SetPos(450,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
+
+		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput1Investisseur:SetPos(620, 145):SetWidth(80):SetText("100000")
+		textinput1Investisseur.OnEnter = function(object,text)
+			minimalTimeInvestment = tonumber(text)
+		end
+		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput2Investisseur:SetPos(620, 240):SetWidth(80):SetText("800000")
+		textinput2Investisseur.OnEnter = function(object,text)
+			middle1TimeInvestment = tonumber(text)
+		end
+		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput3Investisseur:SetPos(620,340):SetWidth(80):SetText("8000000")
+		textinput3Investisseur.OnEnter = function(object,text)
+			middle2TimeInvestment = tonumber(text)
+		end
+		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput4Investisseur:SetPos(620,440):SetWidth(80):SetText("15000000")
+		textinput4Investisseur.OnEnter = function(object,text)
+			maximalTimeInvestment = tonumber(text)
+		end
+
+		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox1Investisseur:SetPos(640,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox1Investisseur.OnValueChanged = function(object,value)
+			minimal2Rendement = value
+		end
+
+		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox2Investisseur:SetPos(640,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox2Investisseur.OnValueChanged = function(object,value)
+			middle2Rendement = value
+		end
+
+		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox3Investisseur:SetPos(640,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+		numberbox3Investisseur.OnValueChanged = function(object,value)
+			maximal2Rendement = value
+		end
 
 -------------------------------------------------------------------------------
 	local secondaryFrame = loveframes.Create("frame")

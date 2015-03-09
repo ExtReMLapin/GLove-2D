@@ -45,6 +45,19 @@ function PrintTable( t, indent, done )
 
 end
 
+
+function isfunction(a)
+	return type(a) == "function"
+	--return true
+end
+
+function isstring(a)
+	return type(a) == "string"
+	--return true
+end
+
+
+
 --[[---------------------------------------------------------
 	Convert Var to Bool
 -----------------------------------------------------------]]

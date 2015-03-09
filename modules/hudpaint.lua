@@ -8,10 +8,6 @@ local love = love
 
 ScrW, ScrH = love.window.getDimensions( )
 
-
-
-
-
 function Color(ra,ga,ba,aa)
 	return {r = ra, g=ga, b=ba, a=aa or 255}
 end
@@ -406,7 +402,7 @@ end)
 
 
 hook.Add("BackGroundDraw", "MoneyMonthDraw", function()
-
+	local value;
 	love.graphics.setColor(255,255,255)
 	surface.RoundedBox(30, 10, 210, 50, 5)
 	love.graphics.setColor(0,0,0)
@@ -418,21 +414,28 @@ hook.Add("BackGroundDraw", "MoneyMonthDraw", function()
 	if table.Count(PastMonthEvent.Months) < 1 then return end
 	local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
 	local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
-	if table.Count(PastMonthEvent.Months) < 2 then
-		min = 0
-		max = max + max/3
-	end
 
+	if math.abs(min) > max then max = math.abs(min) end
+	if min > -1*math.abs(max) then min = -1 * math.abs(max) end
+
+	print("max = "..max)
+	print("min = "..min)
 
 	for k, v in pairs(PastMonthEvent.Months) do
-		local value = math.Remap(v, min, max, 0,59)
+		if v >= 0 then
+			 value = math.Remap(v, 0,  max, 0,59)
+		end
+		if v <= 0 then
+			 value = math.Remap(v,0, math.abs( min), 0,59)
+		end
+		print("lelelelel" .. k .." : " .. v .. "  " .. value)
 		if v > 0 then
 			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle("fill",10+3.5*k,105-value, 3,value)
+			love.graphics.rectangle("fill",11*k,105-value, 10,value)
 		else
 			love.graphics.setColor(255,50,50,255)
 			
-			love.graphics.rectangle("fill",10+5*k,105, 3,value)
+			love.graphics.rectangle("fill",11*k,105, 10,-1*value)
 		end
 
 	end

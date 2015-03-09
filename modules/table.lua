@@ -700,7 +700,7 @@ end
 
 function table.GetWinningKey( tab )
 	
-	local highest = -100000000
+	local highest = -100000000000
 	local winner = nil
 	
 	for k, v in pairs( tab ) do
@@ -716,7 +716,7 @@ end
 
 function table.GetLoosingKey( tab )
 	
-	local highest = 1000000000
+	local highest = 1000000000000
 	local winner = nil
 	
 	for k, v in pairs( tab ) do

@@ -5,11 +5,20 @@ Event[1] = {}
 Event[1].date = string.format("%i%i", 5, 1852)
 Event[1].func = function () CreatePopUp("bite lol","L'épidémie de choléra débutée en Inde atteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera!") end
 Event[2] = {}
-Event[2].date = string.format("%i%i", 6, 1852)
+Event[2].date = string.format("%i%i", 6, 1855)
 Event[2].func = function() CreatePopUp("bite lol","L'épidémie de choléra débutée en Inde atteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera!") end
 Event[3] = {}
 Event[3].date = string.format("%i%i", 2, 1857)
 Event[3].func = function() CreatePopUp("L'épidémie de choléra débutée en Inde atteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera!") end
+Event[4] = {}
+Event[4].date = string.format("%i%i", 11, 1859)
+Event[4].func = function() CreatePopUp("Situé en Egypte, le Canal de Suez permettra de rallier la Mer Méditerranée\n à la Mer Rouge. Début des travaux.") end
+Event[5] = {}
+Event[5].date = string.format("%i%i", 1, 1860)
+Event[5].func = function() CreatePopUp("C'est l'Age d'Or de l'agriculture Française !") end
+Event[6] = {}
+Event[6].date = string.format("%i%i", 6, 1860)
+Event[6].func = function() CreatePopUp("Les forces confédérées attaquent les EU de Lincoln. \nDébut de la guerre de Sécession.") end
 
 
 

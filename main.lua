@@ -39,22 +39,6 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-
-
-		local button = loveframes.Create("button" )
-		button:SetWidth(200)
-		button:SetText("Button")
-		button:Center()
-		button.OnClick = function(object, x, y)
-			addMoney(4500)
-		end
-			
-		CreatePopUp("lol","beat")
-
-
-	local music = love.audio.newSource("ressources/theme.mp3", "static")
-	music:setLooping( true )
-	music:play()
 		
 end
 

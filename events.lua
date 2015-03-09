@@ -25,10 +25,6 @@ end
 
 
 hook.Add("DateChange", "EventDateChange", function()
-	print( string.format("%i%i", T_MONTH, T_YEAR)	)
-	print("----")
-	PrintTable(PassedEvents)
-	print("----")
 	for k, v in pairs(Event) do
 		if not PassedEvents[k] then
 			if v.date == string.format("%i%i", T_MONTH, T_YEAR)	then

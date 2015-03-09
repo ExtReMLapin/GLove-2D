@@ -349,8 +349,9 @@ PopUPMoneyStack = 0
 
 
 local function creatething(seed, time, lPopUPMoneyStack, num,reason)
-
+	print("called in")
 	hook.Add("BackGroundDraw", "MoneyChangeDraw" .. seed, function()
+		print("called loop")
 		love.graphics.setFont( date_box_text1 )
 		if time+0.5 > love.timer.getTime() then
 			local factor = 255
@@ -373,7 +374,8 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 			
 		else
 			PopUPMoneyStack = PopUPMoneyStack -1
-			hook.Remove("BackGroundDraw", "MoneyChange(Draw" .. seed)
+			print("called end rip")
+			hook.Remove("BackGroundDraw", "MoneyChangeDraw" .. seed)
 		end
 	end)
 
@@ -381,9 +383,12 @@ local function creatething(seed, time, lPopUPMoneyStack, num,reason)
 end
 
 hook.Add("MoneyAdd", "Show Money change", function(num,reason)
+	print("monneeeee bro")
 	local time = love.timer.getTime() + 2
 	PopUPMoneyStack = PopUPMoneyStack +1
+	print("called start")
 	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)
+	print("called end")
 end)
 
 hook.Add("DateChange", "Show Month Money change", function(num,reason)

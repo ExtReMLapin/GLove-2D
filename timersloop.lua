@@ -22,7 +22,7 @@ end
 
 
 hook.Add("SaveRestored", "DATETIMERESTAURED", function()
-	timer.create("MainTimerDate",0.2 , 0,
+	timer.create("MainTimerDate",0.5 , 0,
 		function()
 			T_DAY = T_DAY + 1
 			if T_DAY > 4 then

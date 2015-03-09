@@ -85,9 +85,6 @@ end
 
 hook.Add("MousePress", "MenuPress", function(x,y)
 	 principalMenu(x,y)
-	 print("MousePress Call")
-
-
 end)
 
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()

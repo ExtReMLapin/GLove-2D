@@ -60,7 +60,7 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	nbEmployees = 6
 	Popularity = 0
 	Salary = 4000
-	Money = 16000000
+	Money = 6000000
 	Pub = 0
 	Clients = 0
 	T_DAY = 1

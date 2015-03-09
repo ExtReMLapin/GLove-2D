@@ -1,3 +1,4 @@
+--require "CiderDebugger";
 require "input"
 require "maingui"
 require "tutorial"
@@ -28,22 +29,12 @@ function load_modules()
 	require("save")
 end
 
-function precachedata()
-	local pe = coroutine.create(function()
-	for k, v in pairs(Brand) do
-			coroutine.wait(3)
-			bank.corpo_get_value_date(v.rn)
-	end
-	end)
-	coroutine.resume(pe)
-end
 
 function love.load()
 	love.graphics.setBackgroundColor( 255,245,217 )
 	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")
 	load_modules()
-	hook.Add("KeyPressed", "loggin", gamestate_loggin)
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
@@ -58,6 +49,8 @@ function love.load()
 			addMoney(4500)
 		end
 			
+		CreatePopUp("lol","beat")
+
 
 	local music = love.audio.newSource("ressources/theme.mp3", "static")
 	music:setLooping( true )
@@ -77,7 +70,6 @@ function love.draw()
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
-	--playerInfos()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 
 end
@@ -93,9 +85,9 @@ end)
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		--love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
-		--love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
-		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+		love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
+		love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
 		--love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
 	end)
 end)

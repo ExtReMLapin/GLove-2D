@@ -5,7 +5,8 @@ draw = {}
 
 
 local love = love
-
+local table = table
+local math = math
 ScrW, ScrH = love.window.getDimensions( )
 
 function Color(ra,ga,ba,aa)
@@ -407,7 +408,8 @@ end)
 
 
 
-function MoneyMonthDraw() 
+
+hook.Add("BackGroundDraw", "MoneyMonthDraw",function () 
 	local value;
 	love.graphics.setColor(255,255,255)
 	surface.RoundedBox(30, 10, 210, 50, 5)
@@ -443,8 +445,4 @@ function MoneyMonthDraw()
 
 	end
 
-end
-
-
-
-hook.Add("BackGroundDraw", "MoneyMonthDraw", MoneyMonthDraw)
+end)

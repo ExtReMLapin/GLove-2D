@@ -57,8 +57,6 @@ function newobject:update(dt)
 	end
 	local x = self:GetX()
 	local y = self:GetY()
-
-	self.clickbounds = {x = x, y = y-10, width = 00, height = 00}
 	self:CheckHover()
 	
 	local x, y = love.mouse.getPosition()

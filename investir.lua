@@ -69,7 +69,7 @@ function investisseurMenu()
 	form1Investisseur:SetPos(50,90):SetSize(310,400):SetName("Règlage des investissements")
 
 		text1Investisseur = loveframes.Create("text",principaleFrame)
-		text1Investisseur:SetPos(60,150):SetText("Investissement minimum :\t\t\t\t\t\t    F\n\n\n\n\n\n\nInvestissement moyen :\t\t\t\t\t\t\t   F\n\n\n\n\n\n\nInvestissement élevé :\t\t\t\t\t\t\t\t F\n\n\n\n\n\n\nInvestissement maximum :\t\t\t\t\t\t   F")
+		text1Investisseur:SetPos(60,150):SetText("Investissement minimum (F):\n\n\n\n\n\n\nInvestissement moyen (F):\n\n\n\n\n\n\nInvestissement élevé (F):\n\n\n\n\n\n\nInvestissement maximum (F):")
 		text2Investisseur = loveframes.Create("text",principaleFrame)
 		text2Investisseur:SetPos(80,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
 
@@ -116,7 +116,7 @@ function investisseurMenu()
 	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la maturité des investissements")
 
 		text1Investisseur = loveframes.Create("text",principaleFrame)
-		text1Investisseur:SetPos(430,150):SetText("Maturité mini. :\t\t\t\t\t\t\t\t\t\t     F\n\n\n\n\n\n\nMaturité moyenne :\t\t\t\t\t\t\t\t      F\n\n\n\n\n\n\nMaturité élevée :\t\t\t\t\t\t\t\t\t\t  F\n\n\n\n\n\n\nMaturité max. :\t\t\t\t\t\t\t\t\t\t\t F")
+		text1Investisseur:SetPos(430,150):SetText("Maturité mini. (Mois):\n\n\n\n\n\n\nMaturité moyenne (Mois):\n\n\n\n\n\n\nMaturité élevée (Mois):\n\n\n\n\n\n\nMaturité max. (Mois):")
 		text2Investisseur = loveframes.Create("text",principaleFrame)
 		text2Investisseur:SetPos(450,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
 

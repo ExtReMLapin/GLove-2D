@@ -39,6 +39,7 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
+	CreatePopUp("Exposition Universelle de 1855","On construit le Palais de l'Industrie près des \nChamps Elysées pour accueillir la seconde \nexposition universelle, cette fois à Paris!")
 
 
 		local button = loveframes.Create("button" )

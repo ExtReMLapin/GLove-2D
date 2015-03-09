@@ -279,7 +279,7 @@ function DrawDateBox()
 	love.graphics.print("Capital :", ScrW-220, 45)
 	love.graphics.print(string.nicemath(nbClients), ScrW-148, 70)
 	love.graphics.print("Clients : " , ScrW-220, 70)
-	love.graphics.print("Popularité : "..tostring(Popularity), ScrW-220, 95)
+	love.graphics.print("Popularité : "..tostring(Popularity).."/100", ScrW-220, 95)
 	love.graphics.print("Taux directeur : "..tostring(mainRate), ScrW-220, 120)
 
 

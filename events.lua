@@ -4,6 +4,12 @@ Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i%i", 5, 1852)
 Event[1].func = function() print("yo mate, may the 4th be with you") end
+Event[2] = {}
+Event[2].date = string.format("%i%i", 5, 1855)
+Event[2].func = function() CreatePopUp("Exposition Universelle de 1855","On construit le Palais de l'Industrie près des \nChamps Elysées pour accueillir la seconde \nexposition universelle, cette fois à Paris!") end
+Event[3] = {}
+Event[3].date = string.format("%i%i", 2, 1857)
+Event[3].func = function() CreatePopUp("L'épidémie de choléra débutée en Inde atteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera!") end
 
 
 

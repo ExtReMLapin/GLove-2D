@@ -388,23 +388,15 @@ hook.Add("MoneyAdd", "Show Money change", function(num,reason)
 end)
 
 
-hook.Add("DateChange", "Show Month Money change", function(num,reason)
+hook.Add("DateChange", "Show Month Money change", function()
 
 
-	if PastMonthEvent.Months and table.Count(PastMonthEvent.Months) > 40 then table.remove(PastMonthEvent.Months, table.Count(PastMonthEvent.Months)) end
+	--if PastMonthEvent.Months and table.Count(PastMonthEvent.Months) > 40 then table.remove(PastMonthEvent.Months, table.Count(PastMonthEvent.Months)) end
 
 	if PastMonthEvent.LastMonth and T_DAY == 1 and T_SEM == 1 then
 
-		local goal = Money - PastMonthEvent.LastMonth
 		local time = love.timer.getTime() + 1
-		table.insert(PastMonthEvent.Months, 1, goal)
-		hook.Add("Think", "calc flux", function()
-				PastMonthEvent.Months[1] = goal * (1 - (time - love.timer.getTime()))
-			if love.timer.getTime() > time then 
-				hook.Remove("Think", "calc flux")
-			end
-		end)
-		PastMonthEvent.Months[1] = goal
+		table.insert(PastMonthEvent.Months, 1, Money - PastMonthEvent.LastMonth)
 		PastMonthEvent.LastMonth = Money
 	end
 

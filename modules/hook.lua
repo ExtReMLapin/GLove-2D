@@ -1,5 +1,5 @@
 module( "hook", package.seeall )
-
+require"modules/util"
 local Hooks = {}
 
 function GetTable() return Hooks end

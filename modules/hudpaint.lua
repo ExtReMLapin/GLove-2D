@@ -387,24 +387,13 @@ hook.Add("MoneyAdd", "Show Money change", function(num,reason)
 	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)
 end)
 
-
 hook.Add("DateChange", "Show Month Money change", function(num,reason)
 
+	--if table.Count(PassedEvents.Months) > 29 then table.remove(PassedEvents.Months, 1) end
 
-	if PastMonthEvent.Months and table.Count(PastMonthEvent.Months) > 40 then table.remove(PastMonthEvent.Months, table.Count(PastMonthEvent.Months)) end
 
 	if PastMonthEvent.LastMonth and T_DAY == 1 and T_SEM == 1 then
-
-		local goal = Money - PastMonthEvent.LastMonth
-		local time = love.timer.getTime() + 1
-		table.insert(PastMonthEvent.Months, 1, goal)
-		hook.Add("Think", "calc flux", function()
-				PastMonthEvent.Months[1] = goal * (1 - (time - love.timer.getTime()))
-			if love.timer.getTime() > time then 
-				hook.Remove("Think", "calc flux")
-			end
-		end)
-		PastMonthEvent.Months[1] = goal
+		table.insert(PastMonthEvent.Months, #PastMonthEvent.Months + 1, Money - PastMonthEvent.LastMonth)
 		PastMonthEvent.LastMonth = Money
 	end
 
@@ -439,17 +428,14 @@ hook.Add("BackGroundDraw", "MoneyMonthDraw", function()
 		local value = math.Remap(v, min, max, 0,59)
 		if v > 0 then
 			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle("fill",10+6*k,105-value, 4,value)
+			love.graphics.rectangle("fill",10+3.5*k,105-value, 3,value)
 		else
 			love.graphics.setColor(255,50,50,255)
 			
-			love.graphics.rectangle("fill",10+6*k,105, 4,value)
+			love.graphics.rectangle("fill",10+5*k,105, 3,value)
 		end
 
 	end
-
-	love.graphics.setColor(0,0,0,255)
-	love.graphics.rectangle("fill",10,45+60, 250,1)
 
 end)
 

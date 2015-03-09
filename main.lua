@@ -15,6 +15,7 @@ local http;
 local time = os.time()
 
 Msg = io.write;
+local love = love;
 
 function include(file)
 	return require(string.gsub(file, ".lua", ""))

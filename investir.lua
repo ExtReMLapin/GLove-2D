@@ -254,7 +254,6 @@ function budgetMenu()
 	pubAcheter = loveframes.Create("button", budgetFrame)
 	pubAcheter:SetPos(230, 227):SetText("Créer")
 	pubAcheter.OnClick = function(object)
-		Popularity = Popularity + popularitePublicite
 		addMoney(-prixPublicite,"Campagne publicitaire")
 		x,y,z = calculateDate(currentDay,currentMonth,currentYear,attentePublicite)
 		createEvent(string.format("%i%i%i",x,y,z), "Popularity = Popularity + popularitePublicite")

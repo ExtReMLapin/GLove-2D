@@ -113,10 +113,10 @@ function investisseurMenu()
 		end
 
 	form2Investisseur = loveframes.Create("form",principaleFrame)
-	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la maturité des investissements")
+	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la durée des investissements")
 
 		text1Investisseur = loveframes.Create("text",principaleFrame)
-		text1Investisseur:SetPos(430,150):SetText("Maturité mini. (Mois):\n\n\n\n\n\n\nMaturité moyenne (Mois):\n\n\n\n\n\n\nMaturité élevée (Mois):\n\n\n\n\n\n\nMaturité max. (Mois):")
+		text1Investisseur:SetPos(430,150):SetText("Durée mini. (Mois):\n\n\n\n\n\n\nDurée moyenne (Mois):\n\n\n\n\n\n\nDurée élevée (Mois):\n\n\n\n\n\n\nDurée max. (Mois):")
 		text2Investisseur = loveframes.Create("text",principaleFrame)
 		text2Investisseur:SetPos(450,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
 
@@ -414,22 +414,22 @@ function crediteurMenu()
 		text2Crediteur:SetPos(335,195):SetText("- Intérêts du palier(%) :\n\n\n\n\n\n\n- Intérêts du palier(%) :\n\n\n\n\n\n\n- Intérêts du palier(%) :")
 
 		textinput5Crediteur = loveframes.Create("textinput",principaleFrame)
-		textinput5Crediteur:SetPos(465, 145):SetWidth(80):SetText("100000")
+		textinput5Crediteur:SetPos(465, 145):SetWidth(80):SetText("6")
 		textinput5Crediteur.OnEnter = function(object,text)
 			minimalTimeInvestment = tonumber(text)
 		end
 		textinput6Crediteur = loveframes.Create("textinput",principaleFrame)
-		textinput6Crediteur:SetPos(465, 240):SetWidth(80):SetText("800000")
+		textinput6Crediteur:SetPos(465, 240):SetWidth(80):SetText("36")
 		textinput6Crediteur.OnEnter = function(object,text)
 			middle1TimeInvestment = tonumber(text)
 		end
 		textinput7Crediteur = loveframes.Create("textinput", principaleFrame)
-		textinput7Crediteur:SetPos(465,340):SetWidth(80):SetText("8000000")
+		textinput7Crediteur:SetPos(465,340):SetWidth(80):SetText("72")
 		textinput7Crediteur.OnEnter = function(object,text)
 			middle2TimeInvestment = tonumber(text)
 		end
 		textinput8Crediteur = loveframes.Create("textinput", principaleFrame)
-		textinput8Crediteur:SetPos(465,440):SetWidth(80):SetText("15000000")
+		textinput8Crediteur:SetPos(465,440):SetWidth(80):SetText("120")
 		textinput8Crediteur.OnEnter = function(object,text)
 			maximalTimeInvestment = tonumber(text)
 		end

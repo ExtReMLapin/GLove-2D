@@ -411,40 +411,47 @@ end)
 
 
 
-hook.Add("BackGroundDraw", "MoneyMonthDraw",function () 
-	local value;
-	love.graphics.setColor(255,255,255)
-	surface.RoundedBox(30, 10, 210, 50, 5)
-	love.graphics.setColor(0,0,0)
-	love.graphics.setFont( date_box_text1 )
-	love.graphics.print("Flux", 30+105-date_box_text1:getWidth("Flux")/2,17)
-	surface.HUDStaticBox(10,45,250,120)
-	love.graphics.setColor(0,0,0,255)
-	love.graphics.rectangle("fill",10,45+60, 250,1)
-	if table.Count(PastMonthEvent.Months) < 1 then return end
-	local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
-	local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
 
-	if math.abs(min) > max then max = math.abs(min) end
-	if min > -1*math.abs(max) then min = -1 * math.abs(max) end
+hook.Add("SaveRestored", "MoneyMonthDrawsave",function () 
+	hook.Add("BackGroundDraw", "MoneyMonthDraw",function () 
+		local value;
+		love.graphics.setColor(255,255,255)
+		surface.RoundedBox(30, 10, 210, 50, 5)
+		love.graphics.setColor(0,0,0)
+		love.graphics.setFont( date_box_text1 )
+		love.graphics.print("Flux", 30+105-date_box_text1:getWidth("Flux")/2,17)
+		surface.HUDStaticBox(10,45,250,120)
+		love.graphics.setColor(0,0,0,255)
+		love.graphics.rectangle("fill",10,45+60, 250,1)
+		if table.Count(PastMonthEvent.Months) < 1 then return end
+		local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
+		local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
 
+		if math.abs(min) > max then max = math.abs(min) end
+		if min > -1*math.abs(max) then min = -1 * math.abs(max) end
 
-	for k, v in pairs(PastMonthEvent.Months) do
-		if v >= 0 then
-			 value = math.Remap(v, 0,  max, 0,59)
+		for k, v in pairs(PastMonthEvent.Months) do
+			if v >= 0 then
+				 value = math.Remap(v, 0,  max, 0,50)
+			end
+			if v <= 0 then
+				 value = math.Remap(v,0, math.abs( min), 0,50)
+			end
+			if v > 0 then
+				love.graphics.setColor(50,255,50,255)
+				love.graphics.rectangle("fill",5+6*k,105-value, 5,value)
+			else
+				love.graphics.setColor(255,50,50,255)
+				
+				love.graphics.rectangle("fill",5+6*k,105,5,-1*value)
+			end
+
 		end
-		if v <= 0 then
-			 value = math.Remap(v,0, math.abs( min), 0,59)
-		end
-		if v > 0 then
-			love.graphics.setColor(50,255,50,255)
-			love.graphics.rectangle("fill",5+6*k,105-value, 5,value)
-		else
-			love.graphics.setColor(255,50,50,255)
-			
-			love.graphics.rectangle("fill",5+6*k,105,5,-1*value)
-		end
 
-	end
+			love.graphics.setFont( fluwtext )
+			love.graphics.setColor(0,0,0,factor)
+			love.graphics.print(max .. "F", 14 , 45 )
+			love.graphics.print(max .. "F", 14 , 155 )
 
+	end)
 end)

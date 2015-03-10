@@ -3,7 +3,6 @@ require"data"
 surface = {}
 draw = {}
 
-
 local love = love
 local table = table
 local math = math
@@ -16,7 +15,6 @@ end
 color_white = Color(255,255,255)
 color_black = Color(0,0,0)
 
-
 function surface.DrawRect(x, y, width, height)
 	return love.graphics.rectangle( "fill", x, y, width, height )
 end
@@ -25,7 +23,6 @@ end
 function surface.SetDrawColor(tbl)
 	love.graphics.setColor(tbl.r,tbl.g,tbl.b,tbl.a)
 end
-
 
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
@@ -71,7 +68,6 @@ function table.Rearange(tbl)
 	end
 	return tbl2
 end
-
 
 local zoom = 0.1
 local pos = 0.99
@@ -184,8 +180,6 @@ function draw.GradientBox(x, y, w, h, al, ...) -- DO NOT USE, GLITCHY WTF BRO
 		end
 	end
 
-
-
 function WindowsLoadingBarUndefined(xpos, ypos, x, y, speed, colorbg, color)-- yess
 	local pos1 = xpos+x*math.tan(love.timer.getTime()*speed)
 	local bordermax =  math.Max(0, (pos1+x/5)-(xpos+x))
@@ -204,8 +198,6 @@ function WindowsLoadingBarUndefined(xpos, ypos, x, y, speed, colorbg, color)-- y
 end
 
 
-
-
 function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state )-- 0-1 for the state
 	surface.SetDrawColor(colorbg)
 	surface.DrawRect(xpos, ypos, x, y)
@@ -213,7 +205,6 @@ function WindowsLoadingBarDefined(xpos, ypos, x, y, speed, colorbg, color, state
 	surface.DrawRect(xpos, ypos,x*state, y)
 
 end
-
 
 
 local right = 0
@@ -284,8 +275,6 @@ function DrawDateBox()
 
 
 end
-
-
 
 
 function CreatePopUp(title,text, choices, fun1, fun2)
@@ -404,13 +393,6 @@ hook.Add("DateChange", "Show Month Money change", function(num,reason)
 	end
 
 end)
-
-
-
-
-
-
-
 
 hook.Add("SaveRestored", "MoneyMonthDrawsave",function () 
 	hook.Add("BackGroundDraw", "MoneyMonthDraw",function () 

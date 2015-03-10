@@ -56,7 +56,7 @@ function love.draw()
 	loveframes.draw()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 	print(nbInvestisseurs)
-	print(#tblInvestiseurs)
+	print(#tabInvestisseurs or "lol")
 end
 
 

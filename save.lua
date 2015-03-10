@@ -30,7 +30,7 @@ function do_save_data()
 		tbl.DynaEvent = DynaEvent
 		tbl.nbEmployees = nbEmployees
 		tbl.nbInvestisseurs = nbInvestisseurs
-		tbl.tabInvestisseur = tabInvestisseur
+		tbl.tabInvestisseurs = tabInvestisseurs
 		tbl.Popularity = Popularity
 		tbl.Salary = Salary
 		tbl.mainRate = mainRate
@@ -72,7 +72,7 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	PastMonthEvent.Months = {}
 	PassedEvents = {}
 	DynaEvent = {}
-	tabInvestisseur = {}
+	tabInvestisseurs = {}
 	nbClients = 3
 	nbEmployees = 6
 	nbInvestisseurs = 0

@@ -369,40 +369,40 @@ function crediteurMenu()
 		textinput1Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput1Crediteur:SetPos(210, 145):SetWidth(80):SetText("100000")
 		textinput1Crediteur.OnEnter = function(object,text)
-			minimalInvestment = tonumber(text)
+			minimalCredit = tonumber(text)
 		end
 		textinput2Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput2Crediteur:SetPos(210, 240):SetWidth(80):SetText("800000")
 		textinput2Crediteur.OnEnter = function(object,text)
-			middle1Investment = tonumber(text)
+			middle1Credit = tonumber(text)
 		end
 		textinput3Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput3Crediteur:SetPos(210,340):SetWidth(80):SetText("8000000")
 		textinput3Crediteur.OnEnter = function(object,text)
-			middle2Investment = tonumber(text)
+			middle2Credit = tonumber(text)
 		end
 		textinput4Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput4Crediteur:SetPos(210,440):SetWidth(80):SetText("15000000")
 		textinput4Crediteur.OnEnter = function(object,text)
-			maximalInvestment = tonumber(text)
+			maximalCredit = tonumber(text)
 		end
 
 		numberbox1Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox1Crediteur:SetPos(230,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox1Crediteur.OnValueChanged = function(object,value)
-			minimalRendement = value
+			minimalBehoof = value
 		end
 
 		numberbox2Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox2Crediteur:SetPos(230,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox2Crediteur.OnValueChanged = function(object,value)
-			middleRendement = value
+			middleBehoof = value
 		end
 
 		numberbox3Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox3Crediteur:SetPos(230,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox3Crediteur.OnValueChanged = function(object,value)
-			maximalRendement = value
+			maximalBehoof = value
 		end
 
 	form2Crediteur = loveframes.Create("form",principaleFrame)
@@ -416,40 +416,40 @@ function crediteurMenu()
 		textinput5Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput5Crediteur:SetPos(465, 145):SetWidth(80):SetText("6")
 		textinput5Crediteur.OnEnter = function(object,text)
-			minimalTimeInvestment = tonumber(text)
+			minimalTimeCredit = tonumber(text)
 		end
 		textinput6Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput6Crediteur:SetPos(465, 240):SetWidth(80):SetText("36")
 		textinput6Crediteur.OnEnter = function(object,text)
-			middle1TimeInvestment = tonumber(text)
+			middle1TimeCredit = tonumber(text)
 		end
 		textinput7Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput7Crediteur:SetPos(465,340):SetWidth(80):SetText("72")
 		textinput7Crediteur.OnEnter = function(object,text)
-			middle2TimeInvestment = tonumber(text)
+			middle2TimeCredit = tonumber(text)
 		end
 		textinput8Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput8Crediteur:SetPos(465,440):SetWidth(80):SetText("120")
 		textinput8Crediteur.OnEnter = function(object,text)
-			maximalTimeInvestment = tonumber(text)
+			maximalTimeCredit = tonumber(text)
 		end
 
 		numberbox4Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox4Crediteur:SetPos(485,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox4Crediteur.OnValueChanged = function(object,value)
-			minimal2Rendement = value
+			minimal2Behoof = value
 		end
 
 		numberbox5Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox5Crediteur:SetPos(485,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox5Crediteur.OnValueChanged = function(object,value)
-			middle2Rendement = value
+			middle2Behoof = value
 		end
 
 		numberbox6Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox6Crediteur:SetPos(485,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox6Crediteur.OnValueChanged = function(object,value)
-			maximal2Rendement = value
+			maximal2Behoof = value
 		end
 
 	form3Crediteur = loveframes.Create("form",principaleFrame)
@@ -463,40 +463,40 @@ function crediteurMenu()
 		textinput9Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput9Crediteur:SetPos(720, 145):SetWidth(80):SetText("100000")
 		textinput9Crediteur.OnEnter = function(object,text)
-			minimalEarnInvestment = tonumber(text)
+			minimalEarnCredit = tonumber(text)
 		end
 		textinput10Crediteur = loveframes.Create("textinput",principaleFrame)
 		textinput10Crediteur:SetPos(720, 240):SetWidth(80):SetText("800000")
 		textinput10Crediteur.OnEnter = function(object,text)
-			middle1EarnInvestment = tonumber(text)
+			middle1EarnCredit = tonumber(text)
 		end
 		textinput11Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput11Crediteur:SetPos(720,340):SetWidth(80):SetText("8000000")
 		textinput11Crediteur.OnEnter = function(object,text)
-			middle2EarnInvestment = tonumber(text)
+			middle2EarnCredit = tonumber(text)
 		end
 		textinput12Crediteur = loveframes.Create("textinput", principaleFrame)
 		textinput12Crediteur:SetPos(720,440):SetWidth(80):SetText("15000000")
 		textinput12Crediteur.OnEnter = function(object,text)
-			maximalEarnInvestment = tonumber(text)
+			maximalEarnCredit = tonumber(text)
 		end
 
 		numberbox7Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox7Crediteur:SetPos(740,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox7Crediteur.OnValueChanged = function(object,value)
-			minimal3Rendement = value
+			minimal3Behoof = value
 		end
 
 		numberbox8Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox8Crediteur:SetPos(740,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox8Crediteur.OnValueChanged = function(object,value)
-			middle3Rendement = value
+			middle3Behoof = value
 		end
 
 		numberbox9Crediteur = loveframes.Create("numberbox", principaleFrame)
 		numberbox9Crediteur:SetPos(740,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 		numberbox9Crediteur.OnValueChanged = function(object,value)
-			maximal3Rendement = value
+			maximal3Behoof = value
 		end
 
 	local savePresetButton = loveframes.Create("button", principaleFrame)

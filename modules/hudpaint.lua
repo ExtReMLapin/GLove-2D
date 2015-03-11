@@ -383,8 +383,28 @@ hook.Add("DateChange", "Show Month Money change", function(num,reason)
 
 
 	if PastMonthEvent.LastMonth and T_DAY == 1 and T_SEM == 1 then
-		table.insert(PastMonthEvent.Months, 1, Money - PastMonthEvent.LastMonth)
-		if table.Count(PastMonthEvent.Months) > 35 then table.remove(PastMonthEvent.Months, #PastMonthEvent.Months ) end
+		local value;
+		local ch = Money - PastMonthEvent.LastMonth
+		table.insert(PastMonthEvent.Months, 1, ch)
+		local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
+		local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
+
+		if math.abs(min) > max then max = math.abs(min) end
+		if min > -1*math.abs(max) then min = -1 * math.abs(max) end
+
+		if ch >= 0 then
+				 value = math.Remap(ch, 0,  max, 0,50)
+			end
+			if ch <= 0 then
+				 value = math.Remap(ch,0, math.abs(min), 0,50)
+		end
+
+
+		table.insert(PastMonthEvent.MonthsV, 1, value)
+		if table.Count(PastMonthEvent.Months) > 35 then 
+			table.remove(PastMonthEvent.Months, #PastMonthEvent.Months )
+			table.remove(PastMonthEvent.MonthsV, #PastMonthEvent.MonthsV )
+		end
 		PastMonthEvent.LastMonth = Money
 	end
 
@@ -413,12 +433,7 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 		if min > -1*math.abs(max) then min = -1 * math.abs(max) end
 
 		for k, v in pairs(PastMonthEvent.Months) do
-			if v >= 0 then
-				 value = math.Remap(v, 0,  max, 0,50)
-			end
-			if v <= 0 then
-				 value = math.Remap(v,0, math.abs( min), 0,50)
-			end
+			local value = PastMonthEvent.MonthsV[k]
 			if v > 0 then
 				love.graphics.setColor(50,255,50,255)
 				love.graphics.rectangle("fill",5+6*k,105-value, 5,value)

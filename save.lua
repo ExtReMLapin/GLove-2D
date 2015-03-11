@@ -2,8 +2,6 @@ local json = require("modules/json")
 require("modules/hook")
 data = {}
 
-
-
 function init_restore()
 	if not love.filesystem.read("data.txt") then -- 1st use ?
 			hook.Call("FirstLaunch")
@@ -15,7 +13,6 @@ function init_restore()
 		do_restore()
 	end
 end
-
 
 function do_save_data()
 	local tbl = {}
@@ -56,10 +53,6 @@ function do_save_data()
 end
 
 
-
-
-
-
 function do_restore()
 	local str = love.filesystem.read("data.txt")
 	local tbl = json.decode(str)
@@ -70,6 +63,7 @@ end
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	PastMonthEvent = {}
 	PastMonthEvent.Months = {}
+	PastMonthEvent.MonthsV = {}
 	PassedEvents = {}
 	DynaEvent = {}
 	tabInvestisseurs = {}

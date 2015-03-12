@@ -22,7 +22,7 @@ local profilerPeriod = 1
 local profilerTimer,reporter,systemTime,removeHook,debugloop,socketRecieveLoop,handleError
 local socket = require "socket"
 local tcpSocket,master,resolveName, tableToID, idToTable, lastKnownPC
-local CiderRunMode = {};CiderRunMode.runmode = 'PROFILE';CiderRunMode.assertImage = true;CiderRunMode.userdir = "C:/Users/Sykes/AppData/Roaming/luaglider2/dev";local SOCKET_PORT=31127;local GLIDER_MAIN_FOLDER= "C:/Users/Sykes/Desktop/GLove-2D";local useNativePrint= false;local snapshotInterval= -1;local snapshotInterval= -1;local fileFilters= {"CiderDebugger.lua",};local startupMode= "require";--DEBUG HEADERS HERE--
+local CiderRunMode = {};CiderRunMode.runmode = 'PROFILE';CiderRunMode.assertImage = true;CiderRunMode.userdir = "C:/Users/Sykes/AppData/Roaming/luaglider2/dev";local SOCKET_PORT=37486;local GLIDER_MAIN_FOLDER= "C:/Users/Sykes/Desktop/GLove-2D";local useNativePrint= false;local snapshotInterval= -1;local snapshotInterval= -1;local fileFilters= {"CiderDebugger.lua",};local startupMode= "require";--DEBUG HEADERS HERE--
 
 if(shouldDebug and not shouldDebug()) then
     return;

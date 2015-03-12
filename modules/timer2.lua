@@ -1,5 +1,3 @@
--- Based on the GMod timer library, so creds to Garry for that
-
 timer = {}
 
 local PAUSED = -1

@@ -9,6 +9,7 @@ require "data"
 require "investir"
 require "money"
 require "clientsystem"
+require "input"
 
 local http;
 local time = os.time()
@@ -54,16 +55,12 @@ function love.draw()
 	hook.Call("Draw")
 	loveframes.draw()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
-	print(nbInvestisseurs)
-	print(#tabInvestisseurs or "lol")
 end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
 	 principalMenu(x,y)
 	 print("MousePress Call")
-
-
 end)
 
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()

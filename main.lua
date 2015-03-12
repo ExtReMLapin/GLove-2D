@@ -1,5 +1,4 @@
-require "CiderDebugger";--equire "input"
-require "maingui"
+--require "CiderDebugger";
 require "tutorial"
 require "ressources/fonts"
 require "timersloop"

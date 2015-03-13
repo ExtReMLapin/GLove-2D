@@ -376,7 +376,7 @@ hook.Add("MoneyAdd", "Show Money change", function(num,reason)
 	local time = love.timer.getTime() + 2
 	PopUPMoneyStack = PopUPMoneyStack +1
 
-	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)
+	creatething(tostring(math.random(5000000)), time, PopUPMoneyStack, num,reason)-- todo : fix
 end)
 
 hook.Add("DateChange", "Show Month Money change", function(num,reason)

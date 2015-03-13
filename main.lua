@@ -9,6 +9,7 @@ require "investir"
 require "money"
 require "clientsystem"
 require "input"
+require "maingui"
 
 local http;
 local time = os.time()

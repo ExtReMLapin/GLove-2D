@@ -6,6 +6,8 @@ draw = {}
 local love = love
 local table = table
 local math = math
+local string = string
+local 
 ScrW, ScrH = love.window.getDimensions( )
 
 function Color(ra,ga,ba,aa)
@@ -393,14 +395,29 @@ hook.Add("DateChange", "Show Month Money change", function(num,reason)
 		if min > -1*math.abs(max) then min = -1 * math.abs(max) end
 
 		if ch >= 0 then
-				 value = math.Remap(ch, 0,  max, 0,50)
-			end
-			if ch <= 0 then
-				 value = math.Remap(ch,0, math.abs(min), 0,50)
+			 value = math.Remap(ch, 0,  max, 0,50)
 		end
-
-
+		if ch <= 0 then
+			 value = math.Remap(ch,0, math.abs(min), 0,50)
+		end
 		table.insert(PastMonthEvent.MonthsV, 1, value)
+
+		for k, v in pairs(PastMonthEvent.MonthsV) do
+			local value1;
+			local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
+			local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
+			if math.abs(min) > max then max = math.abs(min) end
+			if min > -1*math.abs(max) then min = -1 * math.abs(max) end
+			local ch1 = PastMonthEvent.Months[k]
+			if ch1 >= 0 then
+				 PastMonthEvent.MonthsV[k] = math.Remap(ch1, 0,  max, 0,50)
+			end
+			if ch1 <= 0 then
+				 PastMonthEvent.MonthsV[k] = math.Remap(ch1,0, math.abs(min), 0,50)
+			end
+
+
+		end
 		if table.Count(PastMonthEvent.Months) > 35 then 
 			table.remove(PastMonthEvent.Months, #PastMonthEvent.Months )
 			table.remove(PastMonthEvent.MonthsV, #PastMonthEvent.MonthsV )

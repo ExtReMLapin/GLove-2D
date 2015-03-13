@@ -74,43 +74,29 @@ function investisseurMenu()
 		text2Investisseur:SetPos(80,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
 
 		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
-		textinput1Investisseur:SetPos(250, 145):SetWidth(80):SetText("100000")
-		textinput1Investisseur.OnEnter = function(object,text)
-			minimalInvestment = tonumber(text)
-		end
+		textinput1Investisseur:SetPos(250, 145):SetWidth(80):SetText(tostring(minimalInvestment))
+
 		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
-		textinput2Investisseur:SetPos(250, 240):SetWidth(80):SetText("800000")
-		textinput2Investisseur.OnEnter = function(object,text)
-			middle1Investment = tonumber(text)
-		end
+		textinput2Investisseur:SetPos(250, 240):SetWidth(80):SetText(tostring(middle1Investment))
+
 		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
-		textinput3Investisseur:SetPos(250,340):SetWidth(80):SetText("8000000")
-		textinput3Investisseur.OnEnter = function(object,text)
-			middle2Investment = tonumber(text)
-		end
+		textinput3Investisseur:SetPos(250,340):SetWidth(80):SetText(tostring(middle2Investment))
+
 		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
-		textinput4Investisseur:SetPos(250,440):SetWidth(80):SetText("15000000")
-		textinput4Investisseur.OnEnter = function(object,text)
-			maximalInvestment = tonumber(text)
-		end
+		textinput4Investisseur:SetPos(250,440):SetWidth(80):SetText(tostring(maximalInvestment))
+
 
 		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
 		numberbox1Investisseur:SetPos(270,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox1Investisseur.OnValueChanged = function(object,value)
-			minimalRendement = value
-		end
+
 
 		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
 		numberbox2Investisseur:SetPos(270,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox2Investisseur.OnValueChanged = function(object,value)
-			middleRendement = value
-		end
+
 
 		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
 		numberbox3Investisseur:SetPos(270,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox3Investisseur.OnValueChanged = function(object,value)
-			maximalRendement = value
-		end
+
 
 	form2Investisseur = loveframes.Create("form",principaleFrame)
 	form2Investisseur:SetPos(420,90):SetSize(310,400):SetName("Règlage de la durée des investissements")
@@ -120,44 +106,29 @@ function investisseurMenu()
 		text2Investisseur = loveframes.Create("text",principaleFrame)
 		text2Investisseur:SetPos(450,195):SetText("- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :\n\n\n\n\n\n\n- Rendement du palier(%) :")
 
-		textinput1Investisseur = loveframes.Create("textinput",principaleFrame)
-		textinput1Investisseur:SetPos(620, 145):SetWidth(80):SetText("100000")
-		textinput1Investisseur.OnEnter = function(object,text)
-			minimalTimeInvestment = tonumber(text)
-		end
-		textinput2Investisseur = loveframes.Create("textinput",principaleFrame)
-		textinput2Investisseur:SetPos(620, 240):SetWidth(80):SetText("800000")
-		textinput2Investisseur.OnEnter = function(object,text)
-			middle1TimeInvestment = tonumber(text)
-		end
-		textinput3Investisseur = loveframes.Create("textinput", principaleFrame)
-		textinput3Investisseur:SetPos(620,340):SetWidth(80):SetText("8000000")
-		textinput3Investisseur.OnEnter = function(object,text)
-			middle2TimeInvestment = tonumber(text)
-		end
-		textinput4Investisseur = loveframes.Create("textinput", principaleFrame)
-		textinput4Investisseur:SetPos(620,440):SetWidth(80):SetText("15000000")
-		textinput4Investisseur.OnEnter = function(object,text)
-			maximalTimeInvestment = tonumber(text)
-		end
+		textinput5Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput5Investisseur:SetPos(620, 145):SetWidth(80):SetText(tostring(minimalTimeInvestment))
 
-		numberbox1Investisseur = loveframes.Create("numberbox", principaleFrame)
-		numberbox1Investisseur:SetPos(640,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox1Investisseur.OnValueChanged = function(object,value)
-			minimal2Rendement = value
-		end
+		textinput6Investisseur = loveframes.Create("textinput",principaleFrame)
+		textinput6Investisseur:SetPos(620, 240):SetWidth(80):SetText(tostring(middle1TimeInvestment))
 
-		numberbox2Investisseur = loveframes.Create("numberbox", principaleFrame)
-		numberbox2Investisseur:SetPos(640,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox2Investisseur.OnValueChanged = function(object,value)
-			middle2Rendement = value
-		end
+		textinput7Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput7Investisseur:SetPos(620,340):SetWidth(80):SetText(tostring(middle2TimeInvestment))
 
-		numberbox3Investisseur = loveframes.Create("numberbox", principaleFrame)
-		numberbox3Investisseur:SetPos(640,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
-		numberbox3Investisseur.OnValueChanged = function(object,value)
-			maximal2Rendement = value
-		end
+		textinput8Investisseur = loveframes.Create("textinput", principaleFrame)
+		textinput8Investisseur:SetPos(620,440):SetWidth(80):SetText(tostring(maximalTimeInvestment))
+
+
+		numberbox4Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox4Investisseur:SetPos(640,190):SetWidth(60):SetDecimals(1):SetValue(2.1):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+
+
+		numberbox5Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox5Investisseur:SetPos(640,288):SetWidth(60):SetDecimals(1):SetValue(3.3):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
+
+
+		numberbox6Investisseur = loveframes.Create("numberbox", principaleFrame)
+		numberbox6Investisseur:SetPos(640,388):SetWidth(60):SetDecimals(1):SetValue(4.5):SetMinMax(0,100):SetIncreaseAmount(0.1):SetDecreaseAmount(0.1)
 
 -------------------------------------------------------------------------------
 	local secondaryFrame = loveframes.Create("frame")
@@ -179,7 +150,20 @@ function investisseurMenu()
 	local savePresetButton = loveframes.Create("button", principaleFrame)
 	savePresetButton:SetText("Enregistrer"):SetPos(270,560)
 	savePresetButton.OnClick = function()
-		--enregistrer les presets
+		minimalInvestment = tonumber(textinput1Investisseur:GetText())
+		middle1Investment = tonumber(textinput2Investisseur:GetText())
+		middle2Investment = tonumber(textinput3Investisseur:GetText())
+		maximalInvestment = tonumber(textinput4Investisseur:GetText())
+		minimalTimeInvestment = tonumber(textinput5Investisseur:GetText())
+		middle1TimeInvestment = tonumber(textinput6Investisseur:GetText())
+		middle2TimeInvestment = tonumber(textinput7Investisseur:GetText())
+		maximalTimeInvestment = tonumber(textinput8Investisseur:GetText())
+		minimalRendement = numberbox1Investisseur:GetValue()
+		middleRendement = numberbox2Investisseur:GetValue()
+		maximalRendement = numberbox3Investisseur:GetValue()
+		minimal2Rendement = numberbox4Investisseur:GetValue()
+		middle2Rendement = numberbox5Investisseur:GetValue()
+		maxima2lRendement = numberbox6Investisseur:GetValue()
 		principaleFrame:Remove()
 		secondaryFrame:Remove()
 		IsOnDesktop = true
@@ -187,6 +171,7 @@ function investisseurMenu()
 		hook.Remove("OverLayDraw", "Slidertest")
 		love.mouse.setCursor( c_arrow )
 	end
+
 	local cancelPresetButton = loveframes.Create("button", principaleFrame)
 	cancelPresetButton:SetText("Annuler"):SetPos(395,560)
 	cancelPresetButton.OnClick = function()

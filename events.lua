@@ -3,16 +3,16 @@ require("modules/hook")
 Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i%i", 6, 1855)
-Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde atteint \nmaintenant la Russie et bientôt l'Europe, personne\n ne sait où elle s'arrêtera!") end
+Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde atteint \nmaintenant la Russie et bientôt l'Europe, personne\nne sait où elle s'arrêtera!\n") end
 Event[2] = {}
 Event[2].date = string.format("%i%i", 11, 1859)
-Event[2].func = function() CreatePopUp("Construction du Canal de Suez","Situé en Egypte, le Canal de Suez permettra de rallier\nla Mer Méditerranée à la Mer Rouge.\nDébut des travaux.") end
+Event[2].func = function() CreatePopUp("Construction du Canal de Suez","Situé en Egypte, le Canal de Suez permettra de rallier\nla Mer Méditerranée à la Mer Rouge.\nDébut des travaux.\n") end
 Event[3] = {}
 Event[3].date = string.format("%i%i", 1, 1860)
-Event[3].func = function() CreatePopUp("Age d'Or de l'agriculture","C'est l'Age d'Or de l'agriculture Française !") end
+Event[3].func = function() CreatePopUp("Age d'Or de l'agriculture","C'est l'Age d'Or de l'agriculture Française !\n") end
 Event[4] = {}
 Event[4].date = string.format("%i%i", 6, 1860)
-Event[4].func = function() CreatePopUp("Guerre de Sécession","Les forces confédérées attaquent les EU de Lincoln. \nDébut de la guerre de Sécession.") end
+Event[4].func = function() CreatePopUp("Guerre de Sécession","Les forces confédérées attaquent les EU de Lincoln. \nDébut de la guerre de Sécession.\n") end
 
 
 

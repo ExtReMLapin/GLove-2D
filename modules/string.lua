@@ -293,7 +293,7 @@ function string.GetChar( s, k )
 	return s:sub( k, k )
 
 end
---[[
+
 local meta = getmetatable( "" )
 
 function meta:__index( key ) -- not really performance friendly
@@ -304,7 +304,7 @@ function meta:__index( key ) -- not really performance friendly
 	else
 		error( "bad key to string index (number expected, got " .. type( key ) .. ")", 2 )
 	end
-end]]
+end
 
 function string.StartWith( String, Start )
 

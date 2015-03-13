@@ -1,4 +1,7 @@
 --require "CiderDebugger";
+
+
+
 require "tutorial"
 require "ressources/fonts"
 require "timersloop"
@@ -39,7 +42,8 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-		
+
+
 end
 
 

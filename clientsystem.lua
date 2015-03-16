@@ -21,7 +21,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			Money = Money + tabInvestisseurs[pos].money
 			annualPayment = (annualPayment or 0) + tabInvestisseurs[pos].money*tabInvestisseurs[pos].rate
 			local x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,tabInvestisseurs[pos].time * 31)
-			createEvent(string.format("%i%i%i",x,y,z), "function () Money = Money - tabInvestisseurs[pos].money end")
+			createEvent(string.format("%i%i%i",x,y,z), "Money = Money - tabInvestisseurs[pos].money")
 			newInvestisseurs = newInvestisseurs - 1
 		end
 	end

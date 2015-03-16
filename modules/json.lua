@@ -275,7 +275,7 @@ local escapeList = {
 }
 
 function encodeString(s)
-  base.print(s)
+ s =  base.tostring(s)
  return s:gsub(".", function(c) return escapeList[c] end) -- SoniEx2: 5.0 compat
 end
 

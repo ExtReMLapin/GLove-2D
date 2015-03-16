@@ -44,16 +44,15 @@ hook.Add("SaveRestored", "DATETIMERESTAURED", function()
 	)
 end)
 
-function calculateDate(currentDay,currentMonth,currentYear,nbDays)
-	if currentDay + nbDays > 31 then
-		currentMonth = currentMonth + ((currentDay + nbDays)/31)
+function calculateDate(currentWeek,currentMonth,currentYear,nbDays)
+	currentWeek = currentWeek + nbDays / 7
+	if currentWeek > 4 then
+		currentMonth = currentMonth + currentWeek/4
+		currentWeek = currentWeek%4
 		if currentMonth > 12 then
-			currentYear = currentYear + 1
+			currentYear = currentYear + currentMonth/12
 			currentMonth = currentMonth%12
 		end
-		currentDay = (currentDay + nbDays)%31
-	else
-		currentDay = currentDay + nbDays
 	end
-	return currentDay, currentMonth, currentYear
+	return currentWeek, currentMonth, currentYear
 end

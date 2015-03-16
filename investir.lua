@@ -206,10 +206,6 @@ end
 
 function budgetMenu()
 	IsOnDesktop = false
-	local currentDay = T_DAY
-	local currentMonth = T_MONTH
-	local currentYear = T_YEAR
-	local x,y,z
 	
 	budgetFrame = loveframes.Create("frame")
 	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
@@ -240,7 +236,7 @@ function budgetMenu()
 	pubAcheter:SetPos(230, 227):SetText("Créer")
 	pubAcheter.OnClick = function(object)
 		addMoney(-prixPublicite,"Campagne publicitaire")
-		x,y,z = calculateDate(currentDay,currentMonth,currentYear,attentePublicite)
+		x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,attentePublicite)
 		createEvent(string.format("%i%i%i",x,y,z), "Popularity = Popularity + popularitePublicite")
 	end	
 ---------------------------------------------------------------------------------------------------------

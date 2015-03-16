@@ -21,6 +21,7 @@ function do_save_data()
 		tbl.T_SEM = T_SEM
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
+		tbl.Passed3mLimit = Passed3mLimit
 		tbl.Money = Money
 		tbl.Pub = Pub
 		tbl.PassedEvents = PassedEvents
@@ -61,6 +62,7 @@ function do_restore()
 end
 
 hook.Add("FirstLaunch", "timerfirstlaunch", function()
+	Passed3mLimit = false
 	PastMonthEvent = {}
 	PastMonthEvent.Months = {}
 	PastMonthEvent.MonthsV = {}

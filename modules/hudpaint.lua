@@ -7,7 +7,6 @@ local love = love
 local table = table
 local math = math
 local string = string
-local 
 ScrW, ScrH = love.window.getDimensions( )
 
 function Color(ra,ga,ba,aa)
@@ -58,7 +57,7 @@ function gesposongraph2(x, w,y)
 end
 
 
-local fnt1 = love.graphics.newFont(  )
+local fnt1 = love.graphics.newFont()
 local fnt2 = love.graphics.newFont(10)
 
 function table.Rearange(tbl)

@@ -41,10 +41,10 @@ end)
 function calculateDate(currentWeek,currentMonth,currentYear,nbDays)
 	currentWeek = currentWeek + nbDays / 7
 	if currentWeek > 4 then
-		currentMonth = currentMonth + currentWeek/4
+		currentMonth = currentMonth + currentWeek/4 - currentWeek%4
 		currentWeek = currentWeek%4
 		if currentMonth > 12 then
-			currentYear = currentYear + currentMonth/12
+			currentYear = currentYear + currentMonth/12 - currentMonth%12
 			currentMonth = currentMonth%12
 		end
 	end

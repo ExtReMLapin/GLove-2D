@@ -48,7 +48,7 @@ function do_save_data()
 		tbl.maximalRendement = maximalRendement
 		tbl.minimal2Rendement = minimal2Rendement
 		tbl.middle2Rendement = middle2Rendement
-		tbl.maxima2lRendement = maxima2lRendement
+		tbl.maximal2Rendement = maximal2Rendement
 		str = json.encode(tbl)
 		love.filesystem.write("data.txt", str)
 end

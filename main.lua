@@ -13,7 +13,6 @@ require "money"
 require "clientsystem"
 require "input"
 require "maingui"
-
 local http;
 local time = os.time()
 
@@ -42,7 +41,7 @@ function love.load()
 	love.graphics.setLineStyle('smooth')
 	love.graphics.setLineWidth(2)
 	init_restore()
-
+	require "background"
 
 local theme = love.audio.newSource("ressources/theme.mp3", "static")
 
@@ -63,6 +62,7 @@ function love.update()
 end
 
 function love.draw()
+	hook.Call("BackBackGround") -- the real one .... this time eheh
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()

@@ -9,9 +9,8 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		Popularity = math.Max(0,Popularity-0.5)
 	end
 	if T_MONTH == 6 or T_MONTH == 12 then
-		newInvestisseurs = (nbClients / 1000)*Popularity
+		newInvestisseurs = (nbClients / 100000)*Popularity
 		nbInvestisseurs = nbInvestisseurs + newInvestisseurs
-		moneyInvestisseur = math.random(minimalInvestment/100,maximalInvestment/100) * nbClients
 		while newInvestisseurs > 0 do
 			local pos = nbInvestisseurs-newInvestisseurs
 			tabInvestisseurs[pos] = {}

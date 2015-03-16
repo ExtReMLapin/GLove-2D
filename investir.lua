@@ -219,11 +219,11 @@ function budgetMenu()
 	pubMultichoice.OnChoiceSelected = function(object,choice)
 		if choice == "Prospectus" then
 			prixPublicite = 8000
-			attentePublicite = 93
+			attentePublicite = 84
 			popularitePublicite = 3
 		elseif choice == "Presse" then
 			prixPublicite = 20000
-			attentePublicite = 31
+			attentePublicite = 28
 			popularitePublicite = 8
 		elseif choice == "Don" then
 			prixPublicite = 150000

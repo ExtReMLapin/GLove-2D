@@ -12,7 +12,7 @@ local loveframes = require(path .. ".libraries.common")
 
 -- library info
 loveframes.author = "Kenny Shields"
-loveframes.version = "0.9.8.1"
+loveframes.version = "0.9.8.2"
 loveframes.stage = "Alpha"
 
 -- library configurations

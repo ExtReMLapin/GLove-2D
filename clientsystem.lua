@@ -15,13 +15,13 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		while newInvestisseurs > 0 do
 			local pos = nbInvestisseurs-newInvestisseurs
 			tabInvestisseurs[pos] = {}
-			tabInvestisseurs[pos].money = math.random(minimalInvestment/100,maximalInvestment/100) * nbClients
+			tabInvestisseurs[pos].money = math.random(minimalInvestment/1000,maximalInvestment/1000) * nbClients
 			tabInvestisseurs[pos].time = math.random(minimalTimeInvestment, maximalTimeInvestment)
 			tabInvestisseurs[pos].rate = tauxInvestisseur(tabInvestisseurs[pos].money,tabInvestisseurs[pos].time) / 100
 			Money = Money + tabInvestisseurs[pos].money
 			annualPayment = (annualPayment or 0) + tabInvestisseurs[pos].money*tabInvestisseurs[pos].rate
 			local x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,tabInvestisseurs[pos].time * 31)
-			createEvent(string.format("%i%i%i",x,y,z), "Money = Money - tabInvestisseurs[pos].money")
+			createEvent(string.format("%i%i%i",x,y,z), "Money = Money - tabInvestisseurs["..  pos .."].money")
 			newInvestisseurs = newInvestisseurs - 1
 		end
 	end

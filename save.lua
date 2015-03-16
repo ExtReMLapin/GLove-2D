@@ -76,7 +76,6 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	Salary = 4000
 	Money = 6000000
 	Pub = 0
-	Clients = 0
 	T_DAY = 1
 	T_SEM = 1
 	T_MONTH = 4
@@ -94,7 +93,7 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	maximalRendement = 4.5
 	minimal2Rendement = 2.1
 	middle2Rendement = 3.3
-	maxima2lRendement = 4.5
+	maximal2Rendement = 4.5
 	mainRate = math.random(1750,2250)/1000
 	Investisements = {Pub = 0}
 end)

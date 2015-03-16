@@ -3,11 +3,9 @@
 -----------------------------------------------------------]]
 function string.ToTable ( str )
 	local tbl = {}
-	
 	for i = 1, string.len( str ) do
 		tbl[i] = string.sub( str, i, i )
 	end
-	
 	return tbl
 end
 
@@ -15,13 +13,11 @@ end
 function string.nicemath(num)
 	size = tonumber( num )
 	size = math.Round(size)
-
 	if ( size == 0 ) then return "0" end
 	if ( size < 1000 ) then return size end
 	if ( size < 1000 * 1000 ) then return math.Round( size / 1000,2 ) .. " K" end
 	if num < 0 then return "-" .. math.Round( size / (1000*1000), 2 ) .. " M" end
 	return math.Round( size / (1000*1000), 2 ) .. " M"
-
 end
 
 
@@ -32,12 +28,10 @@ end
 
 
 function string.JavascriptSafe( str )
-
 	str = str:Replace( "\\", "\\\\" )
 	str = str:Replace( "\"", "\\\"" )
 	str = str:Replace( "\n", "\\n" )
 	str = str:Replace( "\r", "\\r" )
-	
 	return str
 
 end
@@ -52,18 +46,14 @@ local string_gsub = string.gsub
 local string_gmatch = string.gmatch
 function string.Explode(separator, str, withpattern)
 	if (separator == "") then return totable( str ) end
-	 
 	local ret = {}
 	local index,lastPosition = 1,1
-	 
 	-- Escape all magic characters in separator
 	if not withpattern then separator = string_gsub( separator, "[%-%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%1" ) end
-	 
 	-- Find the parts
 	for startPosition,endPosition in string_gmatch( str, "()" .. separator.."()" ) do
 		ret[index] = string_sub( str, lastPosition, startPosition-1)
 		index = index + 1
-		 
 		-- Keep track of the position
 		lastPosition = endPosition
 	end
@@ -238,7 +228,6 @@ end
 -----------------------------------------------------------]]
 function string.TrimRight( s, char )
 	if (  not char ) then char = " " end
-	
 	if ( string.sub( s, -1 ) == char ) then
 		s = string.sub( s, 0, -2 )
 		s = string.TrimRight( s, char )
@@ -254,19 +243,17 @@ end
 -----------------------------------------------------------]]
 function string.TrimLeft( s, char )
 	if (  not char ) then char = " " end
-	
 	if ( string.sub( s, 1 ) == char ) then
 		s = string.sub( s, 1 )
 		s = string.TrimLeft( s, char )
 	end
-	
+
 	return s
 end
 
 function string.NiceSize( size )
 	
 	size = tonumber( size )
-
 	if ( size <= 0 ) then return "0" end
 	if ( size < 1024 ) then return size .. " Bytes" end
 	if ( size < 1024 * 1024 ) then return math.Round( size / 1024, 2 ) .. " KB" end
@@ -280,12 +267,10 @@ end
 -- ie they start from 1, not 0.
 
 function string.SetChar( s, k, v )
-
 	local start = s:sub( 0, k-1 )
 	local send = s:sub( k+1 )
 	
 	return start .. v .. send
-
 end
 
 function string.GetChar( s, k )
@@ -307,47 +292,32 @@ function meta:__index( key ) -- not really performance friendly
 end
 
 function string.StartWith( String, Start )
-
    return string.sub( String, 1, string.len (Start ) ) == Start
-
 end
 
 function string.EndsWith( String, End )
-
    return End == '' or string.sub( String, -string.len( End ) ) == End
-
 end
 
 function string.FromColor( color )
-
    return Format( "%i %i %i %i", color.r, color.g, color.b, color.a );
-
 end
 
 function string.ToColor( str )
-
 	local col = Color( 255, 255, 255, 255 )
-
 	col.r, col.g, col.b, col.a = str:match("(%d+) (%d+) (%d+) (%d+)")
-
 	col.r = tonumber( col.r )
 	col.g = tonumber( col.g )
 	col.b = tonumber( col.b )
 	col.a = tonumber( col.a )
-
 	return col
-
 end
 
 function string.Comma( number )
-
 	local number, k = tostring( number ), nil
-
 	while true do  
 		number, k = string.gsub( number, "^(-?%d+)(%d%d%d)", '%1,%2')
 		if ( k == 0 ) then break end
 	end
-
 	return number
-
 end

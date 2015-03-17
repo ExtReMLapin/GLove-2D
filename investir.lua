@@ -237,7 +237,7 @@ function budgetMenu()
 	pubAcheter.OnClick = function(object)
 		addMoney(-prixPublicite,"Campagne publicitaire")
 		x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,attentePublicite)
-		createEvent(string.format("%i%i%i",x,y,z), "Popularity = Popularity + popularitePublicite")
+		createEvent(string.format("%i%i%i",x,y,z), "Popularity = Popularity + ".. popularitePublicite)
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)

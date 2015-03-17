@@ -4,22 +4,27 @@ require("modules/hook")
 hook.Add("DateChange", "PuBClientCalc", function()
 	local nbInvestisseursCopy
 	if T_SEM == 1 and T_DAY == 1 or  T_SEM == 3 and T_DAY == 1 then
-		nbClients = nbClients + (Popularity*2)
-		nbClients = nbClients + (nbClients*0.02)
+		newClients = Popularity*2
+		if (nbClients + newClients) + (nbClients + newClients)*0.02  < nbEmployees * 30 then
+			nbClients = nbClients + (Popularity*2)
+			nbClients = nbClients + (nbClients*0.02)
+		else
+			nbClients = nbEmployees*30
+		end
 		Popularity = math.Max(0,Popularity-0.5)
 	end
-	if T_MONTH == 6 or T_MONTH == 12 then
+	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
 		newInvestisseurs = (nbClients / 100000)*Popularity
 		nbInvestisseurs = nbInvestisseurs + newInvestisseurs
 		while newInvestisseurs > 0 do
 			local pos = nbInvestisseurs-newInvestisseurs
 			tabInvestisseurs[pos] = {}
-			tabInvestisseurs[pos].money = math.random(minimalInvestment/1000,maximalInvestment/1000) * nbClients
+			tabInvestisseurs[pos].money = math.random(minimalInvestment/1000,maximalInvestment/1000) * (nbClients/100)
 			tabInvestisseurs[pos].time = math.random(minimalTimeInvestment, maximalTimeInvestment)
 			tabInvestisseurs[pos].rate = tauxInvestisseur(tabInvestisseurs[pos].money,tabInvestisseurs[pos].time) / 100
-			Money = Money + tabInvestisseurs[pos].money
+			addMoney(tabInvestisseurs[pos].money, "Investissemnt")
 			annualPayment = (annualPayment or 0) + tabInvestisseurs[pos].money*tabInvestisseurs[pos].rate
-			local x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,tabInvestisseurs[pos].time * 31)
+			local x,y,z = calculateDate(T_SEM,T_MONTH,T_YEAR,tabInvestisseurs[pos].time * 31)
 			createEvent(string.format("%i%i%i",x,y,z), "Money = Money - tabInvestisseurs["..  pos .."].money")
 			newInvestisseurs = newInvestisseurs - 1
 		end

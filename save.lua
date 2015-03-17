@@ -21,6 +21,7 @@ function do_save_data()
 		tbl.T_SEM = T_SEM
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
+		tbl.annualPayment = annualPayment
 		tbl.Passed3mLimit = Passed3mLimit
 		tbl.Money = Money
 		tbl.Pub = Pub
@@ -71,6 +72,7 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	tabInvestisseurs = {}
 	nbClients = 3
 	nbEmployees = 6
+	annualPayment = 0
 	nbInvestisseurs = 0
 	Popularity = 0
 	Salary = 4000

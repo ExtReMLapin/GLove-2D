@@ -43,13 +43,15 @@ function love.load()
 	init_restore()
 	require "background"
 
-local theme = love.audio.newSource("ressources/theme.mp3", "static")
+	local theme = love.audio.newSource("ressources/theme.mp3", "static")
 
 
-theme:setVolume(0.1) -- 90% of ordinary volume
-theme:setPitch(1) -- one octave lower
-theme:setLooping(true)
-theme:play()
+	theme:setVolume(0.1) -- 90% of ordinary volume
+	theme:setPitch(1) -- one octave lower
+	theme:setLooping(true)
+--	theme:play()
+
+	 CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"})
 
 end
 

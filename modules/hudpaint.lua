@@ -278,7 +278,7 @@ function DrawDateBox()
 end
 
 
-function CreatePopUp(title,text, choices, fun1, fun2)
+function CreatePopUp(title,text, choices, fun)
 	local isinto = false
 	hook.Add("OverLayDraw", "popup", function()
 		pausetime()
@@ -299,9 +299,10 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 		love.graphics.setFont(popuptext)
 		love.graphics.print( text ,  ScrW/2- 230 , ScrH/2-83-hei/2)
 
+		love.graphics.setFont(popuptitle)
 		if not choices then
 
-			love.graphics.setFont(popuptitle)
+			
 			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
 				love.mouse.setCursor( c_hand )
 
@@ -325,6 +326,37 @@ function CreatePopUp(title,text, choices, fun1, fun2)
 				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
 
 			end
+		else
+			local isonbutton = false
+			local sizeperbutton = 400/ #choices - (#choices-2)*5 -- -2 because of 2 are at the borders
+			for k, v in pairs(choices) do
+				local pos = ScrW/2-200 + (k-1)*sizeperbutton + (k-1)*10
+				love.graphics.setColor(247,143,29)
+
+
+
+				if MOUSE_X > pos and MOUSE_X < pos + sizeperbutton and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
+
+					love.graphics.setColor(250,164,26)
+					isonbutton = true
+					if love.mouse.isDown("l") then
+						local func = fun[k]
+						func()
+						unpausetime()
+						hook.Remove("OverLayDraw", "popup")
+						love.mouse.setCursor( c_arrow )
+						IsOnDesktop = true
+					end
+
+				end
+				love.graphics.rectangle("fill",  pos, ScrH/2-30+hei-hei/2, sizeperbutton , 60 )
+				love.graphics.setColor(0,0,0)
+				love.graphics.print( v ,  pos + sizeperbutton/2 - popuptitle:getWidth(v)/2 , ScrH/2-30+hei+15-hei/2)
+
+
+			end
+			if isonbutton then love.mouse.setCursor( c_hand ) else love.mouse.setCursor( c_cursor ) end
+
 		end
 	end)
 end

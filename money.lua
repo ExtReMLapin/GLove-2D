@@ -2,11 +2,11 @@ require("modules/hook")
 
 local cash = love.audio.newSource("ressources/cash.ogg", "static")
 
-cash:setVolume(0.3) -- 90% of ordinary volume
-cash:setPitch(1) -- one octave lower
+cash:setVolume(0.3)
+cash:setPitch(1) 
 
 function addMoney(num, reason)
-	if num == 0 then return end
+	if num == 0 then return end -- really ?
 	Money = Money + num
 	hook.Call("MoneyAdd", num, reason or "Dépenses")
 	cash:play()
@@ -35,8 +35,6 @@ hook.Add("MoneyAdd", "AutoSafeOnMoneyChange", function()
 				endGame()
 			end
 		end
-
-
 end)
 
 

@@ -7,6 +7,7 @@ cash:setPitch(1)
 
 function addMoney(num, reason)
 	if num == 0 then return end -- really ?
+	num = math.Round(numy)
 	Money = Money + num
 	hook.Call("MoneyAdd", num, reason or "Dépenses")
 	cash:play()

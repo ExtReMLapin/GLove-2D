@@ -51,7 +51,7 @@ function love.load()
 	theme:setLooping(true)
 --	theme:play()
 
-	 CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"})
+	 --CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
 
 end
 

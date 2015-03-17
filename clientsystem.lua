@@ -6,11 +6,13 @@ hook.Add("DateChange", "PuBClientCalc", function()
 	if T_SEM == 1 and T_DAY == 1 or  T_SEM == 3 and T_DAY == 1 then
 		newClients = Popularity*2
 		if (nbClients + newClients) + (nbClients + newClients)*0.02  < nbEmployees * 30 then
-			nbClients = nbClients + (Popularity*2)
+			nbClients = nbClients + newClients
 			nbClients = nbClients + (nbClients*0.02)
 		else
+			newClients = (nbEmployees*30) - nbClients
 			nbClients = nbEmployees*30
 		end
+		clientProfilGen(newClients)
 		Popularity = math.Max(0,Popularity-0.5)
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
@@ -48,4 +50,32 @@ function tauxInvestisseur(money,time)
 		taux = taux + maximal2Rendement
 	end
 	return taux
+end
+
+function clientProfilGen(newClients)
+	local lowProfile = math.Round(newClients/3)
+	local midProfile = math.Round(newClients/1.5)
+	local highProfile = newClients - (lowProfile + midProfile)
+	local clientMoney = 0
+	totalClientMoney = 0
+
+	while lowProfile > 0 do
+		clientMoney = math.random(20,1000)
+		annualPayment = annualPayment + clientMoney*0.031
+		totalClientMoney = totalClientMoney + clientMoney
+		lowProfile = lowProfile - 1
+	end
+	while midProfile > 0 do
+		clientMoney = math.random(1001,6000)
+		annualPayment = annualPayment + clientMoney*0.031
+		totalClientMoney = totalClientMoney + clientMoney
+		midProfile = midProfile - 1
+	end
+	while highProfile > 0 do
+		clientMoney = math.random(6001,12000)
+		annualPayment = annualPayment + clientMoney*0.031
+		totalClientMoney = totalClientMoney + clientMoney
+		highProfile = highProfile - 1
+	end
+	addMoney(totalClientMoney, "Nouveaux clients")
 end

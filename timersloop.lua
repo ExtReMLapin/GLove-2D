@@ -43,6 +43,7 @@ function calculateDate(currentWeek,currentMonth,currentYear,nbDays)
 	if currentWeek > 4 then
 		currentMonth = currentMonth + (currentWeek - currentWeek%4)/4
 		currentWeek = currentWeek%4
+		if currentWeek == 0 then currentWeek = 1 end
 		if currentMonth > 12 then
 			currentYear = currentYear + (currentMonth - currentMonth%12)/12
 			currentMonth = currentMonth%12

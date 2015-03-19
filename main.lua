@@ -1,6 +1,4 @@
---require "CiderDebugger";
-
-
+--require "CiderDebugger";--
 
 require "ressources/fonts"
 require "timersloop"

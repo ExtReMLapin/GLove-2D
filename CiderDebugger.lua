@@ -1,6 +1,3 @@
-
-
-
 --v2.0.1
 --[[
 Glider Debugger Library

@@ -5,7 +5,6 @@ MOUSE_S_Y = nil
 require("modules/hook");
 
 function love.mousepressed(x, y, button)
-
 	if not MOUSE_STATE then
 		MOUSE_S_X, MOUSE_S_Y = love.mouse.getPosition( )
 	end
@@ -23,17 +22,16 @@ function love.mousereleased(x, y, button)
 	MOUSE_S_X = nil
 	MOUSE_S_Y = nil
 	ONEPRESSED = false
+
 	loveframes.mousereleased(x, y, button)
 end
 
 function love.keypressed(key, unicode)
-
 	hook.Call("KeyPressed", key, unicode)
 	loveframes.keypressed(key, unicode)
 end
 
 function love.keyreleased(key)
-
 	hook.Call("KeyReleased", key )
 	loveframes.keyreleased(key)
 end

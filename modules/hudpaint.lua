@@ -118,11 +118,9 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
 
 	end
-
 	--local l = fnt1:getWidth("Brand Name : " .. realname) +11
 	--love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
 	--love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
-	
 	
 	if h > 100 then
 		local i = 0;

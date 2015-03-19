@@ -14,8 +14,6 @@ Event[4] = {}
 Event[4].date = string.format("%i%i", 6, 1860)
 Event[4].func = function() CreatePopUp("Guerre de Sécession","Les forces confédérées attaquent les EU de Lincoln. \nDébut de la guerre de Sécession.\n") end
 
-
-
 function createEvent(date, func)
 	if not type(func) == "string" then error("Func in createEvent() must be a string, retard") end
 	local tbl = {}
@@ -23,9 +21,6 @@ function createEvent(date, func)
 	tbl.func = func
 	table.insert(DynaEvent, tbl)
 end
-
-
-
 
 hook.Add("DateChange", "EventDateChange", function()
 	for k, v in pairs(Event) do

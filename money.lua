@@ -37,5 +37,3 @@ hook.Add("MoneyAdd", "AutoSafeOnMoneyChange", function()
 			end
 		end
 end)
-
-

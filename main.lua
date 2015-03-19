@@ -2,7 +2,6 @@
 
 
 
-require "tutorial"
 require "ressources/fonts"
 require "timersloop"
 require "save"
@@ -49,9 +48,8 @@ function love.load()
 	theme:setVolume(0.1) -- 90% of ordinary volume
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
---	theme:play()
-
-	 --CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
+	--theme:play()
+	--CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
 
 end
 

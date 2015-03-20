@@ -247,7 +247,7 @@ function budgetMenu()
 	employeeManagementText2 = loveframes.Create("text", budgetFrame)
 	employeeManagementText2:SetPos(30,350)
 	employeeManagementNumberbox = loveframes.Create("numberbox",budgetFrame)
-	employeeManagementNumberbox:SetPos(170,420):SetMinMax(0,nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(0):SetHeight(25)
+	employeeManagementNumberbox:SetPos(170,420):SetMinMax(0,17 - nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(0):SetHeight(25)
 	employeeManagementNumberbox.OnValueChanged = function(object,value)
 		if employeeManagementMultichoice:GetChoice() == "Recruter" then
 			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : +"..employeeManagementNumberbox:GetValue())

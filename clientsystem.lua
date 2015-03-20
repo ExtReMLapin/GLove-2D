@@ -18,6 +18,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
 		newInvestisseurs = math.Round((nbClients / 1000)*Popularity, 0)
+		if newInvestisseurs > 5 then newInvestisseurs = 5 end
 		nbInvestisseurs = nbInvestisseurs + newInvestisseurs
 		while newInvestisseurs > 0 do
 			local pos = nbInvestisseurs-newInvestisseurs

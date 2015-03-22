@@ -33,10 +33,6 @@ function table.Cut(tbl, start, _end)
 	return tbln
 end
 
-
-
-
-
 --[[---------------------------------------------------------
 	Name: Copy(t, lookup_table)
 	Desc: Taken straight from http://lua-users.org/wiki/PitLibTablestuff

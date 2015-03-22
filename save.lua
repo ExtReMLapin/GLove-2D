@@ -1,6 +1,8 @@
 local json = require("modules/json")
 require("modules/hook")
 data = {}
+tblsave = ""
+
 
 function init_restore()
 	if not love.filesystem.read("data.txt") then -- 1st use ?
@@ -50,15 +52,15 @@ function do_save_data()
 		tbl.minimal2Rendement = minimal2Rendement
 		tbl.middle2Rendement = middle2Rendement
 		tbl.maximal2Rendement = maximal2Rendement
-		str = json.encode(tbl)
+		str = table.ToString(tbl, "tblsave", true)
 		love.filesystem.write("data.txt", str)
 end
 
 
 function do_restore()
-	local str = love.filesystem.read("data.txt")
-	local tbl = json.decode(str)
-	table.Merge(_G, tbl)
+	local func = loadstring(love.filesystem.read("data.txt"))
+	func()
+	table.Merge(_G, tblsave)
 	hook.Call("SaveRestored")
 end
 

@@ -1,4 +1,4 @@
---require "CiderDebugger";--
+--
 
 require "ressources/fonts"
 require "timersloop"
@@ -48,7 +48,6 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
-
 end
 
 
@@ -76,11 +75,11 @@ end)
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		--love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
 		--love.graphics.print("X,Y,Z debug:"..tostring(x)..", "..tostring(y)..", "..tostring(z), 200,700)
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		--love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
-		--love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
+		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
 	end)
 end)

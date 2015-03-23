@@ -6,6 +6,7 @@ theme:setLooping(false)
 fonterrortitle = love.graphics.newFont("ressources/Ubuntu-B.ttf", 72)
 fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
 fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
+sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)
 
 
 
@@ -49,7 +50,7 @@ function love.errhand(msg)
     love.graphics.setBackgroundColor( 0,0,0 )
 
 
-       theme:play()
+    theme:play()
     local function draw()
         love.mouse.setCursor( love.mouse.getSystemCursor('arrow') )
         love.graphics.clear()
@@ -61,13 +62,13 @@ function love.errhand(msg)
         love.graphics.setFont(fonterrorsubtitle)
         local text = "You broke the game"
         love.graphics.print( text ,  ScrW/2 - fonterrorsubtitle:getWidth(text)/2, 85)
-
+        love.graphics.setFont(sfonterrorsubtitle2)
+        local text = "fucking"
+        love.graphics.print( text ,  ScrW/2 - fonterrorsubtitle:getWidth("You broke the game")/2 + fonterrorsubtitle:getWidth("You broke the")-22 , 122)
 
 
         love.graphics.setColor(255,255,255,255)
         love.graphics.draw(warning,quad , 900, 180+math.sin(love.timer.getTime()*3)*12,math.rad(5))
-
-
 
         love.graphics.setFont(love.graphics.newFont (15))
         love.graphics.print(p, 42, 230)
@@ -80,7 +81,7 @@ function love.errhand(msg)
         if not ERROR_SENT then
             ERROR_SENT = true
             love.system.setClipboardText( p )
-            
+
         end
 
         love.graphics.present()

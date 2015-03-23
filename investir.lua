@@ -250,7 +250,7 @@ function budgetMenu()
 	employeeManagementNumberbox:SetPos(170,420):SetMinMax(0,17 - nbEmployees):SetIncreaseAmount(1):SetWidth(60):SetValue(0):SetHeight(25)
 	employeeManagementNumberbox.OnValueChanged = function(object,value)
 		if employeeManagementMultichoice:GetChoice() == "Recruter" then
-			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : +"..employeeManagementNumberbox:GetValue()*0.5)
+			employeeManagementText2:SetText("\nCoût sup. : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : +"..employeeManagementNumberbox:GetValue()*0.25)
 		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
 			employeeManagementText2:SetText("\nEconomie : "..(employeeManagementNumberbox:GetValue() * Salary).."F/mois\nPopularité : -"..employeeManagementNumberbox:GetValue())
 		end
@@ -260,7 +260,7 @@ function budgetMenu()
 	employeeManagementButton.OnClick = function(object)
 		if employeeManagementMultichoice:GetChoice() == "Recruter" then
 			nbEmployees = nbEmployees + employeeManagementNumberbox:GetValue()
-			Popularity = Popularity + employeeManagementNumberbox:GetValue()*0.5
+			Popularity = Popularity + employeeManagementNumberbox:GetValue()*0.25
 		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
 			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
 			Popularity = Popularity - employeeManagementNumberbox:GetValue()

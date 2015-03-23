@@ -61,6 +61,8 @@ function do_restore()
 	local func = loadstring(love.filesystem.read("data.txt"))
 	func()
 	table.Merge(_G, tblsave)
+	func = nil
+	tblsave = nil
 	hook.Call("SaveRestored")
 end
 

@@ -1,5 +1,5 @@
 --
-
+require "error"
 require "ressources/fonts"
 require "timersloop"
 require "save"
@@ -10,6 +10,7 @@ require "money"
 require "clientsystem"
 require "input"
 require "maingui"
+
 local http;
 local time = os.time()
 

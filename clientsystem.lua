@@ -25,10 +25,10 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			baseMoney = math.random(minimalInvestment/1000,maximalInvestment/1000) * (nbClients/100)
 			baseTime = math.random(minimalTimeInvestment, maximalTimeInvestment)
 			baseRate = tauxInvestisseur(baseMoney,baseTime) / 100
-			addMoney(baseMoney, "Investissemnt")
+			addMoney(baseMoney, "Investissement")
 			annualPayment = (annualPayment or 0) + baseMoney*baseRate
 			local x,y,z = calculateDate(T_SEM,T_MONTH,T_YEAR, baseTime * 31)
-			createEvent(string.format("%i%i%i",x,y,z), "Money = Money - ".. baseMoney)
+			createEvent(string.format("%i/%i/%i",x,y,z), "Money = Money - ".. baseMoney)
 			newInvestisseurs = newInvestisseurs - 1
 		end
 	end

@@ -266,6 +266,10 @@ function budgetMenu()
 			Popularity = Popularity - employeeManagementNumberbox:GetValue()
 		end
 		employeeManagementText:SetText("Nombre d'employés : "..nbEmployees)
+		if employeeManagementNumberbox:GetValue() + nbEmployees > 17 then
+			employeeManagementNumberbox:SetValue(0)
+			employeeManagementNumberbox:SetMinMax(0,17 - nbEmployees)
+		end
 	end
 
 	employeeManagementMultichoice = loveframes.Create("multichoice", budgetFrame)

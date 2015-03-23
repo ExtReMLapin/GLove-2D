@@ -268,7 +268,7 @@ function budgetMenu()
 		employeeManagementText:SetText("Nombre d'employés : "..nbEmployees)
 		if employeeManagementNumberbox:GetValue() + nbEmployees > 17 then
 			employeeManagementNumberbox:SetValue(0)
-			employeeManagementNumberbox:SetMinMax(0,17 - nbEmployees)
+			employeeManagementNumberbox:SetMinMax(0,math.Max(17 - nbEmployees,0))
 		end
 	end
 

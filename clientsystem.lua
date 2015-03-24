@@ -22,8 +22,8 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		nbInvestisseurs = nbInvestisseurs + newInvestisseurs
 		while newInvestisseurs > 0 do
 			local pos = nbInvestisseurs-newInvestisseurs
-			baseMoney = math.random(minimalInvestment/1000,maximalInvestment/1000) * (nbClients/100)
-			baseTime = math.random(minimalTimeInvestment, maximalTimeInvestment)
+			baseMoney = math.Round(math.random(minimalInvestment/1000,maximalInvestment/1000), 0) * (nbClients/100)
+			baseTime = math.Round(math.random(minimalTimeInvestment, maximalTimeInvestment), 0)
 			baseRate = tauxInvestisseur(baseMoney,baseTime) / 100
 			addMoney(baseMoney, "Investissement")
 			annualPayment = (annualPayment or 0) + baseMoney*baseRate
@@ -61,19 +61,19 @@ function clientProfilGen(newClients)
 	totalClientMoney = 0
 
 	while lowProfile > 0 do
-		clientMoney = math.random(20,1000)
+		clientMoney = math.Round(math.random(20,1000), 0)
 		annualPayment = annualPayment + clientMoney*0.031
 		totalClientMoney = totalClientMoney + clientMoney
 		lowProfile = lowProfile - 1
 	end
 	while midProfile > 0 do
-		clientMoney = math.random(1001,6000)
+		clientMoney = math.Round(math.random(1001,6000), 0)
 		annualPayment = annualPayment + clientMoney*0.031
 		totalClientMoney = totalClientMoney + clientMoney
 		midProfile = midProfile - 1
 	end
 	while highProfile > 0 do
-		clientMoney = math.random(6001,12000)
+		clientMoney = math.Round(math.random(6001,12000), 0)
 		annualPayment = annualPayment + clientMoney*0.031
 		totalClientMoney = totalClientMoney + clientMoney
 		highProfile = highProfile - 1

@@ -1,7 +1,7 @@
 
 	 dureeInvestisseurMin =nil 
 	 dureeInvestisseurMax =nil
-	 remunerationInvestisseurMin = nil
+	 remunerationInvestisseurMin =nil
 	 remunerationInvestisseurMax =nil 
 	 prixPublicite = 0
 

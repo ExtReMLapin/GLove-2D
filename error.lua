@@ -81,9 +81,8 @@ function love.errhand(msg)
         if not ERROR_SENT then
             ERROR_SENT = true
             love.system.setClipboardText( p )
-
+            love.filesystem.write( tostring(os.time()) ..".txt", table.ToString(_G, "_G", true))
         end
-
         love.graphics.present()
     end
     while true do

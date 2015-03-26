@@ -48,7 +48,7 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
-	CreatePopUp("lol","lelelele\nellelel", {"Ok", "tamer", "ggwp"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
+	CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
 end
 
 

@@ -1,4 +1,4 @@
-username = "Testguy"
+--[[username = "Testguy"
 usrlevel = 3
 account_growth = 34
 virtual_account_money = 2500
@@ -220,3 +220,99 @@ function seformerMenu(realX,realY)
 	menuFormer:SetImage("ressources/formerbar.png")
 	menuFormer:SetPos(principalMenuX + 212,principalMenuY)
 end
+--]]
+
+
+
+hook.Add("SaveRestored", "gui create", function()
+
+
+
+
+
+	MenuLeft = loveframes.Create("panel")
+	MenuLeft:SetSize(500,300)
+	MenuLeft:SetPos(ScrW-50, 250)
+	MenuLeft.Update = function(object, dt)
+	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
+		if MOUSE_X > MenuLeft:GetX() and MOUSE_X < (MenuLeft:GetX() + MenuLeft:GetWidth()) and MOUSE_Y > MenuLeft:GetY() and MOUSE_Y < (MenuLeft:GetY() + MenuLeft:GetHeight()) then
+			if MenuLeft:GetX() > ScrW - 350 then
+			MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 350, -25 ), MenuLeft:GetY())
+			end
+		else
+			if MenuLeft:GetX() == ScrW-50 then return end
+			if MenuLeft:GetX() < ScrW-50 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 50, 25 ), MenuLeft:GetY()) end
+		end
+	end
+
+
+
+
+	MenuDown = loveframes.Create("panel")
+	MenuDown:SetSize(450,600)
+	MenuDown:SetPos(75, ScrH-25)
+	MenuDown.Update = function(object, dt)
+	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
+		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
+			if MenuDown:GetY() > ScrH - 550 then
+			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - 550, -34 ))
+			end
+		else
+			if MenuDown:GetY() == ScrH-25 then return end
+			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, 34 )) end
+		end
+	end
+
+
+	local MenuDownArrow = loveframes.Create("image", MenuDown)
+		MenuDownArrow:SetImage("ressources/arrow2.png")
+		MenuDownArrow:SetPos(400, 20)
+		MenuDownArrow:SetOffsetX(9)
+		MenuDownArrow:SetOffsetY(9)
+		MenuDownArrow.Update = function(object)
+		MenuDownArrow:SetOrientation(math.rad(math.Remap(MenuDown:GetY(),170,695,0,180) ) + math.rad(90))
+		end
+
+
+
+
+local tabs = loveframes.Create("tabs", MenuDown)
+tabs:SetPos(5, 10)
+tabs:SetSize(440, 500)
+
+    local panel1 = loveframes.Create("panel")
+    tabs:AddTab("Investisements", panel1, "Investisements")
+
+    local panel2 = loveframes.Create("panel")
+    tabs:AddTab("Créditeurs", panel2, "Créditeurs")
+
+    local panel3 = loveframes.Create("panel")
+    tabs:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
+
+    local panel4 = loveframes.Create("panel")
+    tabs:AddTab("Personel", panel4, "Personel")
+
+    local panel5 = loveframes.Create("panel")
+    tabs:AddTab("Publicité", panel5, "Publicité")
+
+
+
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

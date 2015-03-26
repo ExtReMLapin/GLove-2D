@@ -1,4 +1,3 @@
-
 require "error"
 require "ressources/fonts"
 require "timersloop"
@@ -48,7 +47,7 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
-	CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() print('lol') end,function() print('lol') end,function() print('lol') end })
+	CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
 
@@ -60,6 +59,7 @@ function love.update()
 end
 
 function love.draw()
+	ScrW, ScrH = love.window.getDimensions( )
 	hook.Call("BackBackGround") -- the real one .... this time eheh
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
@@ -69,18 +69,18 @@ end
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)
-	 principalMenu(x,y)
+	-- principalMenu(x,y)
 	 print("MousePress Call")
 end)
 
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10 ,ScrH-50)
 		--love.graphics.print("X,Y,Z debug:"..tostring(x)..", "..tostring(y)..", "..tostring(z), 200,700)
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		--love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
-		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
+		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), ScrW-300,ScrH-50)
 	end)
 end)

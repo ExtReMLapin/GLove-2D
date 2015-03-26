@@ -207,6 +207,7 @@ end
 function budgetMenu()
 	IsOnDesktop = false
 	
+	local engouementPublicite, reputationPublicite = 0
 	budgetFrame = loveframes.Create("frame")
 	budgetFrame:SetSize(800,600):Center():SetName("Menu budget"):ShowCloseButton(false)
 
@@ -220,24 +221,28 @@ function budgetMenu()
 		if choice == "Prospectus" then
 			prixPublicite = 8000
 			attentePublicite = 84
-			popularitePublicite = 3
+			engouementPublicitie = 0.1
+			reputationPublicite = 0.1
 		elseif choice == "Presse" then
 			prixPublicite = 20000
 			attentePublicite = 28
-			popularitePublicite = 8
+			engouementPublicitie = 0.1
+			reputationPublicite = 0.3
 		elseif choice == "Don" then
 			prixPublicite = 150000
 			attentePublicite = 14
-			popularitePublicite = 15
+			engouementPublicite = 0.4
+			reputationPublicite = 0.2
 		end
-		pubData:SetText("Coût de la campagne : ".. prixPublicite.."F\nTemps d'attente : "..attentePublicite.." Jours\nGain de popularité : +"..popularitePublicite)
+		pubData:SetText("Coût de la campagne : ".. prixPublicite.."F\nTemps d'attente : "..attentePublicite.." Jours")
 	end
 	pubAcheter = loveframes.Create("button", budgetFrame)
 	pubAcheter:SetPos(230, 227):SetText("Créer")
 	pubAcheter.OnClick = function(object)
 		addMoney(-prixPublicite,"Campagne pub.")
 		x,y,z = calculateDate(T_DAY,T_MONTH,T_YEAR,attentePublicite)
-		createEvent(string.format("%i/%i/%i",x,y,z), "Popularity = Popularity + ".. popularitePublicite)
+		if engouementPublicite > 0 then createEvent(string.format("%i/%i/%i",x,y,z), "engouement = engouement + ".. engouementPublicite) end
+		if reputationPublicite > 0 then createEvent(string.format("%i/%i/%i",x,y,z), "reputation = reputation + ".. reputationPublicite) end
 	end	
 ---------------------------------------------------------------------------------------------------------
 	employeeManagementForm = loveframes.Create("form", budgetFrame)
@@ -260,10 +265,9 @@ function budgetMenu()
 	employeeManagementButton.OnClick = function(object)
 		if employeeManagementMultichoice:GetChoice() == "Recruter" then
 			nbEmployees = nbEmployees + employeeManagementNumberbox:GetValue()
-			Popularity = Popularity + employeeManagementNumberbox:GetValue()*0.5
 		elseif employeeManagementMultichoice:GetChoice() == "Licencier" then
 			nbEmployees = nbEmployees - employeeManagementNumberbox:GetValue()
-			Popularity = Popularity - employeeManagementNumberbox:GetValue()
+			reputation = reputation - (employeeManagementNumberbox:GetValue() * 0.1)
 		end
 		employeeManagementText:SetText("Nombre d'employés : "..nbEmployees)
 		if employeeManagementNumberbox:GetValue() + nbEmployees > 17 then
@@ -302,10 +306,10 @@ function budgetMenu()
 	salaryButton.OnClick = function(object)
 		if salaryMultichoice:GetChoice() == "Augmenter les salaires" then
 			Salary = Salary + salaryNumberbox:GetValue()
-			Popularity = Popularity + (salaryNumberbox:GetValue()/200 * 2)
+			employeeEfficiency = employeeEfficiency + (salaryNumberbox:GetValue()/200 * 0.1)
 		elseif salaryMultichoice:GetChoice() == "Baisser les salaires" then
 			Salary = Salary - salaryNumberbox:GetValue()
-			Popularity = Popularity - (salaryNumberbox:GetValue()/200 * 2)
+			employeeEfficiency = employeeEfficiency - (salaryNumberbox:GetValue()/200 * 0.1)
 		end
 		salaryText1:SetText("Nombre d'employés : ".. nbEmployees.."\nSalaire actuel : "..Salary)
 	end

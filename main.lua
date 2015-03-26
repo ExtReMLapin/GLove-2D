@@ -81,6 +81,10 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		--love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
-		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), ScrW-300,ScrH-50)
+		
+		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
+		love.graphics.print("Engouement : " .. engouement, 200,700)
+		love.graphics.print("Réputation : " .. reputation, 400, 700)
+
 	end)
 end)

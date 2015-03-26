@@ -3,8 +3,9 @@ function love.conf(t)
 	t.window.title = "SafeTrade v0.6"
 	t.window.width = 1280
 	t.window.height = 720
-	t.window.resizable = true
+	t.window.resizable = false
 	t.window.vsync = true
-	t.window.fsaa = 0
+	t.window.fsaa = 8
+	t.console = true 
 	t.window.highdpi = false 
 end

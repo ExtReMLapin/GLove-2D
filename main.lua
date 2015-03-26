@@ -46,8 +46,8 @@ function love.load()
 	theme:setVolume(0.1) -- 90% of ordinary volume
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
-	--theme:play()
-	CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
+	theme:play()
+	--CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
 

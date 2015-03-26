@@ -31,11 +31,8 @@ function do_save_data()
 		tbl.DynaEvent = DynaEvent
 		tbl.nbEmployees = nbEmployees
 		tbl.nbInvestisseurs = nbInvestisseurs
-		--tbl.tabInvestisseurs = tabInvestisseurs
-		tbl.Popularity = Popularity
 		tbl.Salary = Salary
 		tbl.mainRate = mainRate
-		tbl.Popularity = Popularity
 		tbl.nbClients = nbClients
 		tbl.PastMonthEvent = PastMonthEvent
 		tbl.minimalInvestment = minimalInvestment
@@ -52,6 +49,10 @@ function do_save_data()
 		tbl.minimal2Rendement = minimal2Rendement
 		tbl.middle2Rendement = middle2Rendement
 		tbl.maximal2Rendement = maximal2Rendement
+		tbl.engouement = engouement
+		tbl.reputation = reputation
+		tbl.connaissanceBanque = connaissanceBanque
+		tbl.employeeEfficiency = employeeEfficiency
 		str = table.ToString(tbl, "tblsave", true)
 		love.filesystem.write("data.txt", str)
 end
@@ -101,5 +102,9 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	middle2Rendement = 3.3
 	maximal2Rendement = 4.5
 	mainRate = math.random(1750,2250)/1000
+	engouement = 0
+	reputation = 0
+	connaissanceBanque = 550000
+	employeeEfficiency = 1
 	Investisements = {Pub = 0}
 end)

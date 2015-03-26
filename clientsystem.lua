@@ -4,20 +4,20 @@ require("modules/hook")
 hook.Add("DateChange", "PuBClientCalc", function()
 	local nbInvestisseursCopy
 	local baseMoney, baseTime, baseRate = 0
-	if T_SEM == 1 and T_DAY == 1 or  T_SEM == 3 and T_DAY == 1 then
-		newClients = Popularity*2
-		if (nbClients + newClients) + (nbClients + newClients)*0.02  < nbEmployees * 30 then
-			nbClients = nbClients + newClients
-			nbClients = nbClients + (nbClients*0.02)
+	if (T_SEM == 1 or T_SEM == 2 or T_SEM == 3 or T_SEM == 4) and T_DAY == 1 then
+		newClients = (connaissanceBanque - nbClients) * (engouement * math.max(reputation, 0.1))/10000
+		newClients = math.Round(newClients, 0)
+		if newClients + nbClients > nbEmployees * (30 * employeeEfficiency) then
+			newClients =  (nbEmployees * (30 * employeeEfficiency)) - nbClients 
+			nbClients = newClients + nbClients
 		else
-			newClients = (nbEmployees*30) - nbClients
-			nbClients = nbEmployees*30
+			nbClients = nbClients + newClients
 		end
 		clientProfilGen(newClients)
-		Popularity = math.Max(0,Popularity-0.5)
+		if engouement > 0.1 then engouement = engouement - 0.1 end
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
-		newInvestisseurs = math.Round((nbClients / 1000)*Popularity, 0)
+		newInvestisseurs = math.Round((nbClients / 1000)*(reputation + engouement * 17), 0)
 		if newInvestisseurs > 5 then newInvestisseurs = 5 end
 		nbInvestisseurs = nbInvestisseurs + newInvestisseurs
 		while newInvestisseurs > 0 do

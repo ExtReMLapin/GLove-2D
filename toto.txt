@@ -1,10 +1,21 @@
 Nouveau système de popularité : 
 	-Engouement : easy à modifier
 	-Banque connue ou pas (ca peut que monter, pas descendre, sauf si les personnes meurent :v ), ca se fait via la pub
-	-Banque appréciée ou pas, lent a modifier
+	-Banque appréciée ou pas, lent a modifier, peut aussi ne pas bouger si on fait pas trop grand chose
 
 	-L'engouement ou la note de la banque ne peut être supérieur au fait que la banque soit connu.
 
+	-Le tout est dépendant de l'apréciation.
+
+
+	banque_connue -> 0 - 7 000 000 000 (inf)
+	engouement -> 0-1
+	appréciée -> 0-1
+
+
+	Nouveaux clients = (banque_connue-clients_actuels)*(engouement*appréciée)/100
 
 Nouvelle interface : 
 	Avec les menus en bas
+
+

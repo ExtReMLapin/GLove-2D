@@ -8,7 +8,7 @@ math.randomseed( os.time() );
 -- Alias string.Format to global Format
 --
 Format = string.format
-
+Msg = io.write;
 --[[---------------------------------------------------------
 	Prints a table to the console
 -----------------------------------------------------------]]

@@ -13,8 +13,6 @@ require "maingui"
 local http;
 local time = os.time()
 
-Msg = io.write;
-
 function include(file)
 	return require(string.gsub(file, ".lua", ""))
 end
@@ -59,13 +57,18 @@ function love.update()
 end
 
 function love.draw()
-	ScrW, ScrH = love.window.getDimensions( )
 	hook.Call("BackBackGround") -- the real one .... this time eheh
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 end
+
+function love.resize(w, h)
+	ScrW = w
+	ScrH = h
+end
+
 
 
 hook.Add("MousePress", "MenuPress", function(x,y)

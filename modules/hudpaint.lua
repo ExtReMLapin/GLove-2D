@@ -1,4 +1,4 @@
-width, height = love.graphics.getDimensions()
+ScrW, ScrH = love.window.getDimensions( )
 require"data"
 surface = {}
 draw = {}
@@ -7,7 +7,7 @@ local love = love
 local table = table
 local math = math
 local string = string
-ScrW, ScrH = love.window.getDimensions( )
+
 
 function Color(ra,ga,ba,aa)
 	return {r = ra, g=ga, b=ba, a=aa or 255}
@@ -125,7 +125,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if h > 100 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < height) do
+		while (i < ScrH) do
 			if (i > y and i < y+h) and i%50 == 1 then
 				local val = math.Remap(i,y+h,y,min,max)
 				val = math.Round(val*10)
@@ -140,7 +140,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if w > 300 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < width) do
+		while (i < ScrW) do
 			if (i > x and i < x+w) and i%170 == 1 then
 				--tbl3[table.CloseValue(tbl2, gesposongraph(i, y, w, h))]
 				local val = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))], "T00:00:00", "")

@@ -236,6 +236,8 @@ hook.Add("SaveRestored", "gui create", function()
 		else
 			if MenuLeft:GetX() == ScrW-25 then return end
 			if MenuLeft:GetX() < ScrW-25 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 25, 25 ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() > ScrW-25 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 25, -25 ), MenuLeft:GetY()) end
+
 		end
 	end
 
@@ -254,6 +256,7 @@ hook.Add("SaveRestored", "gui create", function()
 		else
 			if MenuDown:GetY() == ScrH-25 then return end
 			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, 34 )) end
+			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -34 )) end
 		end
 	end
 
@@ -264,7 +267,7 @@ hook.Add("SaveRestored", "gui create", function()
 		MenuDownArrow:SetOffsetX(9)
 		MenuDownArrow:SetOffsetY(9)
 		MenuDownArrow.Update = function(object)
-		MenuDownArrow:SetOrientation(math.rad(math.Remap(MenuDown:GetY(),170,695,0,180) ) + math.rad(90))
+		MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),550,25,0,180) ) + math.rad(90))
 		end
 
 

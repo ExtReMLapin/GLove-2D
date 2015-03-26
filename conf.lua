@@ -1,11 +1,19 @@
+require "modules/util"
+require "modules/table"
+
 function love.conf(t)
 	t.version = "0.9.1"
-	t.window.title = "SafeTrade v0.6"
+	t.window.title = "SafeTrade v0.8"
 	t.window.width = 1280
 	t.window.height = 720
-	t.window.resizable = false
+	t.window.resizable = true
+	t.window.minwidth = 800
+    t.window.minheight = 600  
 	t.window.vsync = true
-	t.window.fsaa = 8
+	t.window.fsaa = 0
 	t.console = true 
-	t.window.highdpi = false 
+	t.window.highdpi = false
+	t.window.srgb = false
+	PrintTable(t)
+	if jit.os == "OSX" then t.window.highdpi = true end
 end

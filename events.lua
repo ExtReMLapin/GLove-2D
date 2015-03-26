@@ -13,12 +13,15 @@ Event[3].func = function() CreatePopUp("Age d'Or de l'agriculture","C'est l'Age 
 Event[4] = {}
 Event[4].date = string.format("%i/%i", 6, 1860)
 Event[4].func = function() CreatePopUp("Guerre de Sécession","Les forces confédérées attaquent les EU de Lincoln. \nDébut de la guerre de Sécession.\n") end
+Event[5] = {}
 Event[5].date = string.format("%i%i", 2, 1865)
-Event[5].func = function() CreatePopUp("Abolition de l'esclavage aux Etats-Unis", "Promulgation du 13ème amendement abolissant \nl'esclavage par A. Lincoln.\nFin de la guerre de Sécession")
+Event[5].func = function() CreatePopUp("Abolition de l'esclavage aux Etats-Unis", "Promulgation du 13ème amendement abolissant \nl'esclavage par A. Lincoln.\nFin de la guerre de Sécession") end
+Event[6] = {}
 Event[6].date = string.format("%i%i", 11, 1869)
-Event[6].func = function() CreatePopUp("Inauguration du Canal de Suez", "L'impératrice Eugénie inaugure le Canal de Suez, \nsuivie par 77 navires de nations maritimes")
+Event[6].func = function() CreatePopUp("Inauguration du Canal de Suez", "L'impératrice Eugénie inaugure le Canal de Suez, \nsuivie par 77 navires de nations maritimes") end
+Event[7] = {}
 Event[7].date = string.format("%i%i", 5, 1870)
-Event[7].func = function() CreatePopUp("Création de Standard Oil", "Création de la compagnie pétrolière Standard Oil \npar John D. Rokefeller")
+Event[7].func = function() CreatePopUp("Création de Standard Oil", "Création de la compagnie pétrolière Standard Oil \npar John D. Rokefeller") end
 
 
 function createEvent(date, func)

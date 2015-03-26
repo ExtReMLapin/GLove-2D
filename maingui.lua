@@ -222,13 +222,7 @@ function seformerMenu(realX,realY)
 end
 --]]
 
-
-
 hook.Add("SaveRestored", "gui create", function()
-
-
-
-
 
 	MenuLeft = loveframes.Create("panel")
 	MenuLeft:SetSize(500,300)

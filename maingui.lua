@@ -232,7 +232,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 	MenuLeft = loveframes.Create("panel")
 	MenuLeft:SetSize(500,300)
-	MenuLeft:SetPos(ScrW-50, 250)
+	MenuLeft:SetPos(ScrW-25, 250)
 	MenuLeft.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuLeft:GetX() and MOUSE_X < (MenuLeft:GetX() + MenuLeft:GetWidth()) and MOUSE_Y > MenuLeft:GetY() and MOUSE_Y < (MenuLeft:GetY() + MenuLeft:GetHeight()) then
@@ -240,8 +240,8 @@ hook.Add("SaveRestored", "gui create", function()
 			MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 350, -25 ), MenuLeft:GetY())
 			end
 		else
-			if MenuLeft:GetX() == ScrW-50 then return end
-			if MenuLeft:GetX() < ScrW-50 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 50, 25 ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() == ScrW-25 then return end
+			if MenuLeft:GetX() < ScrW-25 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 25, 25 ), MenuLeft:GetY()) end
 		end
 	end
 
@@ -250,7 +250,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 	MenuDown = loveframes.Create("panel")
 	MenuDown:SetSize(450,600)
-	MenuDown:SetPos(75, ScrH-25)
+	MenuDown:SetPos(37, ScrH-25)
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
@@ -266,7 +266,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 	local MenuDownArrow = loveframes.Create("image", MenuDown)
 		MenuDownArrow:SetImage("ressources/arrow2.png")
-		MenuDownArrow:SetPos(400, 20)
+		MenuDownArrow:SetPos(400, 12)
 		MenuDownArrow:SetOffsetX(9)
 		MenuDownArrow:SetOffsetY(9)
 		MenuDownArrow.Update = function(object)
@@ -277,7 +277,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 local tabs = loveframes.Create("tabs", MenuDown)
-tabs:SetPos(5, 10)
+tabs:SetPos(5, 2)
 tabs:SetSize(440, 500)
 
     local panel1 = loveframes.Create("panel")

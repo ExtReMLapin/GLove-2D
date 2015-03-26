@@ -1,0 +1,10 @@
+Nouveau système de popularité : 
+	-Engouement : easy à modifier
+	-Banque connue ou pas (ca peut que monter, pas descendre, sauf si les personnes meurent :v ), ca se fait via la pub
+	-Banque appréciée ou pas, lent a modifier
+
+	-L'engouement ou la note de la banque ne peut être supérieur au fait que la banque soit connu.
+
+
+Nouvelle interface : 
+	Avec les menus en bas

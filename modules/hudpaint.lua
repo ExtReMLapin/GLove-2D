@@ -369,7 +369,6 @@ PopUPMoneyStack = 0
 
 
 local function creatething(seed, time, lPopUPMoneyStack, num,reason)
-	print("called in")
 	hook.Add("BackGroundDraw", "MoneyChangeDraw" .. seed, function()
 		love.graphics.setFont( date_box_text1 )
 		if time+0.5 > love.timer.getTime() then

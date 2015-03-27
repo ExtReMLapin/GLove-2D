@@ -1,6 +1,3 @@
-require "modules/util"
-require "modules/table"
-
 function love.conf(t)
 	t.version = "0.9.1"
 	t.window.title = "SafeTrade v0.8"
@@ -14,6 +11,5 @@ function love.conf(t)
 	t.console = true 
 	t.window.highdpi = false
 	t.window.srgb = false
-	PrintTable(t)
 	if jit.os == "OSX" then t.window.highdpi = true end
 end

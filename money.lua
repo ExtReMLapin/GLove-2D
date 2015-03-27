@@ -15,8 +15,7 @@ end
 
 
 function endGame()
-print("ded lel")
-timer.remove("MainTimerDate")
+	timer.remove("MainTimerDate")
 end
 
 

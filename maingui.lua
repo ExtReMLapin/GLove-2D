@@ -258,6 +258,9 @@ hook.Add("SaveRestored", "gui create", function()
 			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, 34 )) end
 			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -34 )) end
 		end
+		if not tabsmenudown then return end
+		tabsmenudown:SetPos(5, math.Remap(MenuDown:GetY(), ScrH-25, ScrH-550, 2, 30))
+
 	end
 
 
@@ -273,24 +276,24 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 
-local tabs = loveframes.Create("tabs", MenuDown)
-tabs:SetPos(5, 2)
-tabs:SetSize(440, 500)
+	tabsmenudown = loveframes.Create("tabs", MenuDown)
+	tabsmenudown:SetPos(5, 2)
+	tabsmenudown:SetSize(440, 500)
 
     local panel1 = loveframes.Create("panel")
-    tabs:AddTab("Investisements", panel1, "Investisements")
+    tabsmenudown:AddTab("Investisements", panel1, "Investisements")
 
     local panel2 = loveframes.Create("panel")
-    tabs:AddTab("Créditeurs", panel2, "Créditeurs")
+    tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")
 
     local panel3 = loveframes.Create("panel")
-    tabs:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
+    tabsmenudown:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
 
     local panel4 = loveframes.Create("panel")
-    tabs:AddTab("Personel", panel4, "Personel")
+    tabsmenudown:AddTab("Personel", panel4, "Personel")
 
     local panel5 = loveframes.Create("panel")
-    tabs:AddTab("Publicité", panel5, "Publicité")
+    tabsmenudown:AddTab("Publicité", panel5, "Publicité")
 
 
 

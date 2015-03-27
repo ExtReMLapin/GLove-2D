@@ -5,6 +5,8 @@ ScrH_RATIO = 1
 
 local backgroundpic = love.graphics.newImage("ressources/Background.png")
 local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
+local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
+
 hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.setColor(255,255,255,255)
 	local midx = ScrW/2
@@ -27,6 +29,12 @@ hook.Add("BackBackGround", "The real one this time", function()
 
 	local quad = love.graphics.newQuad(0,0, secretaryPic:getWidth( ), secretaryPic:getHeight( ),x*263/1280,y*215/720)
 	love.graphics.draw(secretaryPic,quad ,midx - x*150/1280, midy - y*200/720)
+
+	local quad = love.graphics.newQuad(0,0, comptoirPic:getWidth( ), comptoirPic:getHeight( ),x*532/1280,y*394/720)
+	love.graphics.draw(comptoirPic,quad ,midx - x*210/1280, midy - y*140/720)
+
+
+
 end)
 
 

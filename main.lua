@@ -44,7 +44,7 @@ function love.load()
 	theme:setVolume(0.1) -- 90% of ordinary volume
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
-	theme:play()
+	--theme:play()
 	--CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
@@ -73,7 +73,7 @@ end
 
 hook.Add("MousePress", "MenuPress", function(x,y)
 	-- principalMenu(x,y)
-	 print("MousePress Call")
+
 end)
 
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()

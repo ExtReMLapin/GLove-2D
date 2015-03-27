@@ -498,11 +498,3 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 
 	end)
 end)
-
-
-
-function draw.Wallpaper(backgroundpic)
-	love.graphics.setColor(255,255,255,255)
-	local quad = love.graphics.newQuad(000, 000, backgroundpic:getWidth( ), backgroundpic:getHeight( ), ScrW,ScrH)
-	love.graphics.draw(backgroundpic,quad , 00, 00)
-end

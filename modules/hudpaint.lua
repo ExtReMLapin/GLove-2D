@@ -460,16 +460,20 @@ hook.Add("DateChange", "Show Month Money change", function(num,reason)
 end)
 
 hook.Add("SaveRestored", "MoneyMonthDrawsave",function () 
-	hook.Add("BackGroundDraw", "MoneyMonthDraw",function () 
+	hook.Add("DrawOverFrame", "MoneyMonthDraw",function () 
+		if not MenuLeft then return end
 		local value;
+		local xoffset = MenuLeft:GetX()+50
+		local yoffset = MenuLeft:GetY()
+
 		love.graphics.setColor(255,255,255)
-		surface.RoundedBox(30, 10, 210, 50, 5)
+		surface.RoundedBox(30+ xoffset, yoffset + 10, 210, 50, 5)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont( date_box_text1 )
-		love.graphics.print("Flux", 30+105-date_box_text1:getWidth("Flux")/2,17)
-		surface.HUDStaticBox(10,45,250,120)
+		love.graphics.print("Flux", 30+ xoffset+105-date_box_text1:getWidth("Flux")/2, yoffset +17)
+		surface.HUDStaticBox(10+ xoffset, yoffset +45,250,120)
 		love.graphics.setColor(0,0,0,255)
-		love.graphics.rectangle("fill",10,45+60, 250,1)
+		love.graphics.rectangle("fill",10+ xoffset, yoffset +45+60, 250,1)
 		if table.Count(PastMonthEvent.Months) < 1 then return end
 		local max = PastMonthEvent.Months[table.GetWinningKey(PastMonthEvent.Months)]
 		local min = PastMonthEvent.Months[table.GetLoosingKey(PastMonthEvent.Months)]
@@ -481,19 +485,19 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 			local value = PastMonthEvent.MonthsV[k]
 			if v > 0 then
 				love.graphics.setColor(50,255,50,255)
-				love.graphics.rectangle("fill",5+6*k,105-value, 5,value)
+				love.graphics.rectangle("fill",5+ xoffset+6*k, yoffset +105-value, 5,value)
 			else
 				love.graphics.setColor(255,50,50,255)
 				
-				love.graphics.rectangle("fill",5+6*k,105,5,-1*value)
+				love.graphics.rectangle("fill",5+ xoffset+6*k, yoffset +105,5,-1*value)
 			end
 
 		end
 
 			love.graphics.setFont( fluwtext )
 			love.graphics.setColor(0,0,0,factor)
-			love.graphics.print(max .. "F", 14 , 45 )
-			love.graphics.print(max .. "F", 14 , 155 )
+			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +45 )
+			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +155 )
 
 	end)
 end)

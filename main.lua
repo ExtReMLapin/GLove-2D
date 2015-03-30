@@ -61,6 +61,7 @@ function love.draw()
 	hook.Call("BackGroundDraw") -- wallpaper ?
 	hook.Call("Draw")
 	loveframes.draw()
+	hook.Call("DrawOverFrame")
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
 end
 

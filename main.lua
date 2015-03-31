@@ -1,4 +1,4 @@
---require "error"
+require "error"
 require "ressources/fonts"
 require "timersloop"
 require "save"

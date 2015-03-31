@@ -474,6 +474,8 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 		local value;
 		local xoffset = MenuLeft:GetX()+50
 		local yoffset = MenuLeft:GetY()
+		local xoffset2 = MenuDown:GetX()
+		local yoffset2 = MenuDown:GetY()
 
 		--[[love.graphics.setColor(255,255,255)
 		surface.RoundedBox(30+ xoffset, yoffset + 10, 210, 50, 5)
@@ -508,6 +510,13 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +45 )
 			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +155 )]]
 		love.graphics.setColor(255,255,255)
+		love.graphics.draw(UiTab,xoffset2, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*0.5, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth(), yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*1.5, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*2, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+
+		love.graphics.setColor(255,255,255)
     	surface.RoundedBox(xoffset + 5, yoffset + 15, 290, 90, 3)
     	surface.RoundedBox(xoffset + 5, yoffset + 120, 290, 40, 3)
     	surface.RoundedBox(xoffset + 5, yoffset + 165, 290, 120, 3)
@@ -523,5 +532,8 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 		love.graphics.print("Investisseurs : ".. nbInvestisseurs, 240 + xoffset - date_box_text2:getWidth("Investisseurs :"), yoffset + 190)
 		love.graphics.print("Clients : ".. nbClients, 240 + xoffset - date_box_text2:getWidth("Clients :"), yoffset + 220)
 		love.graphics.print("Employés : ".. nbEmployees, 240 + xoffset - date_box_text2:getWidth("Employés :"), yoffset + 250)
+
+
+
 	end)
 end)

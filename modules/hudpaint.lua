@@ -250,10 +250,10 @@ local mois = { "Jan.",
 
 
 function DrawDateBox()
-	surface.HUDStaticBox(ScrW-233, 12, 225, 145)
+	love.graphics.draw(UiBlock,ScrW- 306, 12)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
-	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-220, 20)
+	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-205, 25)
 	local i = 0
 	while i < T_DAY do
 		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)
@@ -264,13 +264,12 @@ function DrawDateBox()
 	else
 		love.graphics.setColor(128,0,0)
 	end
-	love.graphics.print(string.nicemath(Money), ScrW-148, 45)
+	love.graphics.print(string.nicemath(Money), ScrW-205, 50)
 	love.graphics.setColor(0,0,0)
-	love.graphics.print("Capital :", ScrW-220, 45)
-	love.graphics.print(string.nicemath(nbClients), ScrW-148, 70)
-	love.graphics.print("Clients : " , ScrW-220, 70)
-	love.graphics.print("Popularité : "..tostring(Popularity or 0).."/100", ScrW-220, 95)
-	love.graphics.print("Taux directeur : "..tostring(mainRate), ScrW-220, 120)
+	--love.graphics.print(string.nicemath(nbClients), ScrW-148, 70)
+	--love.graphics.print("Clients : " , ScrW-220, 70)
+	--love.graphics.print("Popularité : "..tostring(Popularity or 0).."/100", ScrW-220, 95)
+	--love.graphics.print("Taux directeur : "..tostring(mainRate), ScrW-220, 120)
 
 
 end

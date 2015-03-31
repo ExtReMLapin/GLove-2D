@@ -224,9 +224,9 @@ end
 
 hook.Add("SaveRestored", "gui create", function()
 
-	MenuLeft = loveframes.Create("panel")
-	MenuLeft:SetSize(500,300)
-	MenuLeft:SetPos(ScrW-25, 250)
+	MenuLeft = loveframes.Create("image")
+	MenuLeft:SetImage("ressources/UiRackInfos.png"):SetScale(0.58,0.37)
+	MenuLeft:SetPos(ScrW-40, 250)
 	MenuLeft.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuLeft:GetX() and MOUSE_X < (MenuLeft:GetX() + MenuLeft:GetWidth()) and MOUSE_Y > MenuLeft:GetY() and MOUSE_Y < (MenuLeft:GetY() + MenuLeft:GetHeight()) then
@@ -234,9 +234,9 @@ hook.Add("SaveRestored", "gui create", function()
 			MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 350, -25 ), MenuLeft:GetY())
 			end
 		else
-			if MenuLeft:GetX() == ScrW-25 then return end
-			if MenuLeft:GetX() < ScrW-25 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 25, 25 ), MenuLeft:GetY()) end
-			if MenuLeft:GetX() > ScrW-25 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 25, -25 ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() == ScrW-40 then return end
+			if MenuLeft:GetX() < ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, 25 ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() > ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, -25 ), MenuLeft:GetY()) end
 
 		end
 	end
@@ -244,9 +244,9 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 
-	MenuDown = loveframes.Create("panel")
-	MenuDown:SetSize(450,600)
-	MenuDown:SetPos(37, ScrH-25)
+	MenuDown = loveframes.Create("image")
+	MenuDown:SetImage("ressources/UiBaseRackMenu.png"):SetScale(0.60,0.80)
+	MenuDown:SetPos(0, ScrH-25)
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
@@ -258,44 +258,8 @@ hook.Add("SaveRestored", "gui create", function()
 			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, 34 )) end
 			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -34 )) end
 		end
-		if not tabsmenudown then return end
-		tabsmenudown:SetPos(5, math.Remap(MenuDown:GetY(), ScrH-25, ScrH-550, 2, 30))
 
 	end
-
-
-	local MenuDownArrow = loveframes.Create("image", MenuDown)
-		MenuDownArrow:SetImage("ressources/arrow2.png")
-		MenuDownArrow:SetPos(400, 12)
-		MenuDownArrow:SetOffsetX(9)
-		MenuDownArrow:SetOffsetY(9)
-		MenuDownArrow.Update = function(object)
-		MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),550,25,0,180) ) + math.rad(90))
-		end
-
-
-
-
-	tabsmenudown = loveframes.Create("tabs", MenuDown)
-	tabsmenudown:SetPos(5, 2)
-	tabsmenudown:SetSize(440, 500)
-
-    local panel1 = loveframes.Create("panel")
-    tabsmenudown:AddTab("Investisements", panel1, "Investisements")
-
-    local panel2 = loveframes.Create("panel")
-    tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")
-
-    local panel3 = loveframes.Create("panel")
-    tabsmenudown:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
-
-    local panel4 = loveframes.Create("panel")
-    tabsmenudown:AddTab("Personel", panel4, "Personel")
-
-    local panel5 = loveframes.Create("panel")
-    tabsmenudown:AddTab("Publicité", panel5, "Publicité")
-
-
 
 end)
 

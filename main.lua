@@ -28,6 +28,7 @@ end
 
 
 function love.load()
+	UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
 	love.graphics.setBackgroundColor( 255,245,217 )
 	love.filesystem.setIdentity( "GLove-2D" )
 	loveframes = require("gui")

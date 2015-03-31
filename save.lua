@@ -24,6 +24,7 @@ function do_save_data()
 		tbl.T_MONTH = T_MONTH
 		tbl.T_YEAR = T_YEAR
 		tbl.annualPayment = annualPayment
+		tbl.monthlyEarning = monthlyEarning
 		tbl.Passed3mLimit = Passed3mLimit
 		tbl.Money = Money
 		tbl.Pub = Pub
@@ -107,4 +108,5 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	connaissanceBanque = 550000
 	employeeEfficiency = 1
 	Investisements = {Pub = 0}
+	monthlyEarning = 0
 end)

@@ -509,7 +509,7 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +155 )]]
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont( date_box_text1 )
-		love.graphics.print("Revenus  Mensuels : ", 180 + xoffset - date_box_text1:getWidth("Revenus  Mensuels :") , yoffset + 17)
+		love.graphics.print("Revenus  Mensuels : ".. monthlyEarning.."F", 180 + xoffset - date_box_text1:getWidth("Revenus  Mensuels :") , yoffset + 17)
 		love.graphics.print("Annuels : ", 180 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 35)
 		love.graphics.print("Frais  Mensuels : ".. Salary*nbEmployees.. "F", 180 + xoffset - date_box_text1:getWidth("Frais  Mensuels :") , yoffset + 58)
 		love.graphics.print("Annuels : ".. annualPayment.. "F", 180 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 76)

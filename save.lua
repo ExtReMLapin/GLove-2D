@@ -1,7 +1,7 @@
 local json = require("modules/json")
 
 function init_restore()
-	if not love.filesystem.read("data.txt") then -- 1st use ?
+	if not love.filesystem.read("data2.txt") then -- 1st use ?
 		bought_objects = {}
 		bought_actions = {}
 		account_virtual_money = 2500
@@ -19,12 +19,12 @@ function do_save_data()
 	tbl.cash = account_virtual_money
 	tbl.bought_objects = bought_objects
 	str = json.encode(tbl)
-	love.filesystem.write("data.txt", str)
+	love.filesystem.write("data2.txt", str)
 end
 
 
 function do_restore()
-	local str = love.filesystem.read("data.txt")
+	local str = love.filesystem.read("data2.txt")
 	local tbl = json.decode(str)
 	bought_objects = tbl.bought_objects
 	account_virtual_money = tbl.cash

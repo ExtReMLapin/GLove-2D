@@ -70,8 +70,15 @@ function table.Rearange(tbl)
 	return tbl2
 end
 
-local zoom = 0.1
-local pos = 0.99
+local zoom = 0.01
+local pos = 0.8
+local old_pos = pos
+local old_zoom = zoom
+
+hook.Add("LongMousePress", "drawgraph mouse", function()
+	 old_zoom = zoom
+	 old_pos = pos
+end)
 
 function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
@@ -79,8 +86,8 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
 		
 		if MOUSE_STATE then -- clicking ?
-			pos = (pos - (((MOUSE_S_X - xpos)*zoom)/x)/2)
-			zoom = (zoom - ((MOUSE_S_Y - ypos)/y/2))
+			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)/2)
+			zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
 			love.mouse.setCursor(c_size)
 
 		else
@@ -118,14 +125,16 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
 
 	end
+
 	--local l = fnt1:getWidth("Brand Name : " .. realname) +11
 	--love.graphics.rectangle("line", x+w-l, y+h, l, 35 )
 	--love.graphics.print("UID : " .. codename,x+w-l+4, y+h+3 )
 	
+	
 	if h > 100 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < ScrH) do
+		while (i < height) do
 			if (i > y and i < y+h) and i%50 == 1 then
 				local val = math.Remap(i,y+h,y,min,max)
 				val = math.Round(val*10)
@@ -140,7 +149,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if w > 300 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < ScrW) do
+		while (i < width) do
 			if (i > x and i < x+w) and i%170 == 1 then
 				--tbl3[table.CloseValue(tbl2, gesposongraph(i, y, w, h))]
 				local val = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))], "T00:00:00", "")
@@ -152,6 +161,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	end
 
 end
+
 
 local g_grds, g_wgrd, g_sz
 function draw.GradientBox(x, y, w, h, al, ...) -- DO NOT USE, GLITCHY WTF BRO

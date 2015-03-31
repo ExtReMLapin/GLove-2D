@@ -56,9 +56,8 @@ function love.update()
 	timer.check()
 	leftClick = love.mouse.isDown("l")
 end
-		local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
-	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
-	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
+
+
 function love.draw()
 	hook.Call("BackBackGround") -- the real one .... this time eheh
 	hook.Call("BackGroundDraw") -- wallpaper ?

@@ -7,6 +7,7 @@ function love.mousepressed(x, y, button)
 
 	if not MOUSE_STATE then
 		MOUSE_S_X, MOUSE_S_Y = love.mouse.getPosition( )
+		hook.Call("LongMousePress")
 	end
 
 	MOUSE_STATE = true

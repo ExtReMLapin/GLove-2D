@@ -65,8 +65,23 @@ function table.Rearange(tbl)
 end
 
 
-	local zoom = 0.1
-	local pos = 0.99
+	local zoom = 0.01
+	local pos = 0.5
+	local old_zoom = zoom
+	local old_pos = pos
+
+
+hook.Add("LongMousePress", "drawgraph mouse", function()
+	 old_zoom = zoom
+	 old_pos = pos
+end)
+
+
+
+hook.Add("MouseReleased", "drawgraph mouse", function()
+--	old_zoom = zoom
+--	old_pos = pos
+end)
 
 function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
@@ -74,8 +89,8 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
 		
 		if MOUSE_STATE then -- clicking ?
-			pos = (pos - (((MOUSE_S_X - xpos)*zoom)/x)/2)
-			zoom = (zoom - ((MOUSE_S_Y - ypos)/y/2))
+			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)/2)
+			zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
 			love.mouse.setCursor(c_size)
 
 		else

@@ -1,4 +1,4 @@
-
+do return end
 local theme = love.audio.newSource("ressources/teddy.mp3", "static")
 theme:setVolume(1) -- 90% of ordinary volume
 theme:setPitch(1) -- one octave lower

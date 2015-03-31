@@ -46,7 +46,7 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
-	CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
+	--CreatePopUp("lol","lelelele\nellelel", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
 
@@ -81,15 +81,15 @@ end)
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10 ,ScrH-50)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), ScrW*10/1280 ,ScrH-50)
 		--love.graphics.print("X,Y,Z debug:"..tostring(x)..", "..tostring(y)..", "..tostring(z), 200,700)
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		--love.graphics.print("Duree min: "..tostring(dureeInvestisseurMin) or "nul", 300, 700)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
 		
-		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
-		love.graphics.print("Engouement : " .. engouement, 200,700)
-		love.graphics.print("Réputation : " .. reputation, 400, 700)
+		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), ScrW*900/1280,ScrH-50)
+		love.graphics.print("Engouement : " .. engouement, ScrW*200/1280,ScrH-50)
+		love.graphics.print("Réputation : " .. reputation, ScrW*400/1280, ScrH-50)
 
 	end)
 end)

@@ -35,7 +35,7 @@ function love.load()
 	load_modules()
 	love.graphics.setPointStyle('smooth')
 	love.graphics.setLineStyle('smooth')
-	love.graphics.setLineWidth(2)
+	love.graphics.setLineWidth(0.2)
 	init_restore()
 	require "background"
 

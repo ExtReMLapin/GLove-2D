@@ -509,12 +509,12 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 			love.graphics.setColor(0,0,0,factor)
 			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +45 )
 			love.graphics.print(max .. "F",  xoffset+14 ,  yoffset +155 )]]
-		love.graphics.setColor(255,255,255)
+		--[[love.graphics.setColor(255,255,255)
 		love.graphics.draw(UiTab,xoffset2, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
 		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*0.5, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
 		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth(), yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
 		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*1.5, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
-		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*2, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)
+		love.graphics.draw(UiTab,xoffset2 + UiTab:getWidth()*2, yoffset2 - UiTab:getHeight()*0.5 + 5,0,0.5,0.5)]]
 
 		love.graphics.setColor(255,255,255)
     	surface.RoundedBox(xoffset + 5, yoffset + 15, 290, 90, 3)

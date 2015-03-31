@@ -86,7 +86,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
 		
 		if MOUSE_STATE then -- clicking ?
-			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)/2)
+			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)*2.2)
 			--zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
 			love.mouse.setCursor(c_size)
 

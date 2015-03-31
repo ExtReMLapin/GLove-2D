@@ -268,7 +268,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
-	tabsmenudown:SetPos(5, 2)
+	tabsmenudown:SetPos(5, 25)
 	tabsmenudown:SetSize(440, 500)
 	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
 	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")

@@ -1,19 +1,9 @@
-do return end
-local theme = love.audio.newSource("ressources/teddy.mp3", "static")
-theme:setVolume(1) -- 90% of ordinary volume
-theme:setPitch(1) -- one octave lower
-theme:setLooping(false)
-fonterrortitle = love.graphics.newFont("ressources/Ubuntu-B.ttf", 72)
-fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
-fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
-sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)
+
 
 
 
 ERROR_SENT = false
 
-
-local warning = love.graphics.newImage("ressources/warning.png")
 
 local quad = love.graphics.newQuad(000, 000, 600, 500, 250,205)
 local debug, print = debug, print
@@ -48,9 +38,7 @@ function love.errhand(msg)
     if love.audio then love.audio.stop() end
     love.graphics.reset()
     love.graphics.setBackgroundColor( 0,0,0 )
-
-
-    theme:play()
+    errorsound:play()
     local function draw()
         love.mouse.setCursor( love.mouse.getSystemCursor('arrow') )
         love.graphics.clear()

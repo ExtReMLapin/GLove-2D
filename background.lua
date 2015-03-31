@@ -2,11 +2,9 @@ ScrW_RATIO = 1
 ScrH_RATIO = 1
 
 
-
 local backgroundpic = love.graphics.newImage("ressources/Background.png")
 local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
 local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
-
 
 local customers = {
 	love.graphics.newImage("ressources/CharaCustomer1Anim1.png"),

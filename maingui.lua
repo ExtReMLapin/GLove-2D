@@ -270,9 +270,29 @@ hook.Add("SaveRestored", "gui create", function()
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
 	tabsmenudown:SetPos(5, 2)
 	tabsmenudown:SetSize(440, 500)
+	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
+	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
+	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
+
 
     local panel1 = loveframes.Create("panel")
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
+    local panel11 =  loveframes.Create("panel", panel1)
+        panel11.a = 100/3
+	    panel11.b = 100/3
+	    panel11.c = 100/3
+	    panel11:SetSize(375,40)
+	    panel11:SetPos(30,30)
+	    panel11.Draw = function()
+	    	love.graphics.setColor(255,255,255)
+	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,440),40, gr1:getWidth( ), gr1:getHeight( ))
+			love.graphics.draw(gr1,quad ,panel11:GetX(), panel11:GetY())
+
+	    end
+
+
+
+
 
     local panel2 = loveframes.Create("panel")
     tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")

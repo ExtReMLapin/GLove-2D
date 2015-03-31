@@ -244,9 +244,11 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 
-	MenuDown = loveframes.Create("image")
-	MenuDown:SetImage("ressources/UiBaseRackMenu.png"):SetScale(0.60,0.80)
-	MenuDown:SetPos(0, ScrH-25)
+	MenuDown = loveframes.Create("panel")
+	MenuDown:SetSize(450,600)
+	--MenuDown:SetImage("ressources/UiBaseRackMenuf.png")
+
+	MenuDown:SetPos(37, ScrH-25)
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
@@ -260,6 +262,28 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 
 	end
+
+
+	tabsmenudown = loveframes.Create("tabs", MenuDown)
+	tabsmenudown:SetPos(5, 2)
+	tabsmenudown:SetSize(440, 500)
+
+    local panel1 = loveframes.Create("panel")
+    tabsmenudown:AddTab("Investisements", panel1, "Investisements")
+
+    local panel2 = loveframes.Create("panel")
+    tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")
+
+    local panel3 = loveframes.Create("panel")
+    tabsmenudown:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
+
+    local panel4 = loveframes.Create("panel")
+    tabsmenudown:AddTab("Personel", panel4, "Personel")
+
+    local panel5 = loveframes.Create("panel")
+    tabsmenudown:AddTab("Publicité", panel5, "Publicité")
+
+
 
 end)
 

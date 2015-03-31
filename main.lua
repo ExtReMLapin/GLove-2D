@@ -64,6 +64,9 @@ function love.draw()
 	loveframes.draw()
 	hook.Call("DrawOverFrame")
 	hook.Call("OverLayDraw") -- Menu echap, par exemple
+	
+
+
 end
 
 function love.resize(w, h)

@@ -27,7 +27,7 @@ end
 
 
 function love.graphics.draw_graph(x, y, w, h, tbl)
-	love.graphics.setColor(28,154,211)
+	love.graphics.setColor(255,255,255)
 	local tmptbl = {}
 	local max = tbl[table.GetWinningKey(tbl)]
 	local min = tbl[table.GetLoosingKey(tbl)]
@@ -38,11 +38,11 @@ function love.graphics.draw_graph(x, y, w, h, tbl)
 	for k, v in pairs(tbl) do
 		i = (k-1)*2 + 1
 		dx = math.Remap(k, 1, numkeys , x, w+x)
-		dy = height - (height-(h+y)) - (math.Remap(v, min, max, y+10, h+y-10)) + y
+		dy = ScrH - (ScrH-(h+y)) - (math.Remap(v, min, max, y+10, h+y-10)) + y
 		tmptbl[i] = dx
 		tmptbl[i+1] = dy
 	end
-	love.graphics.rectangle("line", x, y, w, h )
+	--love.graphics.rectangle("line", x, y, w, h )
 	--love.graphics.polygon("fill",tmptbl)
 	love.graphics.line(tmptbl)
 end
@@ -70,13 +70,13 @@ function table.Rearange(tbl)
 	return tbl2
 end
 
-local zoom = 0.01
-local pos = 0.8
+local zoom = 0.5
+local pos = 0.5
 local old_pos = pos
-local old_zoom = zoom
+--local old_zoom = zoom
 
 hook.Add("LongMousePress", "drawgraph mouse", function()
-	 old_zoom = zoom
+	-- old_zoom = zoom
 	 old_pos = pos
 end)
 
@@ -87,7 +87,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 		
 		if MOUSE_STATE then -- clicking ?
 			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)/2)
-			zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
+			--zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
 			love.mouse.setCursor(c_size)
 
 		else
@@ -134,7 +134,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if h > 100 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < height) do
+		while (i < ScrH) do
 			if (i > y and i < y+h) and i%50 == 1 then
 				local val = math.Remap(i,y+h,y,min,max)
 				val = math.Round(val*10)
@@ -149,7 +149,7 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 	if w > 300 then
 		local i = 0;
 		love.graphics.setFont( fnt2 )
-		while (i < width) do
+		while (i < ScrW) do
 			if (i > x and i < x+w) and i%170 == 1 then
 				--tbl3[table.CloseValue(tbl2, gesposongraph(i, y, w, h))]
 				local val = string.gsub(tbl3[table.CloseValue(tbl2, gesposongraph2(i,x,w ))], "T00:00:00", "")

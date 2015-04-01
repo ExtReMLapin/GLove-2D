@@ -266,7 +266,7 @@ function DrawDateBox()
 	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-205, 25)
 	local i = 0
 	while i < T_DAY do
-		surface.RoundedBox(ScrW-25, 19+(4*i), 3,3,3)
+		surface.RoundedBox(ScrW-38, 53+(4*i), 3,3,3)
 		i = i+1
 	end
 	if Money > 0 then 

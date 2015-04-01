@@ -88,13 +88,13 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 		if MOUSE_STATE then -- clicking ?
 			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)*2.2)
 			--zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
-			--love.mouse.setCursor(c_size)
+			love.mouse.setCursor(c_size)
 
 		else
-			--love.mouse.setCursor(c_hand)
+			love.mouse.setCursor(c_hand)
 		end
 	else
-		--love.mouse.setCursor(c_default)
+		love.mouse.setCursor(c_default)
 	end
 
 	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5
@@ -285,7 +285,7 @@ function DrawDateBox()
 end
 
 function CreateTutorialBox()
-	local i = 1
+	tutopos = 1
 	hook.Add("OverLayDraw", "tutorial", function()
 		pausetime()
 		love.graphics.setColor(88,164,250)
@@ -294,15 +294,25 @@ function CreateTutorialBox()
 		love.graphics.rectangle("fill", ScrW - 780, ScrH - 130, ScrW - 450, 70)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont(date_box_text2)
-		love.graphics.print(tbltuto[i], ScrW - 775, ScrH - 125)
-		hook.Add("SingleKeyPressed", "tuto", function(" ")
-			unpausetime()
-			hook.Remove("OverLayDraw", "tutorial")
-			IsOnDesktop = true
-		end)
-		hook.Add("SingleKeyPressed", "tuto2", function(" ")
-			tbltuto[i] = tbltuto[i + 1] or " "
-			i = i + 1
+		love.graphics.print(tbltuto[1], ScrW - 775, ScrH - 125)
+		love.graphics.setFont(fluwtexttuto)
+		love.graphics.setColor(0,0,0,80)
+		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 370, ScrH - 72)
+		hook.Add("SingleKeyPressed", "tuto", function(key)
+			if key == "return" then
+				unpausetime()
+				hook.Remove("OverLayDraw", "tutorial")
+				IsOnDesktop = true
+			elseif key == "right" then
+				tbltuto[1] = tbltuto[tutopos]
+				if tbltuto[tutopos] then
+					tutopos = tutopos + 1
+				else
+					unpausetime()
+					hook.Remove("OverLayDraw", "tutorial")
+					IsOnDesktop = true
+				end
+			end
 		end)
 	end)
 end

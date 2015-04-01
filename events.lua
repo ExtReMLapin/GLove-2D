@@ -32,6 +32,14 @@ function createEvent(date, func)
 	table.insert(DynaEvent, tbl)
 end
 
+function tutorialEvent(parameter)
+	if parameter == 1 then
+		CreatePopUp("Tutoriel","Avant de vous laisser continuer, faisons un tour \ndes fonctionnalités à votre disposition pour \ngérer votre banque !", {"Suivant", "Passer"}, {function() tutorialEvent(2) end,function() love.mouse.setCursor(c_default) end})	
+	elseif parameter == 2 then
+		CreatePopUp("Tutoriel","Passez votre souris sur la flèche à droite de \nl'écran et voyons ensemble les informations à \nvotre disposition", {"Suivant", "Passer"}, {function() tutorialEvent(2) end,function() love.mouse.setCursor(c_default) end})
+	end
+end
+
 hook.Add("DateChange", "EventDateChange", function()
 	for k, v in pairs(Event) do
 		if not PassedEvents[k] then

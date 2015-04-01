@@ -3,6 +3,10 @@ require("modules/hook")
 data = {}
 tblsave = ""
 
+tbltuto = {}
+tbltuto[1] = "mdr"
+tbltuto[2] = "lol"
+tbltuto[3] = "xd"
 
 function init_restore()
 	if not love.filesystem.read("data.txt") then -- 1st use ?
@@ -109,4 +113,5 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	employeeEfficiency = 1
 	Investisements = {Pub = 0}
 	monthlyEarning = 0
+	CreateTutorialBox(tbltuto)
 end)

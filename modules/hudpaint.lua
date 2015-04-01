@@ -284,6 +284,29 @@ function DrawDateBox()
 
 end
 
+function CreateTutorialBox()
+	local i = 1
+	hook.Add("OverLayDraw", "tutorial", function()
+		pausetime()
+		love.graphics.setColor(88,164,250)
+		love.graphics.rectangle("fill", ScrW - 782, ScrH - 132, ScrW - 445, 74)
+		love.graphics.setColor(143,194,253)
+		love.graphics.rectangle("fill", ScrW - 780, ScrH - 130, ScrW - 450, 70)
+		love.graphics.setColor(0,0,0)
+		love.graphics.setFont(date_box_text2)
+		love.graphics.print(tbltuto[i], ScrW - 775, ScrH - 125)
+		hook.Add("SingleKeyPressed", "tuto", function(" ")
+			unpausetime()
+			hook.Remove("OverLayDraw", "tutorial")
+			IsOnDesktop = true
+		end)
+		hook.Add("SingleKeyPressed", "tuto2", function(" ")
+			tbltuto[i] = tbltuto[i + 1] or " "
+			i = i + 1
+		end)
+	end)
+end
+
 
 function CreatePopUp(title,text, choices, fun)
 	local isinto = false

@@ -226,9 +226,15 @@ end
 
 hook.Add("SaveRestored", "gui create", function()
 
-	MenuLeft = loveframes.Create("image")
-	MenuLeft:SetImage("ressources/UiRackInfos.png"):SetScale(0.58,0.37)
+	MenuLeft = loveframes.Create("panel")
+	MenuLeft.DrawPic = love.graphics.newImage("ressources/UiRackInfos.png")
 	MenuLeft:SetPos(ScrW-40, 250)
+	MenuLeft:SetSize(500,300)
+	MenuLeft.Draw = function ()
+		love.graphics.setColor(255,255,255)
+		local quad = love.graphics.newQuad(0,0, MenuLeft.DrawPic:getWidth( ), MenuLeft.DrawPic:getHeight( ),MenuLeft.DrawPic:getWidth( )*0.58,MenuLeft.DrawPic:getHeight( )*0.37)
+		love.graphics.draw(MenuLeft.DrawPic,quad ,MenuLeft:GetX(), MenuLeft:GetY())
+	end
 	MenuLeft.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuLeft:GetX() and MOUSE_X < (MenuLeft:GetX() + MenuLeft:GetWidth()) and MOUSE_Y > MenuLeft:GetY() and MOUSE_Y < (MenuLeft:GetY() + MenuLeft:GetHeight()) then

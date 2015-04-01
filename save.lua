@@ -5,7 +5,7 @@ tblsave = ""
 
 tbltuto = {}
 tbltuto[1] = "Bienvenu dans votre banque ! \nAvant toute chose, faisons un tour des fonctionnalités à votre disposition pour gérer votre banque !"
-tbltuto[2] = "Passez votre souris sur la flèche à droite de l'écran et regardons ensemble les informations à votre disposition."
+tbltuto[2] = "Passez votre souris sur la flèche à droite de l'écran et regardons ensemble les informations à votre \ndisposition."
 tbltuto[3] = "Des données importantes sur votre banques y sont affichées, comme les revenus, les dépenses ou encore le \nnombre d'employés par exemple."
 tbltuto[4] = "J'attire votre attention sur ce que l'on appelle le ''Taux Directeur'' ! \nIl représente le taux auquel la Banque de France vous prête l'argent, cela signifie donc qu'il ne faudra pas \nprêter l'argent à un taux plus bas que celui-ci !"
 tbltuto[5] = "Ensuite, l'indicateur de Popularité représente votre image auprès de la population, plus celui-ci est proche \nde 100, plus votre banque est populaire et réputée !"

@@ -43,6 +43,7 @@ end
 
 
 function love.keyreleased(key)
+	KEY_PRESSED = false
 	hook.Call("KeyReleased", key )
 	loveframes.keyreleased(key)
 end

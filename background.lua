@@ -47,7 +47,7 @@ hook.Add("BackBackGround", "The real one this time", function()
 
 
 	local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)
-	love.graphics.draw(casierPic,quad ,midx - x*153/1280, y*75/720)
+	love.graphics.draw(casierPic,quad ,midx - x*153/1280, midy- y*285/720)
 
 
 	for k, v in pairs(customers) do

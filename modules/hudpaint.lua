@@ -88,13 +88,13 @@ function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 		if MOUSE_STATE then -- clicking ?
 			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)*2.2)
 			--zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
-			love.mouse.setCursor(c_size)
+			--love.mouse.setCursor(c_size)
 
 		else
-			love.mouse.setCursor(c_hand)
+			--love.mouse.setCursor(c_hand)
 		end
 	else
-		love.mouse.setCursor(c_default)
+		--love.mouse.setCursor(c_default)
 	end
 
 	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5

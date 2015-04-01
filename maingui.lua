@@ -1,3 +1,5 @@
+require"modules/hook"
+
 --[[username = "Testguy"
 usrlevel = 3
 account_growth = 34
@@ -273,10 +275,15 @@ hook.Add("SaveRestored", "gui create", function()
 	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
 	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
 	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
+	local buttonpic = love.graphics.newImage("ressources/UiJaugeArrow.png")
 
 
     local panel1 = loveframes.Create("panel")
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
+
+    --------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------
     local panel11 =  loveframes.Create("panel", panel1)
         panel11.a = 100/3
 	    panel11.b = 100/3
@@ -297,8 +304,8 @@ hook.Add("SaveRestored", "gui create", function()
 
 	    	
 
-	    local slider1 = loveframes.Create("slider", panel1)
-	    local slider2 = loveframes.Create("slider", panel1)
+	   local slider1 = loveframes.Create("slider", panel1)
+	   local slider2 = loveframes.Create("slider", panel1)
 		slider1:SetPos(30, 90)
 		slider1:SetWidth(370)
 		slider1:SetMinMax(0, (100/3)*2)
@@ -321,6 +328,38 @@ hook.Add("SaveRestored", "gui create", function()
 			object:SetMinMax(0, 100-(slider1:GetValue()))
 		end
 
+
+
+
+	--[[	local button1 = loveframes.Create("button", panel1)
+		button1:SetWidth(20)
+		button1:SetHeight(20)
+		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 4)
+		button1.Draw= function(object)
+			love.graphics.setColor(255,255,255)
+			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
+			love.graphics.draw(buttonpic,quad,object:GetX() ,object:GetY())
+		end
+
+		button1.OnMouseReleased = function()
+			hook.Remove("Think", "button follow mouse")
+		end
+	
+
+		button1.OnMousePressed = function() 
+			hook.Add("Think", "button follow mouse", function()
+				local min = 57+20
+				local max = 57+20+375
+				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
+					button1:SetX(love.mouse.getX()-57)
+					slider1:SetValue(love.mouse.getX()-57-30)
+				end
+			end )
+		end]]
+
+		--------------------------------------------------------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------------------------------
 
     local panel2 = loveframes.Create("panel")
     tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")

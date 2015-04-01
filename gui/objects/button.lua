@@ -158,6 +158,8 @@ function newobject:mousepressed(x, y, button)
 		self.down = true
 		loveframes.downobject = self
 	end
+
+	if self.OnMousePressed then self.OnMousePressed() end
 	
 end
 
@@ -202,7 +204,7 @@ function newobject:mousereleased(x, y, button)
 	end
 	
 	self.down = false
-
+	if self.OnMouseReleased then self.OnMouseReleased() end
 end
 
 --[[---------------------------------------------------------

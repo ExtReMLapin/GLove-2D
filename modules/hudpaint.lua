@@ -316,6 +316,11 @@ function CreateTutorialBox()
 end
 
 
+
+local popup = love.graphics.newImage("ressources/UiBlockNewstop.png")
+local popmid = love.graphics.newImage("ressources/UiBlockNewsmid.png")
+local popdown = love.graphics.newImage("ressources/UiBlockNewsdown.png")
+
 function CreatePopUp(title,text, choices, fun)
 	local isinto = false
 	hook.Add("OverLayDraw", "popup", function()
@@ -325,17 +330,36 @@ function CreatePopUp(title,text, choices, fun)
 		local hei = (string.Count(text, "\n")+1)*popuptext:getHeight()
 		love.graphics.setColor(0,0,0,50)
 		love.graphics.rectangle("fill", 0, 0, ScrW, ScrH )
-		love.graphics.setColor(255,209,123)
-		love.graphics.rectangle("fill", ScrW/2-260, ScrH/2-155-hei/2, 520, 200+6+hei )
-		love.graphics.setColor(255,249,239)
-		love.graphics.rectangle("fill", ScrW/2-257, ScrH/2-152-hei/2, 514, 200+hei )
+
+
+
+
+	--	love.graphics.setColor(255,209,123)
+		--love.graphics.rectangle("fill", ScrW/2-260, ScrH/2-155-hei/2, 520, 200+6+hei )
+	--	love.graphics.setColor(255,249,239)
+		--love.graphics.rectangle("fill", ScrW/2-257, ScrH/2-152-hei/2, 514, 200+hei )
+
+	--	love.graphics.setColor(0,0,0)
+		--love.graphics.rectangle("fill", ScrW/2-207, ScrH/2-90-hei/2, 414, 1 )
+
+			love.graphics.setColor(255,255,255)
+			local quad = love.graphics.newQuad(0,0, 490, 51,490,51)
+			love.graphics.draw(popup,quad ,ScrW/2-245, ScrH/2-155-hei/2)
+
+			local quad = love.graphics.newQuad(0,0, 490, hei+40,490,hei+40)
+			love.graphics.draw(popmid,quad ,ScrW/2-245, ScrH/2-155-hei/2+51)
+
+
+			local quad = love.graphics.newQuad(0,0, 490, 51,490,51)
+			love.graphics.draw(popdown,quad ,ScrW/2-245, ScrH/2-155-hei/2+hei+40+51)
+
+
 
 		love.graphics.setColor(0,0,0)
-		love.graphics.rectangle("fill", ScrW/2-207, ScrH/2-90-hei/2, 414, 1 )
 		love.graphics.setFont(popuptitle)
-		love.graphics.print( title ,  ScrW/2 - popuptitle:getWidth(title)/2 , ScrH/2-133-hei/2)
+		love.graphics.print( title ,  ScrW/2 - popuptitle:getWidth(title)/2 , ScrH/2-140-hei/2)
 		love.graphics.setFont(popuptext)
-		love.graphics.print( text ,  ScrW/2- 230 , ScrH/2-83-hei/2)
+		love.graphics.print( text ,  ScrW/2- 200 , ScrH/2-83-hei/2)
 
 		love.graphics.setFont(popuptitle)
 		if not choices then
@@ -394,6 +418,9 @@ function CreatePopUp(title,text, choices, fun)
 
 			end
 			if isonbutton then love.mouse.setCursor( c_hand ) else love.mouse.setCursor( c_cursor ) end
+
+
+
 
 		end
 	end)

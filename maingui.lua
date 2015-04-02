@@ -302,7 +302,7 @@ hook.Add("SaveRestored", "gui create", function()
         panel11.a = 100/3
 	    panel11.b = 100/3
 	    panel11:SetSize(375,40)
-	    panel11:SetPos(30,30)
+	    panel11:SetPos(30,60)
 	    panel11.Draw = function()
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,375),40, 3, 54)
@@ -320,10 +320,10 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider1 = loveframes.Create("slider", panel1)
 	   local slider2 = loveframes.Create("slider", panel1)
-		slider1:SetPos(30, 90)
+		slider1:SetPos(30, 120)
 		slider1:SetWidth(370)
 		slider1:SetMinMax(0, (100/3)*2)
-		slider2:SetPos(30, 110)
+		slider2:SetPos(30, 140)
 		slider2:SetWidth(370)
 		slider2:SetMinMax(0, 100)
 
@@ -351,7 +351,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button1 = loveframes.Create("button", panel1)
 		button1:SetWidth(20)
 		button1:SetHeight(20)
-		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 4)
+		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 34)
 		button1.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
@@ -371,7 +371,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button2 = loveframes.Create("button", panel1)
 		button2:SetWidth(20)
 		button2:SetHeight(20)
-		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 70)
+		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 104)
 		button2.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
@@ -412,6 +412,123 @@ hook.Add("SaveRestored", "gui create", function()
 					button1:SetX(math.Min(love.mouse.getX()-57, 405-math.Remap(panel11.b,0,100,0,375)-10))
 					slider1:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100))
 					button2:SetX(math.Remap(panel11.b+ panel11.a,0,100,0,375)+20)
+				end
+			end )
+		end
+
+		--------------------------------------------------------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------------------------------
+
+		local panel12 =  loveframes.Create("panel", panel1)
+        panel12.a = 100/3
+	    panel12.b = 100/3
+	    panel12:SetSize(375,40)
+	    panel12.Draw = function()
+	    	love.graphics.setColor(255,255,255)
+	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel12.a,0,100,0,375),40, 3, 54)
+			love.graphics.draw(gr1,quad ,panel12:GetX(), panel12:GetY())
+
+	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel12.b,0,100,0,375),40, 3, 54)
+			love.graphics.draw(gr2,quad ,panel12:GetX()+math.Remap(panel12.a,0,100,0,375), panel12:GetY())
+
+			local quad = love.graphics.newQuad(0,0,math.Remap(100-panel12.b-panel12.a,0,100,0,375),40, 3, 54)
+			love.graphics.draw(gr3,quad ,panel12:GetX()+math.Remap(panel12.a,0,100,0,375)+math.Remap(panel12.b,0,100,0,375), panel12:GetY())
+	    end
+
+
+	    	
+
+	   local slider3 = loveframes.Create("slider", panel1)
+	   local slider4 = loveframes.Create("slider", panel1)
+		slider3:SetWidth(370)
+		slider3:SetMinMax(0, (100/3)*2)
+		slider4:SetWidth(370)
+		slider4:SetMinMax(0, 100)
+
+		slider3:SetValue(100/3)
+		slider3.OnValueChanged = function(object)
+		print(object:GetValue())
+		print(math.Remap(panel12.a,0,100,0,375))
+			panel12.a = object:GetValue()
+			if (slider4:GetValue() + object:GetValue()) > 100 then
+				slider4:SetValue(100-(panel12.a))
+			end
+			object:SetMinMax(0,100-panel12.b)
+		end
+	
+
+
+		slider4.OnValueChanged = function(object, dt)
+			panel12.b = object:GetValue()
+			object:SetMinMax(0, 100-(slider3:GetValue()))
+		end
+
+
+-------------------------------------------------------------------------
+
+		local button3 = loveframes.Create("button", panel1)
+		button3:SetWidth(20)
+		button3:SetHeight(20)
+		button3.Draw= function(object)
+			love.graphics.setColor(255,255,255)
+			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
+			love.graphics.draw(buttonpic,quad,object:GetX() ,object:GetY())
+			love.graphics.setFont(fluwtexttuto)
+			love.graphics.print(math.Round(panel12.a), object:GetX()+4,object:GetY()+3)
+		end
+
+		button3.OnMouseReleased = function()
+			hook.Remove("Think", "button follow mouse")
+		end
+	
+
+
+-------------------------------------------------------------------------
+
+		local button4 = loveframes.Create("button", panel1)
+		button4:SetWidth(20)
+		button4:SetHeight(20)
+		button4.Draw= function(object)
+			love.graphics.setColor(255,255,255)
+			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
+			love.graphics.draw(buttonpic,quad,object:GetX()+21 ,object:GetY()+23,math.rad(180))
+			love.graphics.setFont(fluwtexttuto)
+			love.graphics.print(math.Round(panel12.b + panel12.a), object:GetX()+4,object:GetY()+5)
+		end
+
+		button4.OnMouseReleased = function()
+			hook.Remove("Think", "button follow mouse2")
+		end
+	
+
+		button4.OnMousePressed = function() 
+			if not button4.down then return end
+			hook.Add("Think", "button follow mouse2", function()
+				
+				local min = 57+20
+				local max = 57+20+375
+				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
+					button4:SetX(math.Max(math.Min(love.mouse.getX()-57, 405-10),77+math.Remap(panel12.a,0,100,0,375)-50))
+					slider4:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100)-panel12.a)
+
+				end
+			end )
+		end
+
+
+
+
+		button3.OnMousePressed = function() 
+		if not button3.down then return end
+			hook.Add("Think", "button follow mouse", function()
+				
+				local min = 57+20
+				local max = 57+20+375
+				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
+					button3:SetX(math.Min(love.mouse.getX()-57, 405-math.Remap(panel12.b,0,100,0,375)-10))
+					slider3:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100))
+					button4:SetX(math.Remap(panel12.b+ panel12.a,0,100,0,375)+20)
 				end
 			end )
 		end

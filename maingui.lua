@@ -353,6 +353,8 @@ hook.Add("SaveRestored", "gui create", function()
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
 			love.graphics.draw(buttonpic,quad,object:GetX() ,object:GetY())
+			love.graphics.setFont(fluwtexttuto)
+			love.graphics.print(math.Round(panel11.a), object:GetX()+4,object:GetY()+3)
 		end
 
 		button1.OnMouseReleased = function()
@@ -371,6 +373,8 @@ hook.Add("SaveRestored", "gui create", function()
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
 			love.graphics.draw(buttonpic,quad,object:GetX()+21 ,object:GetY()+23,math.rad(180))
+			love.graphics.setFont(fluwtexttuto)
+			love.graphics.print(math.Round(panel11.b + panel11.a), object:GetX()+4,object:GetY()+5)
 		end
 
 		button2.OnMouseReleased = function()

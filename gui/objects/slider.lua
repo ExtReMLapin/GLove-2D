@@ -1,4 +1,4 @@
---[[------------------------------------------------
+ --[[------------------------------------------------
 	-- Love Frames - A GUI library for LOVE --
 	-- Copyright (c) 2012-2014 Kenny Shields --
 --]]------------------------------------------------
@@ -135,14 +135,14 @@ function newobject:draw()
 	self:SetDrawOrder()
 		
 	if draw then
-		draw(self)
+		--draw(self)
 	else
-		drawfunc(self)
+		--drawfunc(self)
 	end
 	
 	-- draw internals
 	for k, v in ipairs(internals) do
-		v:draw()
+		--v:draw()
 	end
 
 end

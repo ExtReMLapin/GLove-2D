@@ -274,6 +274,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 	end
 
+		local MenuDownArrow = loveframes.Create("image", MenuDown)
+		MenuDownArrow:SetImage("ressources/arrow2.png")
+		MenuDownArrow:SetPos(400, 12)
+		MenuDownArrow:SetOffsetX(9)
+		MenuDownArrow:SetOffsetY(9)
+		MenuDownArrow.Update = function(object)
+			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),550,25,0,180) ) + math.rad(90))
+		end
 
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
 	tabsmenudown:SetPos(5, 25)
@@ -335,7 +343,7 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 
 
-
+-------------------------------------------------------------------------
 
 		local button1 = loveframes.Create("button", panel1)
 		button1:SetWidth(20)
@@ -352,13 +360,51 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 	
 
+
+-------------------------------------------------------------------------
+
+		local button2 = loveframes.Create("button", panel1)
+		button2:SetWidth(20)
+		button2:SetHeight(20)
+		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 70)
+		button2.Draw= function(object)
+			love.graphics.setColor(255,255,255)
+			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
+			love.graphics.draw(buttonpic,quad,object:GetX()+21 ,object:GetY()+23,math.rad(180))
+		end
+
+		button2.OnMouseReleased = function()
+			hook.Remove("Think", "button follow mouse2")
+		end
+	
+
+		button2.OnMousePressed = function() 
+			if not button2.down then return end
+			hook.Add("Think", "button follow mouse2", function()
+				
+				local min = 57+20
+				local max = 57+20+375
+				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
+					button2:SetX(math.Max(math.Min(love.mouse.getX()-57, 405-10),77+math.Remap(panel11.a,0,100,0,375)-50))
+					slider2:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100)-panel11.a)
+
+				end
+			end )
+		end
+
+
+
+
 		button1.OnMousePressed = function() 
+		if not button1.down then return end
 			hook.Add("Think", "button follow mouse", function()
+				
 				local min = 57+20
 				local max = 57+20+375
 				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
 					button1:SetX(math.Min(love.mouse.getX()-57, 405-math.Remap(panel11.b,0,100,0,375)-10))
 					slider1:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100))
+					button2:SetX(math.Remap(panel11.b+ panel11.a,0,100,0,375)+20)
 				end
 			end )
 		end

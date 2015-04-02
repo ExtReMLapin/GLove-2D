@@ -320,10 +320,10 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider1 = loveframes.Create("slider", panel1)
 	   local slider2 = loveframes.Create("slider", panel1)
-		slider1:SetPos(30, 90)
+		slider1:SetPos(-5555530, 90)
 		slider1:SetWidth(370)
 		slider1:SetMinMax(0, (100/3)*2)
-		slider2:SetPos(30, 110)
+		slider2:SetPos(-5555530, 90)
 		slider2:SetWidth(370)
 		slider2:SetMinMax(0, 100)
 

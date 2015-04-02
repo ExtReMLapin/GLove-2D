@@ -320,16 +320,18 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider1 = loveframes.Create("slider", panel1)
 	   local slider2 = loveframes.Create("slider", panel1)
-		slider1:SetPos(-5555530, 90)
+		slider1:SetPos(30, 90)
 		slider1:SetWidth(370)
-		slider1:SetMinMax(0, (100/3)*2)
-		slider2:SetPos(-5555530, 90)
+		slider1:SetMinMax(0, 100)
+		slider2:SetPos(30, 110)
 		slider2:SetWidth(370)
 		slider2:SetMinMax(0, 100)
 
 		slider1:SetValue(100/3)
 		slider1.OnValueChanged = function(object)
-		panel11.a = object:GetValue()
+		print(object:GetValue())
+		print(math.Remap(panel11.a,0,100,0,375))
+			panel11.a = object:GetValue()
 			if (slider2:GetValue() + object:GetValue()) > 100 then
 				slider2:SetValue(100-(panel11.a))
 			end

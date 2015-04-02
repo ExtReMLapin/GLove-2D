@@ -337,7 +337,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 
-	--[[	local button1 = loveframes.Create("button", panel1)
+		local button1 = loveframes.Create("button", panel1)
 		button1:SetWidth(20)
 		button1:SetHeight(20)
 		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 4)
@@ -357,11 +357,11 @@ hook.Add("SaveRestored", "gui create", function()
 				local min = 57+20
 				local max = 57+20+375
 				if (love.mouse.getX( ) > min ) and (love.mouse.getX( ) < max) then
-					button1:SetX(love.mouse.getX()-57)
-					slider1:SetValue(love.mouse.getX()-57-30)
+					button1:SetX(math.Min(love.mouse.getX()-57, 405-math.Remap(panel11.b,0,100,0,375)-10))
+					slider1:SetValue(math.Remap(love.mouse.getX()-57-30+10,0,375,0,100))
 				end
 			end )
-		end]]
+		end
 
 		--------------------------------------------------------------------------------------------------------------------------------
 		--------------------------------------------------------------------------------------------------------------------------------

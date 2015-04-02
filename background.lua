@@ -43,7 +43,7 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw(comptoirPic,quad ,midx - x*210/1280, midy - y*140/720)
 
 
-	love.graphics.draw_nicegraph(midx-x*115/1280,  y*21/720, x*240/1280, y*118/720, bank.corpo_get_value_date("AMD"))
+	--love.graphics.draw_nicegraph(midx-x*115/1280,  y*21/720, x*240/1280, y*118/720, bank.corpo_get_value_date("AMD"))
 
 
 	local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)

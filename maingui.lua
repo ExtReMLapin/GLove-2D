@@ -249,9 +249,12 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 	end
 
+
+
+
 		local MenuDownArrow = loveframes.Create("image", MenuLeft)
 		MenuDownArrow:SetImage("ressources/ArrowBrown.png")
-		MenuDownArrow:SetPos(20, 140)
+		MenuDownArrow:SetPos(20, 145)
 		MenuDownArrow:SetOffsetX(17/2)
 		MenuDownArrow:SetOffsetY(10)
 		MenuDownArrow.Update = function(object)
@@ -578,21 +581,3 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 end)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

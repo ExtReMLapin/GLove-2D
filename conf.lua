@@ -6,10 +6,9 @@ function love.conf(t)
 	t.window.resizable = true
 	t.window.minwidth = 800
     t.window.minheight = 600  
-	t.window.vsync = false
+	t.window.vsync = true
 	t.window.fsaa = 0
 	t.console = true 
-	t.window.highdpi = false
+	t.window.highdpi = true
 	t.window.srgb = false
-	if jit.os == "OSX" then t.window.highdpi = true end
 end

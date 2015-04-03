@@ -249,6 +249,15 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 	end
 
+		local MenuDownArrow = loveframes.Create("image", MenuLeft)
+		MenuDownArrow:SetImage("ressources/ArrowBrown.png")
+		MenuDownArrow:SetPos(20, 140)
+		MenuDownArrow:SetOffsetX(17/2)
+		MenuDownArrow:SetOffsetY(10)
+		MenuDownArrow.Update = function(object)
+			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrW-MenuLeft:GetX(),350,40,0,180) )+math.rad(180))
+		end
+
 
 
 	MenuDown = loveframes.Create("panel")

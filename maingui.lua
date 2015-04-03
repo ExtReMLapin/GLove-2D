@@ -304,14 +304,22 @@ hook.Add("SaveRestored", "gui create", function()
     local panel1 = loveframes.Create("panel")
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
 
+
     --------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------
+    if not containerInvestissement then
+	    local containerInvestissement = loveframes.Create("image", panel1)
+	    containerInvestissement:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(10)
+	    local titleContainerInvestissement = loveframes.Create("text", panel1)
+	    titleContainerInvestissement:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Points par Durée (Années)"):Center():SetY(14)
+	end
+
     local panel11 =  loveframes.Create("panel", panel1)
         panel11.a = 100/3
 	    panel11.b = 100/3
 	    panel11:SetSize(375,40)
-	    panel11:SetPos(30,60)
+	    panel11:SetPos(30,80)
 	    panel11.Draw = function()
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,375),40, 3, 54)
@@ -329,16 +337,15 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider1 = loveframes.Create("slider", panel1)
 	   local slider2 = loveframes.Create("slider", panel1)
-		slider1:SetPos(30, 120)
+		slider1:SetPos(30, 140)
 		slider1:SetWidth(370)
 		slider1:SetMinMax(0, (100/3)*2)
-		slider2:SetPos(30, 140)
+		slider2:SetPos(30, 160)
 		slider2:SetWidth(370)
 		slider2:SetMinMax(0, 100)
 
 		slider1:SetValue(100/3)
 		slider1.OnValueChanged = function(object)
-		print(object:GetValue())
 		print(math.Remap(panel11.a,0,100,0,375))
 			panel11.a = object:GetValue()
 			if (slider2:GetValue() + object:GetValue()) > 100 then
@@ -360,7 +367,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button1 = loveframes.Create("button", panel1)
 		button1:SetWidth(20)
 		button1:SetHeight(20)
-		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 34)
+		button1:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)-10, 54)
 		button1.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
@@ -380,7 +387,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button2 = loveframes.Create("button", panel1)
 		button2:SetWidth(20)
 		button2:SetHeight(20)
-		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 104)
+		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 124)
 		button2.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
@@ -428,12 +435,18 @@ hook.Add("SaveRestored", "gui create", function()
 		--------------------------------------------------------------------------------------------------------------------------------
 		--------------------------------------------------------------------------------------------------------------------------------
 		--------------------------------------------------------------------------------------------------------------------------------
+		if not containerInvestissement2 then
+			local containerInvestissement2 = loveframes.Create("image", panel1)
+	    	containerInvestissement2:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(210)
+	   		local titleContainerInvestissement2 = loveframes.Create("text", panel1)
+	    	titleContainerInvestissement2:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Points par Montant (Millions)"):Center():SetY(214)
+	 	end
 
 		local panel12 =  loveframes.Create("panel", panel1)
         panel12.a = 100/3
 	    panel12.b = 100/3
 	    panel12:SetSize(375,40)
-	    panel12:SetPos(30,240)
+	    panel12:SetPos(30,280)
 	    panel12.Draw = function()
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel12.a,0,100,0,375),40, 3, 54)
@@ -451,16 +464,15 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider3 = loveframes.Create("slider", panel1)
 	   local slider4 = loveframes.Create("slider", panel1)
-		slider3:SetPos(30, 300)
+		slider3:SetPos(30, 340)
 		slider3:SetWidth(370)
 		slider3:SetMinMax(0, (100/3)*2)
-		slider4:SetPos(30, 320)
+		slider4:SetPos(30, 360)
 		slider4:SetWidth(370)
 		slider4:SetMinMax(0, 100)
 
 		slider3:SetValue(100/3)
 		slider3.OnValueChanged = function(object)
-		print(object:GetValue())
 		print(math.Remap(panel12.a,0,100,0,375))
 			panel12.a = object:GetValue()
 			if (slider4:GetValue() + object:GetValue()) > 100 then
@@ -482,7 +494,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button3 = loveframes.Create("button", panel1)
 		button3:SetWidth(20)
 		button3:SetHeight(20)
-		button3:SetPos(30+panel12:GetX()+math.Remap(panel12.a,0,100,0,375)-10, 214)
+		button3:SetPos(30+panel12:GetX()+math.Remap(panel12.a,0,100,0,375)-10, 254)
 		button3.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)
@@ -502,7 +514,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button4 = loveframes.Create("button", panel1)
 		button4:SetWidth(20)
 		button4:SetHeight(20)
-		button4:SetPos(30+panel12:GetX()+math.Remap(panel12.a,0,100,0,375)+math.Remap(panel12.b,0,100,0,375)-10, 284)
+		button4:SetPos(30+panel12:GetX()+math.Remap(panel12.a,0,100,0,375)+math.Remap(panel12.b,0,100,0,375)-10, 324)
 		button4.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)

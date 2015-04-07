@@ -566,6 +566,9 @@ hook.Add("SaveRestored", "gui create", function()
 		--------------------------------------------------------------------------------------------------------------------------------
 		--------------------------------------------------------------------------------------------------------------------------------
 
+		local infoBoxInvestissement = loveframes.Create("image", panel1)
+	    infoBoxInvestissement:SetImage("ressources/UiRackBlockPostIt.png"):SetScale(0.55,0.43):Center():SetY(410)
+
     local panel2 = loveframes.Create("panel")
     tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")
 
@@ -574,6 +577,20 @@ hook.Add("SaveRestored", "gui create", function()
 
     local panel4 = loveframes.Create("panel")
     tabsmenudown:AddTab("Personel", panel4, "Personel")
+
+	    local containerPersonnel = loveframes.Create("image", panel4)
+		containerPersonnel:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.50):Center():SetY(10)
+		local titleContainerPersonnel = loveframes.Create("text", panel4)
+	    titleContainerPersonnel:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Détail de l'effectif"):Center():SetY(14)
+
+		local containerPersonnel2 = loveframes.Create("image", panel4)
+		containerPersonnel2:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(240)
+		local titleContainerPersonnel2 = loveframes.Create("text", panel4)
+	    titleContainerPersonnel2:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Gestion de l'effectif"):Center():SetY(244)
+	    local numberboxPersonnel2 = loveframes.Create("numberbox", panel4)
+	    numberboxPersonnel2:SetPos(35, 320):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(nbEmployees)
+	    local clickablePersonnel2 = loveframes.Create("imagebutton", panel4)
+	    clickablePersonnel2:SetImage("ressources/UiBtnFixed.png"):SetPos(110,290):SetText("Modifier le nombre d'employés"):SizeToImage()
 
     local panel5 = loveframes.Create("panel")
     tabsmenudown:AddTab("Publicité", panel5, "Publicité")

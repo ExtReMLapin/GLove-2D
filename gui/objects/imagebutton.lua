@@ -291,7 +291,7 @@ function newobject:SizeToImage()
 	
 	if image then
 		self.width = image:getWidth()
-		self.height = image:getHeight()
+		self.height = image:getHeight() - 20
 	end
 	
 	return self

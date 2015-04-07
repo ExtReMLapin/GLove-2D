@@ -12,12 +12,6 @@ require "maingui"
 require "quit"
 ffi = require 'ffi'
 
-
-ffi.cdef[[
-int MessageBoxA(void *w, const char *txt, const char *cap, int type);
-]]
-
-
 local http;
 local time = os.time()
 
@@ -86,7 +80,6 @@ end
 
 hook.Add("MousePress", "MenuPress", function(x,y)
 	-- principalMenu(x,y)
-	ffi.C.MessageBoxA(nil, "lol ta cliké sur ta souri!", "mdr", 0)
 
 end)
 

@@ -6,6 +6,9 @@ local backgroundpic = love.graphics.newImage("ressources/Background.png")
 local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
 local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
 local casierPic = love.graphics.newImage("ressources/casier.png")
+local bossPic = love.graphics.newImage("ressources/CharaBankBoss.png")
+local secu2Pic = love.graphics.newImage("ressources/CharaGuardians2.png")
+local secu3Pic = love.graphics.newImage("ressources/CharaGuardians3.png")
 
 local customers = {
 	love.graphics.newImage("ressources/CharaCustomer1Anim1.png"),
@@ -60,7 +63,14 @@ hook.Add("BackBackGround", "The real one this time", function()
 
 	end
 
+	local quad = love.graphics.newQuad(0,0, bossPic:getWidth( ), bossPic:getHeight( ),x*111.5/1280,y*139.375/720)
+	love.graphics.draw(bossPic,quad ,midx - x*220/1280, midy- y*70/720)
 
+	local quad = love.graphics.newQuad(0,0, secu2Pic:getWidth( ), secu2Pic:getHeight( ),x*111.5/1280,y*145/720)
+	love.graphics.draw(secu2Pic,quad ,midx - x*350/1280, midy- y*120/720)
+
+		local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*111.5/1280,y*145/720)
+	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)
 
 end)
 

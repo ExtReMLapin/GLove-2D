@@ -383,6 +383,7 @@ function CreatePopUp(title,text, choices, fun)
 				end
 				if love.mouse.isDown("l") then
 					unpausetime()
+					love.mouse.setCursor( c_arrow )
 					hook.Remove("OverLayDraw", "popup")
 					love.mouse.setCursor( c_arrow )
 					IsOnDesktop = true
@@ -428,7 +429,8 @@ function CreatePopUp(title,text, choices, fun)
 
 
 			end
-			if isonbutton then love.mouse.setCursor( c_hand ) else love.mouse.setCursor( c_cursor ) end
+			if isonbutton and not IsOnDeskTop then love.mouse.setCursor( c_hand ) else love.mouse.setCursor( c_cursor ) end
+			if IsOnDeskTop then love.mouse.setCursor( c_arrow ) end
 
 
 

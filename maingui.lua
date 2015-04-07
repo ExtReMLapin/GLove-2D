@@ -584,13 +584,49 @@ hook.Add("SaveRestored", "gui create", function()
 	    titleContainerPersonnel:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Détail de l'effectif"):Center():SetY(14)
 
 		local containerPersonnel2 = loveframes.Create("image", panel4)
-		containerPersonnel2:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(240)
+		containerPersonnel2:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(230)
 		local titleContainerPersonnel2 = loveframes.Create("text", panel4)
-	    titleContainerPersonnel2:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Gestion de l'effectif"):Center():SetY(244)
+	    titleContainerPersonnel2:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Gestion de l'effectif"):Center():SetY(234)
+	    local textContainerPersonnel2 = loveframes.Create("text", panel4)
+	    textContainerPersonnel2:SetFont(date_box_text2):SetDefaultColor(0,0,0,255):SetText("Employés"):SetPos(26,275)
 	    local numberboxPersonnel2 = loveframes.Create("numberbox", panel4)
-	    numberboxPersonnel2:SetPos(35, 320):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(nbEmployees)
+	    numberboxPersonnel2:SetPos(35, 310):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(nbEmployees):SetMin(0)
 	    local clickablePersonnel2 = loveframes.Create("imagebutton", panel4)
-	    clickablePersonnel2:SetImage("ressources/UiBtnFixed.png"):SetPos(110,290):SetText("Modifier le nombre d'employés"):SizeToImage()
+	    clickablePersonnel2:SetImage("ressources/UiBtnFixed.png"):SetPos(110,280):SetText("Modifier le nombre d'employés"):SizeToImage()
+	    clickablePersonnel2.OnClick = function(object)
+	    	nbEmployees = numberboxPersonnel2:GetValue()
+	    end
+	    local infoBoxPersonnel2 = loveframes.Create("image", panel4)
+	    infoBoxPersonnel2:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(350)
+	    local textInfoBoxPersonnel2 = loveframes.Create("text", panel4)
+	    textInfoBoxPersonnel2:SetText("Diminuez ou augmenter l'effectif de votre banque, et \nconfirmez avec le bouton ci-dessus"):SetPos(45, 360)
+	    numberboxPersonnel2.OnValueChanged = function(value)
+	    	if numberboxPersonnel2:GetValue() > nbEmployees then
+	    		clickablePersonnel2:SetText("Recruter "..numberboxPersonnel2:GetValue() - nbEmployees.." nouveaux employés")
+	    		textInfoBoxPersonnel2:SetText("En recrutant "..numberboxPersonnel2:GetValue() - nbEmployees.." nouveaux employés :\n\t- Frais mensuels : +"..(numberboxPersonnel2:GetValue() - nbEmployees)*Salary.."F")
+	    	elseif numberboxPersonnel2:GetValue() < nbEmployees then
+	    		clickablePersonnel2:SetText("Licencier "..nbEmployees - numberboxPersonnel2:GetValue().." employés")
+	    		textInfoBoxPersonnel2:SetText("En licenciant "..nbEmployees - numberboxPersonnel2:GetValue().." employés :\n\t- Economies mensuelles : +"..(nbEmployees - numberboxPersonnel2:GetValue())*Salary.."F")
+	    	end
+	    end
+
+	    local containerPersonnel3 = loveframes.Create("image", panel4)
+		containerPersonnel3:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(420)
+		local titleContainerPersonnel3 = loveframes.Create("text", panel4)
+	    titleContainerPersonnel3:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Gestion de l'effectif"):Center():SetY(424)
+	    local textContainerPersonnel3 = loveframes.Create("text", panel4)
+	    textContainerPersonnel3:SetFont(date_box_text2):SetDefaultColor(0,0,0,255):SetText("Salaire (K)"):SetPos(26,465)
+	    local numberboxPersonnel3 = loveframes.Create("numberbox", panel4)
+	    numberboxPersonnel3:SetPos(35, 500):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(Salary/100)
+	    local clickablePersonnel3 = loveframes.Create("imagebutton", panel4)
+	    clickablePersonnel3:SetImage("ressources/UiBtnFixed.png"):SetPos(110,470):SetText("Modifier les salaires"):SizeToImage()
+	    clickablePersonnel3.OnClick = function(object)
+	    	Salary = numberboxPersonnel3:GetValue() * 100
+	    end
+	    local infoBoxPersonnel3 = loveframes.Create("image", panel4)
+	    infoBoxPersonnel3:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(540)
+	    local textInfoBoxPersonnel3 = loveframes.Create("text", panel4)
+	    textInfoBoxPersonnel3:SetText("Diminuez ou augmenter les salaires de vos employés, et \nconfirmez avec le bouton ci-dessus"):SetPos(45, 550)
 
     local panel5 = loveframes.Create("panel")
     tabsmenudown:AddTab("Publicité", panel5, "Publicité")

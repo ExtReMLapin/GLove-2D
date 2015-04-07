@@ -27,6 +27,7 @@ end
 function do_save_data()
 	local tbl = {}
 	local str;
+		tbl.HAD_RATED = HAD_RATED
 		tbl.T_DAY = T_DAY
 		tbl.T_SEM = T_SEM
 		tbl.T_MONTH = T_MONTH
@@ -118,4 +119,5 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	Investisements = {Pub = 0}
 	monthlyEarning = 0
 	CreateTutorialBox(tbltuto)
+	HAD_RATED = false
 end)

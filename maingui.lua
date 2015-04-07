@@ -239,12 +239,12 @@ hook.Add("SaveRestored", "gui create", function()
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuLeft:GetX() and MOUSE_X < (MenuLeft:GetX() + MenuLeft:GetWidth()) and MOUSE_Y > MenuLeft:GetY() and MOUSE_Y < (MenuLeft:GetY() + MenuLeft:GetHeight()) then
 			if MenuLeft:GetX() > ScrW - 350 then
-			MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 350, -25 ), MenuLeft:GetY())
+			MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 350, -1*math.Remap(25,0,love.timer.getFPS( ),0,60 ) ), MenuLeft:GetY())
 			end
 		else
 			if MenuLeft:GetX() == ScrW-40 then return end
-			if MenuLeft:GetX() < ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, 25 ), MenuLeft:GetY()) end
-			if MenuLeft:GetX() > ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, -25 ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() < ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, 1*math.Remap(25,0,love.timer.getFPS( ),0,60 ) ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() > ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, -1*math.Remap(25,0,love.timer.getFPS( ),0,60 ) ), MenuLeft:GetY()) end
 
 		end
 	end
@@ -276,12 +276,12 @@ hook.Add("SaveRestored", "gui create", function()
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
 			if MenuDown:GetY() > ScrH - 550 then
-			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - 550, -34 ))
+			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - 550, -1*math.Remap(34,0,love.timer.getFPS( ),0,60 )))
 			end
 		else
 			if MenuDown:GetY() == ScrH-25 then return end
-			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, 34 )) end
-			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -34 )) end
+			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, math.Remap(34,0,love.timer.getFPS( ),0,60 ) )) end
+			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -1*math.Remap(34,0,love.timer.getFPS( ),0,60 ) )) end
 		end
 
 	end

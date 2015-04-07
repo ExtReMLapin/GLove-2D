@@ -5,7 +5,7 @@ hook.Add("SingleKeyPressed", "Exit the game", function(key)
 	if key == "escape" then 
 		love.event.quit( )
 	end
-	end)
+end)
 
 
 local RATED = false

@@ -48,7 +48,7 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
-	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons", {"1", "2", "3"}, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
+	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons",{"lol","lol","lol","lol","lol" }, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
 

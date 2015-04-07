@@ -362,17 +362,25 @@ function CreatePopUp(title,text, choices, fun)
 		love.graphics.print( text ,  ScrW/2- 200 , ScrH/2-83-hei/2)
 
 		love.graphics.setFont(popuptitle)
-		if not choices then
+		if not (type(choices) == "table") then
 
-			
+			love.graphics.setColor(42,42,42,120)
+			love.graphics.rectangle("fill", ScrW/2-150-1, ScrH/2-30+hei-hei/2-1, 302, 62 )
+
 			if MOUSE_X > ScrW/2-150 and MOUSE_X <  ScrW/2+150 and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
 				love.mouse.setCursor( c_hand )
 
 				
-				love.graphics.setColor(250,164,26)
+
+
+				love.graphics.setColor(255,255,255)
 				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)
-				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
+				if not choices then 
+					love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
+				else
+					love.graphics.print( choices ,  ScrW/2 - popuptitle:getWidth(choices)/2 , ScrH/2-30+hei+15-hei/2)
+				end
 				if love.mouse.isDown("l") then
 					unpausetime()
 					hook.Remove("OverLayDraw", "popup")
@@ -382,24 +390,27 @@ function CreatePopUp(title,text, choices, fun)
 
 			else
 				love.mouse.setCursor( c_arrow )
-				love.graphics.setColor(247,143,29)
+				love.graphics.setColor(232,232,232)
 				love.graphics.rectangle("fill", ScrW/2-150, ScrH/2-30+hei-hei/2, 300, 60 )
 				love.graphics.setColor(0,0,0,250)
-				love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
-
+				if not choices then 
+					love.graphics.print( "OK" ,  ScrW/2 - popuptitle:getWidth("OK")/2 , ScrH/2-30+hei+15-hei/2)
+				else
+					love.graphics.print( choices ,  ScrW/2 - popuptitle:getWidth(choices)/2 , ScrH/2-30+hei+15-hei/2)
+				end
 			end
 		else
 			local isonbutton = false
 			local sizeperbutton = 400/ #choices - (#choices-2)*5 -- -2 because of 2 are at the borders
 			for k, v in pairs(choices) do
 				local pos = ScrW/2-200 + (k-1)*sizeperbutton + (k-1)*10
-				love.graphics.setColor(247,143,29)
+				love.graphics.setColor(42,42,42,120)
+				love.graphics.rectangle("fill",  pos-1, ScrH/2-30+hei-hei/2-1, sizeperbutton+2 , 60+2 )
 
-
-
+				love.graphics.setColor(232,232,232)
 				if MOUSE_X > pos and MOUSE_X < pos + sizeperbutton and MOUSE_Y > ScrH/2-30+hei-hei/2 and MOUSE_Y < ScrH/2-30+hei+60-hei/2 then
 
-					love.graphics.setColor(250,164,26)
+					love.graphics.setColor(255,255,255)
 					isonbutton = true
 					if love.mouse.isDown("l") then
 						local func = fun[k]

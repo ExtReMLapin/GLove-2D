@@ -324,15 +324,31 @@ hook.Add("SaveRestored", "gui create", function()
 	    panel11:SetSize(375,40)
 	    panel11:SetPos(30,80)
 	    panel11.Draw = function()
+	    	love.graphics.setFont(popuptitle)
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr1,quad ,panel11:GetX(), panel11:GetY())
+			
 
+			local str = tostring(math.Round(math.Remap(panel11.a, 0,100,0,3),2)) .. "%"
+			love.graphics.print(str, panel11:GetX()+math.Max(0,math.Remap(panel11.a,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+
+			love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.b,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr2,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375), panel11:GetY())
 
+			love.graphics.setColor(0,0,0)
+			local str = tostring(math.Round(math.Remap(panel11.b, 0,100,0,3),2)) .. "%"
+			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(panel11.b,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+
+			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,math.Remap(100-panel11.b-panel11.a,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr3,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375), panel11:GetY())
+
+			love.graphics.setColor(0,0,0)
+			local str = tostring(math.Round(math.Remap(100-(panel11.b+panel11.a), 0,100,0,3),2)) .. "%"
+			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.b,0,100,0,375)+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(100-(panel11.b+panel11.a),0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+
 	    end
 
 

@@ -9,6 +9,7 @@ require "money"
 require "clientsystem"
 require "input"
 require "maingui"
+require "quit"
 
 local http;
 local time = os.time()
@@ -58,7 +59,6 @@ function love.update()
 	timer.check()
 	leftClick = love.mouse.isDown("l")
 end
-
 
 function love.draw()
 	hook.Call("BackBackGround") -- the real one .... this time eheh

@@ -16,8 +16,6 @@ function AskForRating()
 end
 
 function love.quit()
-
-
 	if not RATED then
 		AskForRating()
 		return true 

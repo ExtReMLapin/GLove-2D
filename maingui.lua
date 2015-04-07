@@ -349,7 +349,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 		slider1:SetValue(100/3)
 		slider1.OnValueChanged = function(object)
-		print(math.Remap(panel11.a,0,100,0,375))
+		--print(math.Remap(panel11.a,0,100,0,375))
 			panel11.a = object:GetValue()
 			if (slider2:GetValue() + object:GetValue()) > 100 then
 				slider2:SetValue(100-(panel11.a))
@@ -476,7 +476,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 		slider3:SetValue(100/3)
 		slider3.OnValueChanged = function(object)
-		print(math.Remap(panel12.a,0,100,0,375))
+		--print(math.Remap(panel12.a,0,100,0,375))
 			panel12.a = object:GetValue()
 			if (slider4:GetValue() + object:GetValue()) > 100 then
 				slider4:SetValue(100-(panel12.a))

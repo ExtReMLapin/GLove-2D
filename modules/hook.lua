@@ -1,4 +1,6 @@
 if hook then return false end
+local table = table
+local type = type
 
 hook = {}
 hook.hooks = {}

@@ -16,6 +16,6 @@ Nouveau système de popularité :
 	Nouveaux clients = (banque_connue-clients_actuels)*(engouement*appréciée)/100
 
 Nouvelle interface : 
-	Avec les menus en bas
-
+	[DONE]Avec les menus en bas
+	Menu échape
 

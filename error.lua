@@ -1,7 +1,3 @@
-do return end
-
-
-
 ERROR_SENT = false
 
 

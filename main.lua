@@ -10,6 +10,13 @@ require "clientsystem"
 require "input"
 require "maingui"
 require "quit"
+ffi = require 'ffi'
+
+
+ffi.cdef[[
+int MessageBoxA(void *w, const char *txt, const char *cap, int type);
+]]
+
 
 local http;
 local time = os.time()
@@ -49,6 +56,7 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
+	PrintTable(ffi)
 	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons",{"lol","lol","lol","lol","lol" }, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
@@ -78,6 +86,7 @@ end
 
 hook.Add("MousePress", "MenuPress", function(x,y)
 	-- principalMenu(x,y)
+	ffi.C.MessageBoxA(nil, "lol ta cliké sur ta souri!", "mdr", 0)
 
 end)
 

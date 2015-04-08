@@ -249,9 +249,6 @@ hook.Add("SaveRestored", "gui create", function()
 		end
 	end
 
-
-
-
 		local MenuDownArrow = loveframes.Create("image", MenuLeft)
 		MenuDownArrow:SetImage("ressources/ArrowBrown.png")
 		MenuDownArrow:SetPos(20, 145)
@@ -260,8 +257,6 @@ hook.Add("SaveRestored", "gui create", function()
 		MenuDownArrow.Update = function(object)
 			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrW-MenuLeft:GetX(),350,40,0,180) )+math.rad(180))
 		end
-
-
 
 	MenuDown = loveframes.Create("panel")
 	MenuDown:SetSize(450,600)
@@ -307,10 +302,10 @@ hook.Add("SaveRestored", "gui create", function()
     local panel1 = loveframes.Create("panel")
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
 
+    --------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------
 
-    --------------------------------------------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------------------------------------------
     if not containerInvestissement then
 	    local containerInvestissement = loveframes.Create("image", panel1)
 	    containerInvestissement:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(10)
@@ -318,41 +313,6 @@ hook.Add("SaveRestored", "gui create", function()
 	    titleContainerInvestissement:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Points par Durée (Années)"):Center():SetY(14)
 	end
 
-	    local remunerationInvestisseur = loveframes.Create("imagebutton", panel1)
-    remunerationInvestisseur:SetPos(28,65):SetText(tostring(tauxInvestisseur1))
-    remunerationInvestisseur.OnClick = function(object)
-    	local textboxRemuneration = loveframes.Create("textinput", panel1)
-    	textboxRemuneration:SetPos(32,150):SetValue(tostring(tauxInvestisseur1))
-    	textboxRemuneration.OnEnter = function(object,text)
-    		tauxInvestisseur1 = tonumber(text)
-    		remunerationInvestisseur:SetText(tostring(tauxInvestisseur1))
-    		textboxRemuneration:Remove()
-    	end
-    end
-
-    local remunerationInvestisseur2 = loveframes.Create("imagebutton", panel1)
-    remunerationInvestisseur2:SetPos(28,65):SetText(tostring(tauxInvestisseur2))
-    remunerationInvestisseur2.OnClick = function(object)
-    	local textboxRemuneration2 = loveframes.Create("textinput", panel1)
-    	textboxRemuneration2:SetPos(32,150):SetValue(tostring(tauxInvestisseur2))
-    	textboxRemuneration2.OnEnter = function(object,text)
-    		tauxInvestisseur2 = tonumber(text)
-    		remunerationInvestisseur2:SetText(tostring(tauxInvestisseur2))
-    		textboxRemuneration2:Remove()
-    	end
-    end
-
-    local remunerationInvestisseur3 = loveframes.Create("imagebutton", panel1)
-    remunerationInvestisseur3:SetPos(28,65):SetText(tostring(tauxInvestisseur3))
-    remunerationInvestisseur3.OnClick = function(object)
-    	local textboxRemuneration3 = loveframes.Create("textinput", panel1)
-    	textboxRemuneration3:SetPos(32,150):SetValue(tostring(tauxInvestisseur3))
-    	textboxRemuneration3.OnEnter = function(object,text)
-    		tauxInvestisseur3 = tonumber(text)
-    		remunerationInvestisseur3:SetText(tostring(tauxInvestisseur3))
-    		textboxRemuneration3:Remove()
-    	end
-    end
 
 
 
@@ -368,7 +328,7 @@ hook.Add("SaveRestored", "gui create", function()
 			love.graphics.draw(gr1,quad ,panel11:GetX(), panel11:GetY())
 			
 
-			local str = tostring(math.Round(math.Remap(panel11.a, 0,100,0,3),2)) .. "%"
+			local str = tostring(math.Round(panel11.a,1)) .. "%"
 			love.graphics.print(str, panel11:GetX()+math.Max(0,math.Remap(panel11.a,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
 
 			love.graphics.setColor(255,255,255)
@@ -376,7 +336,7 @@ hook.Add("SaveRestored", "gui create", function()
 			love.graphics.draw(gr2,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375), panel11:GetY())
 
 			love.graphics.setColor(0,0,0)
-			local str = tostring(math.Round(math.Remap(panel11.b, 0,100,0,3),2)) .. "%"
+			local str =tostring(math.Round(panel11.b,1)) .. "%"
 			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(panel11.b,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
 
 			love.graphics.setColor(255,255,255)
@@ -384,20 +344,63 @@ hook.Add("SaveRestored", "gui create", function()
 			love.graphics.draw(gr3,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375), panel11:GetY())
 
 			love.graphics.setColor(0,0,0)
-			local str = tostring(math.Round(math.Remap(100-(panel11.b+panel11.a), 0,100,0,3),2)) .. "%"
+			local str = tostring(math.Round(100-(panel11.a+panel11.b),1)) .. "%"
 			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.b,0,100,0,375)+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(100-(panel11.b+panel11.a),0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
 
 	    end
 
 
-	    	
+	local remunerationInvestisseur = loveframes.Create("imagebutton", panel1)
+	remunerationInvestisseur:SetPos(18,120):SetText(tostring(tauxInvestisseur1 or 0))
+	remunerationInvestisseur.OnClick = function(object)
+	local textboxRemuneration = loveframes.Create("textinput", panel1)
+		textboxRemuneration:SetWidth(50)
+		textboxRemuneration:SetPos(18+17,142):SetValue(tostring(tauxInvestisseur1 or 0))
+		textboxRemuneration.OnEnter = function(object,text)
+			tauxInvestisseur1 = tonumber(text)
+			remunerationInvestisseur:SetText(tostring(tauxInvestisseur1))
+			textboxRemuneration:Remove()
+		end
+	end
+
+
+
+	local remunerationInvestisseur2 = loveframes.Create("imagebutton", panel1)
+	remunerationInvestisseur2:SetPos(28+110,120):SetText(tostring(tauxInvestisseur2 or 0))
+	remunerationInvestisseur2.OnClick = function(object)
+	local textboxRemuneration = loveframes.Create("textinput", panel1)
+		textboxRemuneration:SetWidth(50)
+		textboxRemuneration:SetPos(28+17+110,142):SetValue(tostring(tauxInvestisseur2 or 0))
+		textboxRemuneration.OnEnter = function(object,text)
+			tauxInvestisseur2 = tonumber(text)
+			remunerationInvestisseur2:SetText(tostring(tauxInvestisseur1))
+			textboxRemuneration:Remove()
+		end
+	end
+
+
+
+		local remunerationInvestisseur3 = loveframes.Create("imagebutton", panel1)
+	remunerationInvestisseur3:SetPos(28+230,120):SetText(tostring(tauxInvestisseur3 or 0))
+	remunerationInvestisseur3.OnClick = function(object)
+	local textboxRemuneration = loveframes.Create("textinput", panel1)
+		textboxRemuneration:SetWidth(50)
+		textboxRemuneration:SetPos(28+17+230,142):SetValue(tostring(tauxInvestisseur3 or 0))
+		textboxRemuneration.OnEnter = function(object,text)
+			tauxInvestisseur3 = tonumber(text)
+			remunerationInvestisseur3:SetText(tostring(tauxInvestisseur3))
+			textboxRemuneration:Remove()
+		end
+	end
+
+
 
 	   local slider1 = loveframes.Create("slider", panel1)
 	   local slider2 = loveframes.Create("slider", panel1)
-		slider1:SetPos(30, 140)
+		slider1:SetPos(-30000, -14000)
 		slider1:SetWidth(370)
 		slider1:SetMinMax(0, (100/3)*2)
-		slider2:SetPos(30, 160)
+		slider2:SetPos(-30000, -14000)
 		slider2:SetWidth(370)
 		slider2:SetMinMax(0, 100)
 
@@ -521,10 +524,10 @@ hook.Add("SaveRestored", "gui create", function()
 
 	   local slider3 = loveframes.Create("slider", panel1)
 	   local slider4 = loveframes.Create("slider", panel1)
-		slider3:SetPos(30, 340)
+		slider3:SetPos(-30000, -14000)
 		slider3:SetWidth(370)
 		slider3:SetMinMax(0, (100/3)*2)
-		slider4:SetPos(30, 360)
+		slider4:SetPos(-30000, -14000)
 		slider4:SetWidth(370)
 		slider4:SetMinMax(0, 100)
 

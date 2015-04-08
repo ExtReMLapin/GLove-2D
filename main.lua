@@ -12,6 +12,15 @@ require "maingui"
 require "quit"
 ffi = require 'ffi'
 
+local MAX_FPS = 200
+
+
+		ffi.cdef[[
+		void Sleep(int ms);
+		int poll(struct pollfd *fds, unsigned long nfds, int timeout);
+		]]
+		
+
 local http;
 local time = os.time()
 
@@ -51,11 +60,12 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	PrintTable(ffi)
-	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons",nil, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
+	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
 end
 
 
 function love.update()
+	ffi.C.Sleep(1000/MAX_FPS)
 	loveframes.update(dt)
 	hook.Call("Think")
 	timer.check()
@@ -78,11 +88,6 @@ end
 
 
 
-hook.Add("MousePress", "MenuPress", function(x,y)
-	-- principalMenu(x,y)
-
-end)
-
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
@@ -91,7 +96,6 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		love.graphics.print("Salaire: "..tostring(Salary) or "nul", 300, 0)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
-		
 		--love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), ScrW*900/1280,ScrH-50)
 		--love.graphics.print("Engouement : " .. engouement, ScrW*200/1280,ScrH-50)
 		--love.graphics.print("Réputation : " .. reputation, ScrW*400/1280, ScrH-50)

@@ -51,7 +51,7 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	PrintTable(ffi)
-	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons",{"lol","lol","lol","lol","lol" }, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
+	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque les boutons",nil, {function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end,function() love.mouse.setCursor(c_default) end })
 end
 
 

@@ -318,6 +318,42 @@ hook.Add("SaveRestored", "gui create", function()
 	    titleContainerInvestissement:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Points par Durée (Années)"):Center():SetY(14)
 	end
 
+    local remunerationInvestisseur = loveframes.Create("imagebutton", panel1)
+    remunerationInvestisseur:SetPos(28,65):SetText(tostring(tauxInvestisseur1))
+    remunerationInvestisseur.OnClick = function(object)
+    	local textboxRemuneration = loveframes.Create("textinput", panel1)
+    	textboxRemuneration:SetPos(32,150):SetValue(tostring(tauxInvestisseur1))
+    	textboxRemuneration.OnEnter = function(object,text)
+    		tauxInvestisseur1 = tonumber(text)
+    		remunerationInvestisseur:SetText(tostring(tauxInvestisseur1))
+    		textboxRemuneration:Remove()
+    	end
+    end
+
+    local remunerationInvestisseur2 = loveframes.Create("imagebutton", panel1)
+    remunerationInvestisseur2:SetPos(28,65):SetText(tostring(tauxInvestisseur2))
+    remunerationInvestisseur2.OnClick = function(object)
+    	local textboxRemuneration2 = loveframes.Create("textinput", panel1)
+    	textboxRemuneration2:SetPos(32,150):SetValue(tostring(tauxInvestisseur2))
+    	textboxRemuneration2.OnEnter = function(object,text)
+    		tauxInvestisseur2 = tonumber(text)
+    		remunerationInvestisseur2:SetText(tostring(tauxInvestisseur2))
+    		textboxRemuneration2:Remove()
+    	end
+    end
+
+    local remunerationInvestisseur3 = loveframes.Create("imagebutton", panel1)
+    remunerationInvestisseur3:SetPos(28,65):SetText(tostring(tauxInvestisseur3))
+    remunerationInvestisseur3.OnClick = function(object)
+    	local textboxRemuneration3 = loveframes.Create("textinput", panel1)
+    	textboxRemuneration3:SetPos(32,150):SetValue(tostring(tauxInvestisseur3))
+    	textboxRemuneration3.OnEnter = function(object,text)
+    		tauxInvestisseur3 = tonumber(text)
+    		remunerationInvestisseur3:SetText(tostring(tauxInvestisseur3))
+    		textboxRemuneration3:Remove()
+    	end
+    end
+
     local panel11 =  loveframes.Create("panel", panel1)
         panel11.a = 100/3
 	    panel11.b = 100/3
@@ -328,30 +364,15 @@ hook.Add("SaveRestored", "gui create", function()
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr1,quad ,panel11:GetX(), panel11:GetY())
-			
-
-			local str = tostring(math.Round(math.Remap(panel11.a, 0,100,0,3),2)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Max(0,math.Remap(panel11.a,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
 
 			love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.b,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr2,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375), panel11:GetY())
 
-			love.graphics.setColor(0,0,0)
-			local str = tostring(math.Round(math.Remap(panel11.b, 0,100,0,3),2)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(panel11.b,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
-
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,math.Remap(100-panel11.b-panel11.a,0,100,0,375),40, 3, 54)
 			love.graphics.draw(gr3,quad ,panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375), panel11:GetY())
-
-			love.graphics.setColor(0,0,0)
-			local str = tostring(math.Round(math.Remap(100-(panel11.b+panel11.a), 0,100,0,3),2)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.b,0,100,0,375)+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(100-(panel11.b+panel11.a),0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
-
 	    end
-
-
 	    	
 
 	   local slider1 = loveframes.Create("slider", panel1)

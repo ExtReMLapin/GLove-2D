@@ -1,5 +1,7 @@
 require "data"
 require "error"
+ffi = require 'ffi'
+inspect = require "inspect"
 require "ressources/fonts"
 require "timersloop"
 require "save"
@@ -10,17 +12,11 @@ require "clientsystem"
 require "input"
 require "maingui"
 require "quit"
-ffi = require 'ffi'
+require "lua_ffi"
+
+
 
 local MAX_FPS = 200
-
-
-		ffi.cdef[[
-		void Sleep(int ms);
-		int poll(struct pollfd *fds, unsigned long nfds, int timeout);
-		]]
-		
-
 local http;
 local time = os.time()
 
@@ -59,13 +55,12 @@ function love.load()
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
 	--theme:play()
-	PrintTable(ffi)
 	CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
 end
 
 
 function love.update()
-	ffi.C.Sleep(1000/MAX_FPS)
+	--ffi.C.Sleep(1000/MAX_FPS)
 	loveframes.update(dt)
 	hook.Call("Think")
 	timer.check()

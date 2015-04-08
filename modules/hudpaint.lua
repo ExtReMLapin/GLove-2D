@@ -548,7 +548,7 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 		local xoffset2 = MenuDown:GetX()
 		local yoffset2 = MenuDown:GetY()
 
-		love.graphics.setColor(255,255,255)
+	--[[	love.graphics.setColor(255,255,255)
 		surface.RoundedBox(30+ 0, 0 + 10, 210, 50, 5)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont( date_box_text1 )
@@ -579,7 +579,7 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 			love.graphics.setFont( fluwtext )
 			love.graphics.setColor(0,0,0,factor)
 			love.graphics.print(max .. "F",  0+14 ,  0 +45 )
-			love.graphics.print(max .. "F",  0+14 ,  0 +155 )
+			love.graphics.print(max .. "F",  0+14 ,  0 +155 )]]
 
 
 

@@ -3,7 +3,7 @@ require("modules/hook")
 Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i/%i", 6, 1855)
-Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde \natteint maintenant la Russie et bientôt \nl'Europe, personnene sait où elle s'arrêtera !\n") end
+Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde \natteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera !\n") end
 Event[2] = {}
 Event[2].date = string.format("%i/%i", 11, 1859)
 Event[2].func = function() CreatePopUp("Construction du Canal de Suez","Situé en Egypte, le Canal de Suez permettra \nde rallier la Mer Méditerranée à la Mer Rouge.\nDébut des travaux...\n") end

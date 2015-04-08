@@ -11,6 +11,7 @@ end)
 
 local function AskForRating()
 	HAD_RATED = true
+	CONFIRMED_QUIT = true
 	print"asked"
 end
 

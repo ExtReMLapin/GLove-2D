@@ -89,7 +89,7 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), ScrW*10/1280 ,ScrH-50)
 		--love.graphics.print("X,Y,Z debug:"..tostring(x)..", "..tostring(y)..", "..tostring(z), 200,700)
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
-		love.graphics.print("Salaire: "..tostring(Salary) or "nul", 0, 0)
+		love.graphics.print("Salaire: "..tostring(Salary) or "nul", 300, 0)
 		--love.graphics.print("Popularité:"..tostring(Popularity) or "nul", 600,700)
 		
 		--love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), ScrW*900/1280,ScrH-50)

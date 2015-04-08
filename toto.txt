@@ -23,23 +23,7 @@ createEvent(date, func)
 
 
 
-
-
-
 You can edit below v
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Nouveau système de popularité : 

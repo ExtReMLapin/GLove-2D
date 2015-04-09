@@ -14,7 +14,6 @@ require "maingui"
 require "quit"
 require "lua_ffi"
 steamworks = require"steamworks/init"
-print(steamworks.friends.GetPersonaName())
 
 
 local MAX_FPS = 200
@@ -57,7 +56,6 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
-	print(steamworks.utils.GetIPCountry())
 end
 
 

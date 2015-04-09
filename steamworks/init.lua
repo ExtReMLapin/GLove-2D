@@ -2370,14 +2370,14 @@ do
 			file:write("999999")
 			io.close(file)
 		else
-			error("failed to write steam_appid.txt (because it's needed) in cd : " .. err)
+			print("failed to write steam_appid.txt (because it's needed) in cd : " .. err)
 		end
 	end
 	
 end
 
 if not lib.SteamAPI_Init() then
-	error("failed to initialize steamworks")
+	print("failed to initialize steamworks")
 end
 
 local steamworks = {}

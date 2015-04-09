@@ -67,7 +67,7 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw(bossPic,quad ,midx - x*220/1280, midy- y*70/720)
 
 	local quad = love.graphics.newQuad(0,0, secu2Pic:getWidth( ), secu2Pic:getHeight( ),x*111.5/1280,y*145/720)
-	love.graphics.draw(secu2Pic,quad ,midx - x*350/1280, midy- y*120/720)
+	love.graphics.draw(secu2Pic,quad ,midx - x*(350+10)/1280, midy- y*(120-10)/720)
 
 	local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*111.5/1280,y*145/720)
 	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)

@@ -891,9 +891,9 @@ function skin.DrawMultiChoice(object)
 	love.graphics.setFont(font)
 	
 	if choice == "" then
-		love.graphics.print(text, x + 5, y + height/2 - theight/2)
+		love.graphics.print(text, object:GetWidth()/2, y + height/2 - theight/2)
 	else
-		love.graphics.print(choice, x + 5, y + height/2 - theight/2)
+		love.graphics.print(choice, object:GetWidth()/2, y + height/2 - theight/2)
 	end
 	
 	love.graphics.setColor(255, 255, 255, 255)
@@ -963,12 +963,12 @@ function skin.DrawMultiChoiceRow(object)
 		love.graphics.setColor(bodyhovecolor)
 		love.graphics.rectangle("fill", x, y, width, height)
 		love.graphics.setColor(texthovercolor)
-		love.graphics.print(text, x + 5, y + 5)
+		love.graphics.print(text, object:GetWidth()/2, y + 5)
 	else
 		love.graphics.setColor(bodynohovercolor)
 		love.graphics.rectangle("fill", x, y, width, height)
 		love.graphics.setColor(textnohovercolor)
-		love.graphics.print(text, x + 5, y + 5)
+		love.graphics.print(text, object:GetWidth()/2, y + 5)
 	end
 	
 end

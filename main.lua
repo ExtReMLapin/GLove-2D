@@ -13,7 +13,7 @@ require "input"
 require "maingui"
 require "quit"
 require "lua_ffi"
-steamworks = require"steamworks/init"
+--steamworks = require"steamworks/init"
 
 
 local MAX_FPS = 200

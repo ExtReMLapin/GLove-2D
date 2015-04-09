@@ -322,14 +322,14 @@ hook.Add("SaveRestored", "gui create", function()
 	    panel11:SetSize(375,40)
 	    panel11:SetPos(30,80)
 	    panel11.Draw = function()
-	    	love.graphics.setFont(popuptitle)
+	    	love.graphics.setFont(sliderbarfont)
 	    	love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.a,0,100,0,375),30, 3, 54)
 			love.graphics.draw(gr1,quad ,panel11:GetX(), panel11:GetY())
 			
 
 			local str = tostring(math.Round(panel11.a,1)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Max(0,math.Remap(panel11.a,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+			love.graphics.print(str, panel11:GetX()+math.Max(0,math.Remap(panel11.a,0,100,0,375)/2-sliderbarfont:getWidth(str)/2),panel11:GetY()+4)
 
 			love.graphics.setColor(255,255,255)
 	    	local quad = love.graphics.newQuad(0,0,math.Remap(panel11.b,0,100,0,375),30, 3, 54)
@@ -337,7 +337,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 			love.graphics.setColor(0,0,0)
 			local str =tostring(math.Round(panel11.b,1)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(panel11.b,0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(panel11.b,0,100,0,375)/2-sliderbarfont:getWidth(str)/2),panel11:GetY()+4)
 
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,math.Remap(100-panel11.b-panel11.a,0,100,0,375),30, 3, 54)
@@ -345,7 +345,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 			love.graphics.setColor(0,0,0)
 			local str = tostring(math.Round(100-(panel11.a+panel11.b),1)) .. "%"
-			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.b,0,100,0,375)+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(100-(panel11.b+panel11.a),0,100,0,375)/2-popuptitle:getWidth(str)/2),panel11:GetY())
+			love.graphics.print(str, panel11:GetX()+math.Remap(panel11.b,0,100,0,375)+math.Remap(panel11.a,0,100,0,375)+math.Max(0,math.Remap(100-(panel11.b+panel11.a),0,100,0,375)/2-sliderbarfont:getWidth(str)/2),panel11:GetY()+4)
 
 	    end
 
@@ -447,7 +447,7 @@ hook.Add("SaveRestored", "gui create", function()
 		local button2 = loveframes.Create("button", panel1)
 		button2:SetWidth(20)
 		button2:SetHeight(20)
-		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 124)
+		button2:SetPos(30+panel11:GetX()+math.Remap(panel11.a,0,100,0,375)+math.Remap(panel11.b,0,100,0,375)-10, 115)
 		button2.Draw= function(object)
 			love.graphics.setColor(255,255,255)
 			local quad = love.graphics.newQuad(0,0,62,91, 20, 29)

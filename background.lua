@@ -5,7 +5,7 @@ ScrH_RATIO = 1
 local backgroundpic = love.graphics.newImage("ressources/Background.png")
 local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
 local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
-local casierPic = love.graphics.newImage("ressources/casier.png")
+--local casierPic = love.graphics.newImage("ressources/casier.png")
 local bossPic = love.graphics.newImage("ressources/CharaBankBoss.png")
 local secu2Pic = love.graphics.newImage("ressources/CharaGuardians2.png")
 local secu3Pic = love.graphics.newImage("ressources/CharaGuardians3.png")
@@ -49,8 +49,8 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw_nicegraph(midx-x*115/1280,  midy-y*(220+118)/720, x*240/1280, y*118/720, bank.corpo_get_value_date("AMD"))
 
 
-	local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)
-	love.graphics.draw(casierPic,quad ,midx - x*153/1280, midy- y*285/720)
+	--local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)
+	--love.graphics.draw(casierPic,quad ,midx - x*153/1280, midy- y*285/720)
 
 
 	for k, v in pairs(customers) do

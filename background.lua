@@ -35,9 +35,9 @@ hook.Add("BackBackGround", "The real one this time", function()
 		ScrW_RATIO = x/ScrW
 	end
 
+	local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
 
-	local quad = love.graphics.newQuad(0,0, blurrywall:getWidth( ), blurrywall:getHeight( ),ScrW*x/1920,ScrH*y/1080)
-	love.graphics.draw(blurrywall,quad ,0, 0)
+	love.graphics.draw(blurrywall,quad ,ScrW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
 
 
 

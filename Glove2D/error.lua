@@ -1,5 +1,3 @@
-do return end
-
 ERROR_SENT = false
 
 
@@ -35,7 +33,7 @@ function love.errhand(msg)
     ScrW, ScrH = love.window.getDimensions( )
     if love.audio then love.audio.stop() end
     love.graphics.reset()
-    love.graphics.setBackgroundColor( 0,0,0 )
+    love.graphics.setBackgroundColor( 30,30,44 )
     errorsound:play()
     local function draw()
         love.mouse.setCursor( love.mouse.getSystemCursor('arrow') )

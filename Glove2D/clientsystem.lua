@@ -14,7 +14,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			nbClients = nbClients + newClients
 		end
 		clientProfilGen(newClients)
-		if engouement > 0.1 then engouement = engouement - 0.1 end
+		if engouement > 0.1 then engouement = engouement - 0.05 end
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
 		newInvestisseurs = math.Round((nbClients / 1000)*(reputation + engouement * 17), 0)
@@ -62,21 +62,21 @@ function clientProfilGen(newClients)
 
 	while lowProfile > 0 do
 		clientMoney = math.Round(math.random(20,1000), 0)
-		monthlyEarning = clientMoney*0.09
+		monthlyEarning = monthlyEarning + clientMoney*0.09
 		annualPayment = annualPayment + clientMoney*(minimalRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		lowProfile = lowProfile - 1
 	end
 	while midProfile > 0 do
 		clientMoney = math.Round(math.random(1001,6000), 0)
-		monthlyEarning = clientMoney*0.14
+		monthlyEarning = monthlyEarning + clientMoney*0.14
 		annualPayment = annualPayment + clientMoney*(middleRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		midProfile = midProfile - 1
 	end
 	while highProfile > 0 do
 		clientMoney = math.Round(math.random(6001,12000), 0)
-		monthlyEarning = clientMoney*0.3
+		monthlyEarning = monthlyEarning + clientMoney*0.3
 		annualPayment = annualPayment + clientMoney*(maximalRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		highProfile = highProfile - 1

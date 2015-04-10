@@ -60,7 +60,7 @@ end
 
 
 function love.update()
-	ffi.C.Sleep(1000/MAX_FPS)
+--	ffi.C.Sleep(1000/MAX_FPS)
 	loveframes.update(dt)
 	hook.Call("Think")
 	timer.check()

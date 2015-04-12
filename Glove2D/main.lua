@@ -1,5 +1,4 @@
 require "data"
-lume = require "lume"
 require "error"
 ffi = require 'ffi'
 inspect = require "inspect"

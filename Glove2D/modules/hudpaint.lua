@@ -80,21 +80,32 @@ hook.Add("LongMousePress", "drawgraph mouse", function()
 	 old_pos = pos
 end)
 
+local in_graph = false;
+
 function love.graphics.draw_nicegraph(x, y, w, h, tbl)
 
 	local xpos, ypos = love.mouse.getPosition( )
 	if (xpos > x and xpos < x+w ) and (ypos > y and ypos < y+h ) then -- in the frame
 		
+		if not in_graph and not MOUSE_STATE then
+			love.mouse.setCursor(c_hand)
+			in_graph = true 
+		end
+
 		if MOUSE_STATE then -- clicking ?
 			pos = (old_pos + (((MOUSE_S_X - xpos)*zoom)/x)*2.2)
 			--zoom = (old_zoom + ((MOUSE_S_Y - ypos)/y/2))
 			love.mouse.setCursor(c_size)
-
+			in_graph = false
 		else
-			love.mouse.setCursor(c_hand)
+			
 		end
 	else
-		love.mouse.setCursor(c_default)
+
+		if in_graph then 
+			in_graph = false;
+			love.mouse.setCursor(c_default)
+		end
 	end
 
 	zoom = math.Min(math.Max( 0.1, zoom),2) or 0.5

@@ -897,7 +897,7 @@ function skin.DrawMultiChoice(object)
 	end
 	
 	love.graphics.setColor(255, 255, 255, 255)
-	love.graphics.draw(image, x + width - 20, y + 5)
+	love.graphics.draw(image, x + width - 20, y + height/2 - 8)
 	
 	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y, width, height)

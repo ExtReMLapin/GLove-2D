@@ -68,6 +68,7 @@ hook.Add("DateChange", "Taxes", function()
 	if T_SEM == 1 and T_DAY == 1 then
 		addMoney(-12000, "Location locaux")
 		addMoney(-6500 * nbEmployees, "Salaires")
+		addMoney(monthlyEarning, "Compte clients")
 	end
 	if T_MONTH == 1 and T_SEM == 1 and T_DAY == 1 then
 		addMoney(-annualPayment, "Dividendes")

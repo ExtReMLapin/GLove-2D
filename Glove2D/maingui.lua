@@ -743,14 +743,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 		local interetCrediteur = loveframes.Create("imagebutton", panel2)
-		interetCrediteur:SetPos(25,130):SetText(tostring(minimal2Rendement or 0).."%")
+		interetCrediteur:SetPos(25,130):SetText(tostring(minimalCrediteurIncomesBehoof or 0).."%")
 		interetCrediteur.OnClick = function(object)
 		local textboxInteret = loveframes.Create("textinput", panel2)
 			textboxInteret:SetWidth(50)
-			textboxInteret:SetPos(18+12,147):SetValue(tostring(minimal2Rendement or 0))
+			textboxInteret:SetPos(18+12,147):SetValue(tostring(minimalCrediteurIncomesBehoof or 0))
 			textboxInteret.OnEnter = function(object,text)
-				minimal2Rendement = tonumber(text)
-				interetCrediteur:SetText(tostring(minimal2Rendement).."%")
+				minimalCrediteurIncomesBehoof = tonumber(text)
+				interetCrediteur:SetText(tostring(minimalCrediteurIncomesBehoof).."%")
 				textboxInteret:Remove()
 			end
 		end
@@ -758,14 +758,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 		local interetCrediteur2 = loveframes.Create("imagebutton", panel2)
-		interetCrediteur2:SetPos(35+110,130):SetText(tostring(middle2Rendement or 0).."%")
+		interetCrediteur2:SetPos(35+110,130):SetText(tostring(middleCrediteurIncomesBehoof or 0).."%")
 		interetCrediteur2.OnClick = function(object)
 		local textboxInteret2 = loveframes.Create("textinput", panel2)
 			textboxInteret2:SetWidth(50)
-			textboxInteret2:SetPos(28+12+110,147):SetValue(tostring(middle2Rendement or 0))
+			textboxInteret2:SetPos(28+12+110,147):SetValue(tostring(middleCrediteurIncomesBehoof or 0))
 			textboxInteret2.OnEnter = function(object,text)
-				middle2Rendement = tonumber(text)
-				interetCrediteur2:SetText(tostring(middle2Rendement).."%")
+				middleCrediteurIncomesBehoof = tonumber(text)
+				interetCrediteur2:SetText(tostring(middleCrediteurIncomesBehoof).."%")
 				textboxInteret2:Remove()
 			end
 		end
@@ -773,14 +773,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 		local interetCrediteur3 = loveframes.Create("imagebutton", panel2)
-		interetCrediteur3:SetPos(35+230,130):SetText(tostring(maximal2Rendement or 0).."%")
+		interetCrediteur3:SetPos(35+230,130):SetText(tostring(maximalCrediteurIncomesBehoof or 0).."%")
 		interetCrediteur3.OnClick = function(object)
 		local textboxInteret3 = loveframes.Create("textinput", panel2)
 			textboxInteret3:SetWidth(50)
-			textboxInteret3:SetPos(28+12+230,147):SetValue(tostring(maximal2Rendement or 0))
+			textboxInteret3:SetPos(28+12+230,147):SetValue(tostring(maximalCrediteurIncomesBehoof or 0))
 			textboxInteret3.OnEnter = function(object,text)
-				maximal2Rendement = tonumber(text)
-				interetCrediteur3:SetText(tostring(maximal2Rendement).."%")
+				maximalCrediteurIncomesBehoof = tonumber(text)
+				interetCrediteur3:SetText(tostring(maximalCrediteurIncomesBehoof).."%")
 				textboxInteret3:Remove()
 			end
 		end
@@ -800,7 +800,7 @@ hook.Add("SaveRestored", "gui create", function()
 			slider1.OnValueChanged = function(object)
 			--print(math.Remap(panel11.a,0,100,0,375))
 				panel13.a = object:GetValue()
-				minimalTimeInvestment = panel13.a * 2
+				lowCrediteurIncomes = panel13.a * 2
 				if (slider2:GetValue() + object:GetValue()) > 100 then
 					slider2:SetValue(100-(panel13.a))
 				end
@@ -811,7 +811,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 			slider2.OnValueChanged = function(object, dt)
 				panel13.b = object:GetValue()
-				middleTimeInvestment = panel13.b * 2
+				middleCrediteurIncomes = panel13.b * 2
 				object:SetMinMax(0, 100-(slider1:GetValue()))
 			end
 
@@ -933,14 +933,14 @@ hook.Add("SaveRestored", "gui create", function()
 		    end
 
 			local remunerationInvestisseur4 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur4:SetPos(25,330):SetText(tostring(minimalRendement or 0).."%")
+			remunerationInvestisseur4:SetPos(25,330):SetText(tostring(minimalCrediteurTimeBehoof or 0).."%")
 			remunerationInvestisseur4.OnClick = function(object)
 			local textboxRemuneration4 = loveframes.Create("textinput", panel2)
 				textboxRemuneration4:SetWidth(50)
-				textboxRemuneration4:SetPos(18+12,352):SetValue(tostring(minimalRendement or 0))
+				textboxRemuneration4:SetPos(18+12,352):SetValue(tostring(minimalCrediteurTimeBehoof or 0))
 				textboxRemuneration4.OnEnter = function(object,text)
-					minimalRendement = tonumber(text)
-					remunerationInvestisseur4:SetText(tostring(minimalRendement).."%")
+					minimalCrediteurTimeBehoof = tonumber(text)
+					remunerationInvestisseur4:SetText(tostring(minimalCrediteurTimeBehoof).."%")
 					textboxRemuneration4:Remove()
 				end
 			end
@@ -948,14 +948,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 			local remunerationInvestisseur5 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur5:SetPos(35+110,330):SetText(tostring(middleRendement or 0).."%")
+			remunerationInvestisseur5:SetPos(35+110,330):SetText(tostring(middleCrediteurTimeBehoof or 0).."%")
 			remunerationInvestisseur5.OnClick = function(object)
 			local textboxRemuneration5 = loveframes.Create("textinput", panel2)
 				textboxRemuneration5:SetWidth(50)
-				textboxRemuneration5:SetPos(28+12+110,352):SetValue(tostring(middleRendement or 0))
+				textboxRemuneration5:SetPos(28+12+110,352):SetValue(tostring(middleCrediteurTimeBehoof or 0))
 				textboxRemuneration5.OnEnter = function(object,text)
-					middleRendement = tonumber(text)
-					remunerationInvestisseur5:SetText(tostring(middleRendement).."%")
+					middleCrediteurTimeBehoof = tonumber(text)
+					remunerationInvestisseur5:SetText(tostring(middleCrediteurTimeBehoof).."%")
 					textboxRemuneration5:Remove()
 				end
 			end
@@ -963,14 +963,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 			local remunerationInvestisseur6 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur6:SetPos(35+230,330):SetText(tostring(maximalRendement or 0).."%")
+			remunerationInvestisseur6:SetPos(35+230,330):SetText(tostring(maximalCrediteurTimeBehoof or 0).."%")
 			remunerationInvestisseur6.OnClick = function(object)
 			local textboxRemuneration6 = loveframes.Create("textinput", panel2)
 				textboxRemuneration6:SetWidth(50)
-				textboxRemuneration6:SetPos(28+12+230,352):SetValue(tostring(maximalRendement or 0))
+				textboxRemuneration6:SetPos(28+12+230,352):SetValue(tostring(maximalCrediteurTimeBehoof or 0))
 				textboxRemuneration6.OnEnter = function(object,text)
-					maximalRendement = tonumber(text)
-					remunerationInvestisseur6:SetText(tostring(maximalRendement).."%")
+					maximalCrediteurTimeBehoof = tonumber(text)
+					remunerationInvestisseur6:SetText(tostring(maximalCrediteurTimeBehoof).."%")
 					textboxRemuneration6:Remove()
 				end
 			end
@@ -990,7 +990,7 @@ hook.Add("SaveRestored", "gui create", function()
 			slider3.OnValueChanged = function(object)
 			--print(math.Remap(panel12.a,0,100,0,375))
 				panel14.a = object:GetValue()
-				minimalInvestment = panel14.a * 1000000
+				lowCrediteurTime = panel14.a * 1000000
 				if (slider4:GetValue() + object:GetValue()) > 100 then
 					slider4:SetValue(100-(panel14.a))
 				end
@@ -1001,7 +1001,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 			slider4.OnValueChanged = function(object, dt)
 				panel14.b = object:GetValue()
-				middleInvestment = panel14.b * 1000000
+				middleCrediteurTime = panel14.b * 1000000
 				object:SetMinMax(0, 100-(slider3:GetValue()))
 			end
 
@@ -1123,14 +1123,14 @@ hook.Add("SaveRestored", "gui create", function()
 		    end
 
 			local remunerationInvestisseur4 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur4:SetPos(25,530):SetText(tostring(minimalRendement or 0).."%")
+			remunerationInvestisseur4:SetPos(25,530):SetText(tostring(minimalCrediteurAskBehoof or 0).."%")
 			remunerationInvestisseur4.OnClick = function(object)
 			local textboxRemuneration4 = loveframes.Create("textinput", panel2)
 				textboxRemuneration4:SetWidth(50)
-				textboxRemuneration4:SetPos(18+12,552):SetValue(tostring(minimalRendement or 0))
+				textboxRemuneration4:SetPos(18+12,552):SetValue(tostring(minimalCrediteurAskBehoof or 0))
 				textboxRemuneration4.OnEnter = function(object,text)
-					minimalRendement = tonumber(text)
-					remunerationInvestisseur4:SetText(tostring(minimalRendement).."%")
+					minimalCrediteurAskBehoof = tonumber(text)
+					remunerationInvestisseur4:SetText(tostring(minimalCrediteurAskBehoof).."%")
 					textboxRemuneration4:Remove()
 				end
 			end
@@ -1138,14 +1138,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 			local remunerationInvestisseur5 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur5:SetPos(35+110,530):SetText(tostring(middleRendement or 0).."%")
+			remunerationInvestisseur5:SetPos(35+110,530):SetText(tostring(middleCrediteurAskBehoof or 0).."%")
 			remunerationInvestisseur5.OnClick = function(object)
 			local textboxRemuneration5 = loveframes.Create("textinput", panel2)
 				textboxRemuneration5:SetWidth(50)
-				textboxRemuneration5:SetPos(28+12+110,552):SetValue(tostring(middleRendement or 0))
+				textboxRemuneration5:SetPos(28+12+110,552):SetValue(tostring(middleCrediteurAskBehoof or 0))
 				textboxRemuneration5.OnEnter = function(object,text)
-					middleRendement = tonumber(text)
-					remunerationInvestisseur5:SetText(tostring(middleRendement).."%")
+					middleCrediteurAskBehoof = tonumber(text)
+					remunerationInvestisseur5:SetText(tostring(middleCrediteurAskBehoof).."%")
 					textboxRemuneration5:Remove()
 				end
 			end
@@ -1153,14 +1153,14 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 			local remunerationInvestisseur6 = loveframes.Create("imagebutton", panel2)
-			remunerationInvestisseur6:SetPos(35+230,530):SetText(tostring(maximalRendement or 0).."%")
+			remunerationInvestisseur6:SetPos(35+230,530):SetText(tostring(maximalCrediteurAskBehoof or 0).."%")
 			remunerationInvestisseur6.OnClick = function(object)
 			local textboxRemuneration6 = loveframes.Create("textinput", panel2)
 				textboxRemuneration6:SetWidth(50)
-				textboxRemuneration6:SetPos(28+12+230,552):SetValue(tostring(maximalRendement or 0))
+				textboxRemuneration6:SetPos(28+12+230,552):SetValue(tostring(maximalCrediteurAskBehoof or 0))
 				textboxRemuneration6.OnEnter = function(object,text)
-					maximalRendement = tonumber(text)
-					remunerationInvestisseur6:SetText(tostring(maximalRendement).."%")
+					maximalCrediteurAskBehoof = tonumber(text)
+					remunerationInvestisseur6:SetText(tostring(maximalCrediteurAskBehoof).."%")
 					textboxRemuneration6:Remove()
 				end
 			end
@@ -1180,7 +1180,7 @@ hook.Add("SaveRestored", "gui create", function()
 			slider5.OnValueChanged = function(object)
 			--print(math.Remap(panel12.a,0,100,0,375))
 				panel15.a = object:GetValue()
-				minimalInvestment = panel15.a * 1000000
+				lowCrediteurAsk = panel15.a * 1000000
 				if (slider6:GetValue() + object:GetValue()) > 100 then
 					slider6:SetValue(100-(panel15.a))
 				end
@@ -1191,7 +1191,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 			slider6.OnValueChanged = function(object, dt)
 				panel15.b = object:GetValue()
-				middleInvestment = panel15.b * 1000000
+				middleCrediteurAsk = panel15.b * 1000000
 				object:SetMinMax(0, 100-(slider5:GetValue()))
 			end
 

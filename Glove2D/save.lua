@@ -59,6 +59,21 @@ function do_save_data()
 		tbl.minimal2Rendement = minimal2Rendement
 		tbl.middle2Rendement = middle2Rendement
 		tbl.maximal2Rendement = maximal2Rendement
+		tbl.minimalCrediteurAskBehoof = minimalCrediteurAskBehoof
+		tbl.middleCrediteurAskBehoof = middleCrediteurAskBehoof
+		tbl.maximalCrediteurAskBehoof = maximalCrediteurAskBehoof
+		tbl.minimalCrediteurTimeBehoof = minimalCrediteurTimeBehoof
+		tbl.middleCrediteurTimeBehoof = middleCrediteurTimeBehoof
+		tbl.maximalCrediteurTimeBehoof = maximalCrediteurTimeBehoof
+		tbl.minimalCrediteurIncomesBehoof = minimalCrediteurIncomesBehoof
+		tbl.middleCrediteurIncomesBehoof = middleCrediteurIncomesBehoof
+		tbl.maximalCrediteurIncomesBehoof = maximalCrediteurIncomesBehoof
+		tbl.lowCrediteurAsk = lowCrediteurAsk
+		tbl.middleCrediteurAsk = middleCrediteurAsk
+		tbl.lowCrediteurTime = lowCrediteurTime
+		tbl.middleCrediteurTime = middleCrediteurTime
+		tbl.lowCrediteurIncomes = lowCrediteurIncomes
+		tbl.middleCrediteurIncomes = middleCrediteurIncomes
 		tbl.engouement = engouement
 		tbl.reputation = reputation
 		tbl.connaissanceBanque = connaissanceBanque
@@ -120,4 +135,19 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	monthlyEarning = 0
 	CreateTutorialBox(tbltuto)
 	HAD_RATED = false
+	minimalCrediteurAskBehoof = 0
+	middleCrediteurAskBehoof = 0
+	maximalCrediteurAskBehoof = 0
+	minimalCrediteurTimeBehoof = 0
+	middleCrediteurTimeBehoof = 0
+	maximalCrediteurTimeBehoof = 0
+	minimalCrediteurIncomesBehoof = 0
+	middleCrediteurIncomesBehoof = 0
+	maximalCrediteurIncomesBehoof = 0
+	lowCrediteurAsk = 0
+	middleCrediteurAsk = 0
+	lowCrediteurTime = 0
+	middleCrediteurTime = 0
+	lowCrediteurIncomes = 0
+	middleCrediteurIncomes = 0
 end)

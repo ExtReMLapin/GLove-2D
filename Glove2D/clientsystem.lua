@@ -13,7 +13,9 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		else
 			nbClients = nbClients + newClients
 		end
+		newCrediteurs = (newClients / 100) * (10 + math.random(-4,4))
 		clientProfilGen(newClients)
+		creditProfilGen(newCrediteurs)
 		if engouement > 0.1 then engouement = engouement - 0.1 end
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
@@ -62,24 +64,54 @@ function clientProfilGen(newClients)
 
 	while lowProfile > 0 do
 		clientMoney = math.Round(math.random(20,1000), 0)
-		monthlyEarning = clientMoney*0.09
+		monthlyEarning = monthlyEarning + clientMoney*0.09
 		annualPayment = annualPayment + clientMoney*(minimalRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		lowProfile = lowProfile - 1
 	end
 	while midProfile > 0 do
 		clientMoney = math.Round(math.random(1001,6000), 0)
-		monthlyEarning = clientMoney*0.14
+		monthlyEarning = monthlyEarning + clientMoney*0.14
 		annualPayment = annualPayment + clientMoney*(middleRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		midProfile = midProfile - 1
 	end
 	while highProfile > 0 do
 		clientMoney = math.Round(math.random(6001,12000), 0)
-		monthlyEarning = clientMoney*0.3
+		monthlyEarning = monthlyEarning + clientMoney*0.3
 		annualPayment = annualPayment + clientMoney*(maximalRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		highProfile = highProfile - 1
 	end
 	addMoney(totalClientMoney, "Nouveaux clients")
+end
+
+function creditProfilGen(newCrediteurs)
+	local crediteurAsk = 0
+	local crediteurTime = 0
+	local crediteurIncomes = 0 
+
+	while newCrediteurs > 0 do
+		crediteurAsk = math.Round(math.random(10,100))
+		crediteurTime = math.Round(math.random(12,240))
+		crediteurIncome = crediteurAsk/crediteurTime * (10 + math.random(-5,5))
+
+		if crediteurAsk <= lowCrediteurAsk then finalBehoof= minimalCrediteurAskBehoof
+		elseif crediteurAsk <= middleCrediteurAsk then finalBehoof = middleCrediteurAskBehoof
+		elseif crediteurAsk > middleCrediteurAsk then finalBehoof = maximalCrediteurAskBehoof end
+
+		if crediteurTime <= lowCrediteurTime then finalBehoof = finalBehoof + minimalCrediteurTimeBehoof
+		elseif crediteurTime <= middleCrediteurTime then finalBehoof = finalBehoof + middleCrediteurTimeBehoof
+		elseif crediteurTime > middleCrediteurTime then finalBehoof = finalBehoof + maximalCrediteurTimeBehoof end
+
+		if crediteurIncomes <= lowCrediteurIncomes then finalBehoof = finalBehoof + minimalCrediteurIncomesBehoof
+		elseif crediteurIncomes <= middleCrediteurIncomes then finalBehoof = finalBehoof + middleCrediteurIncomesBehoof
+		elseif crediteurIncomes > middleCrediteurIncomes then finalBehoof = finalBehoof + maximalCrediteurIncomesBehoof end
+
+		monthlyEarning = monthlyEarning + (crediteurAsk*1000 + (crediteurAsk*10 * finalBehoof))/crediteurTime
+		local x,y,z = calculateDate(T_SEM,T_MONTH,T_YEAR, crediteurTime * 31)
+		createEvent(string.format("%i/%i/%i",x,y,z), "monthlyEarning = monthlyEarning -  "..  (crediteurAsk*1000 + (crediteurAsk*10 * finalBehoof))/crediteurTime)
+		addMoney(-crediteurAsk*1000, "Crédit")
+		newCrediteurs = newCrediteurs - 1
+	end
 end

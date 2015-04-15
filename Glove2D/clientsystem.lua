@@ -15,12 +15,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		end
 		newCrediteurs = (newClients / 100) * (10 + math.random(-4,4))
 		clientProfilGen(newClients)
-<<<<<<< HEAD
-		creditProfilGen(newCrediteurs)
-		if engouement > 0.1 then engouement = engouement - 0.1 end
-=======
 		if engouement > 0.1 then engouement = engouement - 0.05 end
->>>>>>> origin/2nd-branch
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
 		newInvestisseurs = math.Round((nbClients / 1000)*(reputation + engouement * 17), 0)

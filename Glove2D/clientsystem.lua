@@ -62,14 +62,14 @@ function clientProfilGen(newClients)
 	totalClientMoney = 0
 
 	while lowProfile > 0 do
-		clientMoney = math.Round(math.random(20,1000), 0)
+		clientMoney = math.Round(math.random(400,1200), 0)
 		monthlyEarning = monthlyEarning + clientMoney*0.09
 		annualPayment = annualPayment + clientMoney*(minimalRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney
 		lowProfile = lowProfile - 1
 	end
 	while midProfile > 0 do
-		clientMoney = math.Round(math.random(1001,6000), 0)
+		clientMoney = math.Round(math.random(1201,6000), 0)
 		monthlyEarning = monthlyEarning + clientMoney*0.14
 		annualPayment = annualPayment + clientMoney*(middleRendement/100)
 		totalClientMoney = totalClientMoney + clientMoney

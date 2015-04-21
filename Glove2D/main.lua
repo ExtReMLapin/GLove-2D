@@ -39,12 +39,7 @@ end
 
 
 function love.load()
-
-	UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
-	tutoBubble = love.graphics.newImage("ressources/UiBulleTextesfixed.png")
-	UiTab = love.graphics.newImage("ressources/UiBtnMenu.png")
 	love.graphics.setBackgroundColor( 255,245,217 )
-	love.filesystem.setIdentity( "GLove2D" )
 	loveframes = require("gui")
 	load_modules()
 	love.graphics.setPointStyle('smooth')
@@ -59,7 +54,7 @@ function love.load()
 	theme:setVolume(0.1) -- 90% of ordinary volume
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
-	--theme:play()
+	theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
 
 

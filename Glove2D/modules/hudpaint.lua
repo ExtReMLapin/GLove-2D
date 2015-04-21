@@ -8,6 +8,11 @@ local table = table
 local math = math
 local string = string
 
+local UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
+local tutoBubble = love.graphics.newImage("ressources/UiBulleTextesfixed.png")
+local UiTab = love.graphics.newImage("ressources/UiBtnMenu.png")
+
+
 
 function Color(ra,ga,ba,aa)
 	return {r = ra, g=ga, b=ba, a=aa or 255}

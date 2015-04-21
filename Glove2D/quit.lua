@@ -31,5 +31,6 @@ function love.quit()
 		return true
 	end
 
+	love.filesystem.write("exit.txt", "true")
 	return false
 end

@@ -12,8 +12,12 @@ require "clientsystem"
 require "input"
 require "maingui"
 require "quit"
-require "lua_ffi"
-steamworks = require"steamworks/init"
+
+print(love.filesystem.read("exit.txt"))
+if love.filesystem.read("exit.txt") ~= "false" then
+	require "lua_ffi"
+	steamworks = require"steamworks/init"
+end
 
 
 local MAX_FPS = 200
@@ -35,11 +39,12 @@ end
 
 
 function love.load()
+
 	UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
 	tutoBubble = love.graphics.newImage("ressources/UiBulleTextesfixed.png")
 	UiTab = love.graphics.newImage("ressources/UiBtnMenu.png")
 	love.graphics.setBackgroundColor( 255,245,217 )
-	love.filesystem.setIdentity( "GLove-2D" )
+	love.filesystem.setIdentity( "GLove2D" )
 	loveframes = require("gui")
 	load_modules()
 	love.graphics.setPointStyle('smooth')
@@ -56,6 +61,11 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
+
+
+
+
+	love.filesystem.write("exit.txt", "false")
 end
 
 

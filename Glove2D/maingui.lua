@@ -302,6 +302,7 @@ hook.Add("SaveRestored", "gui create", function()
     local panel1 = loveframes.Create("panel")
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
 
+
     --------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------[[MULTI-SLIDER N°1]]----------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------
@@ -422,7 +423,6 @@ hook.Add("SaveRestored", "gui create", function()
 			middleTimeInvestment = panel11.b * 2
 			object:SetMinMax(0, 100-(slider1:GetValue()))
 		end
-
 
 -------------------------------------------------------------------------
 
@@ -1386,4 +1386,5 @@ hook.Add("SaveRestored", "gui create", function()
 				reputation = reputation + 0.5
 			end
 		end
+
 end)

@@ -9,8 +9,6 @@ local button4;
 local OPENED = false
 
 
-
-
 local function update_frame_type(dt, frame)
 
 	local base = frame	
@@ -36,17 +34,6 @@ local function update_frame_type(dt, frame)
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
 function PauseMenu()
 	if OPENED then 
 		hook.Remove("ThinkUnpaused", "PauseMenu Update")
@@ -60,21 +47,19 @@ function PauseMenu()
 	g_pausemenu:SetSize(900,450)
 	g_pausemenu:SetPos(ScrW/2-g_pausemenu:GetWidth()/2, 100)
 	button1 = loveframes.Create("button", g_pausemenu)
-		button1:SetPos(500,500)
+		button1:SetPos(g_pausemenu:GetWidth()/2-100,100)
 		button1:SetWidth(200)
-		button1:SetText("Button")
-		button1:Center()
+		button1:SetText("Reprendre")
 		button1.OnClick = function(object, x, y)
-		    object:SetText("You clicked the button!")
+		    PauseMenu()
 		end
-		button1.OnMouseEnter = function(object)
-		    object:SetText("The mouse entered the button.")
+	button2 = loveframes.Create("button", g_pausemenu)
+		button2:SetPos(g_pausemenu:GetWidth()/2-100,150)
+		button2:SetWidth(200)
+		button2:SetText("Quitter")
+		button2.OnClick = function(object, x, y)
+		    os.exit() -- à fix plus tard (such danger here)
 		end
-		button1.OnMouseExit = function(object)
-		    object:SetText("The mouse exited the button.")
-		end
-
-
 
 	hook.Add("ThinkUnpaused", "PauseMenu Update", function(dt) 
 		update_frame_type(dt, g_pausemenu)

@@ -8,6 +8,45 @@ local button4;
 
 local OPENED = false
 
+
+
+
+local function update_frame_type(dt, frame)
+
+	local base = frame	
+	loveframes.collisioncount = 0
+	loveframes.objectcount = 0
+	loveframes.hover = false
+	loveframes.hoverobject = false
+	
+	local downobject = loveframes.downobject
+	if #loveframes.collisions > 0 then
+		local top = loveframes.collisions[#loveframes.collisions]
+		if not downobject then
+			loveframes.hoverobject = top
+		else
+			if downobject == top then
+				loveframes.hoverobject = top
+			end
+		end
+	end
+		
+	loveframes.collisions = {}
+	base:update(dt)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
 function PauseMenu()
 	if OPENED then 
 		hook.Remove("ThinkUnpaused", "PauseMenu Update")
@@ -37,9 +76,8 @@ function PauseMenu()
 
 
 
-	hook.Add("ThinkUnpaused", "PauseMenu Update", function() 
-		g_pausemenu:update()
-		button1:update()
+	hook.Add("ThinkUnpaused", "PauseMenu Update", function(dt) 
+		update_frame_type(dt, g_pausemenu)
 	end)
 end
 

@@ -54,7 +54,7 @@ function love.load()
 	theme:setVolume(0.1) -- 90% of ordinary volume
 	theme:setPitch(1) -- one octave lower
 	theme:setLooping(true)
-	theme:play()
+	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
 
 
@@ -64,11 +64,14 @@ function love.load()
 end
 
 
-function love.update()
+function love.update(dt)
 --	ffi.C.Sleep(1000/MAX_FPS)
-	loveframes.update(dt)
-	hook.Call("Think")
-	timer.check()
+	if not PAUSED then
+		loveframes.update(dt)
+		hook.Call("Think", dt)
+		timer.check()
+	end
+	hook.Call("ThinkUnpaused", dt)
 	leftClick = love.mouse.isDown("l")
 end
 

@@ -44,11 +44,13 @@ function PauseMenu()
 	PAUSED = true
 	OPENED = true
 	g_pausemenu = loveframes.Create("panel")
-	g_pausemenu:SetSize(900,450)
-	g_pausemenu:SetPos(ScrW/2-g_pausemenu:GetWidth()/2, 100)
+	g_pausemenu:SetSize(400,600)
+	g_pausemenu:SetPos(ScrW/2-g_pausemenu:GetWidth()/2, ScrH/2-g_pausemenu:GetHeight()/2)
 	button1 = loveframes.Create("button", g_pausemenu)
 		button1:SetPos(g_pausemenu:GetWidth()/2-100,100)
 		button1:SetWidth(200)
+		button1:SetHeight(50)
+
 		button1:SetText("Reprendre")
 		button1.OnClick = function(object, x, y)
 		    PauseMenu()
@@ -56,10 +58,22 @@ function PauseMenu()
 	button2 = loveframes.Create("button", g_pausemenu)
 		button2:SetPos(g_pausemenu:GetWidth()/2-100,150)
 		button2:SetWidth(200)
-		button2:SetText("Quitter")
+		button2:SetHeight(50)
+		button2:SetText("Options")
 		button2.OnClick = function(object, x, y)
+		    --os.exit() -- à fix plus tard (such danger here)
+		end
+
+	button3 = loveframes.Create("button", g_pausemenu)
+		button3:SetPos(g_pausemenu:GetWidth()/2-100,200)
+		button3:SetWidth(200)
+		button3:SetHeight(50)
+		button3:SetText("Quitter")
+		button3.OnClick = function(object, x, y)
 		    os.exit() -- à fix plus tard (such danger here)
 		end
+
+
 
 	hook.Add("ThinkUnpaused", "PauseMenu Update", function(dt) 
 		update_frame_type(dt, g_pausemenu)

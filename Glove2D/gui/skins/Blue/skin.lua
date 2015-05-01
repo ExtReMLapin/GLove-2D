@@ -32,9 +32,9 @@ skin.controls.frame_name_color                      = {255, 255, 255, 255}
 skin.controls.frame_name_font                       = smallfont
 
 -- button
-skin.controls.button_text_down_color                = {255, 255, 255, 255}
 skin.controls.button_text_nohover_color             = {0, 0, 0, 200}
-skin.controls.button_text_hover_color               = {255, 255, 255, 255}
+skin.controls.button_text_down_color	            = {0, 0, 0, 200}
+skin.controls.button_text_hover_color               = {0, 0, 0, 200}
 skin.controls.button_text_nonclickable_color        = {0, 0, 0, 100}
 skin.controls.button_text_font                      = smallfont
 
@@ -356,7 +356,7 @@ function skin.DrawButton(object)
 				love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
 				-- button border
 				love.graphics.setColor(bordercolor)
-				skin.OutlinedRectangle(x, y, width, height)
+				--skin.OutlinedRectangle(x, y, width, height)
 			end
 		else
 			if object.toggle then
@@ -393,8 +393,8 @@ function skin.DrawButton(object)
 			love.graphics.setColor(textdowncolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
 			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
+			--love.graphics.setColor(bordercolor)
+			--skin.OutlinedRectangle(x, y, width, height, true, true, true, true)
 		elseif hover then
 			-- button body
 			love.graphics.setColor(255, 255, 255, 255)
@@ -404,8 +404,8 @@ function skin.DrawButton(object)
 			love.graphics.setColor(texthovercolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
 			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
+			--love.graphics.setColor(bordercolor)
+			--skin.OutlinedRectangle(x, y, width, height, true, true, true, true)
 		else
 			-- button body
 			love.graphics.setColor(255, 255, 255, 255)
@@ -415,13 +415,13 @@ function skin.DrawButton(object)
 			love.graphics.setColor(textnohovercolor)
 			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
 			-- button border
-			love.graphics.setColor(bordercolor)
-			skin.OutlinedRectangle(x, y, width, height)
+			--love.graphics.setColor(bordercolor)
+			--skin.OutlinedRectangle(x, y, width, height, true, true, true, true)
 		end
 	end
 	
 	love.graphics.setColor(255, 255, 255, 150)
-	skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
+	--skin.OutlinedRectangle(x + 1, y + 1, width - 2, height - 2)
 
 end
 

@@ -78,6 +78,14 @@ function do_save_data()
 		tbl.reputation = reputation
 		tbl.connaissanceBanque = connaissanceBanque
 		tbl.employeeEfficiency = employeeEfficiency
+		tbl.crisisIndicator = crisisIndicator
+		tbl.crisisIndicator2 = crisisIndicator2
+		tbl.tauxConcurrent1Crediteur = tauxConcurrent1Crediteur
+		tbl.tauxConcurrent2Crediteur = tauxConcurrent2Crediteur
+		tbl.tauxConcurrent3Crediteur = tauxConcurrent3Crediteur
+		tbl.tauxConcurrent1Investisseur = tauxConcurrent1Investisseur
+		tbl.tauxConcurrent2Investisseur = tauxConcurrent2Investisseur
+		tbl.tauxConcurrent3Investisseur = tauxConcurrent3Investisseur
 		str = table.ToString(tbl, "tblsave", true)
 		love.filesystem.write("data.txt", str)
 end
@@ -150,4 +158,12 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	middleCrediteurTime = 0
 	lowCrediteurIncomes = 0
 	middleCrediteurIncomes = 0
+	crisisIndicator = 0
+	crisisIndicator2 = 0
+	tauxConcurrent1Crediteur = 0
+	tauxConcurrent2Crediteur = 0
+	tauxConcurrent3Crediteur = 0
+	tauxConcurrent1Investisseur = 0
+	tauxConcurrent2Investisseur = 0
+	tauxConcurrent3Investisseur = 0
 end)

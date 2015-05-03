@@ -15,6 +15,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		end
 		newCrediteurs = (newClients / 100) * (10 + math.random(-4,4))
 		clientProfilGen(newClients)
+		clientQuitGen()
 		if engouement > 0.1 then engouement = engouement - 0.05 end
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
@@ -32,6 +33,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			createEvent(string.format("%i/%i/%i",x,y,z), "Money = Money - ".. baseMoney)
 			newInvestisseurs = newInvestisseurs - 1
 		end
+		if T_YEAR >= 1958 then tauxConcurrent() end
 	end
 end)
 
@@ -112,5 +114,61 @@ function creditProfilGen(newCrediteurs)
 		createEvent(string.format("%i/%i/%i",x,y,z), "monthlyEarning = monthlyEarning -  "..  (crediteurAsk*1000 + (crediteurAsk*10 * finalBehoof))/crediteurTime)
 		addMoney(-crediteurAsk*1000, "Crédit")
 		newCrediteurs = newCrediteurs - 1
+	end
+end
+
+function clientQuitGen()
+	local nbQuit = nbClients * (crisisIndicator + crisisIndicator2 or 0)
+	local lowProfile = math.Round(nbQuit/3)
+	local midProfile = math.Round(nbQuit/1.5)
+	local highProfile = nbQuit - (lowProfile + midProfile)
+	local quitMoney = 0
+	totalQuitMoney = 0
+
+	while lowProfile > 0 do
+		quitMoney = math.Round(math.random(400,1200), 0)
+		monthlyEarning = monthlyEarning - quitMoney*0.09
+		annualPayment = annualPayment - quitMoney*(minimalRendement/100)
+		totalQuitMoney = totalQuitMoney - quitMoney
+		lowProfile = lowProfile - 1
+	end
+	while midProfile > 0 do
+		quitMoney = math.Round(math.random(1201,6000), 0)
+		monthlyEarning = monthlyEarning - quitMoney*0.14
+		annualPayment = annualPayment - quitMoney*(middleRendement/100)
+		totalQuitMoney = totalQuitMoney - quitMoney
+		midProfile = midProfile - 1
+	end
+	while highProfile > 0 do
+		quitMoney = math.Round(math.random(6001,12000), 0)
+		monthlyEarning = monthlyEarning - quitMoney*0.3
+		annualPayment = annualPayment - quitMoney*(maximalRendement/100)
+		totalQuitMoney = totalQuitMoney + quitMoney
+		highProfile = highProfile - 1
+	end
+	addMoney(-totalQuitMoney, "Départ clients")
+
+	if nbQuit > nbClients/10 then
+		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux clients sont partis, \ncela pourrait être dû à des taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles, \nn'oubliez pas de surveillez les taux concurrents !")
+	end
+end
+
+function tauxConcurrent()
+	local tauxPerso1 = middleCrediteurAskBehoof + middleCrediteurIncomesBehoof + middleCrediteurTimeBehoof
+	local tauxPerso2 = middleRendement + middle2Rendement
+
+	tauxConcurrent1Crediteur = math.Round(tauxPerso1 + (math.random(-1, 1) + crisisIndicator*10), 1)
+	tauxConcurrent2Crediteur = math.Round(tauxPerso1 + (math.random(-0.75, 1.25) + crisisIndicator*10), 1)
+	tauxConcurrent3Crediteur = math.Round(tauxPerso1 + (math.random(-1, 1.50) + crisisIndicator*10), 1)
+	tauxConcurrent1Investisseur = math.Round(tauxPerso2 + (math.random(-0.75, 1) - crisisIndicator*10), 1)
+	tauxConcurrent2Investisseur = math.Round(tauxPerso2 + (math.random(-1, 1.50) - crisisIndicator*10), 1)
+	tauxConcurrent3Investisseur = math.Round(tauxPerso2 + (math.random(-1, 1.25) - crisisIndicator*10), 1)
+
+	if (tauxConcurrent1Investisseur or tauxConcurrent2Investisseur or tauxConcurrent3Investisseur) > tauxPerso2 then
+		crisisIndicator2 = math.max(tauxConcurrent1Investisseur,tauxConcurrent2Investisseur,tauxConcurrent3Investisseur) - tauxPerso2 * 0.75
+	end
+
+	if (tauxConcurrent1Concurrent or tauxConcurrent2Concurrent or tauxConcurrent3Concurrent) > tauxPerso1 then
+		crisisIndicator2 = math.max(tauxConcurrent1Concurrent,tauxConcurrent2Concurrent,tauxConcurrent3Concurrent) - tauxPerso1 * 0.75
 	end
 end

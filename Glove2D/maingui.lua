@@ -283,7 +283,7 @@ hook.Add("SaveRestored", "gui create", function()
 			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -1*math.Remap(50,0,love.timer.getFPS( ),0,60 ) )) end
 		end
 
-	end
+	end 
 
 		local MenuDownArrow = loveframes.Create("image", MenuDown)
 		MenuDownArrow:SetImage("ressources/arrow2.png")
@@ -1285,6 +1285,20 @@ hook.Add("SaveRestored", "gui create", function()
 		containerPersonnel:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.50):Center():SetY(10)
 		local titleContainerPersonnel = loveframes.Create("text", panel4)
 	    titleContainerPersonnel:SetFont(cashtext):SetDefaultColor(23,23,23,255):SetText("Détail de l'effectif"):Center():SetY(14)
+	    local detailsTextPersonnel = loveframes.Create("text", panel4)
+	    detailsTextPersonnel:SetFont(date_box_text2):SetPos(10,52):SetText("  Employés\t\tSalaire Brut (F)\t  Coût Total des Salariés (F)")
+	    local detailsTextPersonnel2 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel2:SetText("/mois\t\t\t\t\t\t\t\t\t/mois\n\n\n/an\t\t\t\t\t\t\t\t\t\t/an"):SetPos(180,92)
+	    local detailsTextPersonnel3 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel3:SetFont(popuptitle):SetText({ {color = {52, 192, 62, 255}}, nbEmployees}):SetPos(40,90)
+	    local detailsTextPersonnel4 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel4:SetFont(popuptitle):SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary)),77)
+	    local detailsTextPersonnel5 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel5:SetFont(popuptitle):SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
+	    local detailsTextPersonnel6 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel6:SetFont(popuptitle):SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
+	    local detailsTextPersonnel7 = loveframes.Create("text", panel4)
+	    detailsTextPersonnel7:SetFont(popuptitle):SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
 
 		local containerPersonnel2 = loveframes.Create("image", panel4)
 		containerPersonnel2:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(230)
@@ -1298,6 +1312,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    clickablePersonnel2:SetImage("ressources/UiBtnFixed.png"):SetPos(110,280):SetText("Modifier le nombre d'employés"):SizeToImage()
 	    clickablePersonnel2.OnClick = function(object)
 	    	nbEmployees = numberboxPersonnel2:GetValue()
+	    	detailsTextPersonnel3:SetText({ {color = {52, 192, 62, 255}}, nbEmployees})
 	    end
 	    local infoBoxPersonnel2 = loveframes.Create("image", panel4)
 	    infoBoxPersonnel2:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(350)

@@ -685,7 +685,7 @@ end
 --]]---------------------------------------------------------
 function skin.DrawPanel(object)
 
-	local skin = object:GetSkin()
+	--[[local skin = object:GetSkin()
 	local x = object:GetX()
 	local y = object:GetY()
 	local width = object:GetWidth()
@@ -700,6 +700,9 @@ function skin.DrawPanel(object)
 	
 	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y, width, height)
+
+
+	/!\ Pas supprimé au cas où on en aurait besoin plus tard /!\ ]]
 	
 end
 
@@ -744,7 +747,7 @@ end
 --]]---------------------------------------------------------
 function skin.DrawTabPanel(object)
 
-	local skin = object:GetSkin()
+	--[[local skin = object:GetSkin()
 	local x = object:GetX()
 	local y = object:GetY()
 	local width = object:GetWidth()
@@ -757,7 +760,7 @@ function skin.DrawTabPanel(object)
 	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y + buttonheight - 1, width, height - buttonheight + 2)
 	
-	object:SetScrollButtonSize(15, buttonheight)
+	object:SetScrollButtonSize(15, buttonheight)]]
 
 end
 

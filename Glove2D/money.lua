@@ -10,7 +10,7 @@ function addMoney(num, reason)
 	num = math.Round(num)
 	Money = Money + num
 	hook.Call("MoneyAdd", num, reason or "Dépenses")
-	cash:play()
+	--cash:play()
 end
 
 

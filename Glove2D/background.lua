@@ -2,7 +2,7 @@ ScrW_RATIO = 1
 ScrH_RATIO = 1
 
 local blurrywall = love.graphics.newImage("ressources/wallpoop.png")
-local backgroundpic = love.graphics.newImage("ressources/Background.png")
+local backgroundpic = love.graphics.newImage("ressources/BackgroundMedium.png")
 local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
 local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
 --local casierPic = love.graphics.newImage("ressources/casier.png")
@@ -35,15 +35,13 @@ hook.Add("BackBackGround", "The real one this time", function()
 		ScrW_RATIO = x/ScrW
 	end
 
-	local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
-
-	love.graphics.draw(blurrywall,quad ,ScrW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
 
 
-
-	local quad = love.graphics.newQuad(0,0, backgroundpic:getWidth( ), backgroundpic:getHeight( ),x,y)
+	local quad = love.graphics.newQuad(0,0, backgroundpic:getWidth( )-1, backgroundpic:getHeight( ),x,y)
 	love.graphics.draw(backgroundpic,quad ,midx - x/2, midy - y/2)
 
+
+--[[
 
 	local quad = love.graphics.newQuad(0,0 ,x*263/1280,y*215/720,x*263/1280,y*215/720)
 	love.graphics.draw(secretaryPic,quad ,midx - x*150/1280, midy - y*200/720)
@@ -76,7 +74,7 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw(secu2Pic,quad ,midx - x*(350+10)/1280, midy- y*(120-10)/720)
 
 	local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*111.5/1280,y*145/720)
-	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)
+	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)--]]
 
 end)
 

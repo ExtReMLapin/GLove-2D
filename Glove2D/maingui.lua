@@ -258,20 +258,24 @@ hook.Add("SaveRestored", "gui create", function()
 			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrW-MenuLeft:GetX(),350,40,0,180) )+math.rad(180))
 		end
 
+
+------------------------------------
+
+
 	MenuDown = loveframes.Create("panel")
-	MenuDown:SetSize(450,600)
+	MenuDown:SetSize(450,700)
 	MenuDown.DrawPic = love.graphics.newImage("ressources/UiBaseRackMenuf.png")
 	MenuDown:SetPos(37, ScrH-25)
 	MenuDown.Draw = function ()
-		local quad = love.graphics.newQuad(0,0, MenuDown.DrawPic:getWidth( ), MenuDown.DrawPic:getHeight( ),450,600)
+		local quad = love.graphics.newQuad(0,0,MenuDown:GetWidth( ),MenuDown:GetHeight( ), MenuDown.DrawPic:getWidth( ), MenuDown.DrawPic:getHeight( ))
 		love.graphics.draw(MenuDown.DrawPic,quad ,MenuDown:GetX(), MenuDown:GetY())
 	end
 	
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
-			if MenuDown:GetY() > ScrH - 550 then
-			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - 550, -1*math.Remap(34,0,love.timer.getFPS( ),0,60 )))
+			if MenuDown:GetY() > ScrH - (MenuDown:GetHeight()-50) then
+			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(34,0,love.timer.getFPS( ),0,60 )))
 			end
 		else
 			if MenuDown:GetY() == ScrH-25 then return end
@@ -287,12 +291,12 @@ hook.Add("SaveRestored", "gui create", function()
 		MenuDownArrow:SetOffsetX(9)
 		MenuDownArrow:SetOffsetY(9)
 		MenuDownArrow.Update = function(object)
-			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),550,25,0,180) ) + math.rad(90))
+			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),(MenuDown:GetHeight()-50),25,0,180) ) + math.rad(90))
 		end
 
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
 	tabsmenudown:SetPos(5, 25)
-	tabsmenudown:SetSize(440, 500)
+	tabsmenudown:SetSize(440, (MenuDown:GetHeight()-80))
 	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
 	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
 	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")

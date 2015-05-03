@@ -813,7 +813,7 @@ function skin.DrawTabButton(object)
 	
 	if tabnumber == ptabnumber then
 		-- button body
-		local gradient = skin.images["button-hover.png"]
+		local gradient = skin.images["button-unclickable.png"]
 		local gradientheight = gradient:getHeight()
 		local scaley = height/gradientheight
 		love.graphics.setColor(255, 255, 255, 255)

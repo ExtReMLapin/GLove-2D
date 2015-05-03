@@ -275,12 +275,12 @@ hook.Add("SaveRestored", "gui create", function()
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
 		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
 			if MenuDown:GetY() > ScrH - (MenuDown:GetHeight()-50) then
-			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(34,0,love.timer.getFPS( ),0,60 )))
+			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(50,0,love.timer.getFPS( ),0,60 )))
 			end
 		else
 			if MenuDown:GetY() == ScrH-25 then return end
-			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, math.Remap(34,0,love.timer.getFPS( ),0,60 ) )) end
-			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -1*math.Remap(34,0,love.timer.getFPS( ),0,60 ) )) end
+			if MenuDown:GetY() < ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, math.Remap(50,0,love.timer.getFPS( ),0,60 ) )) end
+			if MenuDown:GetY() > ScrH-25 then MenuDown:SetPos(MenuDown:GetX(),math.Approach( MenuDown:GetY(), ScrH - 25, -1*math.Remap(50,0,love.timer.getFPS( ),0,60 ) )) end
 		end
 
 	end

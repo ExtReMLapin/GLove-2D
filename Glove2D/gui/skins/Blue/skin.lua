@@ -760,7 +760,9 @@ function skin.DrawTabPanel(object)
 	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y + buttonheight - 1, width, height - buttonheight + 2)
 	
-	object:SetScrollButtonSize(15, buttonheight)]]
+	object:SetScrollButtonSize(15, buttonheight)
+
+	/!\ Pas supprimé au cas où on en aurait besoin plus tard /!\ ]]
 
 end
 

@@ -273,7 +273,7 @@ hook.Add("SaveRestored", "gui create", function()
 	
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
-		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
+		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight() - 36) then                   
 			if MenuDown:GetY() > ScrH - (MenuDown:GetHeight()-50) then
 			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(50,0,love.timer.getFPS( ),0,60 )))
 			end
@@ -293,6 +293,7 @@ hook.Add("SaveRestored", "gui create", function()
 		MenuDownArrow.Update = function(object)
 			MenuDownArrow:SetOrientation(math.rad(math.Remap(ScrH-MenuDown:GetY(),(MenuDown:GetHeight()-50),25,0,180) ) + math.rad(90))
 		end
+
 
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
 	tabsmenudown:SetPos(5, 25)
@@ -1408,4 +1409,31 @@ hook.Add("SaveRestored", "gui create", function()
 			end
 		end
 
+
+
+		local buttonTab1 = loveframes.Create("imagebutton", MenuDown)
+		buttonTab1:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(0,-32)
+		buttonTab1.OnClick = function(object)
+			tabsmenudown:SwitchToTab(1)
+		end
+		local buttonTab2 = loveframes.Create("imagebutton", MenuDown)
+		buttonTab2:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(80,-32)
+		buttonTab2.OnClick = function(object)
+			tabsmenudown:SwitchToTab(2)
+		end
+		local buttonTab3 = loveframes.Create("imagebutton", MenuDown)
+		buttonTab3:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(160,-32)
+		buttonTab3.OnClick = function(object)
+			tabsmenudown:SwitchToTab(3)
+		end
+		local buttonTab4 = loveframes.Create("imagebutton", MenuDown)
+		buttonTab4:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(240,-32)
+		buttonTab4.OnClick = function(object)
+			tabsmenudown:SwitchToTab(4)
+		end
+		local buttonTab5 = loveframes.Create("imagebutton", MenuDown)
+		buttonTab5:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(320,-32)
+		buttonTab5.OnClick = function(object)
+			tabsmenudown:SwitchToTab(5)
+		end
 end)

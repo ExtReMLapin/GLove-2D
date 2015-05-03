@@ -813,14 +813,16 @@ function skin.DrawTabButton(object)
 	
 	if tabnumber == ptabnumber then
 		-- button body
-		local gradient = skin.images["button-unclickable.png"]
+		local gradient = skin.images["UiBtnMenu.png"]
 		local gradientheight = gradient:getHeight()
+		local gradientwidth = gradient:getWidth()
 		local scaley = height/gradientheight
+		local scalex = width/gradientwidth
 		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(gradient, x, y, 0, width, scaley)
+		love.graphics.draw(gradient, x, y, 0, scalex, scaley)
 		-- button border
 		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)	
+		--skin.OutlinedRectangle(x, y, width, height)	
 		if image then
 			-- button image
 			love.graphics.setColor(255, 255, 255, 255)
@@ -837,14 +839,16 @@ function skin.DrawTabButton(object)
 		end	
 	else
 		-- button body
-		local gradient = skin.images["button-nohover.png"]
+		local gradient = skin.images["UiBtnMenu.png"]
 		local gradientheight = gradient:getHeight()
+		local gradientwidth = gradient:getWidth()
 		local scaley = height/gradientheight
+		local scalex = width/gradientwidth
 		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(gradient, x, y, 0, width, scaley)
+		love.graphics.draw(gradient, x, y, 0, scalex, scaley)
 		-- button border
 		love.graphics.setColor(bordercolor)
-		skin.OutlinedRectangle(x, y, width, height)
+		--skin.OutlinedRectangle(x, y, width, height)
 		if image then
 			-- button image
 			love.graphics.setColor(255, 255, 255, 150)

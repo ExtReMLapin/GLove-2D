@@ -1411,29 +1411,4 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 
-		local buttonTab1 = loveframes.Create("imagebutton", MenuDown)
-		buttonTab1:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(0,-32)
-		buttonTab1.OnClick = function(object)
-			tabsmenudown:SwitchToTab(1)
-		end
-		local buttonTab2 = loveframes.Create("imagebutton", MenuDown)
-		buttonTab2:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(80,-32)
-		buttonTab2.OnClick = function(object)
-			tabsmenudown:SwitchToTab(2)
-		end
-		local buttonTab3 = loveframes.Create("imagebutton", MenuDown)
-		buttonTab3:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(160,-32)
-		buttonTab3.OnClick = function(object)
-			tabsmenudown:SwitchToTab(3)
-		end
-		local buttonTab4 = loveframes.Create("imagebutton", MenuDown)
-		buttonTab4:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(240,-32)
-		buttonTab4.OnClick = function(object)
-			tabsmenudown:SwitchToTab(4)
-		end
-		local buttonTab5 = loveframes.Create("imagebutton", MenuDown)
-		buttonTab5:SetImage("ressources/UiBtnMenu.png"):SetText(""):SetPos(320,-32)
-		buttonTab5.OnClick = function(object)
-			tabsmenudown:SwitchToTab(5)
-		end
 end)

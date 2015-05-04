@@ -273,6 +273,7 @@ hook.Add("SaveRestored", "gui create", function()
 	
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
+		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() - 25 and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight()) then                   
 			if MenuDown:GetY() > ScrH - (MenuDown:GetHeight()-50) then
 			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(50,0,love.timer.getFPS( ),0,60 )))
 			end

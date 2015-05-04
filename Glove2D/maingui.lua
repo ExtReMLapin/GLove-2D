@@ -273,7 +273,6 @@ hook.Add("SaveRestored", "gui create", function()
 	
 	MenuDown.Update = function(object, dt)
 	local MOUSE_X, MOUSE_Y = love.mouse.getPosition( )
-		if MOUSE_X > MenuDown:GetX() and MOUSE_X < (MenuDown:GetX() + MenuDown:GetWidth()) and MOUSE_Y > MenuDown:GetY() and MOUSE_Y < (MenuDown:GetY() + MenuDown:GetHeight() - 36) then                   
 			if MenuDown:GetY() > ScrH - (MenuDown:GetHeight()-50) then
 			MenuDown:SetPos(MenuDown:GetX() ,  math.Approach( MenuDown:GetY(), ScrH - (MenuDown:GetHeight()-50), -1*math.Remap(50,0,love.timer.getFPS( ),0,60 )))
 			end
@@ -296,8 +295,9 @@ hook.Add("SaveRestored", "gui create", function()
 
 
 	tabsmenudown = loveframes.Create("tabs", MenuDown)
-	tabsmenudown:SetPos(5, 25)
+	tabsmenudown:SetPos(5, -21)
 	tabsmenudown:SetSize(440, (MenuDown:GetHeight()-80))
+	tabsmenudown.Draw = function() end
 	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
 	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
 	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
@@ -305,6 +305,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 
     local panel1 = loveframes.Create("panel")
+    panel1.Draw = function() end
     tabsmenudown:AddTab("Investisements", panel1, "Investisements")
 
 
@@ -699,6 +700,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    textInfoBoxInvestissement:SetText("Assignez des points pour chaque tranche. \nLe Taux de Rémunération d'un Investisseur est la somme :\n\tPoint pour durée + Points pour montant\n\nLa rémunération à verser s'ajoute à vos frais annuels. \nUn taux élevé augmente votre popularité et attire plus \nd'investisseurs !"):SetPos(20,425)
 
     local panel2 = loveframes.Create("panel")
+    panel2.Draw = function() end
     tabsmenudown:AddTab("Créditeurs", panel2, "Créditeurs")
 
 	    --------------------------------------------------------------------------------------------------------------------------------
@@ -1279,9 +1281,11 @@ hook.Add("SaveRestored", "gui create", function()
 
 
     local panel3 = loveframes.Create("panel")
+    panel3.Draw = function() end
     tabsmenudown:AddTab("Achats/Ventes", panel3, "Achats/Ventes")
 
     local panel4 = loveframes.Create("panel")
+    panel4.Draw = function() end
     tabsmenudown:AddTab("Personel", panel4, "Personel")
 
 	    local containerPersonnel = loveframes.Create("image", panel4)
@@ -1316,6 +1320,10 @@ hook.Add("SaveRestored", "gui create", function()
 	    clickablePersonnel2.OnClick = function(object)
 	    	nbEmployees = numberboxPersonnel2:GetValue()
 	    	detailsTextPersonnel3:SetText({ {color = {52, 192, 62, 255}}, nbEmployees})
+	    	detailsTextPersonnel4:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary)),77)
+	    	detailsTextPersonnel5:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
+	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
+	    	detailsTextPersonnel7:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
 	    end
 	    local infoBoxPersonnel2 = loveframes.Create("image", panel4)
 	    infoBoxPersonnel2:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(310)
@@ -1343,6 +1351,10 @@ hook.Add("SaveRestored", "gui create", function()
 	    clickablePersonnel3:SetImage("ressources/UiBtnFixed.png"):SetPos(110,430):SetText("Modifier les salaires"):SizeToImage()
 	    clickablePersonnel3.OnClick = function(object)
 	    	Salary = numberboxPersonnel3:GetValue() * 100
+	    	detailsTextPersonnel4:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary)),77)
+	    	detailsTextPersonnel5:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
+	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
+	    	detailsTextPersonnel7:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
 	    end
 	    local infoBoxPersonnel3 = loveframes.Create("image", panel4)
 	    infoBoxPersonnel3:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(500)
@@ -1350,6 +1362,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    textInfoBoxPersonnel3:SetText("Diminuez ou augmenter les salaires de vos employés, \net confirmez avec le bouton ci-dessus"):SetPos(45, 510)
 
     local panel5 = loveframes.Create("panel")
+    panel5.Draw = function() end
     tabsmenudown:AddTab("Publicité", panel5, "Publicité")
 
     	if not containerPublicite then

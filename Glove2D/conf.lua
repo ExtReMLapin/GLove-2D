@@ -5,7 +5,7 @@ function love.conf(t)
 	t.window.height = 720
 	t.window.resizable = true
 	t.window.minwidth = 800
-    t.window.minheight = 600  
+    t.window.minheight = 800  
 	t.window.vsync = false
 	t.window.fsaa = 0
 	t.console = true 

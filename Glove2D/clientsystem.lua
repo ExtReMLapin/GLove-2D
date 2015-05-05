@@ -33,7 +33,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			createEvent(string.format("%i/%i/%i",x,y,z), "Money = Money - ".. baseMoney)
 			newInvestisseurs = newInvestisseurs - 1
 		end
-		if T_YEAR >= 1958 then tauxConcurrent() end
+		if T_YEAR >= 1862 then tauxConcurrent() end
 	end
 end)
 
@@ -127,29 +127,29 @@ function clientQuitGen()
 
 	while lowProfile > 0 do
 		quitMoney = math.Round(math.random(400,1200), 0)
-		monthlyEarning = monthlyEarning - quitMoney*0.09
+		monthlyEarning = math.max(monthlyEarning - quitMoney*0.09, 0)
 		annualPayment = annualPayment - quitMoney*(minimalRendement/100)
 		totalQuitMoney = totalQuitMoney - quitMoney
 		lowProfile = lowProfile - 1
 	end
 	while midProfile > 0 do
 		quitMoney = math.Round(math.random(1201,6000), 0)
-		monthlyEarning = monthlyEarning - quitMoney*0.14
+		monthlyEarning = math.max(monthlyEarning - quitMoney*0.14, 0)
 		annualPayment = annualPayment - quitMoney*(middleRendement/100)
 		totalQuitMoney = totalQuitMoney - quitMoney
 		midProfile = midProfile - 1
 	end
 	while highProfile > 0 do
 		quitMoney = math.Round(math.random(6001,12000), 0)
-		monthlyEarning = monthlyEarning - quitMoney*0.3
+		monthlyEarning = math.max(monthlyEarning - quitMoney*0.3, 0)
 		annualPayment = annualPayment - quitMoney*(maximalRendement/100)
 		totalQuitMoney = totalQuitMoney + quitMoney
 		highProfile = highProfile - 1
 	end
-	addMoney(-totalQuitMoney, "Départ clients")
+	addMoney(totalQuitMoney, "Départ clients")
 
-	if nbQuit > nbClients/10 then
-		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux clients sont partis, \ncela pourrait être dû à des taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles, \nn'oubliez pas de surveillez les taux concurrents !")
+	if nbQuit > nbClients/10  and T_SEM == 1 then
+		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux \nclients sont partis, cela pourrait être dû à \ndes taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles. \nN'oubliez pas de surveillez les taux \nconcurrents !")
 	end
 end
 
@@ -165,10 +165,10 @@ function tauxConcurrent()
 	tauxConcurrent3Investisseur = math.Round(tauxPerso2 + (math.random(-1, 1.25) - crisisIndicator*10), 1)
 
 	if (tauxConcurrent1Investisseur or tauxConcurrent2Investisseur or tauxConcurrent3Investisseur) > tauxPerso2 then
-		crisisIndicator2 = math.max(tauxConcurrent1Investisseur,tauxConcurrent2Investisseur,tauxConcurrent3Investisseur) - tauxPerso2 * 0.75
+		crisisIndicator2 = math.max(tauxConcurrent1Investisseur,tauxConcurrent2Investisseur,tauxConcurrent3Investisseur) - tauxPerso2 * 0.15
 	end
 
-	if (tauxConcurrent1Concurrent or tauxConcurrent2Concurrent or tauxConcurrent3Concurrent) > tauxPerso1 then
-		crisisIndicator2 = math.max(tauxConcurrent1Concurrent,tauxConcurrent2Concurrent,tauxConcurrent3Concurrent) - tauxPerso1 * 0.75
+	if (tauxConcurrent1Crediteur or tauxConcurrent2Crediteur or tauxConcurrent3Crediteur) > tauxPerso1 then
+		crisisIndicator2 = math.max(tauxConcurrent1Crediteur,tauxConcurrent2Crediteur,tauxConcurrent3Crediteur) - tauxPerso1 * 0.15
 	end
 end

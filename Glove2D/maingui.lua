@@ -1354,6 +1354,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    clickablePersonnel3:SetImage("ressources/UiBtnFixed.png"):SetPos(110,430):SetText("Modifier les salaires"):SizeToImage()
 	    clickablePersonnel3.OnClick = function(object)
 	    	Salary = numberboxPersonnel3:GetValue() * 100
+	    	employeeEfficiency = math.min(1 + (numberboxPersonnel3:GetValue() - 65)*0.1, 1.5)
 	    	detailsTextPersonnel4:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary)),77)
 	    	detailsTextPersonnel5:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
 	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)

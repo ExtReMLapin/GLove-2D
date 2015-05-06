@@ -3,10 +3,10 @@ require("modules/hook")
 Event = {}
 Event[1] = {}
 Event[1].date = string.format("%i/%i", 6, 1855)
-Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde \natteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera !\n") end
+Event[1].func = function() CreatePopUp("Epidemie de choléra","L'épidémie de choléra débutée en Inde \natteint maintenant la Russie et bientôt \nl'Europe, personne ne sait où elle s'arrêtera !\n") crisisIndicator = 0.05 end
 Event[2] = {}
 Event[2].date = string.format("%i/%i", 11, 1859)
-Event[2].func = function() CreatePopUp("Construction du Canal de Suez","Situé en Egypte, le Canal de Suez permettra \nde rallier la Mer Méditerranée à la Mer Rouge.\nDébut des travaux...\n") end
+Event[2].func = function() CreatePopUp("Construction du Canal de Suez","Situé en Egypte, le Canal de Suez permettra \nde rallier la Mer Méditerranée à la Mer Rouge.\nDébut des travaux...\n") crisisIndicator = -0.175 end
 Event[3] = {}
 Event[3].date = string.format("%i/%i", 1, 1860)
 Event[3].func = function() CreatePopUp("Age d'Or de l'agriculture","C'est l'Age d'Or de l'agriculture Française !\n") end
@@ -18,10 +18,20 @@ Event[5].date = string.format("%i%i", 2, 1865)
 Event[5].func = function() CreatePopUp("Abolition de l'esclavage aux Etats-Unis", "Promulgation du 13ème amendement abolissant \nl'esclavage par A. Lincoln.\nFin de la guerre de Sécession") end
 Event[6] = {}
 Event[6].date = string.format("%i%i", 11, 1869)
-Event[6].func = function() CreatePopUp("Inauguration du Canal de Suez", "L'impératrice Eugénie inaugure le Canal de Suez, \nsuivie par 77 navires de nations maritimes") end
+Event[6].func = function() CreatePopUp("Inauguration du Canal de Suez", "L'impératrice Eugénie inaugure le Canal de Suez, \nsuivie par 77 navires de nations maritimes") crisisIndicator = -0.15 end
 Event[7] = {}
 Event[7].date = string.format("%i%i", 5, 1870)
 Event[7].func = function() CreatePopUp("Création de Standard Oil", "Création de la compagnie pétrolière Standard Oil \npar John D. Rokefeller") end
+Event[8] = {}
+Event[8].date = string.format("%i%i", 3, 1871)
+Event[8].func = function() CreatePopUp("Perte de l'Alsace Lorraine","Signature du traité de Frankfort. \nLa France perd l'Alsace Lorraine, territoire fortement industrialisé !") crisisIndicator = 0.18 end
+Event[9] = {}
+Event[9].date = string.format("%i%i", 11,1873)
+Event[9].func = function() CreatePopUp("Crise économique Américaine", "La crise économique frappe les Etats-Unis de plein fouet.") crisisIndicator = 0.2 end
+Event[10] = {}
+Event[10].date = string.format("%i%i", 7,1879)
+Event[10].func = function() CreatePopUp("Triomphe Républicain", "Les Républicains triomphent des conservateurs monarchistes et s'installent au pouvoir en France.") crisisIndicator = 0.05 end
+
 
 
 function createEvent(date, func)

@@ -15,7 +15,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		end
 		newCrediteurs = (newClients / 100) * (10 + math.random(-4,4))
 		clientProfilGen(newClients)
-		clientQuitGen()
+		if T_SEM == 4 then clientQuitGen() end
 		if engouement > 0.1 then engouement = engouement - 0.05 end
 	end
 	if (T_MONTH == 6 or T_MONTH == 12) and T_SEM == 1 and T_DAY == 1 then
@@ -125,21 +125,21 @@ function clientQuitGen()
 	local quitMoney = 0
 	totalQuitMoney = 0
 
-	while lowProfile > 0 do
+	while lowProfile >= 1 do
 		quitMoney = math.Round(math.random(400,1200), 0)
 		monthlyEarning = math.max(monthlyEarning - quitMoney*0.09, 0)
 		annualPayment = annualPayment - quitMoney*(minimalRendement/100)
 		totalQuitMoney = totalQuitMoney - quitMoney
 		lowProfile = lowProfile - 1
 	end
-	while midProfile > 0 do
+	while midProfile >= 1 do
 		quitMoney = math.Round(math.random(1201,6000), 0)
 		monthlyEarning = math.max(monthlyEarning - quitMoney*0.14, 0)
 		annualPayment = annualPayment - quitMoney*(middleRendement/100)
 		totalQuitMoney = totalQuitMoney - quitMoney
 		midProfile = midProfile - 1
 	end
-	while highProfile > 0 do
+	while highProfile >= 1 do
 		quitMoney = math.Round(math.random(6001,12000), 0)
 		monthlyEarning = math.max(monthlyEarning - quitMoney*0.3, 0)
 		annualPayment = annualPayment - quitMoney*(maximalRendement/100)
@@ -147,6 +147,7 @@ function clientQuitGen()
 		highProfile = highProfile - 1
 	end
 	addMoney(totalQuitMoney, "Départ clients")
+	nbClients = nbClients - nbQuit
 
 	if nbQuit > nbClients/10  and T_SEM == 1 then
 		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux \nclients sont partis, cela pourrait être dû à \ndes taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles. \nN'oubliez pas de surveillez les taux \nconcurrents !")

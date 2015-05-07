@@ -56,8 +56,8 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 	local quad = love.graphics.newQuad(0,0 ,x*210/1280,y*162/720,x*210/1280,y*162/720)
 	love.graphics.draw(secretaryPic,quad ,midx - x*150/1280, midy - y*200/720)
 
-	local quad = love.graphics.newQuad(0,0, x*425/1280,y*315/720,x*425/1280,y*315/720)
-	love.graphics.draw(comptoirPic,quad ,midx - x*210/1280, midy - y*140/720)
+	local quad = love.graphics.newQuad(0,0, x*425/1280,y*305/720,x*425/1280,y*305/720)
+	love.graphics.draw(comptoirPic,quad ,midx - x*180/1280, midy - y*183/720)
 
 
 	--love.graphics.draw_nicegraph(midx-x*115/1280,  midy-y*(220+118)/720, x*240/1280, y*118/720, bank.corpo_get_value_date("AMD"))
@@ -69,10 +69,10 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 
 	for k, v in pairs(customers) do
 
-		local quad = love.graphics.newQuad(0,0, v:getWidth( ), v:getHeight( ),x*111/1280,y*134/720)
+		local quad = love.graphics.newQuad(0,0, v:getWidth( ), v:getHeight( ),x*93/1280,y*103/720)
 		love.graphics.draw(v,quad ,
-		midx + x*(-180+k*95-k*k*3.5)/1280,
-		midy + y*(150-k*48)/720)
+		midx + x*(-151+k*75-k*k*3.5)/1280,
+		midy + y*(29-k*31)/720)
 
 
 	end

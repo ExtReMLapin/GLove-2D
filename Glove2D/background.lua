@@ -18,6 +18,31 @@ local customers = {
 	love.graphics.newImage("ressources/CharaCustomer3Anim1.png")
 }
 
+--[[
+
+local VAR = 0
+
+local frame = loveframes.Create("frame")
+frame:SetName("Slider")
+frame:SetSize(300, 275)
+
+local slider2 = loveframes.Create("slider", frame)
+slider2:SetPos(5, 60)
+slider2:SetHeight(200)
+slider2:SetMinMax(-600, 600)
+slider2:SetButtonSize(20, 10)
+slider2:SetSlideType("vertical")
+slider2.OnValueChanged = function(object)
+    VAR = object:GetValue()
+    print(VAR)
+end]]
+
+
+
+
+
+
+
 
 hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.setColor(255,255,255,255)

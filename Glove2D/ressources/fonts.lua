@@ -11,3 +11,6 @@
 	graphfont = 		love.graphics.newFont(12)
 	fluwtext = 			love.graphics.newFont("ressources/OpenSans-Regular.ttf",7)
 	fluwtexttuto = 		love.graphics.newFont("ressources/OpenSans-Regular.ttf",10)
+	titletext =			love.graphics.newFont("ressources/Calibri.ttf",17)
+	postittext = 		love.graphics.newFont("ressources/Calibri.ttf",13)
+	datebox =			love.graphics.newFont("ressources/Calibri.ttf",19)

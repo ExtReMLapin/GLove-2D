@@ -147,7 +147,7 @@ function clientQuitGen()
 		highProfile = highProfile - 1
 	end
 	addMoney(totalQuitMoney, "Départ clients")
-	nbClients = nbClients - nbQuit
+	nbClients = math.max(nbClients - nbQuit,0)
 
 	if nbQuit > nbClients/10  and T_SEM == 1 then
 		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux \nclients sont partis, cela pourrait être dû à \ndes taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles. \nN'oubliez pas de surveillez les taux \nconcurrents !")

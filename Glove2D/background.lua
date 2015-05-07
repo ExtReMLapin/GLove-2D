@@ -39,10 +39,10 @@ hook.Add("BackBackGround", "The real one this time", function()
 
 
 
-	local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
-
-	love.graphics.draw(blurrywall,quad ,ScrW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
-
+	--local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
+	local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ) ,ScrW, ScrH)
+	--love.graphics.draw(blurrywall,quad ,ScW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
+	love.graphics.draw(blurrywall,quad , 0, 0)
 
 
 
@@ -51,12 +51,12 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw(backgroundpic,quad ,midx - x/2, midy - y/2)
 
 
---[[
 
-	local quad = love.graphics.newQuad(0,0 ,x*263/1280,y*215/720,x*263/1280,y*215/720)
+
+	local quad = love.graphics.newQuad(0,0 ,x*210/1280,y*162/720,x*210/1280,y*162/720)
 	love.graphics.draw(secretaryPic,quad ,midx - x*150/1280, midy - y*200/720)
 
-	local quad = love.graphics.newQuad(0,0, x*532/1280,y*394/720,x*532/1280,y*394/720)
+	local quad = love.graphics.newQuad(0,0, x*425/1280,y*315/720,x*425/1280,y*315/720)
 	love.graphics.draw(comptoirPic,quad ,midx - x*210/1280, midy - y*140/720)
 
 
@@ -84,8 +84,7 @@ hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.draw(secu2Pic,quad ,midx - x*(350+10)/1280, midy- y*(120-10)/720)
 
 	local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*111.5/1280,y*145/720)
-	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)--]]
-
+	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)
 end)
 
 

@@ -40,9 +40,9 @@ hook.Add("BackBackGround", "The real one this time", function()
 
 
 	--local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
-	local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ) ,ScrW, ScrH)
-	--love.graphics.draw(blurrywall,quad ,ScW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
-	love.graphics.draw(blurrywall,quad , 0, 0)
+local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getHeight( ), blurrywall:getWidth( ), blurrywall:getHeight( ))
+	love.graphics.draw(blurrywall,quad ,ScrW/2-blurrywall:getWidth( )/2 ,ScrH/2-blurrywall:getHeight( )/2)
+
 
 
 

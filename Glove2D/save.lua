@@ -7,9 +7,14 @@ tbltuto = {}
 tbltuto[1] = "Bienvenu dans votre banque ! \nAvant toute chose, faisons un tour des fonctionnalités à votre disposition pour gérer votre banque !"
 tbltuto[2] = "Passez votre souris sur la flèche à droite de l'écran et regardons ensemble les informations à votre \ndisposition."
 tbltuto[3] = "Des données importantes sur votre banques y sont affichées, comme les revenus, les dépenses ou encore \nle nombre d'employés par exemple."
-tbltuto[4] = "J'attire votre attention sur ce que l'on appelle le ''Taux Directeur'' ! \nIl représente le taux auquel la Banque de France vous prête l'argent, cela signifie donc qu'il ne faudra pas \nprêter l'argent à un taux plus bas que celui-ci !"
-tbltuto[5] = "Ensuite, l'indicateur de Popularité représente votre image auprès de la population, plus celui-ci est proche \nde 100, plus votre banque est populaire et réputée !"
-tbltuto[6] = "Passons maintenant au second menu se trouvant en bas à gauche de votre écran, encore une fois, il vous \nsuffit de passer la souris sur la flèche pour le découvrir !"
+tbltuto[4] = "Ensuite, l'indicateur de Popularité représente votre image auprès de la population, plus celui-ci est proche \nde 100, plus votre banque est populaire et réputée !"
+tbltuto[5] = "Passons maintenant au second menu se trouvant en bas à gauche de votre écran, encore une fois, il vous \nsuffit de passer la souris sur la flèche pour le découvrir !"
+tbltuto[6] = "Comme vous pouvez le voir, ce menu est composé de plusieurs onglets : ''Investisseurs'', ''Créditeurs'' etc.."
+tbltuto[7] = "Concentrons-nous d'abord sur l'onglet ''Investisseurs'' ! Celui-ci va vous permettre d'établir la rémunération\ndes Investisseurs"
+tbltuto[8] = "Les jauges du menus vont vous permettre de gérer des paliers de rémunération, vous pouvez définir ces \npaliers en bougeant les curseurs sur la jauge"
+tbltuto[9] = "A chaque palier est ensuite attrribué un taux de rémunération en %, que vous pouvez ajuster en cliquant \ndessus"
+tbltuto[10] = "Ensuite, le taux d'un Investisseur est la somme des taux du montant et de la durée de son investissement"
+tbltuto[11] = "Exemple : un investissement de 3 Millions de Francs sur un durée de 70 mois se verra appliquer un taux \nde 3.3% + 1% = 4.3%"
 
 
 function init_restore()
@@ -143,15 +148,15 @@ hook.Add("FirstLaunch", "timerfirstlaunch", function()
 	monthlyEarning = 0
 	CreateTutorialBox(tbltuto)
 	HAD_RATED = false
-	minimalCrediteurAskBehoof = 0
-	middleCrediteurAskBehoof = 0
-	maximalCrediteurAskBehoof = 0
-	minimalCrediteurTimeBehoof = 0
-	middleCrediteurTimeBehoof = 0
-	maximalCrediteurTimeBehoof = 0
-	minimalCrediteurIncomesBehoof = 0
-	middleCrediteurIncomesBehoof = 0
-	maximalCrediteurIncomesBehoof = 0
+	minimalCrediteurAskBehoof = 1
+	middleCrediteurAskBehoof = 2
+	maximalCrediteurAskBehoof = 3
+	minimalCrediteurTimeBehoof = 1
+	middleCrediteurTimeBehoof = 2
+	maximalCrediteurTimeBehoof = 3
+	minimalCrediteurIncomesBehoof = 1
+	middleCrediteurIncomesBehoof = 2
+	maximalCrediteurIncomesBehoof = 3
 	lowCrediteurAsk = 0
 	middleCrediteurAsk = 0
 	lowCrediteurTime = 0

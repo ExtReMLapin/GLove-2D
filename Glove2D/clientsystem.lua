@@ -166,10 +166,10 @@ function tauxConcurrent()
 	tauxConcurrent3Investisseur = math.Round(tauxPerso2 + (math.random(-1, 1.25) - crisisIndicator*10), 1)
 
 	if (tauxConcurrent1Investisseur or tauxConcurrent2Investisseur or tauxConcurrent3Investisseur) > tauxPerso2 then
-		crisisIndicator2 = math.max(tauxConcurrent1Investisseur,tauxConcurrent2Investisseur,tauxConcurrent3Investisseur) - tauxPerso2 * 0.15
+		crisisIndicator2 = math.max(tauxConcurrent1Investisseur,tauxConcurrent2Investisseur,tauxConcurrent3Investisseur) - tauxPerso2 * 0.04
 	end
 
 	if (tauxConcurrent1Crediteur or tauxConcurrent2Crediteur or tauxConcurrent3Crediteur) > tauxPerso1 then
-		crisisIndicator2 = math.max(tauxConcurrent1Crediteur,tauxConcurrent2Crediteur,tauxConcurrent3Crediteur) - tauxPerso1 * 0.15
+		crisisIndicator2 = math.max(tauxConcurrent1Crediteur,tauxConcurrent2Crediteur,tauxConcurrent3Crediteur) - tauxPerso1 * 0.04
 	end
 end

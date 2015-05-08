@@ -301,6 +301,8 @@ function DrawDateBox()
 end
 
 function CreateTutorialBox()
+	
+	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
 	tutopos = 1
 	hook.Add("OverLayDraw", "tutorial", function()
 		pausetime()
@@ -308,10 +310,12 @@ function CreateTutorialBox()
 		love.graphics.draw(tutoBubble, ScrW - 800, ScrH - 135)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont(date_box_text2)
-		love.graphics.print(tbltuto[1], ScrW - 775, ScrH - 125)
+		love.graphics.print(tbltuto[1], ScrW - 775, ScrH - 115)
 		love.graphics.setFont(fluwtexttuto)
 		love.graphics.setColor(0,0,0,80)
 		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 390, ScrH - 72)
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(image, ScrW-820,ScrH-155,0,(math.sin(love.timer.getTime()) + 12)/40,(math.sin(love.timer.getTime()) + 12)/40)
 		hook.Add("SingleKeyPressed", "tuto", function(key)
 			if key == "return" then
 				unpausetime()
@@ -330,8 +334,6 @@ function CreateTutorialBox()
 		end)
 	end)
 end
-
-
 
 local popup = love.graphics.newImage("ressources/UiBlockNewstop.png")
 local popmid = love.graphics.newImage("ressources/UiBlockNewsmid.png")
@@ -619,7 +621,7 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
 		love.graphics.print("Annuels : ", 190 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 35)
 		love.graphics.print("Frais  Mensuels : ".. string.nicemath(Salary*nbEmployees).. "F", 190 + xoffset - date_box_text1:getWidth("Frais  Mensuels :") , yoffset + 58)
 		love.graphics.print("Annuels : ".. string.nicemath(annualPayment).. "F", 190 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 76)
-		love.graphics.print("Taux Directeur               ".. mainRate.. "%", 20 + xoffset, yoffset + 121)
+		--love.graphics.print("Taux Directeur               ".. mainRate.. "%", 20 + xoffset, yoffset + 121)
 		love.graphics.setFont(popuptext)
 		love.graphics.print("100", 50 + xoffset, yoffset + 240)
 		love.graphics.setFont( date_box_text2 )

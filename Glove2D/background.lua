@@ -30,7 +30,7 @@ local emps = {
 
 
 
-
+--[[
 local VAR = 0
 
 local frame = loveframes.Create("frame")
@@ -46,7 +46,7 @@ slider2:SetSlideType("vertical")
 slider2.OnValueChanged = function(object)
     VAR = object:GetValue()
     print(VAR)
-end
+end ]]
 
 
 
@@ -117,14 +117,14 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 		midy + y*(29-k*31)/720)
 	end
 
-	local quad = love.graphics.newQuad(0,0, bossPic:getWidth( ), bossPic:getHeight( ),x*111.5/1280,y*139.375/720)
+	local quad = love.graphics.newQuad(0,0, bossPic:getWidth( ), bossPic:getHeight( ),x*89.2/1280,y*111.2/720)
 	love.graphics.draw(bossPic,quad ,midx - x*220/1280, midy- y*70/720)
 
-	local quad = love.graphics.newQuad(0,0, secu2Pic:getWidth( ), secu2Pic:getHeight( ),x*111.5/1280,y*145/720)
-	love.graphics.draw(secu2Pic,quad ,midx - x*(350+10)/1280, midy- y*(120-10)/720)
+	local quad = love.graphics.newQuad(0,0, secu2Pic:getWidth( ), secu2Pic:getHeight( ),x*89.2/1280,y*116/720)
+	love.graphics.draw(secu2Pic,quad ,midx - x*(250)/1280, midy- y*(151)/720)
 
-	local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*111.5/1280,y*145/720)
-	love.graphics.draw(secu3Pic,quad ,midx - x*(350-135)/1280, midy- y*(120+69)/720)
+	local quad = love.graphics.newQuad(0,0, secu3Pic:getWidth( ), secu3Pic:getHeight( ),x*89.2/1280,y*116/720)
+	love.graphics.draw(secu3Pic,quad ,midx - x*(180)/1280, midy- y*(120+69)/720)
 
 
 

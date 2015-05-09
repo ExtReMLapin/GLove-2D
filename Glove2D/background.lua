@@ -78,7 +78,7 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 
 
 
-	local quad = love.graphics.newQuad(0,0, backgroundpic:getWidth( )-1, backgroundpic:getHeight( ),x,y)
+	local quad = love.graphics.newQuad(0,0, x,y,x,y)
 	love.graphics.draw(backgroundpic,quad ,midx - x/2, midy - y/2)
 
 

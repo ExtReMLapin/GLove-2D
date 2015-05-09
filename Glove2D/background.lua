@@ -39,11 +39,6 @@ end]]
 
 
 
-
-
-
-
-
 hook.Add("BackBackGround", "The real one this time", function()
 	love.graphics.setColor(255,255,255,255)
 	local midx = ScrW/2

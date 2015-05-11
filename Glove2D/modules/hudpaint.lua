@@ -325,7 +325,7 @@ function CreateBigTutorialBox()
 				tbltuto[1] = tbltuto[tutopos]
 				if tbltuto[tutopos] then
 					tutopos = tutopos + 1
-					if tutopos == 4 then
+					if tutopos == 5 then
 						hook.Remove("OverLayDraw", "tutoriel1")
 						CreateTutorialBox()
 					end
@@ -337,7 +337,7 @@ end
 
 function CreateTutorialBox()	
 	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
-	tutopos = 4
+	tutopos = 5
 	hook.Add("OverLayDraw", "tutorial2", function()
 		pausetime()
 		love.graphics.setColor(255,255,255)
@@ -356,20 +356,13 @@ function CreateTutorialBox()
 				hook.Remove("OverLayDraw", "tutorial2")
 				IsOnDesktop = true
 			elseif key == "right" then
-				if tutopos ~= 21 then
-					tbltuto[4] = tbltuto[tutopos]
-					if tbltuto[tutopos] then
-						tutopos = tutopos + 1
-					else
-						unpausetime()
-						hook.Remove("OverLayDraw", "tutorial2")
-						IsOnDesktop = true
-					end
-				elseif tutopos == 21 and minimalCrediteurAskBehoof ~= 0 and middleCrediteurAskBehoof ~= 0 and maximalCrediteurAskBehoof ~= 0 
-						and minimalCrediteurTimeBehoof ~= 0 and middleCrediteurTimeBehoof ~= 0 and maximalCrediteurTimeBehoof ~= 0 and minimalCrediteurIncomesBehoof ~= 0 
-						and middleCrediteurIncomesBehoof ~= 0 and maximalCrediteurIncomesBehoof ~= 0 and minimalRendement ~= 0 and middleRendement ~= 0 and maximalRendement ~= 0
-						and minimal2Rendement ~= 0 and middle2Rendement ~= 0 and maximal2Rendement ~= 0 then
+				tbltuto[5] = tbltuto[tutopos]
+				if tbltuto[tutopos] then
 					tutopos = tutopos + 1
+				else
+					unpausetime()
+					hook.Remove("OverLayDraw", "tutorial2")
+					IsOnDesktop = true
 				end
 			end
 		end)

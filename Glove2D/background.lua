@@ -10,14 +10,28 @@ local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
 local bossPic = love.graphics.newImage("ressources/CharaBankBoss.png")
 local secu2Pic = love.graphics.newImage("ressources/CharaGuardians2.png")
 local secu3Pic = love.graphics.newImage("ressources/CharaGuardians3.png")
+local Rcustomers;
+
 
 local customers = {
 	love.graphics.newImage("ressources/CharaCustomer1Anim1.png"),
 	love.graphics.newImage("ressources/CharaCustomer2Anim1.png"),
 	love.graphics.newImage("ressources/CharaCustomer3Anim1.png"),
 	love.graphics.newImage("ressources/CharaCustomer4Anim1.png"),
-	love.graphics.newImage("ressources/CharaCustomer3Anim1.png")
+	love.graphics.newImage("ressources/CharaCustomer5BackAnim1.png"),
+	love.graphics.newImage("ressources/CharaCustomer6BackAnim1.png"),
+	love.graphics.newImage("ressources/CharaCustomer7BackAnim1.png")
+
 }
+
+Rcustomers = {}
+Rcustomers[1] = customers[1]
+Rcustomers[2] = customers[2]
+Rcustomers[3] = customers[3]
+Rcustomers[4] = customers[4]
+Rcustomers[5] = customers[5]
+local ralpha = {255,255,255,255}
+
 
 local emps = {
 	
@@ -30,12 +44,45 @@ local emps = {
 
 
 
---[[
-local VAR = 0
+local function remplace_custommer(id)
+	local time = love.timer.getTime()
+	local future = table.Random(customers)
+	hook.Add("Think", "timer fast custommer draw alpha1", function() -- baisser texture
+		if ralpha[id] == 0 then 
+			hook.Remove("Think", "timer fast custommer draw alpha1")
+			local time2 = love.timer.getTime()
+			hook.Add("Think", "timer fast custommer draw alpha2", function()
+				Rcustomers[id] = future
+				if ralpha[id] == 255 then hook.Remove("Think", "timer fast custommer draw alpha2") end
+				ralpha[id] = math.Min(255,(love.timer.getTime() - time2)*255)
+				print(ralpha[id])
+			end)
+		end
+		ralpha[id] = math.Max(0,255-((love.timer.getTime() - time)*255))
+		
+	end)
 
+
+end
+
+
+local VAR = 0
+--[[
 local frame = loveframes.Create("frame")
 frame:SetName("Slider")
 frame:SetSize(300, 275)
+
+
+local button = loveframes.Create("button", frame)
+button:SetWidth(200)
+button:SetText("Button")
+button:SetPos(0,0)
+button.OnClick = function(object, x, y)
+    remplace_custommer(4)
+end
+
+
+
 
 local slider2 = loveframes.Create("slider", frame)
 slider2:SetPos(5, 60)
@@ -109,14 +156,14 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 	--love.graphics.draw(casierPic,quad ,midx - x*153/1280, midy- y*285/720)
 
 
-	for k, v in pairs(customers) do
-
+	for k, v in pairs(Rcustomers) do
+		love.graphics.setColor( 255,255,255,ralpha[k])
 		local quad = love.graphics.newQuad(0,0,x*93/1280,y*103/720,x*93/1280,y*103/720)
 		love.graphics.draw(v,quad ,
 		midx + x*(-151+k*75-k*k*3.5)/1280,
 		midy + y*(29-k*31)/720)
 	end
-
+	love.graphics.setColor( 255,255,255,255 )
 	local quad = love.graphics.newQuad(0,0, bossPic:getWidth( ), bossPic:getHeight( ),x*89.2/1280,y*111.2/720)
 	love.graphics.draw(bossPic,quad ,midx - x*220/1280, midy- y*70/720)
 

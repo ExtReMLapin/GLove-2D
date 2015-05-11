@@ -73,7 +73,7 @@ end)
 
 
 local VAR = 0
-
+--[[
 local frame = loveframes.Create("frame")
 frame:SetName("Slider")
 frame:SetSize(300, 275)
@@ -89,7 +89,7 @@ end
 
 
 
---[[
+
 local slider2 = loveframes.Create("slider", frame)
 slider2:SetPos(5, 60)
 slider2:SetHeight(200)

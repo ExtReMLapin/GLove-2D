@@ -55,7 +55,7 @@ local function remplace_custommer(id)
 				Rcustomers[id] = future
 				if ralpha[id] == 255 then hook.Remove("Think", "timer fast custommer draw alpha2") end
 				ralpha[id] = math.Min(255,(love.timer.getTime() - time2)*255)
-				print(ralpha[id])
+				--print(ralpha[id])
 			end)
 		end
 		ralpha[id] = math.Max(0,255-((love.timer.getTime() - time)*255))

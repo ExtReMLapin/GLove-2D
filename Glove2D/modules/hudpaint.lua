@@ -11,6 +11,7 @@ local string = string
 local UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
 local tutoBubble = love.graphics.newImage("ressources/UiBulleTextesfixed.png")
 local UiTab = love.graphics.newImage("ressources/UiBtnMenu.png")
+local UiBubbleTuto = love.graphics.newImage("ressources/UiBulleTutofixed.png")
 
 
 
@@ -300,35 +301,75 @@ function DrawDateBox()
 
 end
 
-function CreateTutorialBox()
-	
+function CreateBigTutorialBox()
 	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
 	tutopos = 1
-	hook.Add("OverLayDraw", "tutorial", function()
+	hook.Add("OverLayDraw", "tutoriel1", function()
 		pausetime()
 		love.graphics.setColor(255,255,255)
-		love.graphics.draw(tutoBubble, ScrW - 800, ScrH - 135)
+		love.graphics.draw(UiBubbleTuto, ScrW/2 - 350, ScrH/2 - 214)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont(date_box_text2)
-		love.graphics.print(tbltuto[1], ScrW - 775, ScrH - 115)
+		love.graphics.print(tbltuto[1], ScrW/2 - 340, ScrH/2 - 120)
 		love.graphics.setFont(fluwtexttuto)
 		love.graphics.setColor(0,0,0,80)
-		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 390, ScrH - 72)
+		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW/2 , ScrH/2 + 120)
 		love.graphics.setColor(255,255,255)
-		love.graphics.draw(image, ScrW-820,ScrH-155,0,(math.sin(love.timer.getTime()) + 12)/40,(math.sin(love.timer.getTime()) + 12)/40)
-		hook.Add("SingleKeyPressed", "tuto", function(key)
+		love.graphics.draw(image, ScrW/2 - 40,ScrH/2 - 230,0,(math.sin(love.timer.getTime()) + 12)/30,(math.sin(love.timer.getTime()) + 12)/30)
+		hook.Add("SingleKeyPressed", "tuto2", function(key)
 			if key == "return" then
 				unpausetime()
-				hook.Remove("OverLayDraw", "tutorial")
+				hook.Remove("OverLayDraw", "tutoriel1")
 				IsOnDesktop = true
 			elseif key == "right" then
 				tbltuto[1] = tbltuto[tutopos]
 				if tbltuto[tutopos] then
 					tutopos = tutopos + 1
-				else
-					unpausetime()
-					hook.Remove("OverLayDraw", "tutorial")
-					IsOnDesktop = true
+					if tutopos == 4 then
+						hook.Remove("OverLayDraw", "tutoriel1")
+						CreateTutorialBox()
+					end
+				end
+			end
+		end)
+	end)
+end
+
+function CreateTutorialBox()	
+	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
+	tutopos = 4
+	hook.Add("OverLayDraw", "tutorial2", function()
+		pausetime()
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(tutoBubble, ScrW - 800, ScrH - 135)
+		love.graphics.setColor(0,0,0)
+		love.graphics.setFont(date_box_text2)
+		love.graphics.print(tbltuto[4], ScrW - 775, ScrH - 115)
+		love.graphics.setFont(fluwtexttuto)
+		love.graphics.setColor(0,0,0,80)
+		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 390, ScrH - 72)
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(image, ScrW-820,ScrH-155,0,(math.sin(love.timer.getTime()) + 12)/40,(math.sin(love.timer.getTime()) + 12)/40)
+		hook.Add("SingleKeyPressed", "tuto1", function(key)
+			if key == "return" then
+				unpausetime()
+				hook.Remove("OverLayDraw", "tutorial2")
+				IsOnDesktop = true
+			elseif key == "right" then
+				if tutopos ~= 21 then
+					tbltuto[4] = tbltuto[tutopos]
+					if tbltuto[tutopos] then
+						tutopos = tutopos + 1
+					else
+						unpausetime()
+						hook.Remove("OverLayDraw", "tutorial2")
+						IsOnDesktop = true
+					end
+				elseif tutopos == 21 and minimalCrediteurAskBehoof ~= 0 and middleCrediteurAskBehoof ~= 0 and maximalCrediteurAskBehoof ~= 0 
+						and minimalCrediteurTimeBehoof ~= 0 and middleCrediteurTimeBehoof ~= 0 and maximalCrediteurTimeBehoof ~= 0 and minimalCrediteurIncomesBehoof ~= 0 
+						and middleCrediteurIncomesBehoof ~= 0 and maximalCrediteurIncomesBehoof ~= 0 and minimalRendement ~= 0 and middleRendement ~= 0 and maximalRendement ~= 0
+						and minimal2Rendement ~= 0 and middle2Rendement ~= 0 and maximal2Rendement ~= 0 then
+					tutopos = tutopos + 1
 				end
 			end
 		end)

@@ -10,7 +10,9 @@ hook.Add("DateChange", "PuBClientCalc", function()
 		if newClients + nbClients > nbEmployees * (30 * employeeEfficiency) then
 			newClients =  (nbEmployees * (30 * employeeEfficiency)) - nbClients 
 			nbClients = newClients + nbClients
-			CreatePopUp("Manque d'effectif", "Les clients sont de plus en plus nombreux \nmais les employés ne peuvent gérer autant \nde personnes, vous devriez embaucher plus \nde personnel !")
+			if T_SEM == 1 then
+				CreatePopUp("Manque d'effectif", "Les clients sont de plus en plus nombreux \nmais les employés ne peuvent gérer autant \nde personnes, vous devriez embaucher plus \nde personnel !")
+			end
 		else
 			nbClients = nbClients + newClients
 		end

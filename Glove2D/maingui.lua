@@ -1339,6 +1339,9 @@ hook.Add("SaveRestored", "gui create", function()
 	    	elseif numberboxPersonnel2:GetValue() < nbEmployees then
 	    		clickablePersonnel2:SetText("Licencier "..nbEmployees - numberboxPersonnel2:GetValue().." employés")
 	    		textInfoBoxPersonnel2:SetText("En licenciant "..nbEmployees - numberboxPersonnel2:GetValue().." employés :\n\t- Economies mensuelles : +"..(nbEmployees - numberboxPersonnel2:GetValue())*Salary.."F")
+	    	elseif numberboxPersonnel2:GetValue() == nbEmployees then
+	    		clickablePersonnel2:SetText("Modifier le nombre d'employés")
+	    		textInfoBoxPersonnel2:SetText("Diminuez ou augmenter l'effectif de votre banque, et \nconfirmez avec le bouton ci-dessus")
 	    	end
 	    end
 
@@ -1348,8 +1351,10 @@ hook.Add("SaveRestored", "gui create", function()
 	    titleContainerPersonnel3:SetFont(titletext):SetDefaultColor(60,35,23,255):SetText("Gestion des salaires"):Center():SetY(384)
 	    local textContainerPersonnel3 = loveframes.Create("text", panel4)
 	    textContainerPersonnel3:SetFont(date_box_text2):SetDefaultColor(0,0,0,255):SetText("Salaire (K)"):SetPos(26,425)
-	    local numberboxPersonnel3 = loveframes.Create("numberbox", panel4)
-	    numberboxPersonnel3:SetPos(35, 460):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(Salary/100)
+	    local infoBoxPersonnel3 = loveframes.Create("image", panel4)
+	    infoBoxPersonnel3:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(500)
+	    local textInfoBoxPersonnel3 = loveframes.Create("text", panel4)
+	    textInfoBoxPersonnel3:SetText("Diminuez ou augmenter les salaires de vos employés, \net confirmez avec le bouton ci-dessus"):SetPos(45, 510)
 	    local clickablePersonnel3 = loveframes.Create("imagebutton", panel4)
 	    clickablePersonnel3:SetImage("ressources/UiBtnFixed.png"):SetPos(110,430):SetText("Modifier les salaires"):SizeToImage()
 	    clickablePersonnel3.OnClick = function(object)
@@ -1360,10 +1365,21 @@ hook.Add("SaveRestored", "gui create", function()
 	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
 	    	detailsTextPersonnel7:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
 	    end
-	    local infoBoxPersonnel3 = loveframes.Create("image", panel4)
-	    infoBoxPersonnel3:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(500)
-	    local textInfoBoxPersonnel3 = loveframes.Create("text", panel4)
-	    textInfoBoxPersonnel3:SetText("Diminuez ou augmenter les salaires de vos employés, \net confirmez avec le bouton ci-dessus"):SetPos(45, 510)
+	    local numberboxPersonnel3 = loveframes.Create("numberbox", panel4)
+	    numberboxPersonnel3:SetPos(35, 460):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(Salary/100)
+	    numberboxPersonnel3.OnValueChanged = function()
+	    	if numberboxPersonnel3:GetValue()*100 > Salary then 
+	    		clickablePersonnel3:SetText("Augmenter les salaires de "..numberboxPersonnel3:GetValue()*100 - Salary.."F")
+	    		textInfoBoxPersonnel3:SetText("En augmentant les salaires de "..numberboxPersonnel3:GetValue()*100 - Salary.."F : \n\t-Frais mensuels : +"..(numberboxPersonnel3:GetValue()*100 - Salary)*nbEmployees.."F")
+	    	elseif numberboxPersonnel3:GetValue()*100 < Salary then 
+	    		clickablePersonnel3:SetText("Diminuer les salaires de "..Salary - numberboxPersonnel3:GetValue()*100 .."F")
+	    		textInfoBoxPersonnel3:SetText("En diminuant les salaires de "..Salary - numberboxPersonnel3:GetValue()*100 .."F : \n\t-Economies mensuelles : -"..(Salary - numberboxPersonnel3:GetValue()*100)*nbEmployees.."F")
+	    	elseif numberboxPersonnel3:GetValue()*100 == Salary then 
+	    		clickablePersonnel3:SetText("Modifier les salaires")
+	    		textInfoBoxPersonnel3:SetText("Diminuez ou augmenter les salaires de vos employés, \net confirmez avec le bouton ci-dessus")
+	    	end
+	    end
+	    
 
     local panel5 = loveframes.Create("panel")
     panel5.Draw = function() end

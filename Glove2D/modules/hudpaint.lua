@@ -337,14 +337,14 @@ end
 
 function CreateTutorialBox()	
 	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
-	tutopos = 5
+	tutopos = 4
 	hook.Add("OverLayDraw", "tutorial2", function()
 		pausetime()
 		love.graphics.setColor(255,255,255)
 		love.graphics.draw(tutoBubble, ScrW - 800, ScrH - 135)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont(date_box_text2)
-		love.graphics.print(tbltuto[5], ScrW - 775, ScrH - 115)
+		love.graphics.print(tbltuto[4], ScrW - 775, ScrH - 115)
 		love.graphics.setFont(fluwtexttuto)
 		love.graphics.setColor(0,0,0,80)
 		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 390, ScrH - 72)
@@ -356,7 +356,7 @@ function CreateTutorialBox()
 				hook.Remove("OverLayDraw", "tutorial2")
 				IsOnDesktop = true
 			elseif key == "right" then
-				tbltuto[5] = tbltuto[tutopos]
+				tbltuto[4] = tbltuto[tutopos]
 				if tbltuto[tutopos] then
 					tutopos = tutopos + 1
 				else

@@ -35,8 +35,6 @@ Brand = {}
 errorsound = love.audio.newSource("ressources/teddy.mp3", "static")
 errorsound:setVolume(1) -- 90% of ordinary volume
 errorsound:setPitch(1) -- one octave lower
-errorsound:setLooping(false)
-fonterrortitle = love.graphics.newFont("ressources/Ubuntu-B.ttf", 72)
 fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
 fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
 sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)

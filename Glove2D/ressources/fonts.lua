@@ -1,6 +1,3 @@
-	title = 			love.graphics.newFont("ressources/Ubuntu-B.ttf", 27)
-	subtitle =			love.graphics.newFont("ressources/Ubuntu-B.ttf",23)
-	other_text = 		love.graphics.newFont("ressources/FuturaExtended.ttf", 18)
 	date_box_text1 = 	love.graphics.newFont("ressources/OpenSans-Regular.ttf", 18)
 	date_box_text2 = 	love.graphics.newFont("ressources/OpenSans-Regular.ttf", 15)
 	rightclickmenu = 	love.graphics.newFont("ressources/OpenSans-Regular.ttf", 25)
@@ -11,3 +8,6 @@
 	graphfont = 		love.graphics.newFont(12)
 	fluwtext = 			love.graphics.newFont("ressources/OpenSans-Regular.ttf",7)
 	fluwtexttuto = 		love.graphics.newFont("ressources/OpenSans-Regular.ttf",10)
+	titletext =			love.graphics.newFont("ressources/Calibri.ttf",17)
+	postittext = 		love.graphics.newFont("ressources/Calibri.ttf",13)
+	datebox =			love.graphics.newFont("ressources/Calibri.ttf",19)

@@ -1295,8 +1295,8 @@ function skin.DrawSlider(object)
 	local baroutlinecolor = skin.controls.slider_bar_outline_color
 	
 	if slidtype == "horizontal" then
-	--	love.graphics.setColor(baroutlinecolor)
-		--love.graphics.rectangle("fill", x, y + height/2 - 5, width, 10)
+		love.graphics.setColor(baroutlinecolor)
+		love.graphics.rectangle("fill", x, y + height/2 - 5, width, 10)
 		love.graphics.setColor(bordercolor)
 		love.graphics.rectangle("fill", x + 5, y + height/2, width - 10, 1)
 	elseif slidtype == "vertical" then

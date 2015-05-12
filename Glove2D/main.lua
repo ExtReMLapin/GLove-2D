@@ -15,7 +15,7 @@ require "quit"
 print(love.filesystem.read("exit.txt"))
 if love.filesystem.read("exit.txt") ~= "false" then
 	require "lua_ffi"
-	steamworks = require"steamworks/init"
+	--steamworks = require"steamworks/init"
 end
 
 

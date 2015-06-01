@@ -1,3 +1,5 @@
+if not jit.os == "Windows" then return end
+
 
 ffi.cdef "int SDL_SetHint(const char *name, const char *value);"
 

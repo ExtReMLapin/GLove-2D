@@ -1,3 +1,4 @@
+-- GMod like hook system, but light version, without all the GM shit
 if hook then return false end
 local table = table
 local type = type

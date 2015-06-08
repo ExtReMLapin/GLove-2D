@@ -2,7 +2,6 @@
 require "data"
 require "error"
 ffi = require 'ffi'
-inspect = require "inspect"
 require "ressources/fonts"
 require "timersloop"
 require "save"
@@ -51,8 +50,8 @@ function love.load()
 	local theme = love.audio.newSource("ressources/theme.mp3", "static")
 
 
-	theme:setVolume(0.1) -- 90% of ordinary volume
-	theme:setPitch(1) -- one octave lower
+	theme:setVolume(0.1)
+	theme:setPitch(1)
 	theme:setLooping(true)
 	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
@@ -94,7 +93,7 @@ end
 hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 	hook.Add("BackGroundDraw", "Infos background", function()
 		DrawDateBox()
-		--love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), ScrW*10/1280 ,ScrH-50)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), ScrW*10/1280 ,50)
 		--love.graphics.print("X,Y,Z debug:"..tostring(x)..", "..tostring(y)..", "..tostring(z), 200,700)
 		--love.graphics.print("D,M,Y debug:"..tostring(T_DAY)..", "..tostring(T_MONTH)..", "..tostring(T_YEAR), 600,700)
 		--love.graphics.print("Salaire: "..tostring(Salary) or "nul", 300, 0)

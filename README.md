@@ -35,3 +35,12 @@ You're not allowed to make money using this software.
 If you're working for a french bank/or is linked in anyway with a bank, you're not allowed to use this software 
 (no $$$ = no software for you)
 
+
+
+----------
+
+
+a project by 
+
+Fabien Sacrepeigne and Pierre Fichepoil
+

@@ -12,6 +12,11 @@ require "input"
 require "maingui"
 require "quit"
 
+
+
+local TEST_ERROR = true
+
+
 print(love.filesystem.read("exit.txt"))
 if love.filesystem.read("exit.txt") ~= "false" then
 	require "lua_ffi"
@@ -55,7 +60,6 @@ function love.load()
 	theme:setLooping(true)
 	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
-
 
 
 
@@ -103,5 +107,9 @@ hook.Add("SaveRestored", "HUDPAINTRESTORED", function()
 		--love.graphics.print("Réputation : " .. reputation, ScrW*400/1280, ScrH-50)
 		--love.graphics.print("taux concurrent 1, 2, 3 : ".. tauxConcurrent1Crediteur.." ; ".. tauxConcurrent2Crediteur.. " ; ".. tauxConcurrent3Crediteur, 300, 0)
 		--love.graphics.print("crisisIndicator : "..crisisIndicator,300,30)
+	if TEST_ERROR then
+		error("lol")
+	end
+
 	end)
 end)

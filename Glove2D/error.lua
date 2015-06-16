@@ -1,5 +1,5 @@
 ERROR_SENT = false
-
+print("Error System loaded")
 
 local quad = love.graphics.newQuad(000, 000, 600, 500, 250,205)
 local debug, print = debug, print

@@ -42,5 +42,5 @@ If you're working for a french bank/or is linked in anyway with a bank, you're n
 
 a project by 
 
-Fabien Sacrepeigne and Pierre Fichepoil
+###Fabien Sacrepeigne and Pierre Fichepoil
 

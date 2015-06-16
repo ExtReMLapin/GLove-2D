@@ -35,9 +35,7 @@ Brand = {}
 errorsound = love.audio.newSource("ressources/teddy.mp3", "static")
 errorsound:setVolume(1) -- 90% of ordinary volume
 errorsound:setPitch(1) -- one octave lower
-fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
-fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
-sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)
+
 warning = love.graphics.newImage("ressources/warning.png")
 
 	Sectors = {

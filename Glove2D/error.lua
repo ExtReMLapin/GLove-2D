@@ -1,6 +1,12 @@
 ERROR_SENT = false
 print("Error System loaded")
 
+fonterrortitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 42)
+fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
+fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
+sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)
+
+
 local quad = love.graphics.newQuad(000, 000, 600, 500, 250,205)
 local debug, print = debug, print
 
@@ -36,10 +42,11 @@ function love.errhand(msg)
     love.graphics.setBackgroundColor( 30,30,44 )
     errorsound:play()
     local function draw()
+
         love.mouse.setCursor( love.mouse.getSystemCursor('arrow') )
         love.graphics.clear()
 
-        love.graphics.setFont(fonterrortitle)
+       love.graphics.setFont(fonterrortitle)
         local text = "GG M8"
         love.graphics.print( text ,  ScrW/2 - fonterrortitle:getWidth(text)/2, 5)
 
@@ -48,15 +55,23 @@ function love.errhand(msg)
         love.graphics.print( text ,  ScrW/2 - fonterrorsubtitle:getWidth(text)/2, 85)
         love.graphics.setFont(sfonterrorsubtitle2)
         local text = "fucking"
+
+
         love.graphics.print( text ,  ScrW/2 - fonterrorsubtitle:getWidth("You broke the game")/2 + fonterrorsubtitle:getWidth("You broke the")-22 , 122)
 
 
         love.graphics.setColor(255,255,255,255)
+
         love.graphics.draw(warning,quad , 900, 180+math.sin(love.timer.getTime()*3)*12,math.rad(5))
 
         love.graphics.setFont(love.graphics.newFont (15))
         love.graphics.print(p, 42, 230)
 		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 700)
+
+
+
+
+
 		love.graphics.print('Memory actually used (in kB): ' .. math.Round(collectgarbage('count')), 900,700)
         local hei = (string.Count(p, "\n")+1)*love.graphics.newFont (15):getHeight()
         love.graphics.print("The error has been sent to the master server and copied to your clipboard.\nFeel free to ask help on the officials forums. (Or to your cat)",42, hei+330)

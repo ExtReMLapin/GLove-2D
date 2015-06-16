@@ -14,7 +14,7 @@ require "quit"
 
 
 
-local TEST_ERROR = true
+local TEST_ERROR = false
 
 
 print(love.filesystem.read("exit.txt"))

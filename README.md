@@ -27,6 +27,19 @@ You have to download the Love software on the love 2d website.
 ----------
 
 
+
+
+Used software
+----------
+Löve 2D
+Love Frames
+Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
+JSON4Lua
+Some libs from Garry's mod, and others build ourself se we can use familiars functions.
+
+
+
+
 ### Rights
 
 You're allowed to edit it for personal use.

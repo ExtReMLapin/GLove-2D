@@ -17,7 +17,7 @@ Download it and drag the folder Glove2D over love.exe
 > **Note:**
 
 > - Save folder is appdata/roaming/Glove2D (LOVE if fucked up)
-> - You need a X64 system and a decent computer, not administrator right are required
+> - You need a X64 system and a decent computer, not administrator rights are required
 
 
 Linux and OS X
@@ -32,10 +32,10 @@ You have to download the Love software on the love 2d website.
 Used software
 ----------
 Löve 2D
-Love Frames
+Love Frames (Modded to have more features)
 Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
-JSON4Lua
-Some libs from Garry's mod, and others build ourself se we can use familiars functions.
+JSON4Lua (at the start for the save files, and then only for the webapi shit)
+Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
 
 
 

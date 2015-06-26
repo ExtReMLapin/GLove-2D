@@ -1,5 +1,8 @@
 require"modules/hook"
 
+
+local numberboxPersonnel3 -- bugfix
+
 --[[username = "Testguy"
 usrlevel = 3
 account_growth = 34
@@ -1327,6 +1330,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    	detailsTextPersonnel5:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
 	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
 	    	detailsTextPersonnel7:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
+	    	clickablePersonnel2:SetText("Modifier le nombre d'employés")
 	    end
 	    local infoBoxPersonnel2 = loveframes.Create("image", panel4)
 	    infoBoxPersonnel2:SetImage("ressources/UiRackinfosBlock2.png"):SetScale(0.5,0.5):Center():SetY(310)
@@ -1344,6 +1348,7 @@ hook.Add("SaveRestored", "gui create", function()
 	    		textInfoBoxPersonnel2:SetText("Diminuez ou augmenter l'effectif de votre banque, et \nconfirmez avec le bouton ci-dessus")
 	    	end
 	    end
+
 
 	    local containerPersonnel3 = loveframes.Create("image", panel4)
 		containerPersonnel3:SetImage("ressources/UiRackMenuBlock.png"):SetScale(0.55,0.43):Center():SetY(380)
@@ -1364,8 +1369,10 @@ hook.Add("SaveRestored", "gui create", function()
 	    	detailsTextPersonnel5:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees)),77)
 	    	detailsTextPersonnel6:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*12)}):SetPos(170 - popuptitle:getWidth(string.nicemath(Salary*12)),117)
 	    	detailsTextPersonnel7:SetText({ {color = {52, 192, 62, 255}}, string.nicemath(Salary*nbEmployees*12)}):SetPos(350 - popuptitle:getWidth(string.nicemath(Salary*nbEmployees*12)),117)
+	    	clickablePersonnel3:SetText("Modifier les salaires")
+
 	    end
-	    local numberboxPersonnel3 = loveframes.Create("numberbox", panel4)
+	    numberboxPersonnel3 = loveframes.Create("numberbox", panel4)
 	    numberboxPersonnel3:SetPos(35, 460):SetSize(50,20):SetIncreaseAmount(1):SetDecreaseAmount(1):SetValue(Salary/100)
 	    numberboxPersonnel3.OnValueChanged = function()
 	    	if numberboxPersonnel3:GetValue()*100 > Salary then 

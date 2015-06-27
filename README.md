@@ -31,11 +31,15 @@ You have to download the Love software on the love 2d website.
 
 Used software
 ----------
-Löve 2D
-Love Frames (Modded to have more features)
-Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
-JSON4Lua (at the start for the save files, and then only for the webapi shit)
-Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
+>Löve 2D
+
+>Love Frames (Modded to have more features)
+
+>Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
+
+>JSON4Lua (at the start for the save files, and then only for the webapi shit)
+
+>Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
 
 
 

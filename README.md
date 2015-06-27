@@ -1,10 +1,14 @@
 Glove 2D, now called Bank Boss
 ===================
 
+![Screenshot](http://puu.sh/iECiV/224badf5a2.png)
+
+
 Abandonned projet for the french Bank LCL
 
 
-
+##Disclamer
+This game was built fast, some of the features are "more engine based" than game based, it means they be easily exported to another Love 2D project, some others, like the background system, or the Graph system are thug-style-coded, i mean it was just like "ok it works, don't touch it anymore, let's stop breaking things".
 
 ----------
 

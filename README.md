@@ -28,24 +28,44 @@ You have to download the Love software on the love 2d website.
 
 
 
+##Main engine features
+
+*Isometric static level
+*All resolutions compatible, with autoresizing (format will not change, just the size)
+*Event system : createEvent(date, func)
+*Time system (Paused if in main menu) (The Love Frame system will be paused and another love frame instance is going to be ran in the main menu)
+*Menus system with popups (See video) (Menus powered by Love frames)
+*Graph system (really nice but broken because our webserver is offline)
+*Error system reporting to master server (unfinished)
+*Save system (Save the given vars in save.lua)
+*Timer libs
+*Hook system (Gmod-like)
+
+
+
+
+
+----------
+
+
 
 Used software
 ----------
->Löve 2D
+*Löve 2D
 
->Love Frames (Modded to have more features)
+*Love Frames (Modded to have more features)
 
->Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
+*Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
 
->JSON4Lua (at the start for the save files, and then only for the webapi shit)
+*JSON4Lua (at the start for the save files, and then only for the webapi shit)
 
->Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
+*Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
 
 
 
 
 ### Rights
-
+----------
 You're allowed to edit it for personal use.
 
 You're allowed to fork the project on github and do any modification only if you don't edit/remove this readme file.
@@ -65,5 +85,5 @@ Anything not explicitly allowed is forbidden.
 
 a project by 
 
-###Fabien Sacrepeigne and Pierre Fichepoil
+###Fabien Sacrepeigne (Screamotion) and Pierre Fichepoil (ExtReM Lapin)
 ###Art by Président Xerak

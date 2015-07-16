@@ -74,7 +74,7 @@ You're allowed to edit it for personal use.
 
 You're allowed to fork the project on github and do any modification only if you don't edit/remove this readme file.
 
-You're not allowed to make money using this software.
+You're not allowed to make money using this software/You're not allowed to SELL this software.
 
 If you're working for a french bank/or is linked in anyway with a bank, you're not allowed to use this software.
 

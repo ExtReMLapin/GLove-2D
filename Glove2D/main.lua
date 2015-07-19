@@ -12,6 +12,7 @@ require "input"
 require "maingui"
 require "quit"
 
+instant_fps = 60;
 
 
 local TEST_ERROR = false
@@ -40,6 +41,9 @@ function load_modules()
 	http = require("socket.http")
 	require("save")
 end
+
+
+
 
 
 function love.load()
@@ -76,7 +80,14 @@ function love.update(dt)
 	end
 	hook.Call("ThinkUnpaused", dt)
 	leftClick = love.mouse.isDown("l")
+	instant_fps = 1/dt
 end
+
+
+function love.timer.realFPS()
+	return instant_fps
+end
+
 
 function love.draw()
 	hook.Call("BackBackGround") -- the real one .... this time eheh

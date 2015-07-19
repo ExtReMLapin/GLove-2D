@@ -262,17 +262,19 @@ end
 
 
 local mois = { "Jan.",
-				"Fév.",
-				"Mars",
-				"Avr.",
-				"Mai",
-				"Juin",
-				"Juil.",
-				"Août",
+				"Feb.",
+				"Mar.",
+				"Apr.",
+				"May ",
+				"June",
+				"July",
+				"Aug.",
 				"Sept.",
 				"Oct.",
 				"Nov.",
-				"Déc."}
+				"Dec."}
+
+
 
 
 
@@ -280,7 +282,7 @@ function DrawDateBox()
 	love.graphics.draw(UiBlock,ScrW- 306, 12)
 	love.graphics.setFont( date_box_text1 )
 	love.graphics.setColor(0,0,0)
-	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("semaine " .. T_SEM) ), ScrW-205, 25)
+	love.graphics.print(string.format("%s %i %s", mois[T_MONTH] ,T_YEAR, tostring("week " .. T_SEM) ), ScrW-205, 25)
 	local i = 0
 	while i < T_DAY do
 		surface.RoundedBox(ScrW-38, 53+(4*i), 3,3,3)
@@ -313,7 +315,7 @@ function CreateBigTutorialBox()
 		love.graphics.print(tbltuto[1], ScrW/2 - 340, ScrH/2 - 120)
 		love.graphics.setFont(fluwtexttuto)
 		love.graphics.setColor(0,0,0,80)
-		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW/2 , ScrH/2 + 120)
+		love.graphics.print("Press enter to skip, or the right arrow to go continue the tutorial.", ScrW/2 , ScrH/2 + 120)
 		love.graphics.setColor(255,255,255)
 		love.graphics.draw(image, ScrW/2 - 40,ScrH/2 - 230,0,(math.sin(love.timer.getTime()) + 12)/30,(math.sin(love.timer.getTime()) + 12)/30)
 		hook.Add("SingleKeyPressed", "tuto2", function(key)
@@ -651,19 +653,19 @@ hook.Add("SaveRestored", "MoneyMonthDrawsave",function ()
     	surface.RoundedBox(xoffset + 5, yoffset + 115, 290, 40, 3)
 		love.graphics.setColor(0,0,0)
 		love.graphics.setFont( date_box_text1 )
-		love.graphics.print("Revenus  Mensuels : ".. string.nicemath(monthlyEarning).."F", 190 + xoffset - date_box_text1:getWidth("Revenus  Mensuels :") , yoffset + 17)
-		love.graphics.print("Annuels : ", 190 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 35)
-		love.graphics.print("Frais  Mensuels : ".. string.nicemath(Salary*nbEmployees).. "F", 190 + xoffset - date_box_text1:getWidth("Frais  Mensuels :") , yoffset + 58)
-		love.graphics.print("Annuels : ".. string.nicemath(annualPayment).. "F", 190 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 76)
+		love.graphics.print("Monthly income : ".. string.nicemath(monthlyEarning).."F", 190 + xoffset - date_box_text1:getWidth("Monthly income  :") , yoffset + 17)
+		love.graphics.print("Yearly : ", 190 + xoffset - date_box_text1:getWidth("Annuels :"), yoffset + 35)
+		love.graphics.print("Monthly fees : ".. string.nicemath(Salary*nbEmployees).. "F", 190 + xoffset - date_box_text1:getWidth("Monthly fees :") , yoffset + 58)
+		love.graphics.print("Yearly : ".. string.nicemath(annualPayment).. "F", 190 + xoffset - date_box_text1:getWidth("Yearly :"), yoffset + 76)
 		--love.graphics.print("Taux Directeur               ".. mainRate.. "%", 20 + xoffset, yoffset + 121)
 		love.graphics.setFont(popuptext)
 		love.graphics.print("100", 50 + xoffset, yoffset + 240)
 		love.graphics.setFont( date_box_text2 )
-		love.graphics.print("Popularité", 30 + xoffset, yoffset + 170)
-		love.graphics.print("Investisseurs : ".. string.nicemath(nbInvestisseurs), 240 + xoffset - date_box_text2:getWidth("Investisseurs :"), yoffset + 185)
+		love.graphics.print("Popularity", 30 + xoffset, yoffset + 170)
+		love.graphics.print("Investors : ".. string.nicemath(nbInvestisseurs), 240 + xoffset - date_box_text2:getWidth("Investors :"), yoffset + 185)
 		love.graphics.print("Clients : ".. string.nicemath(nbClients), 240 + xoffset - date_box_text2:getWidth("Clients :"), yoffset + 215)
-		love.graphics.print("Employés : ".. string.nicemath(nbEmployees), 240 + xoffset - date_box_text2:getWidth("Employés :"), yoffset + 245)
-		love.graphics.line(230 + xoffset - date_box_text2:getWidth("Investisseurs :"), yoffset + 167, 230 + xoffset - date_box_text2:getWidth("Investisseurs :"), yoffset + 283)
+		love.graphics.print("Employees : ".. string.nicemath(nbEmployees), 240 + xoffset - date_box_text2:getWidth("Employees :"), yoffset + 245)
+		love.graphics.line(230 + xoffset - date_box_text2:getWidth("Investors :"), yoffset + 167, 230 + xoffset - date_box_text2:getWidth("Investors :"), yoffset + 283)
 		love.graphics.line(35 + xoffset, yoffset + 240, 95 + xoffset, yoffset + 240)
 
 	end)

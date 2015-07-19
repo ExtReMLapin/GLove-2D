@@ -1,9 +1,9 @@
--- 1sec    = 1/4 sem
--- 4 secs  = 1 sem
--- 16 secs = 1 mois
--- 3m12s   = 1 ans
--- 16 min  = 5 ans
--- 8 h     = 150 ans
+-- 1sec    = 1/4 week
+-- 4 secs  = 1 week
+-- 16 secs = 1 month
+-- 3m12s   = 1 year
+-- 16 min  = 5 years
+-- 8 h     = 150 years
 
 
 require("modules/timer2")

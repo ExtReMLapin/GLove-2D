@@ -12,7 +12,7 @@ require "input"
 require "maingui"
 require "quit"
 
-instant_fps = 60;
+instant_fps = 60
 
 
 local TEST_ERROR = false

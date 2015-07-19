@@ -11,7 +11,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			newClients =  (nbEmployees * (30 * employeeEfficiency)) - nbClients 
 			nbClients = newClients + nbClients
 			if T_SEM == 1 then
-				CreatePopUp("Manque d'effectif", "Les clients sont de plus en plus nombreux \nmais les employés ne peuvent gérer autant \nde personnes, vous devriez embaucher plus \nde personnel !")
+				CreatePopUp("You need more employees", "More and more clients are commint\nfew employees can't take care of all the clients\nyou better recruit come recruit\nmore employees fast !")
 			end
 		else
 			nbClients = nbClients + newClients
@@ -30,7 +30,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			baseMoney = math.Round(math.random(minimalInvestment/1000,10000), 0) * (nbClients/100)
 			baseTime = math.Round(math.random(minimalTimeInvestment, 200), 0)
 			baseRate = tauxInvestisseur(baseMoney,baseTime) / 100
-			addMoney(baseMoney, "Investissement")
+			addMoney(baseMoney, "Investment")
 			annualPayment = (annualPayment or 0) + baseMoney*baseRate
 			local x,y,z = calculateDate(T_SEM,T_MONTH,T_YEAR, baseTime * 31)
 			createEvent(string.format("%i/%i/%i",x,y,z), "Money = Money - ".. baseMoney)
@@ -87,7 +87,7 @@ function clientProfilGen(newClients)
 		totalClientMoney = totalClientMoney + clientMoney
 		highProfile = highProfile - 1
 	end
-	addMoney(totalClientMoney, "Nouveaux clients")
+	addMoney(totalClientMoney, "New clients")
 end
 
 function creditProfilGen(newCrediteurs)
@@ -115,7 +115,7 @@ function creditProfilGen(newCrediteurs)
 		monthlyEarning = monthlyEarning + (crediteurAsk*1000 + (crediteurAsk*10 * finalBehoof))/crediteurTime
 		local x,y,z = calculateDate(T_SEM,T_MONTH,T_YEAR, crediteurTime * 31)
 		createEvent(string.format("%i/%i/%i",x,y,z), "monthlyEarning = monthlyEarning -  "..  (crediteurAsk*1000 + (crediteurAsk*10 * finalBehoof))/crediteurTime)
-		addMoney(-crediteurAsk*1000, "Crédit")
+		addMoney(-crediteurAsk*1000, "Borrowing")
 		newCrediteurs = newCrediteurs - 1
 	end
 end
@@ -149,11 +149,11 @@ function clientQuitGen()
 		totalQuitMoney = totalQuitMoney + quitMoney
 		highProfile = highProfile - 1
 	end
-	addMoney(totalQuitMoney, "Départ clients")
+	addMoney(totalQuitMoney, "Clients left")
 	nbClients = math.max(nbClients - nbQuit,0)
 
 	if nbQuit > nbClients/10  and T_SEM == 1 then
-		CreatePopUp("Départ de clients", "Nous avons remarqué que de nombreux \nclients sont partis, cela pourrait être dû à \ndes taux d'intérêts trop élevés ou au \ncontraire des dividendes trop faibles. \nN'oubliez pas de surveillez les taux \nconcurrents !")
+		CreatePopUp("Clients are leaving !", "Look's like a lot of clients \ncare leaving, it's maybe because\nof the borrowing rate\nor maybe they don't make profit with their money.") -- fix it later me no speak americano
 	end
 end
 

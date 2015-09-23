@@ -13,7 +13,7 @@ hook.Add(nom,uid,fonction)
 	uid-> nom unique dans le groupe das lequelle elle est
 	function -> la fonction en question qui doit être appelée, elle peut avoir des arguments, ils seront reçu automatiquement par la hook.Add (voir en dessous)
 
-Hook.Add(nom, ...)
+Hook.Call(nom, ...)
 	nom-> le groupe que l'on utilise/crée, on peut très bien utiliser plusieurs hook.Call à la fois du même nom.
 	... -> Les arguments à envoyer dans les fonction run par hook.Add("Think","UID", function(...) end)
 

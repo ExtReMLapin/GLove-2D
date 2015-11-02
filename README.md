@@ -39,15 +39,25 @@ You have to download the Love software on the love 2d website.
 ##Main engine features
 
 *Isometric static level
+
 *All resolutions compatible, with autoresizing (format will not change, just the size)
+
 *Event system : createEvent(date, func)
+
 *Time system (Paused if in main menu) (The Love Frame system will be paused and another love frame instance is going to be ran in the main menu)
+
 *Menus system with popups (See video) (Menus powered by Love frames)
+
 *Graph system (really nice but broken because our webserver is offline)
+
 *Error system reporting to master server (unfinished)
+
 *Save system (Save the given vars in save.lua)
+
 *Timer libs
+
 *Hook system (Gmod-like)
+
 
 
 

@@ -155,7 +155,7 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 	love.graphics.draw(comptoirPic,quad ,midx - x*180/1280, midy - y*183/720)
 
 
-	--love.graphics.draw_nicegraph(midx-x*115/1280,  midy-y*(220+118)/720, x*240/1280, y*118/720, bank.corpo_get_value_date("AMD"))
+	love.graphics.draw_nicegraph(midx-x*85/1280,  midy-y*(282)/720, x*165/1280, y*80/720, bank.corpo_get_value_date("AMD"))
 
 
 	--local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)

@@ -80,7 +80,7 @@ Used software
 
 
 
-Todo :
+## Todo :
 
 *Optimize the graph system, it recalc everything even is we don't touch it (Zoom and pos).
 

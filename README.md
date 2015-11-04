@@ -40,27 +40,25 @@ You have to download the Love software on the love 2d website.
 
 *Isometric static level
 
-*All resolutions compatible, with autoresizing (format will not change, just the size)
+*ALL resolutions AND Format compatible, with autoresizing , check it out, you'll like it.
 
-*Event system : createEvent(date, func)
+*Event system : createEvent(date, func) with ingame time (The RP Time, or call it however you want).
 
 *Time system (Paused if in main menu) (The Love Frame system will be paused and another love frame instance is going to be ran in the main menu)
 
-*Menus system with popups (See video) (Menus powered by Love frames)
+*Menus system with popups (See video) (Some menus are powered by Love frames)
 
-*Graph system (really nice but broken because our webserver is offline)
+*Graph system, see the midle thing on the blackboard
 
 *Error system reporting to master server (unfinished)
 
-*Save system (Save the given vars in save.lua)
+*Save system (Save the given vars in save.lua), unbfuscated for testing purposes.
 
-*Timer libs
+*Timer libs (Gmod-like)
 
 *Hook system (Gmod-like)
 
-
-
-
+* Soon : Threaded resource lib loading.
 
 
 ----------
@@ -73,13 +71,18 @@ Used software
 
 *Love Frames (Modded to have more features)
 
-*Caps Admin's LuaFFI code (even if not used, we were about to use it for testing shit)
+*Caps Admin's LuaFFI code (even if not used, we were about to use it for testing things)
 
 *JSON4Lua (at the start for the save files, and then only for the webapi shit)
 
 *Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
 
 
+
+
+Todo :
+
+*Optimize the graph system, it recalc everything even is we don't touch it (Zoom and pos).
 
 
 ### Rights

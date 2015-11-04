@@ -24,15 +24,22 @@ Download it and drag the folder Glove2D over love.exe
 
 > **Note:**
 
-> - Save folder is appdata/roaming/Glove2D (LOVE if fucked up)
-> - You need a X64 system and a decent computer, not administrator rights are required
+> - Save folder is appdata/roaming/Glove2D (or just LOVE if something fucked up)
+> - You need a x64 system and a decent computer, administrator rights are not required
 
 
 Linux and OS X
 -------------
 You have to download the Love software on the love 2d website.
 
+Then drag Glove-2D/Glove2D on the binary
 ----------
+
+
+### Todo :
+
+*Optimize the graph system, it recalc everything even is we don't touch it (Zoom and pos).
+*Finish the game ? Erh eheh
 
 
 
@@ -77,12 +84,6 @@ Used software
 
 *Some libs from Garry's mod, and others build ourself se we can use familiars functions. (Hooks, string, table ...)
 
-
-
-
-## Todo :
-
-*Optimize the graph system, it recalc everything even is we don't touch it (Zoom and pos).
 
 
 ### Rights

@@ -1,4 +1,4 @@
-Glove 2D, now called Bank Boss
+Glove 2D, used to be called Safe Trade but now called Bank Boss
 ===================
 
 ![Screenshot](http://puu.sh/iECiV/224badf5a2.png)

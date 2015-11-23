@@ -3,6 +3,13 @@ require"modules/hook"
 
 local numberboxPersonnel3 -- bugfix
 
+local drawpictop = love.graphics.newImage("ressources/UiRackInfos.png")
+local drawpicrack = love.graphics.newImage("ressources/UiBaseRackMenuf.png")
+local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
+local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
+local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
+local buttonpic = love.graphics.newImage("ressources/UiJaugeArrow.png")
+
 --[[username = "Testguy"
 usrlevel = 3
 account_growth = 34
@@ -233,7 +240,7 @@ local love = love
 hook.Add("SaveRestored", "gui create", function()
 
 	MenuLeft = loveframes.Create("panel")
-	MenuLeft.DrawPic = love.graphics.newImage("ressources/UiRackInfos.png")
+	MenuLeft.DrawPic = drawpictop
 	MenuLeft:SetPos(ScrW-40, 250)
 	MenuLeft:SetSize(500,300)
 	MenuLeft.Draw = function ()
@@ -270,7 +277,7 @@ hook.Add("SaveRestored", "gui create", function()
 
 	MenuDown = loveframes.Create("panel")
 	MenuDown:SetSize(450,700)
-	MenuDown.DrawPic = love.graphics.newImage("ressources/UiBaseRackMenuf.png")
+	MenuDown.DrawPic =  drawpicrack
 	MenuDown:SetPos(37, ScrH-25)
 	MenuDown.Draw = function ()
 		local quad = love.graphics.newQuad(0,0,MenuDown:GetWidth( ),MenuDown:GetHeight( ), MenuDown.DrawPic:getWidth( ), MenuDown.DrawPic:getHeight( ))
@@ -307,10 +314,7 @@ hook.Add("SaveRestored", "gui create", function()
 	tabsmenudown:SetPos(5, -21)
 	tabsmenudown:SetSize(440, (MenuDown:GetHeight()-80))
 	tabsmenudown.Draw = function() end
-	local gr1 =love.graphics.newImage("ressources/UiJaugeBad.png")
-	local gr2 =love.graphics.newImage("ressources/UiJaugeMedium.png")
-	local gr3 =love.graphics.newImage("ressources/UiJaugeGood.png")
-	local buttonpic = love.graphics.newImage("ressources/UiJaugeArrow.png")
+
 
 
     local panel1 = loveframes.Create("panel")

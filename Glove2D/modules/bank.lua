@@ -21,7 +21,7 @@ function bank.corpo_get_infos(corp_name) -- return all the infos (instant infos,
 	tbl = tbl.query.results.quote
 	tbl.Bid = tbl.Bid or tbl.Ask
 	DataCache_infos[corp_name] = tbl
-	PrintTable(tbl)
+	--PrintTable(tbl)
 	return tbl
 end
 

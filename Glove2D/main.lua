@@ -1,3 +1,6 @@
+local loader = require 'love-loader'
+local finishedLoading = false
+local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
 
 require "data"
 require "error"
@@ -9,7 +12,6 @@ require "events"
 require "money"
 require "clientsystem"
 require "input"
-require "maingui"
 require "quit"
 
 instant_fps = 60
@@ -44,27 +46,62 @@ end
 
 
 
+customers = {}
+emps = {}
+backgroundpics = {}
+local tmpfonts = {}
+
 
 
 function love.load()
-	love.graphics.setBackgroundColor( 255,245,217 )
+
+
+	loader.newImage(  backgroundpics, "blurrywall", "ressources/wallpoop.png")
+	loader.newImage(  backgroundpics, "backgroundpic", "ressources/BackgroundMedium.png")
+	loader.newImage(  backgroundpics, "backgroundpic2", "ressources/BackgroundOver.png")
+	loader.newImage(  backgroundpics, "secretaryPic", "ressources/CharaSecretaryAnim1.png")
+	loader.newImage(  backgroundpics, "comptoirPic", "ressources/ObjectCounter.png")
+	loader.newImage(  backgroundpics, "bossPic", "ressources/CharaBankBoss.png")
+	loader.newImage(  backgroundpics, "secu2Pic", "ressources/CharaGuardians2.png")
+	loader.newImage(  backgroundpics, "secu3Pic", "ressources/CharaGuardians3.png")
+	loader.newFont(_G, 'date_box_text1' ,"ressources/OpenSans-Regular.ttf", 18)
+	loader.newFont(_G, 'date_box_text2' ,"ressources/OpenSans-Regular.ttf", 15)
+	loader.newFont(_G, 'rightclickmenu' ,"ressources/OpenSans-Regular.ttf", 25)
+	loader.newFont(_G, 'popuptext' ,"ressources/OpenSans-Regular.ttf",20)
+	loader.newFont(_G, 'cashtext' , "ressources/OpenSans-Regular.ttf",17)
+	loader.newFont(_G, 'popuptitle' ,"ressources/OpenSans-Semibold.ttf", 25)
+	loader.newFont(_G, 'sliderbarfont' ,"ressources/OpenSans-Semibold.ttf", 15)
+	loader.newFont(_G, 'fluwtext' ,"ressources/OpenSans-Regular.ttf",7)
+	loader.newFont(_G, 'fluwtexttuto' ,"ressources/OpenSans-Regular.ttf",10)
+	loader.newFont(_G, 'titletext' ,"ressources/Calibri.ttf",17)
+	loader.newFont(_G, 'postittext' ,"ressources/Calibri.ttf",13)
+	loader.newFont(_G, 'datebox' ,"ressources/Calibri.ttf",19)
+
+	loader.start(function()
+    	finishedLoading = true
+
+    	love.graphics.setBackgroundColor( 255,245,217 )
+		load_modules()
+		love.graphics.setPointStyle('smooth')
+		love.graphics.setLineStyle('smooth')
+		love.graphics.setLineWidth(0.2)
+		init_restore()
+		
+
+		local theme = love.audio.newSource("ressources/theme.mp3", "static")
+
+
+		theme:setVolume(0.1)
+		theme:setPitch(1)
+		theme:setLooping(true)
+		
+		require "background"
+  	end)
+
 	loveframes = require("gui")
-	load_modules()
-	love.graphics.setPointStyle('smooth')
-	love.graphics.setLineStyle('smooth')
-	love.graphics.setLineWidth(0.2)
-	init_restore()
-	require "background"
-
-	local theme = love.audio.newSource("ressources/theme.mp3", "static")
-
-
-	theme:setVolume(0.1)
-	theme:setPitch(1)
-	theme:setLooping(true)
 	--theme:play()
 	--CreatePopUp("News test","Ceci est un test avec le nouveau \ndesign, il manque pas les boutons",nil)
-
+	require "maingui"
 
 
 	love.filesystem.write("exit.txt", "false")
@@ -72,6 +109,10 @@ end
 
 
 function love.update(dt)
+  if not finishedLoading then
+    loader.update() -- You must do this on each iteration until all resources are loaded
+  end
+
 --	ffi.C.Sleep(1000/MAX_FPS)
 	if not PAUSED then
 		loveframes.update(dt)
@@ -90,12 +131,32 @@ end
 
 
 function love.draw()
-	hook.Call("BackBackGround") -- the real one .... this time eheh
-	hook.Call("BackGroundDraw") -- wallpaper ?
-	hook.Call("Draw")
-	loveframes.draw()
-	hook.Call("DrawOverFrame")
-	hook.Call("OverLayDraw") -- Menu echap, par exemple
+
+	if finishedLoading then
+		hook.Call("BackBackGround") -- the real one .... this time eheh
+		hook.Call("BackGroundDraw") -- wallpaper ?
+		hook.Call("Draw")
+		loveframes.draw()
+		hook.Call("DrawOverFrame")
+		hook.Call("OverLayDraw") -- Menu echap, par exemple
+	else
+		  local separation = 30;
+		  local w = screenWidth - 2*separation
+		  local h = 50;
+		  local x,y = separation, screenHeight - separation - h;
+		love.graphics.rectangle("line", x, y, w, h)
+
+		x, y = x + 3, y + 3
+		w, h = w - 6, h - 7
+
+		if loader.loadedCount > 0 then
+			w = w * (loader.loadedCount / loader.resourceCount)
+		else 
+			w = 0
+		end
+		love.graphics.rectangle("fill", x, y, w, h)
+
+	end
 end
 
 function love.resize(w, h)

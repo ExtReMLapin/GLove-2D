@@ -1,7 +1,7 @@
 ERROR_SENT = false
 print("Error System loaded")
 
-fonterrortitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 42)
+fonterrortitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 42) -- not threaded because the threaded app could error
 fonterrorsubtitle = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 32)
 fonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 20)
 sfonterrorsubtitle2 = love.graphics.newFont("ressources/OpenSans-Regular.ttf", 10)

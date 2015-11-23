@@ -12,7 +12,11 @@ local UiBlock = love.graphics.newImage("ressources/UiBlockPlayresize.png")
 local tutoBubble = love.graphics.newImage("ressources/UiBulleTextesfixed.png")
 local UiTab = love.graphics.newImage("ressources/UiBtnMenu.png")
 local UiBubbleTuto = love.graphics.newImage("ressources/UiBulleTutofixed.png")
-
+local popup = love.graphics.newImage("ressources/UiBlockNewstop.png")
+local popmid = love.graphics.newImage("ressources/UiBlockNewsmid.png")
+local popdown = love.graphics.newImage("ressources/UiBlockNewsdown.png")
+local imagebigtuto = love.graphics.newImage("ressources/CharaPortraits5.png")
+local imagetuto = love.graphics.newImage("ressources/CharaPortraits5.png")
 
 
 function Color(ra,ga,ba,aa)
@@ -304,7 +308,7 @@ function DrawDateBox()
 end
 
 function CreateBigTutorialBox()
-	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
+
 	tutopos = 1
 	hook.Add("OverLayDraw", "tutoriel1", function()
 		pausetime()
@@ -317,7 +321,7 @@ function CreateBigTutorialBox()
 		love.graphics.setColor(0,0,0,80)
 		love.graphics.print("Press enter to skip, or the right arrow to go continue the tutorial.", ScrW/2 , ScrH/2 + 120)
 		love.graphics.setColor(255,255,255)
-		love.graphics.draw(image, ScrW/2 - 40,ScrH/2 - 230,0,(math.sin(love.timer.getTime()) + 12)/30,(math.sin(love.timer.getTime()) + 12)/30)
+		love.graphics.draw(imagebigtuto, ScrW/2 - 40,ScrH/2 - 230,0,(math.sin(love.timer.getTime()) + 12)/30,(math.sin(love.timer.getTime()) + 12)/30)
 		hook.Add("SingleKeyPressed", "tuto2", function(key)
 			if key == "return" then
 				unpausetime()
@@ -338,7 +342,7 @@ function CreateBigTutorialBox()
 end
 
 function CreateTutorialBox()	
-	local image = love.graphics.newImage("ressources/CharaPortraits5.png")
+
 	tutopos = 4
 	hook.Add("OverLayDraw", "tutorial2", function()
 		pausetime()
@@ -351,7 +355,7 @@ function CreateTutorialBox()
 		love.graphics.setColor(0,0,0,80)
 		love.graphics.print("Appuyer sur Entrée pour passer, ou sur la flèche droite pour lire la suite..", ScrW - 390, ScrH - 72)
 		love.graphics.setColor(255,255,255)
-		love.graphics.draw(image, ScrW-820,ScrH-155,0,(math.sin(love.timer.getTime()) + 12)/40,(math.sin(love.timer.getTime()) + 12)/40)
+		love.graphics.draw(imagetuto, ScrW-820,ScrH-155,0,(math.sin(love.timer.getTime()) + 12)/40,(math.sin(love.timer.getTime()) + 12)/40)
 		hook.Add("SingleKeyPressed", "tuto1", function(key)
 			if key == "return" then
 				unpausetime()
@@ -371,9 +375,7 @@ function CreateTutorialBox()
 	end)
 end
 
-local popup = love.graphics.newImage("ressources/UiBlockNewstop.png")
-local popmid = love.graphics.newImage("ressources/UiBlockNewsmid.png")
-local popdown = love.graphics.newImage("ressources/UiBlockNewsdown.png")
+
 
 function CreatePopUp(title,text, choices, fun)
 	local isinto = false

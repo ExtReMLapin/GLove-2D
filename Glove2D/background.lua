@@ -1,15 +1,18 @@
 ScrW_RATIO = 1
 ScrH_RATIO = 1
 
-local blurrywall = love.graphics.newImage("ressources/wallpoop.png")
-local backgroundpic = love.graphics.newImage("ressources/BackgroundMedium.png")
-local backgroundpic2 = love.graphics.newImage("ressources/BackgroundOver.png")
-local secretaryPic = love.graphics.newImage("ressources/CharaSecretaryAnim1.png")
-local comptoirPic = love.graphics.newImage("ressources/ObjectCounter.png")
+local blurrywall = backgroundpics.blurrywall
+local backgroundpic = backgroundpics.backgroundpic
+local backgroundpic2 = backgroundpics.backgroundpic2
+local secretaryPic = backgroundpics.secretaryPic
+local comptoirPic = backgroundpics.comptoirPic
 --local casierPic = love.graphics.newImage("ressources/casier.png")
-local bossPic = love.graphics.newImage("ressources/CharaBankBoss.png")
-local secu2Pic = love.graphics.newImage("ressources/CharaGuardians2.png")
-local secu3Pic = love.graphics.newImage("ressources/CharaGuardians3.png")
+local bossPic = backgroundpics.bossPic
+local secu2Pic = backgroundpics.secu2Pic
+local secu3Pic = backgroundpics.secu3Pic
+
+
+
 local Rcustomers;
 
 
@@ -155,7 +158,7 @@ local quad = love.graphics.newQuad(0, 0, blurrywall:getWidth( ), blurrywall:getH
 	love.graphics.draw(comptoirPic,quad ,midx - x*180/1280, midy - y*183/720)
 
 
-	love.graphics.draw_nicegraph(midx-x*85/1280,  midy-y*(282)/720, x*165/1280, y*80/720, bank.corpo_get_value_date("AMD"))
+	--love.graphics.draw_nicegraph(midx-x*85/1280,  midy-y*(282)/720, x*165/1280, y*80/720, bank.corpo_get_value_date("AMD"))
 
 
 	--local quad = love.graphics.newQuad(0,0, casierPic:getWidth( ), casierPic:getHeight( ),x*47.5/1280,y*115/720)

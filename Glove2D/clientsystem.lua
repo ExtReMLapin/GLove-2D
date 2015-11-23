@@ -11,7 +11,7 @@ hook.Add("DateChange", "PuBClientCalc", function()
 			newClients =  (nbEmployees * (30 * employeeEfficiency)) - nbClients 
 			nbClients = newClients + nbClients
 			if T_SEM == 1 then
-				CreatePopUp("You need more employees", "More and more clients are commint\nfew employees can't take care of all the clients\nyou better recruit come recruit\nmore employees fast !")
+				CreatePopUp("You need more employees", "More and more clients are comming\nfew employees can't take care of all the clients\nyou better recruit more employees ASAP !")
 			end
 		else
 			nbClients = nbClients + newClients

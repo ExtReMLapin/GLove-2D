@@ -257,7 +257,7 @@ hook.Add("SaveRestored", "gui create", function()
 		else
 			if MenuLeft:GetX() == ScrW-40 then return end
 			if MenuLeft:GetX() < ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, 1*math.Remap(35,0,love.timer.realFPS( ),0,60 ) ), MenuLeft:GetY()) end
-			if MenuLeft:GetX() > ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, -1*math.Remap(350,love.timer.realFPS( ),0,60 ) ), MenuLeft:GetY()) end
+			if MenuLeft:GetX() > ScrW-40 then MenuLeft:SetPos(math.Approach( MenuLeft:GetX(), ScrW - 40, -1*math.Remap(35,0,love.timer.realFPS( ),0,60 ) ), MenuLeft:GetY()) end
 
 		end
 	end

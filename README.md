@@ -33,6 +33,11 @@ Linux and OS X
 You have to download the Love software on the love 2d website.
 
 Then drag Glove-2D/Glove2D on the binary
+
+You may need to run this command 
+```Shell
+find . -name '._*' -exec rm -v {} \;
+```
 ----------
 
 
